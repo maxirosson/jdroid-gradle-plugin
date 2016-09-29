@@ -9,6 +9,7 @@ Gradle Plugin for Java & Android projects
 |Production|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=production)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
 
 ## Features
+
 #### Android
  * Default Google Android Plugin configuration
  * Versioning scheme
@@ -18,6 +19,7 @@ Gradle Plugin for Java & Android projects
     * Verify Missing Translations
     * Increment app version according to [Semantic Versioning](http://semver.org/)
     * Copy generated APKs to a target directory
+    
 #### Java Web
  * [Jetty](http://eclipse.org/jetty) integration
 
