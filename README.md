@@ -8,6 +8,19 @@ Gradle Plugin for Java & Android projects
 |Staging|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=staging)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
 |Production|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=production)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
 
+## Features
+#### Android
+ * Default Google Android Plugin configuration
+ * Versioning scheme
+ * [Google Android Ribbonizer plugin](https://github.com/gfx/gradle-android-ribbonizer-plugin) integration
+ * Android Tasks
+    * Verify Missing Translations Between Locales
+    * Verify Missing Translations
+    * Increment app version according to [Semantic Versioning](http://semver.org/)
+    * Copy generated APKs to a target directory
+#### Java Web
+ * [Jetty](http://eclipse.org/jetty) integration
+
 ## Donations
 Help us to continue with this project:
 
