@@ -1,0 +1,103 @@
+ext.VERSION_MAJOR = 0
+ext.VERSION_MINOR = 11
+ext.VERSION_PATCH = 0
+
+ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
+ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
+
+apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.gradle.plugin-publish'
+
+description = 'Gradle Plugin for Java & Android projects'
+
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+		maven {
+			url "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
+		if (localMavenRepo != null) {
+			maven {
+				url localMavenRepo
+			}
+		}
+	}
+	dependencies {
+		// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+		classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
+
+		classpath 'com.jdroidframework:jdroid-component-builder:0.1.0'
+		classpath 'com.jdroidframework:jdroid-gradle-plugin:0.9.6'
+	}
+}
+
+repositories {
+	jcenter()
+	maven {
+		url "https://oss.sonatype.org/content/repositories/snapshots/"
+	}
+}
+
+dependencies {
+	// Check the release notes at http://tools.android.com/tech-docs/new-build-system
+	// https://developer.android.com/tools/revisions/gradle-plugin.html
+	// https://jcenter.bintray.com/com/android/tools/build/gradle/
+	compile 'com.android.tools.build:gradle:2.2.0'
+
+	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
+	compile 'com.github.gfx.ribbonizer:plugin:0.6.0'
+
+	compile 'com.jdroidframework:jdroid-java:0.9.5'
+
+	testCompile 'junit:junit:4.12'
+}
+
+// Configuration to publish your plugin to the plugin portal
+pluginBundle {
+	website = 'http://www.jdroidframework.com/'
+	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+
+	plugins {
+		androidLibPlugin {
+			id = 'com.jdroid.root'
+			displayName = 'Jdroid Root Gradle Plugin'
+			description = 'Gradle Plugin for root projects'
+			tags = ['jdroid']
+		}
+		javaPlugin {
+			id = 'com.jdroid.java.library'
+			displayName = 'Jdroid Java Library Gradle Plugin'
+			description = 'Gradle Plugin for Java libraries'
+			tags = ['jdroid', 'java']
+		}
+		javaWebPlugin {
+			id = 'com.jdroid.java.webapp'
+			displayName = 'Jdroid Java WebApp Gradle Plugin'
+			description = 'Gradle Plugin for Java Web apps'
+			tags = ['jdroid', 'java']
+		}
+		androidAppPlugin {
+			id = 'com.jdroid.android.application'
+			displayName = 'Jdroid Android App Gradle Plugin'
+			description = 'Gradle Plugin for Android apps'
+			tags = ['jdroid', 'java', 'android']
+		}
+		androidLibPlugin {
+			id = 'com.jdroid.android.library'
+			displayName = 'Jdroid Android Library Gradle Plugin'
+			description = 'Gradle Plugin for Android libraries'
+			tags = ['jdroid', 'java', 'android']
+		}
+	}
+
+	mavenCoordinates {
+		groupId = "com.jdroidframework"
+		artifactId = "jdroid-gradle-plugin"
+	}
+}
