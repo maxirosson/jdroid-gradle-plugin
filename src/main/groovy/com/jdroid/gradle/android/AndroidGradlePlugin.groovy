@@ -28,14 +28,14 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		minimumSdkVersion = jdroid.getIntegerProp('MIN_SDK_VERSION', 15)
 
-		android.compileSdkVersion 24
+		android.compileSdkVersion 25
 		// http://developer.android.com/tools/revisions/build-tools.html
-		android.buildToolsVersion "24.0.2"
+		android.buildToolsVersion "25.0.0"
 
 
 		android.defaultConfig {
 			minSdkVersion minimumSdkVersion
-			targetSdkVersion 24
+			targetSdkVersion 25
 
 			// Disabled by default, because it affects Instant Run
 			if (jdroid.getBooleanProp("BUILD_TIME_CONFIG_ENABLED", false)) {
