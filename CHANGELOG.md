@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.12.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.12.0) (2016-10-21)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.11.0...v0.12.0)
+
+**Implemented enhancements:**
+
+- Upgrade to Android Gradle Plugin v2.2.2 [\#17](https://github.com/maxirosson/jdroid-gradle-plugin/issues/17)
+- Upgrade to Build Tools v25.0.0 [\#16](https://github.com/maxirosson/jdroid-gradle-plugin/issues/16)
+- Upgrade to Api Level 25 [\#15](https://github.com/maxirosson/jdroid-gradle-plugin/issues/15)
+
 ## [v0.11.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.11.0) (2016-09-30)
 **Implemented enhancements:**
 
