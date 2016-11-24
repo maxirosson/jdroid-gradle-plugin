@@ -2,6 +2,7 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
 import com.jdroid.gradle.android.task.CopyApksTask
+import com.jdroid.java.collections.Lists
 import org.gradle.api.Project
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
@@ -23,6 +24,25 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 					} else {
 						return greenRibbonFilter(variant, iconFile)
 					}
+				}
+			}
+		}
+
+		List<String> components = Lists.safeArrayList(jdroid.getProp("COMPONENTS"))
+		if (components != null && components.contains("jdroid-android")) {
+			Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
+			if (stethoEnabled) {
+				project.dependencies {
+					debugCompile 'com.facebook.stetho:stetho:1.4.1'
+					if (components.contains("jdroid-java-okhttp")) {
+						debugCompile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
+					}
+					debugCompile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
+				}
+
+				android.defaultConfig {
+					jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled)
+					jdroid.setBuildConfigBoolean(android.defaultConfig, "JDROID_JAVA_OKHTTP_ENABLED", components.contains("jdroid-java-okhttp"))
 				}
 			}
 		}
