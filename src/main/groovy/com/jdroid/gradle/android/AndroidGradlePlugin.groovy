@@ -30,7 +30,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		android.compileSdkVersion 25
 		// http://developer.android.com/tools/revisions/build-tools.html
-		android.buildToolsVersion "25.0.1"
+		android.buildToolsVersion "25.0.2"
 
 
 		android.defaultConfig {
