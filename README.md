@@ -12,12 +12,12 @@ Gradle Plugin for Java & Android projects
 
 #### Android
  * Default Google Android Plugin configuration
- * Versioning scheme
  * [Google Android Ribbonizer plugin](https://github.com/gfx/gradle-android-ribbonizer-plugin) integration
  * Android Tasks
     * Verify Missing Translations Between Locales
     * Verify Missing Translations
-    * Increment app version according to [Semantic Versioning](http://semver.org/)
+    * Prefix Verification
+    * Increment app/library version according to [Semantic Versioning](http://semver.org/)
     * Copy generated APKs to a target directory
     
 #### Java Web
