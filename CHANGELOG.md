@@ -1,4 +1,4 @@
-gi# Change Log
+# Change Log
 
 ## [v0.13.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.13.0) (2017-01-15)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.12.0...v0.13.0)
