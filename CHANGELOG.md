@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.13.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.13.0) (2017-01-15)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.12.0...v0.13.0)
+
+**Implemented enhancements:**
+
+- Facebook Stetho support [\#19](https://github.com/maxirosson/jdroid-gradle-plugin/issues/19)
+- Changed Android minimumSdkVersion to 16 [\#18](https://github.com/maxirosson/jdroid-gradle-plugin/issues/18)
+
+**Closed issues:**
+
+- Upgrade to Android Gradle Plugin v2.2.3 [\#21](https://github.com/maxirosson/jdroid-gradle-plugin/issues/21)
+- Upgrade to Build Tools v25.0.2 [\#20](https://github.com/maxirosson/jdroid-gradle-plugin/issues/20)
+
 ## [v0.12.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.12.0) (2016-10-21)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.11.0...v0.12.0)
 
