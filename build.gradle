@@ -5,11 +5,12 @@ ext.VERSION_PATCH = 0
 ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
 ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
 
+ext.PROJECT_NAME = 'Gradle Plugin for Java & Android projects'
+description = 'Gradle Plugin for Java & Android projects'
+
 apply plugin: 'com.jdroid.gradle.plugin'
 apply plugin: 'com.jdroid.component.builder'
 apply plugin: 'com.gradle.plugin-publish'
-
-description = 'Gradle Plugin for Java & Android projects'
 
 buildscript {
 	repositories {
