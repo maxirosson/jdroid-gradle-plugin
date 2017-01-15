@@ -33,11 +33,11 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
 			if (stethoEnabled) {
 				project.dependencies {
-					debugCompile 'com.facebook.stetho:stetho:1.4.1'
+					debugCompile 'com.facebook.stetho:stetho:1.4.2'
 					if (components.contains("jdroid-java-okhttp")) {
-						debugCompile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
+						debugCompile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
 					}
-					debugCompile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
+					debugCompile 'com.facebook.stetho:stetho-js-rhino:1.4.2'
 				}
 
 				android.defaultConfig {
