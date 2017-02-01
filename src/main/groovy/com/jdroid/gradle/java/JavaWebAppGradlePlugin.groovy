@@ -10,6 +10,8 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 		project.ext.PACKAGING = 'war'
 
 		project.apply plugin: 'jetty'
+
+		project.sourceSets.main.java.srcDirs += "build/generated"
 	}
 
 	protected Class<? extends JavaWebAppGradleExtension> getExtensionClass() {
