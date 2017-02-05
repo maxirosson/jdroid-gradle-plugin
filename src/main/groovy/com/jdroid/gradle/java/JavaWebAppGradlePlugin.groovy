@@ -9,7 +9,8 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 
 		project.ext.PACKAGING = 'war'
 
-		project.apply plugin: 'jetty'
+		project.apply plugin: 'war'
+		project.apply plugin: 'org.akhikhl.gretty'
 
 		project.sourceSets.main.java.srcDirs += "build/generated"
 	}

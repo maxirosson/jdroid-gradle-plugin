@@ -21,7 +21,7 @@ Gradle Plugin for Java & Android projects
     * Copy generated APKs to a target directory
     
 #### Java Web
- * [Jetty](http://eclipse.org/jetty) integration
+ * [Gretty plugin](https://github.com/akhikhl/gretty) integration
 
 ## Donations
 Help us to continue with this project:
