@@ -1,0 +1,48 @@
+ext.PROJECT_NAME = 'Gradle Plugin for Android projects'
+description = 'Gradle Plugin for Android projects'
+ext.ARTIFACT_ID = 'jdroid-gradle-android-plugin'
+
+apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.gradle.plugin-publish'
+
+dependencies {
+
+	compile project(path: ":jdroid-gradle-java-plugin")
+
+	// Check the release notes at http://tools.android.com/tech-docs/new-build-system
+	// https://developer.android.com/tools/revisions/gradle-plugin.html
+	// https://jcenter.bintray.com/com/android/tools/build/gradle/
+	compile 'com.android.tools.build:gradle:2.2.3'
+
+	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
+	compile 'com.github.gfx.ribbonizer:plugin:0.6.0'
+
+	testCompile 'junit:junit:4.12'
+}
+
+// Configuration to publish your plugin to the plugin portal
+pluginBundle {
+	website = 'http://www.jdroidframework.com/'
+	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+
+	plugins {
+		androidAppPlugin {
+			id = 'com.jdroid.android.application'
+			displayName = 'Jdroid Android App Gradle Plugin'
+			description = 'Gradle Plugin for Android apps'
+			tags = ['jdroid', 'java', 'android']
+		}
+		androidLibPlugin {
+			id = 'com.jdroid.android.library'
+			displayName = 'Jdroid Android Library Gradle Plugin'
+			description = 'Gradle Plugin for Android libraries'
+			tags = ['jdroid', 'java', 'android']
+		}
+	}
+
+	mavenCoordinates {
+		groupId = "com.jdroidframework"
+		artifactId = "jdroid-gradle-android-plugin"
+	}
+}

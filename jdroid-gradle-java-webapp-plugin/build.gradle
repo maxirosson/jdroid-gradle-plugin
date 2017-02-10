@@ -1,0 +1,37 @@
+ext.PROJECT_NAME = 'Gradle Plugin for Java Web projects'
+description = 'Gradle Plugin for Java Web projects'
+ext.ARTIFACT_ID = 'jdroid-gradle-java-webapp-plugin'
+
+apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.gradle.plugin-publish'
+
+dependencies {
+
+	compile project(path: ":jdroid-gradle-java-plugin")
+
+	// https://github.com/akhikhl/gretty
+	compile 'org.akhikhl.gretty:gretty:1.4.1'
+
+	testCompile 'junit:junit:4.12'
+}
+
+// Configuration to publish your plugin to the plugin portal
+pluginBundle {
+	website = 'http://www.jdroidframework.com/'
+	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+
+	plugins {
+		javaWebPlugin {
+			id = 'com.jdroid.java.webapp'
+			displayName = 'Jdroid Java WebApp Gradle Plugin'
+			description = 'Gradle Plugin for Java Web apps'
+			tags = ['jdroid', 'java']
+		}
+	}
+
+	mavenCoordinates {
+		groupId = "com.jdroidframework"
+		artifactId = "jdroid-gradle-java-webapp-plugin"
+	}
+}

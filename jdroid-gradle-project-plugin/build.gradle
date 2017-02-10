@@ -1,0 +1,34 @@
+ext.PROJECT_NAME = 'Gradle Plugin for Gradle Plugin projects'
+description = 'Gradle Plugin for Gradle Plugin projects'
+ext.ARTIFACT_ID = 'jdroid-gradle-project-plugin'
+
+apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.gradle.plugin-publish'
+
+dependencies {
+
+	compile project(path: ":jdroid-gradle-commons-plugin")
+
+	testCompile 'junit:junit:4.12'
+}
+
+// Configuration to publish your plugin to the plugin portal
+pluginBundle {
+	website = 'http://www.jdroidframework.com/'
+	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+
+	plugins {
+		javaWebPlugin {
+			id = 'com.jdroid.gradle.plugin'
+			displayName = 'Jdroid Gradle Plugin'
+			description = 'Gradle Plugin for Gradle Plugin projects'
+			tags = ['jdroid', 'gradle']
+		}
+	}
+
+	mavenCoordinates {
+		groupId = "com.jdroidframework"
+		artifactId = "jdroid-gradle-project-plugin"
+	}
+}

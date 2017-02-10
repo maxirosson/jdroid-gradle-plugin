@@ -1,0 +1,13 @@
+ext.PROJECT_NAME = 'Gradle Plugin Commons'
+description = 'Gradle Plugin Commons'
+ext.ARTIFACT_ID = 'jdroid-gradle-commons-plugin'
+
+
+apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.gradle.plugin-publish'
+
+dependencies {
+	compile 'com.jdroidframework:jdroid-java:0.12.0'
+	testCompile 'junit:junit:4.12'
+}
