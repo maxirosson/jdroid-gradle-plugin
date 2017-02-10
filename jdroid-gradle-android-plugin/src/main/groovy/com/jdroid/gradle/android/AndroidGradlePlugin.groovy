@@ -61,9 +61,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		android.lintOptions {
 			checkReleaseBuilds false
-			// Or, if you prefer, you can continue to check for errors in release builds,
-			// but continue the build even when errors are found:
-			abortOnError false
+			abortOnError jdroid.getBooleanProp('ABORT_ON_LINT_ERROR', true)
 		}
 
 		android.packagingOptions {
