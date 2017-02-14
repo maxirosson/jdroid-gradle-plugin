@@ -3,6 +3,7 @@ package com.jdroid.gradle.commons
 import com.jdroid.gradle.commons.tasks.IncrementMajorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementMinorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementPatchVersionTask
+import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -30,6 +31,16 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		project.task('buildScriptDependencies') << {
 			project.buildscript.configurations.classpath.asPath.split(':').each {
 				println it
+			}
+		}
+
+		if (jdroid.getBooleanProp('NO_SNAPSHOT_VALIDATION_ENABLED', false)) {
+			project.configurations.all {
+				resolutionStrategy.eachDependency { details ->
+					if (details.requested.version.endsWith("-SNAPSHOT")) {
+						throw new GradleException("Found snapshot dependency: " + details.requested.group + ":" + details.requested.name + ":" + details.requested.version)
+					}
+				}
 			}
 		}
 	}
