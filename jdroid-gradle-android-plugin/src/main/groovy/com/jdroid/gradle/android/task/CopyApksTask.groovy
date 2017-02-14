@@ -12,7 +12,7 @@ public class CopyApksTask extends DefaultTask {
 	@TaskAction
 	public void doExecute() {
 
-		String targetApksDirPath = project.jdroid.getProp('TARGET_APKS_DIR_PATH')
+		String targetApksDirPath = project.jdroid.getStringProp('TARGET_APKS_DIR_PATH')
 		if (targetApksDirPath == null) {
 			throw new GradleException('Missing TARGET_APKS_DIR_PATH parameter')
 		}

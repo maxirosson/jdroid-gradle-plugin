@@ -25,23 +25,23 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName, String defaultValue) {
-		def value = getProp(propertyName, defaultValue)
+		String value = getStringProp(propertyName, defaultValue)
 		def stringValue = value == null ? "null" : '"' + value + '"'
 		flavor.buildConfigField "String", propertyName, stringValue
 	}
 
 	public void setBuildConfigBoolean(def flavor, String propertyName, Boolean defaultValue) {
-		def value = getProp(propertyName, defaultValue).toString()
+		String value = getBooleanProp(propertyName, defaultValue).toString()
 		flavor.buildConfigField "Boolean", propertyName, value
 	}
 
 	public void setBuildConfigInteger(def flavor, String propertyName, Integer defaultValue) {
-		def value = getProp(propertyName, defaultValue).toString()
+		String value = getIntegerProp(propertyName, defaultValue).toString()
 		flavor.buildConfigField "Integer", propertyName, value
 	}
 
 	public void setResValueString(def flavor, String propertyName, String defaultValue) {
-		def value = getProp(propertyName, defaultValue)
+		String value = getStringProp(propertyName, defaultValue)
 		def stringValue = value == null ? "" : value
 		flavor.resValue "string", propertyName, stringValue
 	}

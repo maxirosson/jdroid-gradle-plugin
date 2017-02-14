@@ -1,6 +1,7 @@
 package com.jdroid.gradle.commons
 
-import com.jdroid.java.exception.UnexpectedException
+import com.jdroid.gradle.commons.utils.StringUtils
+import com.jdroid.gradle.commons.utils.TypeUtils
 import org.gradle.api.Project
 
 public class BaseGradleExtension {
@@ -16,10 +17,10 @@ public class BaseGradleExtension {
 	public BaseGradleExtension(BaseGradlePlugin baseGradlePlugin) {
 		this.baseGradlePlugin = baseGradlePlugin
 
-		versionMajor = getProp('VERSION_MAJOR', 1)
-		versionMinor = getProp('VERSION_MINOR', 0)
-		versionPatch = getProp('VERSION_PATCH', 0)
-		versionClassifier = getProp('VERSION_CLASSIFIER', null)
+		versionMajor = getIntegerProp('VERSION_MAJOR', 1)
+		versionMinor = getIntegerProp('VERSION_MINOR', 0)
+		versionPatch = getIntegerProp('VERSION_PATCH', 0)
+		versionClassifier = getStringProp('VERSION_CLASSIFIER', null)
 		isSnapshot = getBooleanProp('SNAPSHOT', true)
 		if (versionClassifier == null) {
 			versionClassifier =  isSnapshot ? "SNAPSHOT" : null
@@ -48,68 +49,90 @@ public class BaseGradleExtension {
 		return df.format(new Date())
 	}
 
-	public def getProp(String propertyName) {
+	private def getProp(String propertyName) {
 		return getProp(propertyName, null)
 	}
 
-	public def getProp(String propertyName, def defaultValue) {
-		def value = getProp(baseGradlePlugin.project, propertyName)
-		if (value == null) {
-			value = System.getenv(propertyName)
-		}
-		return value != null ? value : defaultValue
+	private def getProp(String propertyName, def defaultValue) {
+		return getProp(baseGradlePlugin.project, propertyName, defaultValue)
 	}
 
-	public def getProp(Project project, String propertyName) {
-		return project != null && project.hasProperty(propertyName) ? project.ext.get(propertyName) : null
+	private def getProp(Project project, String propertyName, def defaultValue) {
+		if (project != null && project.ext.has(propertyName)) {
+			return project.ext.get(propertyName)
+		} else if (System.getenv().containsKey(propertyName)) {
+			return System.getenv(propertyName)
+		} else {
+			return defaultValue
+		}
+	}
+
+	public Boolean hasProperty(String propertyName) {
+		return project.ext.has(propertyName) || System.getenv().containsKey(propertyName)
+	}
+
+	public Boolean getBooleanProp(String propertyName) {
+		return getBooleanProp(propertyName, null)
 	}
 
 	public Boolean getBooleanProp(String propertyName, Boolean defaultValue) {
-		def value = getProp(propertyName)
+		Object value = getProp(propertyName)
 		if (value == null) {
 			return defaultValue
-		} else if (value.toString() == 'true') {
-			return true
-		} else if (value.toString() == 'false') {
-			return false
 		} else {
-			throw new UnexpectedException("Invalid Boolean value: " + value)
+			return TypeUtils.getBoolean(value.toString())
 		}
+	}
+
+	public String getStringProp(String propertyName) {
+		return getStringProp(propertyName, null)
 	}
 
 	public String getStringProp(String propertyName, String defaultValue) {
-		def value = getProp(propertyName)
+		String value = getProp(propertyName)
 		if (value == null) {
 			return defaultValue
 		} else {
-			return value.toString();
+			return value;
 		}
+	}
+
+	public Integer getIntegerProp(String propertyName) {
+		return getIntegerProp(propertyName, null)
 	}
 
 	public Integer getIntegerProp(String propertyName, Integer defaultValue) {
-		def value = getProp(propertyName)
+		Object value = getProp(propertyName)
 		if (value == null) {
 			return defaultValue
 		} else {
-			return Integer.parseInt(value);
+			return Integer.parseInt(value.toString());
 		}
+	}
+
+	public Long getLongProp(String propertyName) {
+		return getLongProp(propertyName, null)
 	}
 
 	public Long getLongProp(String propertyName, Long defaultValue) {
-		def value = getProp(propertyName)
+		Object value = getProp(propertyName)
 		if (value == null) {
 			return defaultValue
 		} else {
-			return Long.parseLong(value);
+			return Long.parseLong(value.toString());
 		}
 	}
 
+	public List<String> getStringListProp(String propertyName) {
+		return getStringListProp(propertyName, null)
+	}
+
 	public List<String> getStringListProp(String propertyName, List<String> defaultValue) {
-		def value = getProp(propertyName)
+		Object value = getProp(propertyName)
 		if (value == null) {
-			return []
+			return defaultValue
 		} else {
-			return (List)value;
+			return value instanceof List ? (List)value : StringUtils.splitToListWithCommaSeparator(value.toString());
 		}
 	}
 }

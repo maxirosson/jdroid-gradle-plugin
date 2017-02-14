@@ -2,7 +2,6 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
 import com.jdroid.gradle.android.task.CopyApksTask
-import com.jdroid.java.collections.Lists
 import org.gradle.api.Project
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
@@ -28,7 +27,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		List<String> components = Lists.safeArrayList(jdroid.getProp("COMPONENTS"))
+		List<String> components = jdroid.getStringListProp("COMPONENTS")
 		if (components != null && components.contains("jdroid-android")) {
 			Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
 			if (stethoEnabled) {
@@ -64,10 +63,10 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 			if (jdroid.isReleaseBuildTypeEnabled()) {
 				release {
-					storeFile project.file(jdroid.getProp('STORE_FILE', './debug.keystore'))
-					storePassword jdroid.getProp('STORE_PASSWORD')
-					keyAlias jdroid.getProp('KEY_ALIAS')
-					keyPassword jdroid.getProp('KEY_PASSWORD')
+					storeFile project.file(jdroid.getStringProp('STORE_FILE', './debug.keystore'))
+					storePassword jdroid.getStringProp('STORE_PASSWORD')
+					keyAlias jdroid.getStringProp('KEY_ALIAS')
+					keyPassword jdroid.getStringProp('KEY_PASSWORD')
 				}
 			}
 		}

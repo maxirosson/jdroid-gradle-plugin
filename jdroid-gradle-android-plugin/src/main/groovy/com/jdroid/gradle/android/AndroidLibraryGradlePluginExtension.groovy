@@ -8,7 +8,7 @@ public class AndroidLibraryGradlePluginExtension extends AndroidGradlePluginExte
 	public AndroidLibraryGradlePluginExtension(AndroidGradlePlugin androidGradlePlugin) {
 		super(androidGradlePlugin)
 
-		resourcePrefix = getProp('RESOURCE_PREFIX')
+		resourcePrefix = getStringProp('RESOURCE_PREFIX')
 		publishNonDefault = getBooleanProp('PUBLISH_NON_DEFAULT', true)
 	}
 

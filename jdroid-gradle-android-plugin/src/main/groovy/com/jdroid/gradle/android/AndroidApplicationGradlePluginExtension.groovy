@@ -8,8 +8,8 @@ public class AndroidApplicationGradlePluginExtension extends AndroidGradlePlugin
 	public AndroidApplicationGradlePluginExtension(AndroidGradlePlugin androidGradlePlugin) {
 		super(androidGradlePlugin)
 
-		versionCodePrefix = getProp('VERSION_CODE_PREFIX')
-		versionCodeExtraBit = getProp('VERSION_CODE_EXTRA_BIT', 0)
+		versionCodePrefix = getIntegerProp('VERSION_CODE_PREFIX')
+		versionCodeExtraBit = getIntegerProp('VERSION_CODE_EXTRA_BIT', 0)
 	}
 
 }
