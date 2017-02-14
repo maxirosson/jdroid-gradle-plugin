@@ -11,17 +11,19 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigString(def out, String key, String defaultValue) {
-		String constant = "		public static final String " + key + " = ";
+		if (hasProp(key) || defaultValue != null) {
+			String constant = "		public static final String " + key + " = ";
 
-		String value = getStringProp(key, defaultValue)
-		if (value == null) {
-			constant += "null"
-		} else {
-			constant += '\"' + value + '\"'
+			String value = getStringProp(key, defaultValue)
+			if (value == null) {
+				constant += "null"
+			} else {
+				constant += '\"' + value + '\"'
+			}
+
+			constant += ";"
+			out.writeLine(constant)
 		}
-
-		constant += ";"
-		out.writeLine(constant)
 	}
 
 	public void setBuildConfigBoolean(def out, String key) {
@@ -29,17 +31,19 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigBoolean(def out, String key, Boolean defaultValue) {
-		String constant = "		public static final Boolean " + key + " = ";
+		if (hasProp(key) || defaultValue != null) {
+			String constant = "		public static final Boolean " + key + " = ";
 
-		Boolean value = getBooleanProp(key, defaultValue)
-		if (value == null) {
-			constant += "null"
-		} else {
-			constant += value
+			Boolean value = getBooleanProp(key, defaultValue)
+			if (value == null) {
+				constant += "null"
+			} else {
+				constant += value
+			}
+
+			constant += ";"
+			out.writeLine(constant)
 		}
-
-		constant += ";"
-		out.writeLine(constant)
 	}
 
 	public void setBuildConfigInteger(def out, String key) {
@@ -47,17 +51,19 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigInteger(def out, String key, Integer defaultValue) {
-		String constant = "		public static final Integer " + key + " = ";
+		if (hasProp(key) || defaultValue != null) {
+			String constant = "		public static final Integer " + key + " = ";
 
-		Integer value = getIntegerProp(key, defaultValue)
-		if (value == null) {
-			constant += "null"
-		} else {
-			constant += value
+			Integer value = getIntegerProp(key, defaultValue)
+			if (value == null) {
+				constant += "null"
+			} else {
+				constant += value
+			}
+
+			constant += ";"
+			out.writeLine(constant)
 		}
-
-		constant += ";"
-		out.writeLine(constant)
 	}
 
 }

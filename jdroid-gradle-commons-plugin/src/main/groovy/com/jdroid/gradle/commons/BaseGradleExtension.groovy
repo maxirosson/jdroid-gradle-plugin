@@ -67,8 +67,8 @@ public class BaseGradleExtension {
 		}
 	}
 
-	public Boolean hasProperty(String propertyName) {
-		return project.ext.has(propertyName) || System.getenv().containsKey(propertyName)
+	public Boolean hasProp(String propertyName) {
+		return baseGradlePlugin.project.ext.has(propertyName) || System.getenv().containsKey(propertyName)
 	}
 
 	public Boolean getBooleanProp(String propertyName) {
