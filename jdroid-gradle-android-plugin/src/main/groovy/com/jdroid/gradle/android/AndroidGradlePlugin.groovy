@@ -37,6 +37,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			minSdkVersion minimumSdkVersion
 			targetSdkVersion 25
 
+			vectorDrawables.useSupportLibrary = jdroid.getBooleanProp('VECTOR_DRAWABLES_USE_SUPPORT_LIB', true)
+
 			// Disabled by default, because it affects Instant Run
 			if (jdroid.getBooleanProp("BUILD_TIME_CONFIG_ENABLED", false)) {
 				jdroid.setBuildConfigString(android.defaultConfig, "BUILD_TIME", jdroid.getBuildTime())
