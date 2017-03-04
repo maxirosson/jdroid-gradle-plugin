@@ -43,8 +43,12 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			if (jdroid.getBooleanProp("BUILD_TIME_CONFIG_ENABLED", false)) {
 				jdroid.setBuildConfigString(android.defaultConfig, "BUILD_TIME", jdroid.getBuildTime())
 			}
-			jdroid.setBuildConfigString(android.defaultConfig, "GIT_SHA", jdroid.getGitSha())
-			jdroid.setBuildConfigString(android.defaultConfig, "GIT_BRANCH", jdroid.getGitBranch())
+
+			// Disabled by default, because it affects Instant Run
+			if (jdroid.getBooleanProp("GIT_CONFIG_ENABLED", false)) {
+				jdroid.setBuildConfigString(android.defaultConfig, "GIT_SHA", jdroid.getGitSha())
+				jdroid.setBuildConfigString(android.defaultConfig, "GIT_BRANCH", jdroid.getGitBranch())
+			}
 		}
 
 		android.compileOptions {
@@ -55,7 +59,6 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		// https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html
 		android.dexOptions {
-			javaMaxHeapSize jdroid.getStringProp('JAVA_MAX_HEAP_SIZE', "3g")
 			maxProcessCount jdroid.getIntegerProp('MAX_PROCESS_COUNT', 1)
 			preDexLibraries jdroid.getBooleanProp('PRE_DEX_LIBRARIES', true)
 			dexInProcess jdroid.getBooleanProp('DEX_IN_PROCESS', false)
@@ -64,6 +67,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		android.lintOptions {
 			checkReleaseBuilds false
 			abortOnError jdroid.getBooleanProp('ABORT_ON_LINT_ERROR', true)
+			disable 'ContentDescription', 'RtlEnabled', 'RtlHardcoded', 'RtlSymmetry', 'UseCompoundDrawables', 'UnknownIdInLayout', 'RequiredSize'
 		}
 
 		android.packagingOptions {

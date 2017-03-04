@@ -20,17 +20,21 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		jdroid = project.jdroid
 		project.version = jdroid.generateVersionName()
 
-		project.task('printVersion') << {
-			println project.version
+		project.task('printVersion') {
+			doLast {
+				println project.version
+			}
 		}
 
 		project.task('incrementMajorVersion', type: IncrementMajorVersionTask)
 		project.task('incrementMinorVersion', type: IncrementMinorVersionTask)
 		project.task('incrementPatchVersion', type: IncrementPatchVersionTask)
 
-		project.task('buildScriptDependencies') << {
-			project.buildscript.configurations.classpath.asPath.split(':').each {
-				println it
+		project.task('buildScriptDependencies') {
+			doLast {
+				project.buildscript.configurations.classpath.asPath.split(':').each {
+					println it
+				}
 			}
 		}
 
