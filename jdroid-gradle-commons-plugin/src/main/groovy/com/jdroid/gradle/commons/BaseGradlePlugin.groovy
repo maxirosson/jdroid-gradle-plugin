@@ -38,7 +38,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			}
 		}
 
-		if (jdroid.getBooleanProp('ACCEPT_SNAPSHOT_DEPENDENCIES', true)) {
+		if (!jdroid.getBooleanProp('ACCEPT_SNAPSHOT_DEPENDENCIES', true)) {
 			project.configurations.all {
 				resolutionStrategy.eachDependency { details ->
 					if (details.requested.version.endsWith("-SNAPSHOT")) {
