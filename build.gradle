@@ -1,20 +1,43 @@
-allprojects {
-	ext.VERSION_MAJOR = 0
-	ext.VERSION_MINOR = 14
-	ext.VERSION_PATCH = 0
-	ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
-	ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
+ext.VERSION_MAJOR = 0
+ext.VERSION_MINOR = 14
+ext.VERSION_PATCH = 0
+
+ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
+ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
+
+ext.JDROID_GRADLE_PLUGIN_VERSION = '0.14.0-SNAPSHOT'
+ext.JDROID_JAVA_VERSION = '0.12.0'
+
+ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = '0.9.4'
+
+apply plugin: 'com.jdroid.root'
+apply plugin: 'com.jdroid.component.builder'
+
+buildscript {
+	repositories {
+		jcenter()
+		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
+		if (localMavenRepo != null) {
+			maven {
+				url localMavenRepo
+			}
+		}
+		maven {
+			url "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+	dependencies {
+		classpath 'com.jdroidframework:jdroid-component-builder:0.2.0'
+		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.14.0-SNAPSHOT'
+	}
 }
 
-allprojects {
+subprojects {
 	buildscript {
 		repositories {
 			jcenter()
 			maven {
 				url "https://plugins.gradle.org/m2/"
-			}
-			maven {
-				url "https://oss.sonatype.org/content/repositories/snapshots/"
 			}
 			String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 			if (localMavenRepo != null) {
@@ -22,32 +45,20 @@ allprojects {
 					url localMavenRepo
 				}
 			}
+			maven {
+				url "https://oss.sonatype.org/content/repositories/snapshots/"
+			}
 		}
 	}
 
 	repositories {
 		jcenter()
-		maven {
-			url "https://oss.sonatype.org/content/repositories/snapshots/"
+		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
+		if (localMavenRepo != null) {
+			maven {
+				url localMavenRepo
+			}
 		}
-	}
-}
-
-
-subprojects {
-
-	buildscript {
-		dependencies {
-			// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-			classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
-
-			classpath 'com.jdroidframework:jdroid-component-builder:0.2.0'
-			classpath 'com.jdroidframework:jdroid-gradle-plugin:0.13.0'
-		}
-	}
-
-	repositories {
-		jcenter()
 		maven {
 			url "https://oss.sonatype.org/content/repositories/snapshots/"
 		}

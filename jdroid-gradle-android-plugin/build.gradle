@@ -3,8 +3,16 @@ description = 'Gradle Plugin for Android projects'
 ext.ARTIFACT_ID = 'jdroid-gradle-android-plugin'
 
 apply plugin: 'com.jdroid.gradle.plugin'
-apply plugin: 'com.jdroid.component.builder'
 apply plugin: 'com.gradle.plugin-publish'
+
+buildscript {
+	dependencies {
+		// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
+
+		classpath 'com.jdroidframework:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+	}
+}
 
 dependencies {
 
