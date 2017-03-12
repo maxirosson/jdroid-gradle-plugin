@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.14.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.14.0) (2017-03-12)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.13.0...v0.14.0)
+
+**Implemented enhancements:**
+
+- Enabled vectorDrawables.useSupportLibrary flag by default [\#26](https://github.com/maxirosson/jdroid-gradle-plugin/issues/26)
+- Replaced getProp by getStringProp on base extension [\#25](https://github.com/maxirosson/jdroid-gradle-plugin/issues/25)
+- No Snapshot validation [\#24](https://github.com/maxirosson/jdroid-gradle-plugin/issues/24)
+- Create multiple artifacts, one for each plugin [\#23](https://github.com/maxirosson/jdroid-gradle-plugin/issues/23)
+- Gretty plugin integration [\#22](https://github.com/maxirosson/jdroid-gradle-plugin/issues/22)
+
+**Closed issues:**
+
+- Upgrade to Android Gradle Plugin v2.3.0 [\#28](https://github.com/maxirosson/jdroid-gradle-plugin/issues/28)
+- Upgrade to gradle 3.3 [\#27](https://github.com/maxirosson/jdroid-gradle-plugin/issues/27)
+
 ## [v0.13.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.13.0) (2017-01-15)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.12.0...v0.13.0)
 
