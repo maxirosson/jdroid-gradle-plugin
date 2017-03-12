@@ -41,7 +41,7 @@ subprojects {
 			// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 			classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
 
-			classpath 'com.jdroidframework:jdroid-component-builder:0.2.0-SNAPSHOT'
+			classpath 'com.jdroidframework:jdroid-component-builder:0.2.0'
 			classpath 'com.jdroidframework:jdroid-gradle-plugin:0.13.0'
 		}
 	}
