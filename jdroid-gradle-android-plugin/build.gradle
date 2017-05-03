@@ -21,7 +21,7 @@ dependencies {
 	// Check the release notes at http://tools.android.com/tech-docs/new-build-system
 	// https://developer.android.com/tools/revisions/gradle-plugin.html
 	// https://jcenter.bintray.com/com/android/tools/build/gradle/
-	compile 'com.android.tools.build:gradle:2.3.0'
+	compile 'com.android.tools.build:gradle:2.3.1'
 
 	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
 	compile 'com.github.gfx.ribbonizer:plugin:0.6.0'
