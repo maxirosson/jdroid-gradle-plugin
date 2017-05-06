@@ -55,6 +55,22 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
+		if (jdroid.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
+			android.applicationVariants.all { variant ->
+
+				variant.outputs.each { output ->
+					def outputFile = output.outputFile
+					if (outputFile != null && outputFile.name.endsWith('.apk')) {
+						def fileName = outputFile.name.replace('.apk', "-v${versionName}.apk")
+						if (variant.buildType.debuggable && variant.name.endsWith("Release")) {
+							fileName = fileName.replace("-v", "-DEBUGGABLE-v")
+						}
+						output.outputFile = new File(outputFile.parent, fileName)
+					}
+				}
+			}
+		}
+
 		android.signingConfigs {
 
 			debug {
