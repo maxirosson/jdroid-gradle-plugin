@@ -9,10 +9,13 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
+		if (jdroid.getBooleanProp("FIREBASE_PERFORMANCE_MONITORING_ENABLED", true)) {
+			project.apply plugin: 'com.google.firebase.firebase-perf'
+		}
+
 		project.task('copyApks', type: CopyApksTask)
 
-		Boolean ribbonizerEnabled = jdroid.getBooleanProp("RIBBONIZER_ENABLED", true)
-		if (ribbonizerEnabled) {
+		if (jdroid.getBooleanProp("RIBBONIZER_ENABLED", true)) {
 			project.apply plugin: 'com.github.gfx.ribbonizer'
 
 			project.ribbonizer {
