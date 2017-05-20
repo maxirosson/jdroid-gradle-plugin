@@ -61,7 +61,10 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		android.dexOptions {
 			maxProcessCount jdroid.getIntegerProp('MAX_PROCESS_COUNT', 1)
 			preDexLibraries jdroid.getBooleanProp('PRE_DEX_LIBRARIES', true)
-			dexInProcess jdroid.getBooleanProp('DEX_IN_PROCESS', false)
+			if (jdroid.hasProp('DEX_IN_PROCESS')) {
+				dexInProcess jdroid.getBooleanProp('DEX_IN_PROCESS')
+			}
+			// Only used if dexInProcess = false
 			if (jdroid.hasProp('JAVA_MAX_HEAP_SIZE')) {
 				javaMaxHeapSize jdroid.getStringProp('JAVA_MAX_HEAP_SIZE')
 			}
