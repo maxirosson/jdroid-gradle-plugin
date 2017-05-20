@@ -77,6 +77,10 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		android.packagingOptions {
 			exclude 'META-INF/LICENSE'
 			exclude 'META-INF/NOTICE'
+			exclude 'META-INF/LICENSE-FIREBASE_jvm.txt'
+			exclude 'META-INF/LICENSE-FIREBASE_android.txt'
+			exclude 'NOTICE_FIREBASE_jvm'
+			exclude 'NOTICE_FIREBASE_android'
 		}
 
 		project.task('verifyMissingTranslationsBetweenLocales', type: VerifyMissingTranslationsBetweenLocalesTask)
