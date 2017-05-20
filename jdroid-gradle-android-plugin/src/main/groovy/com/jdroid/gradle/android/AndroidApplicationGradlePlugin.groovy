@@ -49,12 +49,26 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
+		if (jdroid.getBooleanProp("SPLITS_DISABLED", false)) {
+			android.splits.abi.enabled = false
+			android.splits.density.enabled = false
+		}
+		if (jdroid.getBooleanProp("PNG_CRUNCHING_DISABLED", false)) {
+			android.aaptOptions.cruncherEnabled = false
+		}
+
 		android.defaultConfig {
 			versionCode generateVersionCode()
 			versionName project.version
 
-			jackOptions {
-				enabled jdroid.getBooleanProp('JACK_ENABLED', false)
+			List<String> resConfigsList = jdroid.getStringListProp("DEBUG_RES_CONFIGS")
+			if (resConfigsList != null) {
+				resConfigs resConfigsList
+			} else {
+				resConfigsList = jdroid.getStringListProp("RES_CONFIGS")
+				if (resConfigsList != null) {
+					resConfigs resConfigsList
+				}
 			}
 		}
 
