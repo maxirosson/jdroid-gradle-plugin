@@ -16,15 +16,12 @@ apply plugin: 'com.jdroid.component.builder'
 buildscript {
 	repositories {
 		jcenter()
+		maven { url "https://maven.google.com" }
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
-			maven {
-				url localMavenRepo
-			}
+			maven { url localMavenRepo }
 		}
-		maven {
-			url "https://oss.sonatype.org/content/repositories/snapshots/"
-		}
+		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	}
 	dependencies {
 		classpath 'com.jdroidframework:jdroid-component-builder:0.3.0-SNAPSHOT'
@@ -36,31 +33,25 @@ subprojects {
 	buildscript {
 		repositories {
 			jcenter()
-			maven {
-				url "https://plugins.gradle.org/m2/"
-			}
+			maven { url "https://maven.google.com" }
+			maven { url "https://plugins.gradle.org/m2/" }
 			String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 			if (localMavenRepo != null) {
 				maven {
 					url localMavenRepo
 				}
 			}
-			maven {
-				url "https://oss.sonatype.org/content/repositories/snapshots/"
-			}
+			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 		}
 	}
 
 	repositories {
 		jcenter()
+		maven { url "https://maven.google.com" }
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
-			maven {
-				url localMavenRepo
-			}
+			maven { url localMavenRepo }
 		}
-		maven {
-			url "https://oss.sonatype.org/content/repositories/snapshots/"
-		}
+		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	}
 }
