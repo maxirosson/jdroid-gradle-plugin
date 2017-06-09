@@ -13,6 +13,7 @@ public class JavaGradlePlugin extends JavaBaseGradlePlugin {
 		project.compileJava {
 			sourceCompatibility getJavaSourceCompatibility()
 			targetCompatibility getJavaTargetCompatibility()
+			options.encoding = 'UTF-8'
 		}
 	}
 
