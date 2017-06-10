@@ -18,6 +18,6 @@ buildscript {
 }
 
 dependencies {
-	compile 'com.jdroidframework:jdroid-java:' + JDROID_JAVA_VERSION
+	compile 'com.jdroidframework:jdroid-java-core:' + JDROID_JAVA_VERSION
 	testCompile 'junit:junit:4.12'
 }
