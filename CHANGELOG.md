@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.15.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.0) (2017-06-09)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.14.0...v0.15.0)
+
+**Implemented enhancements:**
+
+- New properties to configure the build [\#35](https://github.com/maxirosson/jdroid-gradle-plugin/issues/35)
+- Enabled dexInProcess by default [\#34](https://github.com/maxirosson/jdroid-gradle-plugin/issues/34)
+- Firebase Performance Monitoring plugin support [\#32](https://github.com/maxirosson/jdroid-gradle-plugin/issues/32)
+- Add version and debuggable info to APK file name [\#31](https://github.com/maxirosson/jdroid-gradle-plugin/issues/31)
+
+**Closed issues:**
+
+- Upgrade to Gradle v3.5 [\#33](https://github.com/maxirosson/jdroid-gradle-plugin/issues/33)
+- Upgrade to build tools v25.0.3 [\#30](https://github.com/maxirosson/jdroid-gradle-plugin/issues/30)
+- Upgrade to Android Gradle Plugin v2.3.3 [\#29](https://github.com/maxirosson/jdroid-gradle-plugin/issues/29)
+
 ## [v0.14.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.14.0) (2017-03-12)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.13.0...v0.14.0)
 
