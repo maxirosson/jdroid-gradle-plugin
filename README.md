@@ -1,5 +1,5 @@
 # Jdroid Gradle Plugin
-Gradle Plugin for Java & Android projects
+Gradle Plugins for Java & Android projects
 
 ## Continuous Integration
 |Branch|Status|
@@ -8,20 +8,13 @@ Gradle Plugin for Java & Android projects
 |Staging|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=staging)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
 |Production|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=production)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
 
-## Features
+## Components
 
-#### Android
- * Default Google Android Plugin configuration
- * [Google Android Ribbonizer plugin](https://github.com/gfx/gradle-android-ribbonizer-plugin) integration
- * Android Tasks
-    * Verify Missing Translations Between Locales
-    * Verify Missing Translations
-    * Prefix Verification
-    * Increment app/library version according to [Semantic Versioning](http://semver.org/)
-    * Copy generated APKs to a target directory
-    
-#### Java Web
- * [Gretty plugin](https://github.com/akhikhl/gretty) integration
+* [jdroid-gradle-android-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/jdroid-gradle-android-plugin)
+* [jdroid-gradle-java-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/jdroid-gradle-java-plugin)
+* [jdroid-gradle-java-webapp-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/jdroid-gradle-java-webapp-plugin)
+* [jdroid-gradle-project-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/jdroid-gradle-project-plugin)
+* [jdroid-gradle-root-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/jdroid-gradle-root-plugin)
 
 ## Donations
 Help us to continue with this project:
