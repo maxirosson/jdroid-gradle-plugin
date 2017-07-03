@@ -28,7 +28,7 @@ public class AbstractIncrementVersionTask extends DefaultTask {
 		}
 
 		project.exec {
-			commandLine 'git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version}"
+			commandLine 'git', '-c', 'commit.gpgsign=false', 'commit', '-m', "Changed version to v${project.version}"
 		}
 	}
 }
