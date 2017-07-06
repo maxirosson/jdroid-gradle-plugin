@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.15.1](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.1) (2017-06-13)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.15.0...v0.15.1)
+
+**Fixed bugs:**
+
+- Increment version tasks error when commit signing enabled [\#38](https://github.com/maxirosson/jdroid-gradle-plugin/issues/38)
+
+
 ## [v0.15.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.0) (2017-06-09)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.14.0...v0.15.0)
 
