@@ -5,7 +5,7 @@ import org.gradle.api.tasks.TaskAction
 public class IncrementMajorVersionTask extends AbstractIncrementVersionTask {
 
 	public IncrementMajorVersionTask() {
-		description = 'Increments the major version (X+1.X.X)'
+		description = 'Increments the major version (X.Y.Z) -> (X+1.0.0)'
 	}
 
 	@TaskAction

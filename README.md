@@ -10,11 +10,11 @@ Gradle Plugins for Java & Android projects
 
 ## Components
 
-* [jdroid-gradle-android-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/tree/master/jdroid-gradle-android-plugin)
-* [jdroid-gradle-java-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/tree/master/jdroid-gradle-java-plugin)
-* [jdroid-gradle-java-webapp-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/tree/master/jdroid-gradle-java-webapp-plugin)
-* [jdroid-gradle-project-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/tree/master/jdroid-gradle-project-plugin)
-* [jdroid-gradle-root-plugin](https://github.com/maxirosson/jdroid-gradle-plugin/tree/master/jdroid-gradle-root-plugin)
+* [jdroid-gradle-android-plugin](/jdroid-gradle-android-plugin)
+* [jdroid-gradle-java-plugin](/jdroid-gradle-java-plugin)
+* [jdroid-gradle-java-webapp-plugin](/jdroid-gradle-java-webapp-plugin)
+* [jdroid-gradle-project-plugin](/jdroid-gradle-project-plugin)
+* [jdroid-gradle-root-plugin](/jdroid-gradle-root-plugin)
 
 ## Donations
 Help us to continue with this project:

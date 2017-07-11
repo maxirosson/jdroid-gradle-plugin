@@ -5,7 +5,7 @@ import org.gradle.api.tasks.TaskAction
 public class IncrementPatchVersionTask extends AbstractIncrementVersionTask {
 
 	public IncrementPatchVersionTask() {
-		description = 'Increments the patch version (X.X.X+1)'
+		description = 'Increments the patch version (X.Y.Z) -> (X.Y.Z+1)'
 	}
 
 	@TaskAction

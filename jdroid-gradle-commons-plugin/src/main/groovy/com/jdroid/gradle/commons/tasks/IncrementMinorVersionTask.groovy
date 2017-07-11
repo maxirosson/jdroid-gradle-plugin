@@ -5,7 +5,7 @@ import org.gradle.api.tasks.TaskAction
 public class IncrementMinorVersionTask extends AbstractIncrementVersionTask {
 
 	public IncrementMinorVersionTask() {
-		description = 'Increments the minor version (X.X+1.X)'
+		description = 'Increments the minor version (X.Y.Z) -> (X.Y+1.0)'
 	}
 
 	@TaskAction
