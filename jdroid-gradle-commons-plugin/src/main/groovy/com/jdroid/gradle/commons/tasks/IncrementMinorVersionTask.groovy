@@ -1,6 +1,6 @@
 package com.jdroid.gradle.commons.tasks
 
-import org.gradle.api.tasks.TaskAction
+import com.jdroid.gradle.commons.Version
 
 public class IncrementMinorVersionTask extends AbstractIncrementVersionTask {
 
@@ -8,11 +8,8 @@ public class IncrementMinorVersionTask extends AbstractIncrementVersionTask {
 		description = 'Increments the minor version (X.X+1.X)'
 	}
 
-	@TaskAction
-	public void doExecute() {
-		project.jdroid.versionMinor = changeVersion("VERSION_MINOR", null)
-		project.jdroid.versionPatch = changeVersion("VERSION_PATCH", 0)
-		project.version = project.jdroid.generateVersionName()
-		commitVersionChange()
+	@Override
+	protected void incrementVersion(Version version) {
+		version.incrementMinor()
 	}
 }

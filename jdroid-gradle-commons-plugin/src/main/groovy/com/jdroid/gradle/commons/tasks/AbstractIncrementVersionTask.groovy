@@ -1,22 +1,53 @@
 package com.jdroid.gradle.commons.tasks
+
+import com.jdroid.gradle.commons.Version
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.TaskAction
 
-public class AbstractIncrementVersionTask extends DefaultTask {
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
-	protected def changeVersion(String versionType, Integer newVersion) {
-		def file = project.file("./build.gradle")
-		def patternVersionNumber = java.util.regex.Pattern.compile(versionType + " = (\\d+)")
-		def buildGradleText = file.getText()
-		def matcherVersionNumber = patternVersionNumber.matcher(buildGradleText)
-		matcherVersionNumber.find()
-		def currentVersion = Integer.parseInt(matcherVersionNumber.group(1))
-		if (newVersion == null) {
-			newVersion = currentVersion + 1
+public abstract class AbstractIncrementVersionTask extends DefaultTask {
+
+	@TaskAction
+	public void doExecute() {
+		File buildGradleFile = project.file(project.jdroid.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"))
+		Pattern versionPattern = Pattern.compile('^\\s?version\\s?=\\s?["\'](\\d\\d?\\.\\d\\d?\\.\\d\\d?)["\']')
+
+		Boolean versionFound = false
+		List lines = []
+		buildGradleFile.eachLine { String line ->
+			if (!versionFound) {
+				Matcher versionMatcher = versionPattern.matcher(line)
+				if (versionMatcher.find()) {
+					String versionText = versionMatcher.group(1)
+					Version version = new Version(project, versionText)
+					incrementVersion(version)
+					String newLineContent = versionMatcher.replaceFirst("version = '" + version.baseVersion + "'")
+					lines.add(newLineContent)
+					project.version = version
+					versionFound = true
+				} else {
+					lines.add(line)
+				}
+			} else {
+				lines.add(line)
+			}
 		}
-		def fileContent = matcherVersionNumber.replaceAll(versionType + " = " + newVersion)
-		file.write(fileContent)
-		return newVersion
+
+		if (versionFound) {
+			buildGradleFile.withWriter { out ->
+				lines.each {
+					out.println it
+				}
+			}
+			commitVersionChange()
+		} else {
+			throw new RuntimeException("Version not defined on " + buildGradleFile.absolutePath)
+		}
 	}
+
+	protected abstract void incrementVersion(Version version);
 
 	protected void commitVersionChange() {
 		project.exec {
@@ -28,7 +59,7 @@ public class AbstractIncrementVersionTask extends DefaultTask {
 		}
 
 		project.exec {
-			commandLine 'git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version}"
+			commandLine 'git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version.baseVersion}"
 		}
 	}
 }
