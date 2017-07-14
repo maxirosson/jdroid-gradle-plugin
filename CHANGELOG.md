@@ -1,12 +1,20 @@
 # Change Log
 
+## [v0.16.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.0) (2017-07-14)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.15.1...v0.16.0)
+
+**Implemented enhancements:**
+
+- Local snapshot support on versioning [\#41](https://github.com/maxirosson/jdroid-gradle-plugin/issues/41)
+- Feature branch support inside versioning [\#40](https://github.com/maxirosson/jdroid-gradle-plugin/issues/40)
+- Changed the version assignation [\#39](https://github.com/maxirosson/jdroid-gradle-plugin/issues/39)
+
 ## [v0.15.1](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.1) (2017-06-13)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.15.0...v0.15.1)
 
 **Fixed bugs:**
 
 - Increment version tasks error when commit signing enabled [\#38](https://github.com/maxirosson/jdroid-gradle-plugin/issues/38)
-
 
 ## [v0.15.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.0) (2017-06-09)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.14.0...v0.15.0)

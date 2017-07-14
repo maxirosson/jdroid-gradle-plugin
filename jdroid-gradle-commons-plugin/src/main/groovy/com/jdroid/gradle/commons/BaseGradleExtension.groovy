@@ -8,31 +8,8 @@ public class BaseGradleExtension {
 
 	protected final BaseGradlePlugin baseGradlePlugin
 
-	public Integer versionMajor
-	public Integer versionMinor
-	public Integer versionPatch
-	public String versionClassifier
-	public Boolean isSnapshot
-
 	public BaseGradleExtension(BaseGradlePlugin baseGradlePlugin) {
 		this.baseGradlePlugin = baseGradlePlugin
-
-		versionMajor = getIntegerProp('VERSION_MAJOR', 1)
-		versionMinor = getIntegerProp('VERSION_MINOR', 0)
-		versionPatch = getIntegerProp('VERSION_PATCH', 0)
-		versionClassifier = getStringProp('VERSION_CLASSIFIER', null)
-		isSnapshot = getBooleanProp('SNAPSHOT', true)
-		if (versionClassifier == null) {
-			versionClassifier =  isSnapshot ? "SNAPSHOT" : null
-		}
-	}
-
-	public String generateVersionName() {
-		String versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
-		if (versionClassifier != null && !versionClassifier.isEmpty()) {
-			versionName = versionName + "-" + versionClassifier
-		}
-		return versionName;
 	}
 
 	public String getGitSha() {
@@ -40,7 +17,7 @@ public class BaseGradleExtension {
 	}
 
 	public String getGitBranch() {
-		return 'git symbolic-ref HEAD'.execute().text.trim().replaceAll(".*/", "")
+		return 'git symbolic-ref HEAD'.execute().text.trim().replace("origin/", "").replace("refs/heads/", "")
 	}
 
 	public String getBuildTime() {

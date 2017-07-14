@@ -18,7 +18,18 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 		project.extensions.create("jdroid", getExtensionClass(), this)
 		jdroid = project.jdroid
-		project.version = jdroid.generateVersionName()
+
+		if (project.version == Project.DEFAULT_VERSION) {
+			project.version = project.rootProject.version
+		}
+
+		if (project.version == Project.DEFAULT_VERSION) {
+			project.logger.warn("Version not specified on project ${project.name} or its root project. Assigned v0.1.0 as default version")
+			project.version = "0.1.0"
+		}
+
+		String baseVersion = project.version instanceof Version ? ((Version)project.version).baseVersion : project.version.toString()
+		project.version = createVersion(baseVersion)
 
 		project.task('printVersion') {
 			doLast {
@@ -47,6 +58,10 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				}
 			}
 		}
+	}
+
+	protected Version createVersion(String version) {
+		return new Version(project, version)
 	}
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {

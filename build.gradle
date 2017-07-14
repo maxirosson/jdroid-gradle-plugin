@@ -1,5 +1,5 @@
 ext.VERSION_MAJOR = 0
-ext.VERSION_MINOR = 16
+ext.VERSION_MINOR = 17
 ext.VERSION_PATCH = 0
 
 ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
@@ -25,7 +25,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.jdroidframework:jdroid-component-builder:0.3.0-SNAPSHOT'
-		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.14.0'
+		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.15.1'
 	}
 }
 

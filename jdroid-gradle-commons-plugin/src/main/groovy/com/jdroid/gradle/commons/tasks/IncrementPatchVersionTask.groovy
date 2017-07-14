@@ -1,6 +1,6 @@
 package com.jdroid.gradle.commons.tasks
 
-import org.gradle.api.tasks.TaskAction
+import com.jdroid.gradle.commons.Version
 
 public class IncrementPatchVersionTask extends AbstractIncrementVersionTask {
 
@@ -8,10 +8,8 @@ public class IncrementPatchVersionTask extends AbstractIncrementVersionTask {
 		description = 'Increments the patch version (X.Y.Z) -> (X.Y.Z+1)'
 	}
 
-	@TaskAction
-	public void doExecute() {
-		project.jdroid.versionPatch = changeVersion("VERSION_PATCH", null)
-		project.version = project.jdroid.generateVersionName()
-		commitVersionChange()
+	@Override
+	protected void incrementVersion(Version version) {
+		version.incrementPatch()
 	}
 }

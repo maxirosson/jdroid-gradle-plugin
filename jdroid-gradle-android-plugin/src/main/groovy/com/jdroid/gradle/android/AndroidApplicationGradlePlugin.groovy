@@ -2,6 +2,7 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
 import com.jdroid.gradle.android.task.CopyApksTask
+import com.jdroid.gradle.commons.Version
 import org.gradle.api.Project
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
@@ -58,8 +59,8 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		}
 
 		android.defaultConfig {
-			versionCode generateVersionCode()
-			versionName project.version
+			versionCode project.version.versionCode
+			versionName project.version.toString()
 
 			List<String> resConfigsList = jdroid.getStringListProp("DEBUG_RES_CONFIGS")
 			if (resConfigsList != null) {
@@ -107,16 +108,13 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		}
 	}
 
-	protected Integer generateVersionCode() {
-		Integer versionCodePrefix = jdroid.versionCodePrefix
-		if (versionCodePrefix == null) {
-			versionCodePrefix = minimumSdkVersion
-		}
-		return versionCodePrefix * 10000000 + jdroid.versionCodeExtraBit * 1000000 + jdroid.versionMajor * 10000 + jdroid.versionMinor * 100 + jdroid.versionPatch
-	}
-
 	protected Class<? extends AndroidApplicationGradlePluginExtension> getExtensionClass() {
 		return AndroidApplicationGradlePluginExtension.class;
+	}
+
+	@Override
+	protected Version createVersion(String version) {
+		return new AndroidVersion(project, version)
 	}
 
 	protected void applyAndroidPlugin() {

@@ -7,12 +7,14 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	String[] resourcesDirsPaths = ['src/main/res/']
 	String[] notDefaultLanguages = []
 	String missingTranslationExpression = "#TODO#"
+	Integer minimumSdkVersion
 
 	private boolean isReleaseBuildTypeEnabled
 
 	public AndroidGradlePluginExtension(AndroidGradlePlugin androidGradlePlugin) {
 		super(androidGradlePlugin)
 
+		minimumSdkVersion = getIntegerProp('MIN_SDK_VERSION', 16)
 		isReleaseBuildTypeEnabled = getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false)
 	}
 
@@ -22,6 +24,10 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 
 	public void setBuildConfigString(def flavor, String propertyName) {
 		setBuildConfigString(flavor, propertyName, null)
+	}
+
+	public void setBuildConfigString(def flavor, String propertyName, Object defaultValue) {
+		setBuildConfigString(flavor, propertyName, defaultValue.toString())
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName, String defaultValue) {
