@@ -7,6 +7,10 @@
 
 - Increment version tasks error when commit signing enabled [\#38](https://github.com/maxirosson/jdroid-gradle-plugin/issues/38)
 
+**Closed issues:**
+
+- Upgraded android target sdk version to 26 [\#37](https://github.com/maxirosson/jdroid-gradle-plugin/issues/37)
+- Upgrade to build tools v26.0.0 [\#36](https://github.com/maxirosson/jdroid-gradle-plugin/issues/36)
 
 ## [v0.15.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.0) (2017-06-09)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.14.0...v0.15.0)
