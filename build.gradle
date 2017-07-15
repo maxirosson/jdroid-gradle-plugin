@@ -1,6 +1,4 @@
-ext.VERSION_MAJOR = 0
-ext.VERSION_MINOR = 17
-ext.VERSION_PATCH = 0
+version = '0.17.0'
 
 ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
 ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
@@ -25,7 +23,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.jdroidframework:jdroid-component-builder:0.3.0-SNAPSHOT'
-		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.15.1'
+		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.16.0'
 	}
 }
 
