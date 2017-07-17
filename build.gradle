@@ -8,13 +8,14 @@ ext.JDROID_JAVA_VERSION = '0.13.0'
 
 ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = '0.9.4'
 
-apply plugin: 'com.jdroid.root'
 apply plugin: 'com.jdroid.component.builder'
+apply plugin: 'com.jdroid.root'
 
 buildscript {
 	repositories {
 		jcenter()
 		maven { url "https://maven.google.com" }
+		maven { url "https://plugins.gradle.org/m2/" }
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
 			maven { url localMavenRepo }
