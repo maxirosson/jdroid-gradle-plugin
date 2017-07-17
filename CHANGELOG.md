@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.16.1](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.1) (2017-07-17)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.0...v0.16.1)
+
+**Implemented enhancements:**
+
+- Changed version classifier separators to follow semver guidelines [\#43](https://github.com/maxirosson/jdroid-gradle-plugin/issues/43)
+
+**Fixed bugs:**
+
+- Fix git branch getter [\#42](https://github.com/maxirosson/jdroid-gradle-plugin/issues/42)
+
 ## [v0.16.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.0) (2017-07-14)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.15.1...v0.16.0)
 
