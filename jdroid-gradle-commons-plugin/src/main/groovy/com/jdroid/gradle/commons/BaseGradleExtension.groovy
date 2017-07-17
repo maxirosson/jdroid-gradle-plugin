@@ -17,7 +17,12 @@ public class BaseGradleExtension {
 	}
 
 	public String getGitBranch() {
-		return 'git symbolic-ref HEAD'.execute().text.trim().replace("origin/", "").replace("refs/heads/", "")
+		String gitBranch = baseGradlePlugin.project.jdroid.getStringProp('GIT_BRANCH')
+		if (StringUtils.isEmpty(gitBranch)) {
+			gitBranch = 'git symbolic-ref HEAD'.execute().text
+		}
+		gitBranch = gitBranch.trim().replace("origin/", "").replace("refs/heads/", "")
+		return gitBranch
 	}
 
 	public String getBuildTime() {

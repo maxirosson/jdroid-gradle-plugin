@@ -45,7 +45,7 @@ public class Version {
 		versionClassifier = project.jdroid.getStringProp('VERSION_CLASSIFIER')
 		if (versionClassifier == null) {
 
-			String gitBranch = project.jdroid.getStringProp('GIT_BRANCH', project.jdroid.getGitBranch())
+			String gitBranch = project.jdroid.getGitBranch()
 			Boolean isFeatureBranch = gitBranch != null && gitBranch.startsWith(featureBranchPrefix)
 			if (isFeatureBranch) {
 				featureName = gitBranch.replace(featureBranchPrefix, "")
@@ -56,7 +56,7 @@ public class Version {
 				if (versionClassifier == null) {
 					versionClassifier = ""
 				} else {
-					versionClassifier += "-"
+					versionClassifier += "."
 				}
 				versionClassifier += "LOCAL"
 			}
@@ -65,7 +65,7 @@ public class Version {
 				if (versionClassifier == null) {
 					versionClassifier = ""
 				} else {
-					versionClassifier += "-"
+					versionClassifier += "."
 				}
 				versionClassifier += "SNAPSHOT"
 			}
