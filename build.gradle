@@ -1,4 +1,4 @@
-version = '0.16.1'
+version = '0.16.2'
 
 ext.JDROID_GITHUB_REPOSITORY_OWNER = 'maxirosson'
 ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
