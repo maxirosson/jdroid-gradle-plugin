@@ -1,13 +1,12 @@
 package com.jdroid.gradle.commons.tasks
 
 import com.jdroid.gradle.commons.Version
-import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-public abstract class AbstractIncrementVersionTask extends DefaultTask {
+public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
 	@TaskAction
 	public void doExecute() {
@@ -41,7 +40,31 @@ public abstract class AbstractIncrementVersionTask extends DefaultTask {
 					out.println it
 				}
 			}
-			commitVersionChange()
+
+			String ciGithubUserName = project.jdroid.getStringProp("CI_GITHUB_USER_NAME")
+			if (ciGithubUserName != null) {
+				execute(['git', 'config', 'user.name', ciGithubUserName])
+			}
+			String ciGithubUserEmail = project.jdroid.getStringProp("CI_GITHUB_USER_EMAIL")
+			if (ciGithubUserEmail != null) {
+				execute(['git', 'config', 'user.email', ciGithubUserEmail])
+			}
+			execute(['git', 'diff', 'HEAD'])
+			execute(['git', 'add', buildGradleFile.absolutePath])
+			execute(['git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version.baseVersion}"])
+
+			Boolean versionIncrementPushEnabled = project.jdroid.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true)
+			if (versionIncrementPushEnabled) {
+				String versionIncrementBranch = project.jdroid.getStringProp("VERSION_INCREMENT_BRANCH")
+				if (versionIncrementBranch != null) {
+					execute(['git', 'push', 'origin', "HEAD:${versionIncrementBranch}"])
+				} else{
+					execute(['git', 'reset', '--soft', 'HEAD~1'])
+					execute(['git', 'add', '.'])
+					execute(['git', 'stash'])
+					throw new RuntimeException("Missing VERSION_INCREMENT_BRANCH property. Reverting commit.")
+				}
+			}
 		} else {
 			throw new RuntimeException("Version not defined on " + buildGradleFile.absolutePath)
 		}
@@ -49,17 +72,4 @@ public abstract class AbstractIncrementVersionTask extends DefaultTask {
 
 	protected abstract void incrementVersion(Version version);
 
-	protected void commitVersionChange() {
-		project.exec {
-			commandLine 'git', 'diff', 'HEAD'
-		}
-
-		project.exec {
-			commandLine 'git', 'add', '-A'
-		}
-
-		project.exec {
-			commandLine 'git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version.baseVersion}"
-		}
-	}
 }
