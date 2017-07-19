@@ -58,14 +58,14 @@ public class Version {
 				} else {
 					versionClassifier += "."
 				}
-				versionClassifier += "LOCAL"
+				versionClassifier += "local"
 			}
 
 			if (isSnapshot) {
 				if (versionClassifier == null) {
 					versionClassifier = ""
 				} else {
-					versionClassifier += "."
+					versionClassifier += "-"
 				}
 				versionClassifier += "SNAPSHOT"
 			}
