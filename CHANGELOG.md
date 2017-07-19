@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.16.2](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.2) (2017-07-19)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.1...v0.16.2)
+
+**Implemented enhancements:**
+
+- Add push step to increment version tasks [\#45](https://github.com/maxirosson/jdroid-gradle-plugin/issues/45)
+
+**Fixed bugs:**
+
+- Replace .SNAPSHOT by -SNAPSHOT [\#44](https://github.com/maxirosson/jdroid-gradle-plugin/issues/44)
+
 ## [v0.16.1](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.1) (2017-07-17)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.0...v0.16.1)
 
