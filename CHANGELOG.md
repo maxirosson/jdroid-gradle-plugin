@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.16.3](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.3) (2017-07-20)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.2...v0.16.3)
+
+**Implemented enhancements:**
+
+- Replaced .local by -LOCAL when generating a version [\#47](https://github.com/maxirosson/jdroid-gradle-plugin/issues/47)
+- New APK\_BASE\_NAME property to override the base APK name [\#46](https://github.com/maxirosson/jdroid-gradle-plugin/issues/46)
+
 ## [v0.16.2](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.2) (2017-07-19)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.1...v0.16.2)
 

@@ -79,7 +79,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 				variant.outputs.each { output ->
 					def outputFile = output.outputFile
 					if (outputFile != null && outputFile.name.endsWith('.apk')) {
-						def appName = project.getProjectDir().getParentFile().name
+						def appName = jdroid.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
 						def fileName = outputFile.name.replace('.apk', "-v${versionName}.apk")
 						fileName = fileName.replace(project.getProjectDir().name, appName)
 						if (variant.buildType.debuggable && variant.name.endsWith("Release")) {
