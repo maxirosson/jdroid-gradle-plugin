@@ -7,8 +7,12 @@ import org.gradle.api.Project
 
 public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
-	protected android
+	private static final String ANDROID_SDK_VERSION = '26'
 
+	// http://developer.android.com/tools/revisions/build-tools.html
+	private static final String ANDROID_BUILD_TOOLS_VERSION = '26.0.1'
+
+	protected android
 
 	public void apply(Project project) {
 		super.apply(project)
@@ -25,14 +29,12 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			}
 		}
 
-		android.compileSdkVersion 26
-		// http://developer.android.com/tools/revisions/build-tools.html
-		android.buildToolsVersion "26.0.0"
-
+		android.compileSdkVersion jdroid.getStringProp('ANDROID_COMPILE_SDK_VERSION', ANDROID_SDK_VERSION)
+		android.buildToolsVersion jdroid.getStringProp('ANDROID_BUILD_TOOLS_VERSION', ANDROID_BUILD_TOOLS_VERSION)
 
 		android.defaultConfig {
 			minSdkVersion jdroid.minimumSdkVersion
-			targetSdkVersion 26
+			targetSdkVersion jdroid.getStringProp('ANDROID_BUILD_TOOLS_VERSION', ANDROID_SDK_VERSION)
 
 			vectorDrawables.useSupportLibrary = jdroid.getBooleanProp('VECTOR_DRAWABLES_USE_SUPPORT_LIB', true)
 
