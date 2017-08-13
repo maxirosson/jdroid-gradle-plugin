@@ -25,7 +25,7 @@ dependencies {
 	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
 	compile 'com.github.gfx.ribbonizer:plugin:0.6.0'
 
-	compile 'com.google.firebase:firebase-plugins:1.1.0'
+	compile 'com.google.firebase:firebase-plugins:1.1.1'
 
 	testCompile 'junit:junit:4.12'
 }
