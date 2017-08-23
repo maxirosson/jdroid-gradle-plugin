@@ -34,7 +34,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		android.defaultConfig {
 			minSdkVersion jdroid.minimumSdkVersion
-			targetSdkVersion jdroid.getIntegerProp('ANDROID_BUILD_TOOLS_VERSION', ANDROID_SDK_VERSION)
+			targetSdkVersion jdroid.getIntegerProp('ANDROID_COMPILE_SDK_VERSION', ANDROID_SDK_VERSION)
 
 			vectorDrawables.useSupportLibrary = jdroid.getBooleanProp('VECTOR_DRAWABLES_USE_SUPPORT_LIB', true)
 
