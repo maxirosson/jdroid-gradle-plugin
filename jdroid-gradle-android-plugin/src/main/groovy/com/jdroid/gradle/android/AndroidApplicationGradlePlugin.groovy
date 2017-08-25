@@ -7,6 +7,9 @@ import org.gradle.api.Project
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
+	// https://github.com/facebook/stetho/blob/master/CHANGELOG.md
+	private static final String FACEBOOK_STETHO_VERSION = '1.5.0'
+
 	public void apply(Project project) {
 		super.apply(project);
 
@@ -36,16 +39,15 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
 			if (stethoEnabled) {
 				project.dependencies {
-					debugCompile 'com.facebook.stetho:stetho:1.4.2'
+					debugCompile 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
 					if (components.contains("jdroid-java-okhttp")) {
-						debugCompile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+						debugCompile 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
 					}
-					debugCompile 'com.facebook.stetho:stetho-js-rhino:1.4.2'
+					debugCompile 'com.facebook.stetho:stetho-js-rhino:' + FACEBOOK_STETHO_VERSION
 				}
 
 				android.defaultConfig {
 					jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled)
-					jdroid.setBuildConfigBoolean(android.defaultConfig, "JDROID_JAVA_OKHTTP_ENABLED", components.contains("jdroid-java-okhttp"))
 				}
 			}
 		}
