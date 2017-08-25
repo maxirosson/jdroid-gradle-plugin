@@ -34,21 +34,20 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		List<String> components = jdroid.getStringListProp("COMPONENTS")
-		if (components != null && components.contains("jdroid-android")) {
-			Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
-			if (stethoEnabled) {
-				project.dependencies {
-					debugCompile 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
-					if (components.contains("jdroid-java-okhttp")) {
-						debugCompile 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
-					}
+		Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
+		if (stethoEnabled) {
+			project.dependencies {
+				debugCompile 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
+				if (jdroid.getBooleanProp("STETHO_OKHTTP3_ENABLED", true)) {
+					debugCompile 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
+				}
+				if (jdroid.getBooleanProp("STETHO_JS_RHINO_ENABLED", true)) {
 					debugCompile 'com.facebook.stetho:stetho-js-rhino:' + FACEBOOK_STETHO_VERSION
 				}
+			}
 
-				android.defaultConfig {
-					jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled)
-				}
+			android.defaultConfig {
+				jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled)
 			}
 		}
 
