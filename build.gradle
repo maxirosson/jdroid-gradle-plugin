@@ -1,4 +1,4 @@
-version = '0.17.0'
+version = '0.18.0'
 
 ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
 
