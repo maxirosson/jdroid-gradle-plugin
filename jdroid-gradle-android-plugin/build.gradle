@@ -23,8 +23,10 @@ dependencies {
 	compile 'com.android.tools.build:gradle:2.3.3'
 
 	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
-	compile 'com.github.gfx.ribbonizer:plugin:0.6.0'
+	compile 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
 
+	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
+	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
 	compile 'com.google.firebase:firebase-plugins:1.1.1'
 
 	testCompile 'junit:junit:4.12'
