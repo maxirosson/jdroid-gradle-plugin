@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.17.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.17.0) (2017-08-25)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.3...v0.17.0)
+
+**Implemented enhancements:**
+
+- Stetho integration [\#54](https://github.com/maxirosson/jdroid-gradle-plugin/issues/54)
+- New flags to override the android config [\#53](https://github.com/maxirosson/jdroid-gradle-plugin/issues/53)
+
+**Closed issues:**
+
+- Upgrade Facebook Stetho to v1.5.0 [\#52](https://github.com/maxirosson/jdroid-gradle-plugin/issues/52)
+- Upgrade Ribbonizer Plugin to v2.1.0 [\#51](https://github.com/maxirosson/jdroid-gradle-plugin/issues/51)
+- Upgrade Firebase Plugins to v1.1.1 [\#48](https://github.com/maxirosson/jdroid-gradle-plugin/issues/48)
+- Upgrade android target sdk version to 26 [\#37](https://github.com/maxirosson/jdroid-gradle-plugin/issues/37)
+- Upgrade to build tools v26.0.1 [\#36](https://github.com/maxirosson/jdroid-gradle-plugin/issues/36)
+
 ## [v0.16.3](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.16.3) (2017-07-20)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.2...v0.16.3)
 
@@ -45,11 +61,6 @@
 **Fixed bugs:**
 
 - Increment version tasks error when commit signing enabled [\#38](https://github.com/maxirosson/jdroid-gradle-plugin/issues/38)
-
-**Closed issues:**
-
-- Upgraded android target sdk version to 26 [\#37](https://github.com/maxirosson/jdroid-gradle-plugin/issues/37)
-- Upgrade to build tools v26.0.0 [\#36](https://github.com/maxirosson/jdroid-gradle-plugin/issues/36)
 
 ## [v0.15.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.15.0) (2017-06-09)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.14.0...v0.15.0)
