@@ -10,7 +10,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 	private static final int ANDROID_SDK_VERSION = 26
 
 	// http://developer.android.com/tools/revisions/build-tools.html
-	private static final String ANDROID_BUILD_TOOLS_VERSION = '26.0.1'
+	private static final String ANDROID_BUILD_TOOLS_VERSION = '26.0.2'
 
 	protected android
 
