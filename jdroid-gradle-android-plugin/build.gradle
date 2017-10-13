@@ -18,7 +18,7 @@ dependencies {
 
 	compile project(path: ":jdroid-gradle-java-plugin")
 
-	// https://developer.android.com/tools/revisions/gradle-plugin.html
+	// https://developer.android.com/studio/releases/gradle-plugin.html#revisions
 	// https://jcenter.bintray.com/com/android/tools/build/gradle/
 	compile 'com.android.tools.build:gradle:2.3.3'
 
