@@ -1,11 +1,10 @@
 package com.jdroid.gradle.commons
 
 import org.gradle.api.JavaVersion
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 
-public class JavaBaseGradlePlugin extends BaseGradlePlugin {
+public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	public void apply(Project project) {
 		super.apply(project)
@@ -28,10 +27,10 @@ public class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	}
 
 	protected String getJavaSourceCompatibility() {
-		return JavaVersion.VERSION_1_7.toString()
+		return JavaVersion.VERSION_1_8.toString()
 	}
 	protected String getJavaTargetCompatibility() {
-		return JavaVersion.VERSION_1_7.toString()
+		return JavaVersion.VERSION_1_8.toString()
 	}
 
 	protected Class<? extends JavaBaseGradleExtension> getExtensionClass() {
