@@ -17,6 +17,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project)
 
+		project.repositories.google()
+
 		applyAndroidPlugin()
 
 		android = project.android
