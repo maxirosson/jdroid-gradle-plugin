@@ -7,21 +7,19 @@ apply plugin: 'com.gradle.plugin-publish'
 
 buildscript {
 	dependencies {
-		// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-
 		classpath 'com.jdroidframework:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
 	}
 }
 
 dependencies {
 
-	compile project(path: ":jdroid-gradle-java-plugin")
+	implementation project(path: ":jdroid-gradle-java-plugin")
 
-	// https://github.com/akhikhl/gretty
-	compile 'org.akhikhl.gretty:gretty:1.4.1'
+	// https://github.com/akhikhl/gretty/blob/master/changes.md
+	implementation 'org.akhikhl.gretty:gretty:2.0.0'
 
-	testCompile 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.12'
 }
 
 // Configuration to publish your plugin to the plugin portal
