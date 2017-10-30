@@ -20,8 +20,6 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 			android.resourcePrefix jdroid.getResourcePrefix()
 		}
 
-		android.publishNonDefault jdroid.getPublishNonDefault()
-
 		Boolean isOpenSourceEnabled = jdroid.getBooleanProp("OPEN_SOURCE_ENABLED", true)
 		if (isOpenSourceEnabled) {
 			project.task('androidSourcesJar', type: Jar) {
@@ -34,8 +32,41 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
+		if(jdroid.getPublishNonDefault()) {
+
+			// --------------------------------------
+			// The publishNonDefaults flag is not working anymore on android gradle plugin v3.0.0,
+			// so we need to add the debug & release artifacts manually
+			project.task('generateDebugAar', type:  org.gradle.api.tasks.bundling.Zip) {
+				destinationDir = project.file("${project.buildDir}/outputs/aar/${project.getName()}-debug.aar")
+			}
+
+			project.task('generateReleaseAar', type:  org.gradle.api.tasks.bundling.Zip) {
+				destinationDir = project.file("${project.buildDir}/outputs/aar/${project.getName()}-release.aar")
+			}
+
+			project.artifacts {
+				archives file: project.generateDebugAar.destinationDir, name: 'debug', classifier: "debug", type: 'aar'
+				archives file: project.generateReleaseAar.destinationDir, name: 'release', classifier: "release", type: 'aar'
+			}
+			// --------------------------------------
+
+			// --------------------------------------
+			// The default artifact is added to 'default' & 'archives' configurations on android gradle plugin v3.0.0,
+			// so we need to remove it
+			project.afterEvaluate {
+				project.configurations.default.artifacts.removeAll { it.classifier == "" && it.type == "aar" && it.extension == "aar" }
+				project.configurations.archives.artifacts.removeAll { it.classifier == "" && it.type == "aar" && it.extension == "aar" }
+			}
+			// --------------------------------------
+
+
+		}
+
 		project.task('verifyPrefixes', type: PrefixVerificationTask)
 		project.tasks.'uploadArchives'.dependsOn 'verifyPrefixes'
+		project.tasks.'uploadArchives'.dependsOn 'assembleDebug'
+		project.tasks.'uploadArchives'.dependsOn 'assembleRelease'
 	}
 
 	protected Class<? extends AndroidLibraryGradlePluginExtension> getExtensionClass() {

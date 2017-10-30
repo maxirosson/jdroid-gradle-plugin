@@ -2,10 +2,14 @@ version = '0.18.0'
 
 ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
 
-ext.JDROID_GRADLE_PLUGIN_VERSION = '0.16.3'
+// https://github.com/maxirosson/jdroid-gradle-plugin/blob/master/CHANGELOG.md
+ext.JDROID_GRADLE_PLUGIN_VERSION = '0.17.0'
+
+// https://github.com/maxirosson/jdroid-java/blob/master/CHANGELOG.md
 ext.JDROID_JAVA_VERSION = '0.14.0'
 
-ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = '0.9.4'
+// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = '0.9.8'
 
 apply plugin: 'com.jdroid.component.builder'
 apply plugin: 'com.jdroid.root'
@@ -13,7 +17,7 @@ apply plugin: 'com.jdroid.root'
 buildscript {
 	repositories {
 		jcenter()
-		maven { url "https://maven.google.com" }
+		google()
 		maven { url "https://plugins.gradle.org/m2/" }
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
@@ -22,8 +26,11 @@ buildscript {
 		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	}
 	dependencies {
-		classpath 'com.jdroidframework:jdroid-component-builder:0.4.0-SNAPSHOT'
-		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.16.3'
+		// https://github.com/maxirosson/jdroid-component-builder/blob/master/CHANGELOG.md
+		classpath 'com.jdroidframework:jdroid-component-builder:0.4.0'
+
+		// https://github.com/maxirosson/jdroid-gradle-plugin/blob/master/CHANGELOG.md
+		classpath 'com.jdroidframework:jdroid-gradle-root-plugin:0.17.0'
 	}
 }
 
@@ -31,13 +38,11 @@ subprojects {
 	buildscript {
 		repositories {
 			jcenter()
-			maven { url "https://maven.google.com" }
+			google()
 			maven { url "https://plugins.gradle.org/m2/" }
 			String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 			if (localMavenRepo != null) {
-				maven {
-					url localMavenRepo
-				}
+				maven { url localMavenRepo }
 			}
 			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 		}
@@ -45,7 +50,7 @@ subprojects {
 
 	repositories {
 		jcenter()
-		maven { url "https://maven.google.com" }
+		google()
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
 			maven { url localMavenRepo }

@@ -7,18 +7,14 @@ apply plugin: 'com.gradle.plugin-publish'
 
 buildscript {
 	dependencies {
-		// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-
 		classpath 'com.jdroidframework:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
 	}
 }
 
 dependencies {
-
-	compile project(path: ":jdroid-gradle-commons-plugin")
-
-	testCompile 'junit:junit:4.12'
+	implementation project(path: ":jdroid-gradle-commons-plugin")
+	testImplementation 'junit:junit:4.12'
 }
 
 // Configuration to publish your plugin to the plugin portal

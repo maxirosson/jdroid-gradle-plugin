@@ -7,29 +7,27 @@ apply plugin: 'com.gradle.plugin-publish'
 
 buildscript {
 	dependencies {
-		// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-
 		classpath 'com.jdroidframework:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
 	}
 }
 
 dependencies {
 
-	compile project(path: ":jdroid-gradle-java-plugin")
+	implementation project(path: ":jdroid-gradle-java-plugin")
 
-	// https://developer.android.com/studio/releases/gradle-plugin.html#revisions
-	// https://jcenter.bintray.com/com/android/tools/build/gradle/
-	compile 'com.android.tools.build:gradle:2.3.3'
+	// https://developer.android.com/tools/revisions/gradle-plugin.html
+	// https://dl.google.com/dl/android/maven2/index.html
+	implementation 'com.android.tools.build:gradle:3.0.0'
 
 	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
-	compile 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
+	implementation 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
 
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
-	compile 'com.google.firebase:firebase-plugins:1.1.1'
+	implementation 'com.google.firebase:firebase-plugins:1.1.1'
 
-	testCompile 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.12'
 }
 
 // Configuration to publish your plugin to the plugin portal

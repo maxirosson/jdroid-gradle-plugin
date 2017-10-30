@@ -37,12 +37,12 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
 		if (stethoEnabled) {
 			project.dependencies {
-				debugCompile 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
+				debugApi 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
 				if (jdroid.getBooleanProp("STETHO_OKHTTP3_ENABLED", true)) {
-					debugCompile 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
+					debugApi 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
 				}
 				if (jdroid.getBooleanProp("STETHO_JS_RHINO_ENABLED", true)) {
-					debugCompile 'com.facebook.stetho:stetho-js-rhino:' + FACEBOOK_STETHO_VERSION
+					debugApi 'com.facebook.stetho:stetho-js-rhino:' + FACEBOOK_STETHO_VERSION
 				}
 			}
 
@@ -54,9 +54,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		if (jdroid.getBooleanProp("SPLITS_DISABLED", false)) {
 			android.splits.abi.enabled = false
 			android.splits.density.enabled = false
-		}
-		if (jdroid.getBooleanProp("PNG_CRUNCHING_DISABLED", false)) {
-			android.aaptOptions.cruncherEnabled = false
 		}
 
 		android.defaultConfig {
@@ -75,18 +72,15 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		}
 
 		if (jdroid.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
+			def appName = jdroid.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
 			android.applicationVariants.all { variant ->
-
-				variant.outputs.each { output ->
-					def outputFile = output.outputFile
-					if (outputFile != null && outputFile.name.endsWith('.apk')) {
-						def appName = jdroid.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
-						def fileName = outputFile.name.replace('.apk', "-v${versionName}.apk")
-						fileName = fileName.replace(project.getProjectDir().name, appName)
+				variant.outputs.all { output ->
+					if (outputFileName.endsWith('.apk')) {
+						outputFileName = outputFileName.replace('.apk', "-v${versionName}.apk")
+						outputFileName = outputFileName.replace(project.getProjectDir().name, appName)
 						if (variant.buildType.debuggable && variant.name.endsWith("Release")) {
-							fileName = fileName.replace("-v", "-DEBUGGABLE-v")
+							outputFileName = outputFileName.replace("-v", "-DEBUGGABLE-v")
 						}
-						output.outputFile = new File(outputFile.parent, fileName)
 					}
 				}
 			}
