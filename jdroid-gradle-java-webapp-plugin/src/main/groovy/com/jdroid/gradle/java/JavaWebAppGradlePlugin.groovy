@@ -15,6 +15,11 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 		project.sourceSets.main.java.srcDirs += "build/generated"
 	}
 
+	@Override
+	protected void applyPlugin(Project project) {
+		project.apply plugin: 'java'
+	}
+
 	protected Class<? extends JavaWebAppGradleExtension> getExtensionClass() {
 		return JavaWebAppGradleExtension.class;
 	}
