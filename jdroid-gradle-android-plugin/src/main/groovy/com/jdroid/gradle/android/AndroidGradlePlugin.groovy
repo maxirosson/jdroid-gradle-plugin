@@ -87,6 +87,14 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			exclude 'NOTICE_FIREBASE_android'
 		}
 
+		android.testOptions {
+			unitTests {
+				// Flag to support unit tests that require Android resources, such as Robolectric.
+				// When you set this property to true, the plugin performs resource, asset, and manifest merging before running your unit tests.
+				includeAndroidResources = true
+			}
+		}
+
 		project.task('verifyMissingTranslationsBetweenLocales', type: VerifyMissingTranslationsBetweenLocalesTask)
 		project.tasks.'check'.dependsOn 'verifyMissingTranslationsBetweenLocales'
 
