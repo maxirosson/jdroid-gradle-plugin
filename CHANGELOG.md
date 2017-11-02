@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.18.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.18.0) (2017-11-02)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.17.0...v0.18.0)
+
+**Implemented enhancements:**
+
+- Java plugin replaced by java-library plugin for java libraries [\#62](https://github.com/maxirosson/jdroid-gradle-plugin/issues/62)
+- Automatically add google\(\) repository [\#61](https://github.com/maxirosson/jdroid-gradle-plugin/issues/61)
+
+**Closed issues:**
+
+- Upgrade to gretty v2.0.0 [\#63](https://github.com/maxirosson/jdroid-gradle-plugin/issues/63)
+- Upgrade to Gradle v4.1 [\#59](https://github.com/maxirosson/jdroid-gradle-plugin/issues/59)
+- Upgrade to Java 8 support [\#58](https://github.com/maxirosson/jdroid-gradle-plugin/issues/58)
+- Upgrade to Android Gradle Plugin v3.0.0 [\#56](https://github.com/maxirosson/jdroid-gradle-plugin/issues/56)
+- Upgrade Build Tools to v26.0.2 [\#55](https://github.com/maxirosson/jdroid-gradle-plugin/issues/55)
+
 ## [v0.17.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.17.0) (2017-08-25)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.16.3...v0.17.0)
 
