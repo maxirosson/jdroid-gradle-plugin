@@ -16,6 +16,9 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		if (jdroid.getBooleanProp("FIREBASE_PERFORMANCE_MONITORING_ENABLED", true)) {
 			project.apply plugin: 'com.google.firebase.firebase-perf'
 		}
+		if (jdroid.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
+			project.apply plugin: 'io.fabric'
+		}
 
 		project.task('copyApks', type: CopyApksTask)
 
