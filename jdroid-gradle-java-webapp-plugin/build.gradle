@@ -24,7 +24,7 @@ dependencies {
 
 // Configuration to publish your plugin to the plugin portal
 pluginBundle {
-	website = 'http://www.jdroidframework.com/'
+	website = 'http://www.jdroidtools.com/'
 	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
 
 	plugins {
