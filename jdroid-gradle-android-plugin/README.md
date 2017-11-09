@@ -47,13 +47,11 @@ The plugin adds the following configuration to your build script
             targetSdkVersion 26
         }
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_7
-            targetCompatibility JavaVersion.VERSION_1_7
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
         }
         lintOptions {
             checkReleaseBuilds false
-            // Or, if you prefer, you can continue to check for errors in release builds,
-            // but continue the build even when errors are found:
             abortOnError false
         }
         packagingOptions {
