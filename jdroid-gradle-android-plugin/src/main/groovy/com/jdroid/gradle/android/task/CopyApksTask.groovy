@@ -1,9 +1,10 @@
 package com.jdroid.gradle.android.task
-import org.gradle.api.DefaultTask
+
+import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
-public class CopyApksTask extends DefaultTask {
+public class CopyApksTask extends AbstractTask {
 
 	public CopyApksTask() {
 		description = 'Copy the APKs on the build directory to the specified target directory'
@@ -24,6 +25,6 @@ public class CopyApksTask extends DefaultTask {
 			exclude('**/*unaligned.apk')
 		}
 
-		logger.info("Copied APKs to " + targetApksDirPath)
+		log("Copied APKs to " + targetApksDirPath)
 	}
 }

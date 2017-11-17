@@ -1,13 +1,18 @@
 package com.jdroid.gradle.android.task
-import org.gradle.api.DefaultTask
+
+import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-public class VerifyMissingTranslationsBetweenLocalesTask extends DefaultTask {
+public class VerifyMissingTranslationsBetweenLocalesTask extends AbstractTask {
+
+	private String[] resourcesDirsPaths;
+	private String[] notDefaultLanguages;
 
 	public VerifyMissingTranslationsBetweenLocalesTask() {
 		description = 'Verify if there are missing translations between locales'
@@ -19,10 +24,10 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends DefaultTask {
 
 		Boolean error = false;
 
-		for (String resourceDirPath in project.jdroid.resourcesDirsPaths) {
+		for (String resourceDirPath in resourcesDirsPaths) {
 
 			File defaultLanguageValuesDir = project.file(resourceDirPath + "values")
-			for (String language in project.jdroid.notDefaultLanguages) {
+			for (String language in notDefaultLanguages) {
 
 				File notDefaultLanguageValuesDir = project.file(resourceDirPath + "values-" + language)
 				String[] resTypesNames = ['strings.xml', 'plurals.xml', 'array.xml']
@@ -98,5 +103,24 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends DefaultTask {
 			key = matcher.group(1)
 		}
 		return key;
+	}
+
+
+	@Input
+	String[] getResourcesDirsPaths() {
+		return resourcesDirsPaths
+	}
+
+	void setResourcesDirsPaths(String[] resourcesDirsPaths) {
+		this.resourcesDirsPaths = resourcesDirsPaths
+	}
+
+	@Input
+	String[] getNotDefaultLanguages() {
+		return notDefaultLanguages
+	}
+
+	void setNotDefaultLanguages(String[] notDefaultLanguages) {
+		this.notDefaultLanguages = notDefaultLanguages
 	}
 }

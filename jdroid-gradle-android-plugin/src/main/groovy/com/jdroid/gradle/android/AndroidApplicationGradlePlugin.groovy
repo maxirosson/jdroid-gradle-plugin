@@ -3,6 +3,7 @@ package com.jdroid.gradle.android
 import com.android.build.gradle.AppPlugin
 import com.jdroid.gradle.android.task.CopyApksTask
 import com.jdroid.gradle.commons.Version
+import org.gradle.api.Action
 import org.gradle.api.Project
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
@@ -20,7 +21,12 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			project.apply plugin: 'io.fabric'
 		}
 
-		project.task('copyApks', type: CopyApksTask)
+		CopyApksTask copyApksTask = project.task('copyApks', type: CopyApksTask)
+		project.afterEvaluate(new Action<Project>() {
+			public void execute(Project p) {
+				copyApksTask.setLogLevel(project.jdroid.getLogLevel());
+			}
+		});
 
 		if (jdroid.getBooleanProp("RIBBONIZER_ENABLED", true)) {
 			project.apply plugin: 'com.github.gfx.ribbonizer'

@@ -14,7 +14,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 				scanForTestClasses = true
 
 				if (!jdroid.getBooleanProp('INTEGRATION_TESTS_ENABLED', true)) {
-					exclude jdroid.integrationTestsPattern
+					exclude jdroid.getIntegrationTestsPattern()
 				}
 			}
 		}

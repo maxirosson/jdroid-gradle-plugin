@@ -22,6 +22,15 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 }
 
+gradlePlugin {
+	plugins {
+		javaWebappPlugin {
+			id = 'com.jdroid.java.webapp'
+			implementationClass = 'com.jdroid.gradle.java.JavaWebAppGradlePlugin'
+		}
+	}
+}
+
 // Configuration to publish your plugin to the plugin portal
 pluginBundle {
 	website = 'http://www.jdroidtools.com/'

@@ -1,9 +1,11 @@
 package com.jdroid.gradle.java
 
+import org.gradle.api.Project
+
 public class JavaWebAppGradleExtension extends JavaGradleExtension {
 
-	public JavaWebAppGradleExtension(JavaWebAppGradlePlugin javaWebGradlePlugin) {
-		super(javaWebGradlePlugin)
+	public JavaWebAppGradleExtension(Project project) {
+		super(project)
 	}
 
 	public void setBuildConfigString(def out, String key) {

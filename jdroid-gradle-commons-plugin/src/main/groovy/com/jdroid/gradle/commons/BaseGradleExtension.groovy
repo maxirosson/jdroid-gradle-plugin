@@ -3,13 +3,15 @@ package com.jdroid.gradle.commons
 import com.jdroid.gradle.commons.utils.StringUtils
 import com.jdroid.gradle.commons.utils.TypeUtils
 import org.gradle.api.Project
+import org.gradle.api.logging.LogLevel
 
 public class BaseGradleExtension {
 
-	protected final BaseGradlePlugin baseGradlePlugin
+	protected final Project project
+	private LogLevel logLevel = LogLevel.INFO;
 
-	public BaseGradleExtension(BaseGradlePlugin baseGradlePlugin) {
-		this.baseGradlePlugin = baseGradlePlugin
+	public BaseGradleExtension(Project project) {
+		this.project = project
 	}
 
 	public String getGitSha() {
@@ -17,7 +19,7 @@ public class BaseGradleExtension {
 	}
 
 	public String getGitBranch() {
-		String gitBranch = baseGradlePlugin.project.jdroid.getStringProp('GIT_BRANCH')
+		String gitBranch = project.jdroid.getStringProp('GIT_BRANCH')
 		if (StringUtils.isEmpty(gitBranch)) {
 			gitBranch = 'git symbolic-ref HEAD'.execute().text
 		}
@@ -36,7 +38,7 @@ public class BaseGradleExtension {
 	}
 
 	private def getProp(String propertyName, def defaultValue) {
-		return getProp(baseGradlePlugin.project, propertyName, defaultValue)
+		return getProp(project, propertyName, defaultValue)
 	}
 
 	private def getProp(Project project, String propertyName, def defaultValue) {
@@ -50,7 +52,7 @@ public class BaseGradleExtension {
 	}
 
 	public Boolean hasProp(String propertyName) {
-		return baseGradlePlugin.project.ext.has(propertyName) || System.getenv().containsKey(propertyName)
+		return project.ext.has(propertyName) || System.getenv().containsKey(propertyName)
 	}
 
 	public Boolean getBooleanProp(String propertyName) {
@@ -116,5 +118,13 @@ public class BaseGradleExtension {
 		} else {
 			return value instanceof List ? (List)value : StringUtils.splitToListWithCommaSeparator(value.toString());
 		}
+	}
+
+	public LogLevel getLogLevel() {
+		return logLevel;
+	}
+
+	public void setLogLevel(LogLevel logLevel) {
+		this.logLevel = logLevel;
 	}
 }

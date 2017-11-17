@@ -3,6 +3,7 @@ package com.jdroid.gradle.android
 import com.jdroid.gradle.android.task.VerifyMissingTranslationsBetweenLocalesTask
 import com.jdroid.gradle.android.task.VerifyMissingTranslationsTask
 import com.jdroid.gradle.commons.JavaBaseGradlePlugin
+import org.gradle.api.Action
 import org.gradle.api.Project
 
 public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
@@ -95,10 +96,23 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			}
 		}
 
-		project.task('verifyMissingTranslationsBetweenLocales', type: VerifyMissingTranslationsBetweenLocalesTask)
+		VerifyMissingTranslationsBetweenLocalesTask verifyMissingTranslationsBetweenLocalesTask =
+				project.task('verifyMissingTranslationsBetweenLocales', type: VerifyMissingTranslationsBetweenLocalesTask)
 		project.tasks.'check'.dependsOn 'verifyMissingTranslationsBetweenLocales'
 
-		project.task('verifyMissingTranslations', type: VerifyMissingTranslationsTask)
+		VerifyMissingTranslationsTask verifyMissingTranslationsTask = project.task('verifyMissingTranslations', type: VerifyMissingTranslationsTask)
+
+		project.afterEvaluate(new Action<Project>() {
+			public void execute(Project p) {
+				verifyMissingTranslationsBetweenLocalesTask.setLogLevel(project.jdroid.getLogLevel());
+				verifyMissingTranslationsBetweenLocalesTask.setResourcesDirsPaths(project.jdroid.getResourcesDirsPaths());
+				verifyMissingTranslationsBetweenLocalesTask.setNotDefaultLanguages(project.jdroid.getNotDefaultLanguages());
+
+				verifyMissingTranslationsTask.setLogLevel(project.jdroid.getLogLevel());
+				verifyMissingTranslationsTask.setResourcesDirsPaths(project.jdroid.getResourcesDirsPaths());
+				verifyMissingTranslationsTask.setMissingTranslationExpression(project.jdroid.getMissingTranslationExpression());
+			}
+		});
 
 	}
 

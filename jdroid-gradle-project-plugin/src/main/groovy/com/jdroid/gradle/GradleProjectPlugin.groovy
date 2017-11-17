@@ -12,6 +12,7 @@ public class GradleProjectPlugin extends JavaBaseGradlePlugin {
 		project.ext.PACKAGING = 'jar'
 
 		project.apply plugin: 'groovy'
+		// https://docs.gradle.org/current/userguide/javaGradle_plugin.html
 		project.apply plugin: 'java-gradle-plugin'
 
 		project.dependencies {

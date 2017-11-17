@@ -1,5 +1,6 @@
 package com.jdroid.gradle.android.task
-import org.gradle.api.DefaultTask
+
+import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.TaskAction
@@ -7,7 +8,7 @@ import org.gradle.api.tasks.TaskAction
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-public class PrefixVerificationTask extends DefaultTask {
+public class PrefixVerificationTask extends AbstractTask {
 
 	public PrefixVerificationTask() {
 		group = JavaBasePlugin.VERIFICATION_GROUP
@@ -40,9 +41,9 @@ public class PrefixVerificationTask extends DefaultTask {
 			}
 
 			if (!filePrefixErrors.isEmpty()) {
-				println "The following files should start with the prefix: " + prefix
+				logger.error("The following files should start with the prefix: " + prefix)
 				filePrefixErrors.each {
-					println " - " + it
+					logger.error(" - " + it)
 				}
 			}
 
@@ -60,9 +61,9 @@ public class PrefixVerificationTask extends DefaultTask {
 			}
 
 			if (!valuesResNamesPrefixErrors.isEmpty()) {
-				println "The following values res names should start with the prefix: " + prefix
+				logger.error("The following values res names should start with the prefix: " + prefix)
 				valuesResNamesPrefixErrors.each {
-					println " - " + it
+					logger.error(" - " + it)
 				}
 			}
 

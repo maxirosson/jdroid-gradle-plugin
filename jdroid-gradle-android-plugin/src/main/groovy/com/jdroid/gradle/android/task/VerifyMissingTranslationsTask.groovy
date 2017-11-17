@@ -1,10 +1,15 @@
 package com.jdroid.gradle.android.task
-import org.gradle.api.DefaultTask
+
+import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-public class VerifyMissingTranslationsTask extends DefaultTask {
+public class VerifyMissingTranslationsTask extends AbstractTask {
+
+	private String[] resourcesDirsPaths
+	private String missingTranslationExpression
 
 	public VerifyMissingTranslationsTask() {
 		description = 'Verify if there are missing translations on any string resource.'
@@ -16,7 +21,7 @@ public class VerifyMissingTranslationsTask extends DefaultTask {
 
 		Boolean error = false;
 
-		for (String resourceDirPath in project.jdroid.resourcesDirsPaths) {
+		for (String resourceDirPath in resourcesDirsPaths) {
 			File resDirFile = project.file(resourceDirPath)
 			for (file in resDirFile.listFiles()) {
 				if (file.isDirectory() && file.getName().startsWith("values")) {
@@ -25,9 +30,9 @@ public class VerifyMissingTranslationsTask extends DefaultTask {
 						String resourceFilePath = file.getAbsolutePath() + File.separator + resTypesName
 						File resourceFile = new File(resourceFilePath)
 						if (resourceFile.exists()) {
-							logger.info('Verified translations [' + project.jdroid.missingTranslationExpression + '] on ' + resourceFilePath)
-							if (resourceFile.text.contains(project.jdroid.missingTranslationExpression)) {
-								logger.error('Missing translations [' + project.jdroid.missingTranslationExpression + '] on ' + resourceFilePath)
+							log('Verified translations [' + missingTranslationExpression + '] on ' + resourceFilePath)
+							if (resourceFile.text.contains(missingTranslationExpression)) {
+								logger.error('Missing translations [' + missingTranslationExpression + '] on ' + resourceFilePath)
 								error = true
 							}
 						}
@@ -39,5 +44,23 @@ public class VerifyMissingTranslationsTask extends DefaultTask {
 		if (error) {
 			throw new GradleException('Missing translations [' + project.jdroid.missingTranslationExpression + ']')
 		}
+	}
+
+	@Input
+	String[] getResourcesDirsPaths() {
+		return resourcesDirsPaths
+	}
+
+	void setResourcesDirsPaths(String[] resourcesDirsPaths) {
+		this.resourcesDirsPaths = resourcesDirsPaths
+	}
+
+	@Input
+	String getMissingTranslationExpression() {
+		return missingTranslationExpression
+	}
+
+	void setMissingTranslationExpression(String missingTranslationExpression) {
+		this.missingTranslationExpression = missingTranslationExpression
 	}
 }

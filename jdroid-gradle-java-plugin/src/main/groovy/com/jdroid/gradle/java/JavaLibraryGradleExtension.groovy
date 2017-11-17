@@ -1,10 +1,10 @@
 package com.jdroid.gradle.java
 
-import com.jdroid.gradle.commons.JavaBaseGradleExtension
+import org.gradle.api.Project
 
 public class JavaLibraryGradleExtension extends JavaGradleExtension {
 
-	public JavaLibraryGradleExtension(JavaLibraryGradlePlugin javaLibraryGradlePlugin) {
-		super(javaLibraryGradlePlugin)
+	public JavaLibraryGradleExtension(Project project) {
+		super(project)
 	}
 }

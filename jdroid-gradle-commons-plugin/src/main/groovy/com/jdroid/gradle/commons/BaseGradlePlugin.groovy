@@ -3,6 +3,7 @@ package com.jdroid.gradle.commons
 import com.jdroid.gradle.commons.tasks.IncrementMajorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementMinorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementPatchVersionTask
+import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -16,7 +17,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		this.project = project
 
-		project.extensions.create("jdroid", getExtensionClass(), this)
+		project.extensions.create("jdroid", getExtensionClass(), project)
 		jdroid = project.jdroid
 
 		if (project.version == Project.DEFAULT_VERSION) {
@@ -37,9 +38,17 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			}
 		}
 
-		project.task('incrementMajorVersion', type: IncrementMajorVersionTask)
-		project.task('incrementMinorVersion', type: IncrementMinorVersionTask)
-		project.task('incrementPatchVersion', type: IncrementPatchVersionTask)
+		IncrementMajorVersionTask incrementMajorVersionTask = project.task('incrementMajorVersion', type: IncrementMajorVersionTask)
+		IncrementMinorVersionTask incrementMinorVersionTask = project.task('incrementMinorVersion', type: IncrementMinorVersionTask)
+		IncrementPatchVersionTask incrementPatchVersionTask = project.task('incrementPatchVersion', type: IncrementPatchVersionTask)
+
+		project.afterEvaluate(new Action<Project>() {
+			public void execute(Project p) {
+				incrementMajorVersionTask.setLogLevel(project.jdroid.getLogLevel());
+				incrementMinorVersionTask.setLogLevel(project.jdroid.getLogLevel());
+				incrementPatchVersionTask.setLogLevel(project.jdroid.getLogLevel());
+			}
+		});
 
 		project.task('buildScriptDependencies') {
 			doLast {

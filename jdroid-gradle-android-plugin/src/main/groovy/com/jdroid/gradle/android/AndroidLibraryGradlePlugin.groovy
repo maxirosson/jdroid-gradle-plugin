@@ -2,6 +2,7 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.LibraryPlugin
 import com.jdroid.gradle.android.task.PrefixVerificationTask
+import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.tasks.bundling.Jar
 
@@ -63,10 +64,15 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 
 		}
 
-		project.task('verifyPrefixes', type: PrefixVerificationTask)
+		PrefixVerificationTask prefixVerificationTask = project.task('verifyPrefixes', type: PrefixVerificationTask)
 		project.tasks.'uploadArchives'.dependsOn 'verifyPrefixes'
 		project.tasks.'uploadArchives'.dependsOn 'assembleDebug'
 		project.tasks.'uploadArchives'.dependsOn 'assembleRelease'
+		project.afterEvaluate(new Action<Project>() {
+			public void execute(Project p) {
+				prefixVerificationTask.setLogLevel(project.jdroid.getLogLevel());
+			}
+		});
 	}
 
 	protected Class<? extends AndroidLibraryGradlePluginExtension> getExtensionClass() {

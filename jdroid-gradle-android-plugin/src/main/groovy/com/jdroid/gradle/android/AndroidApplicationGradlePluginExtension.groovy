@@ -1,10 +1,12 @@
-package com.jdroid.gradle.android;
+package com.jdroid.gradle.android
+
+import org.gradle.api.Project;
 
 public class AndroidApplicationGradlePluginExtension extends AndroidGradlePluginExtension {
 
 
-	public AndroidApplicationGradlePluginExtension(AndroidGradlePlugin androidGradlePlugin) {
-		super(androidGradlePlugin)
+	public AndroidApplicationGradlePluginExtension(Project project) {
+		super(project)
 	}
 
 }
