@@ -43,25 +43,25 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
 			String ciGithubUserName = project.jdroid.getStringProp("CI_GITHUB_USER_NAME")
 			if (ciGithubUserName != null) {
-				execute(['git', 'config', 'user.name', ciGithubUserName])
+				execute('git config user.name ' + ciGithubUserName)
 			}
 			String ciGithubUserEmail = project.jdroid.getStringProp("CI_GITHUB_USER_EMAIL")
 			if (ciGithubUserEmail != null) {
-				execute(['git', 'config', 'user.email', ciGithubUserEmail])
+				execute('git config user.email ' + ciGithubUserEmail)
 			}
-			execute(['git', 'diff', 'HEAD'])
-			execute(['git', 'add', buildGradleFile.absolutePath])
-			execute(['git', 'commit', '--no-gpg-sign', '-m', "Changed version to v${project.version.baseVersion}"])
+			execute('git diff HEAD')
+			execute('git add ' + buildGradleFile.absolutePath)
+			execute('git commit --no-gpg-sign -m "Changed version to v${project.version.baseVersion}"')
 
 			Boolean versionIncrementPushEnabled = project.jdroid.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true)
 			if (versionIncrementPushEnabled) {
 				String versionIncrementBranch = project.jdroid.getStringProp("VERSION_INCREMENT_BRANCH")
 				if (versionIncrementBranch != null) {
-					execute(['git', 'push', 'origin', "HEAD:${versionIncrementBranch}"])
+					execute('git push origin "HEAD:${versionIncrementBranch}"')
 				} else{
-					execute(['git', 'reset', '--soft', 'HEAD~1'])
-					execute(['git', 'add', '.'])
-					execute(['git', 'stash'])
+					execute('git reset --soft HEAD~1')
+					execute('git add .')
+					execute('git stash')
 					throw new RuntimeException("Missing VERSION_INCREMENT_BRANCH property. Reverting commit.")
 				}
 			}
