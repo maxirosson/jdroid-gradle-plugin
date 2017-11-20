@@ -29,7 +29,7 @@ dependencies {
 
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
-	implementation 'com.google.firebase:firebase-plugins:1.1.2'
+	implementation 'com.google.firebase:firebase-plugins:1.1.4'
 
 	// https://developers.google.com/android/guides/google-services-plugin
 	// https://jcenter.bintray.com/com/google/gms/google-services/
@@ -37,7 +37,7 @@ dependencies {
 
 	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
 	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
-	implementation 'io.fabric.tools:gradle:1.24.4'
+	implementation 'io.fabric.tools:gradle:1.24.5'
 
 	testImplementation 'junit:junit:4.12'
 }
