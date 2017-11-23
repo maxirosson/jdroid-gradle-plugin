@@ -1,5 +1,6 @@
 package com.jdroid.gradle.commons.tasks
 
+import com.jdroid.gradle.commons.CommandExecutor
 import com.jdroid.gradle.commons.Version
 import org.gradle.api.tasks.TaskAction
 
@@ -10,6 +11,9 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
 	@TaskAction
 	public void doExecute() {
+
+		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
+
 		File buildGradleFile = project.file(project.jdroid.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"))
 		Pattern versionPattern = Pattern.compile('^\\s?version\\s?=\\s?["\'](\\d\\d?\\.\\d\\d?\\.\\d\\d?)["\']')
 
@@ -43,25 +47,25 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
 			String ciGithubUserName = project.jdroid.getStringProp("CI_GITHUB_USER_NAME")
 			if (ciGithubUserName != null) {
-				execute('git config user.name ' + ciGithubUserName)
+				commandExecutor.execute('git config user.name ' + ciGithubUserName)
 			}
 			String ciGithubUserEmail = project.jdroid.getStringProp("CI_GITHUB_USER_EMAIL")
 			if (ciGithubUserEmail != null) {
-				execute('git config user.email ' + ciGithubUserEmail)
+				commandExecutor.execute('git config user.email ' + ciGithubUserEmail)
 			}
-			execute('git diff HEAD')
-			execute('git add ' + buildGradleFile.absolutePath)
-			execute('git commit --no-gpg-sign -m "Changed version to v${project.version.baseVersion}"')
+			commandExecutor.execute('git diff HEAD')
+			commandExecutor.execute('git add ' + buildGradleFile.absolutePath)
+			commandExecutor.execute('git commit --no-gpg-sign -m "Changed version to v${project.version.baseVersion}"')
 
 			Boolean versionIncrementPushEnabled = project.jdroid.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true)
 			if (versionIncrementPushEnabled) {
 				String versionIncrementBranch = project.jdroid.getStringProp("VERSION_INCREMENT_BRANCH")
 				if (versionIncrementBranch != null) {
-					execute('git push origin "HEAD:${versionIncrementBranch}"')
-				} else{
-					execute('git reset --soft HEAD~1')
-					execute('git add .')
-					execute('git stash')
+					commandExecutor.execute('git push origin "HEAD:${versionIncrementBranch}"')
+				} else {
+					commandExecutor.execute('git reset --soft HEAD~1')
+					commandExecutor.execute('git add .')
+					commandExecutor.execute('git stash')
 					throw new RuntimeException("Missing VERSION_INCREMENT_BRANCH property. Reverting commit.")
 				}
 			}
