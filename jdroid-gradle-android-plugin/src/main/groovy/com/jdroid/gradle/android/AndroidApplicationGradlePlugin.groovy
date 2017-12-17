@@ -14,10 +14,10 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
-		if (jdroid.getBooleanProp("FIREBASE_PERFORMANCE_MONITORING_ENABLED", true)) {
+		if (propertyResolver.getBooleanProp("FIREBASE_PERFORMANCE_MONITORING_ENABLED", true)) {
 			project.apply plugin: 'com.google.firebase.firebase-perf'
 		}
-		if (jdroid.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
+		if (propertyResolver.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
 			project.apply plugin: 'io.fabric'
 		}
 
@@ -28,7 +28,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		});
 
-		if (jdroid.getBooleanProp("RIBBONIZER_ENABLED", true)) {
+		if (propertyResolver.getBooleanProp("RIBBONIZER_ENABLED", true)) {
 			project.apply plugin: 'com.github.gfx.ribbonizer'
 
 			project.ribbonizer {
@@ -43,14 +43,14 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		Boolean stethoEnabled = jdroid.getBooleanProp("STETHO_ENABLED", false)
+		Boolean stethoEnabled = propertyResolver.getBooleanProp("STETHO_ENABLED", false)
 		if (stethoEnabled) {
 			project.dependencies {
 				debugApi 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
-				if (jdroid.getBooleanProp("STETHO_OKHTTP3_ENABLED", true)) {
+				if (propertyResolver.getBooleanProp("STETHO_OKHTTP3_ENABLED", true)) {
 					debugApi 'com.facebook.stetho:stetho-okhttp3:' + FACEBOOK_STETHO_VERSION
 				}
-				if (jdroid.getBooleanProp("STETHO_JS_RHINO_ENABLED", true)) {
+				if (propertyResolver.getBooleanProp("STETHO_JS_RHINO_ENABLED", true)) {
 					debugApi 'com.facebook.stetho:stetho-js-rhino:' + FACEBOOK_STETHO_VERSION
 				}
 			}
@@ -60,7 +60,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		if (jdroid.getBooleanProp("SPLITS_DISABLED", false)) {
+		if (propertyResolver.getBooleanProp("SPLITS_DISABLED", false)) {
 			android.splits.abi.enabled = false
 			android.splits.density.enabled = false
 		}
@@ -69,19 +69,19 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			versionCode project.version.versionCode
 			versionName project.version.toString()
 
-			List<String> resConfigsList = jdroid.getStringListProp("DEBUG_RES_CONFIGS")
+			List<String> resConfigsList = propertyResolver.getStringListProp("DEBUG_RES_CONFIGS")
 			if (resConfigsList != null) {
 				resConfigs resConfigsList
 			} else {
-				resConfigsList = jdroid.getStringListProp("RES_CONFIGS")
+				resConfigsList = propertyResolver.getStringListProp("RES_CONFIGS")
 				if (resConfigsList != null) {
 					resConfigs resConfigsList
 				}
 			}
 		}
 
-		if (jdroid.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
-			def appName = jdroid.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
+		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
+			def appName = propertyResolver.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
 			android.applicationVariants.all { variant ->
 				variant.outputs.all { output ->
 					if (outputFileName.endsWith('.apk')) {
@@ -103,10 +103,10 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 			if (jdroid.isReleaseBuildTypeEnabled()) {
 				release {
-					storeFile project.file(jdroid.getStringProp('STORE_FILE', './debug.keystore'))
-					storePassword jdroid.getStringProp('STORE_PASSWORD')
-					keyAlias jdroid.getStringProp('KEY_ALIAS')
-					keyPassword jdroid.getStringProp('KEY_PASSWORD')
+					storeFile project.file(propertyResolver.getStringProp('STORE_FILE', './debug.keystore'))
+					storePassword propertyResolver.getStringProp('STORE_PASSWORD')
+					keyAlias propertyResolver.getStringProp('KEY_ALIAS')
+					keyPassword propertyResolver.getStringProp('KEY_PASSWORD')
 				}
 			}
 		}

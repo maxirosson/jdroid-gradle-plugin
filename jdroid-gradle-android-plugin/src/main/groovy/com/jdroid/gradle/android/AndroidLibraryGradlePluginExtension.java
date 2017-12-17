@@ -10,8 +10,8 @@ public class AndroidLibraryGradlePluginExtension extends AndroidGradlePluginExte
 	public AndroidLibraryGradlePluginExtension(Project project) {
 		super(project);
 
-		resourcePrefix = getStringProp("RESOURCE_PREFIX");
-		publishNonDefault = getBooleanProp("PUBLISH_NON_DEFAULT", true);
+		resourcePrefix = propertyResolver.getStringProp("RESOURCE_PREFIX");
+		publishNonDefault = propertyResolver.getBooleanProp("PUBLISH_NON_DEFAULT", true);
 	}
 
 	public String getResourcePrefix() {

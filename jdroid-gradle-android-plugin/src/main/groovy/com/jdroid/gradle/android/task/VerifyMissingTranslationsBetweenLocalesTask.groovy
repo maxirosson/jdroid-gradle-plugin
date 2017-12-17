@@ -4,7 +4,6 @@ import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.TaskAction
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -19,8 +18,8 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends AbstractTask {
 		group = JavaBasePlugin.VERIFICATION_GROUP
 	}
 
-	@TaskAction
-	public void doExecute() {
+	@Override
+	protected void onExecute() {
 
 		Boolean error = false;
 

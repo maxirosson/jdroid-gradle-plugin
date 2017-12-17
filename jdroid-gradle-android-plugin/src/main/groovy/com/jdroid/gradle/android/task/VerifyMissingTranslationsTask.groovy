@@ -4,7 +4,6 @@ import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.TaskAction
 
 public class VerifyMissingTranslationsTask extends AbstractTask {
 
@@ -16,8 +15,8 @@ public class VerifyMissingTranslationsTask extends AbstractTask {
 		group = JavaBasePlugin.VERIFICATION_GROUP
 	}
 
-	@TaskAction
-	public void doExecute() {
+	@Override
+	protected void onExecute() {
 
 		Boolean error = false;
 

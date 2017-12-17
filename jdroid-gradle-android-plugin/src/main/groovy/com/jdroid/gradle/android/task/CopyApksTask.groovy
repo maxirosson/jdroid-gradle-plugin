@@ -2,7 +2,6 @@ package com.jdroid.gradle.android.task
 
 import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
-import org.gradle.api.tasks.TaskAction
 
 public class CopyApksTask extends AbstractTask {
 
@@ -10,10 +9,10 @@ public class CopyApksTask extends AbstractTask {
 		description = 'Copy the APKs on the build directory to the specified target directory'
 	}
 
-	@TaskAction
-	public void doExecute() {
+	@Override
+	protected void onExecute() {
 
-		String targetApksDirPath = project.jdroid.getStringProp('TARGET_APKS_DIR_PATH')
+		String targetApksDirPath = propertyResolver.getStringProp('TARGET_APKS_DIR_PATH')
 		if (targetApksDirPath == null) {
 			throw new GradleException('Missing TARGET_APKS_DIR_PATH parameter')
 		}

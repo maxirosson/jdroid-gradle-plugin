@@ -21,7 +21,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 			android.resourcePrefix jdroid.getResourcePrefix()
 		}
 
-		Boolean isOpenSourceEnabled = jdroid.getBooleanProp("OPEN_SOURCE_ENABLED", true)
+		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true)
 		if (isOpenSourceEnabled) {
 			project.task('androidSourcesJar', type: Jar) {
 				classifier = 'sources'

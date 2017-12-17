@@ -18,6 +18,7 @@ public class Version {
 	public Version(Project project, String version) {
 
 		this.project = project
+		PropertyResolver propertyResolver = new PropertyResolver(project);
 
 		def versionSplit = version.split("\\.")
 		if (versionSplit.length != 3) {
@@ -38,11 +39,11 @@ public class Version {
 			throw new RuntimeException("The version patch [${versionPatch}] should be a number between 0 and 99")
 		}
 
-		isSnapshot = project.jdroid.getBooleanProp('SNAPSHOT', true)
-		isLocal = project.jdroid.getBooleanProp('LOCAL', false)
-		featureBranchPrefix = project.jdroid.getStringProp('FEATURE_BRANCH_PREFIX', "feature/")
+		isSnapshot = propertyResolver.getBooleanProp('SNAPSHOT', true)
+		isLocal = propertyResolver.getBooleanProp('LOCAL', false)
+		featureBranchPrefix = propertyResolver.getStringProp('FEATURE_BRANCH_PREFIX', "feature/")
 
-		versionClassifier = project.jdroid.getStringProp('VERSION_CLASSIFIER')
+		versionClassifier = propertyResolver.getStringProp('VERSION_CLASSIFIER')
 		if (versionClassifier == null) {
 
 			String gitBranch = project.jdroid.getGitBranch()

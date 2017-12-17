@@ -20,7 +20,7 @@ public class GradleProjectPlugin extends JavaBaseGradlePlugin {
 			compile localGroovy()
 		}
 
-		Boolean isOpenSourceEnabled = jdroid.getBooleanProp("OPEN_SOURCE_ENABLED", true)
+		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true)
 		if (isOpenSourceEnabled) {
 			project.task('javadocJar', type: Jar) {
 				classifier = 'javadoc'

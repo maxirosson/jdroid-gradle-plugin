@@ -14,8 +14,8 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	public AndroidGradlePluginExtension(Project project) {
 		super(project)
 
-		minimumSdkVersion = getIntegerProp('MIN_SDK_VERSION', 16)
-		isReleaseBuildTypeEnabled = getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false)
+		minimumSdkVersion = propertyResolver.getIntegerProp('MIN_SDK_VERSION', 16)
+		isReleaseBuildTypeEnabled = propertyResolver.getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false)
 	}
 
 	public boolean isReleaseBuildTypeEnabled() {
@@ -31,23 +31,23 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName, String defaultValue) {
-		String value = getStringProp(propertyName, defaultValue)
+		String value = propertyResolver.getStringProp(propertyName, defaultValue)
 		def stringValue = value == null ? "null" : '"' + value + '"'
 		flavor.buildConfigField "String", propertyName, stringValue
 	}
 
 	public void setBuildConfigBoolean(def flavor, String propertyName, Boolean defaultValue) {
-		String value = getBooleanProp(propertyName, defaultValue).toString()
+		String value = propertyResolver.getBooleanProp(propertyName, defaultValue).toString()
 		flavor.buildConfigField "Boolean", propertyName, value
 	}
 
 	public void setBuildConfigInteger(def flavor, String propertyName, Integer defaultValue) {
-		String value = getIntegerProp(propertyName, defaultValue).toString()
+		String value = propertyResolver.getIntegerProp(propertyName, defaultValue).toString()
 		flavor.buildConfigField "Integer", propertyName, value
 	}
 
 	public void setResValueString(def flavor, String propertyName, String defaultValue) {
-		String value = getStringProp(propertyName, defaultValue)
+		String value = propertyResolver.getStringProp(propertyName, defaultValue)
 		def stringValue = value == null ? "" : value
 		flavor.resValue "string", propertyName, stringValue
 	}

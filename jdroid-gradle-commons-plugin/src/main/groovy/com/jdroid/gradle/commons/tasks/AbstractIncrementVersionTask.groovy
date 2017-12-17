@@ -2,19 +2,18 @@ package com.jdroid.gradle.commons.tasks
 
 import com.jdroid.gradle.commons.CommandExecutor
 import com.jdroid.gradle.commons.Version
-import org.gradle.api.tasks.TaskAction
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
-	@TaskAction
-	public void doExecute() {
+	@Override
+	protected void onExecute() {
 
 		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
 
-		File buildGradleFile = project.file(project.jdroid.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"))
+		File buildGradleFile = project.file(propertyResolver.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"))
 		Pattern versionPattern = Pattern.compile('^\\s?version\\s?=\\s?["\'](\\d\\d?\\.\\d\\d?\\.\\d\\d?)["\']')
 
 		Boolean versionFound = false
@@ -45,11 +44,11 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 				}
 			}
 
-			String ciGithubUserName = project.jdroid.getStringProp("CI_GITHUB_USER_NAME")
+			String ciGithubUserName = propertyResolver.getStringProp("CI_GITHUB_USER_NAME")
 			if (ciGithubUserName != null) {
 				commandExecutor.execute('git config user.name ' + ciGithubUserName)
 			}
-			String ciGithubUserEmail = project.jdroid.getStringProp("CI_GITHUB_USER_EMAIL")
+			String ciGithubUserEmail = propertyResolver.getStringProp("CI_GITHUB_USER_EMAIL")
 			if (ciGithubUserEmail != null) {
 				commandExecutor.execute('git config user.email ' + ciGithubUserEmail)
 			}
@@ -57,9 +56,9 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 			commandExecutor.execute('git add ' + buildGradleFile.absolutePath)
 			commandExecutor.execute('git commit --no-gpg-sign -m "Changed version to v${project.version.baseVersion}"')
 
-			Boolean versionIncrementPushEnabled = project.jdroid.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true)
+			Boolean versionIncrementPushEnabled = propertyResolver.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true)
 			if (versionIncrementPushEnabled) {
-				String versionIncrementBranch = project.jdroid.getStringProp("VERSION_INCREMENT_BRANCH")
+				String versionIncrementBranch = propertyResolver.getStringProp("VERSION_INCREMENT_BRANCH")
 				if (versionIncrementBranch != null) {
 					commandExecutor.execute('git push origin "HEAD:${versionIncrementBranch}"')
 				} else {

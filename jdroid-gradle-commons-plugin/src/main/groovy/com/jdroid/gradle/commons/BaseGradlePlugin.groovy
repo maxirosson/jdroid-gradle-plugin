@@ -11,12 +11,13 @@ import org.gradle.api.Project
 public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected Project project;
-
+	protected PropertyResolver propertyResolver;
 	protected jdroid
 
 	public void apply(Project project) {
 		this.project = project
 
+		propertyResolver = new PropertyResolver(project);
 		project.extensions.create("jdroid", getExtensionClass(), project)
 		jdroid = project.jdroid
 
@@ -58,7 +59,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			}
 		}
 
-		if (!jdroid.getBooleanProp('ACCEPT_SNAPSHOT_DEPENDENCIES', true)) {
+		if (!propertyResolver.getBooleanProp('ACCEPT_SNAPSHOT_DEPENDENCIES', true)) {
 			project.configurations.all {
 				resolutionStrategy.eachDependency { details ->
 					if (details.requested.version.endsWith("-SNAPSHOT")) {

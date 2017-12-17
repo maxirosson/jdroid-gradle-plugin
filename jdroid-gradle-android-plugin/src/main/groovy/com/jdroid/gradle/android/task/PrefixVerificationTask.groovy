@@ -3,7 +3,6 @@ package com.jdroid.gradle.android.task
 import com.jdroid.gradle.commons.tasks.AbstractTask
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
-import org.gradle.api.tasks.TaskAction
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -14,9 +13,9 @@ public class PrefixVerificationTask extends AbstractTask {
 		group = JavaBasePlugin.VERIFICATION_GROUP
 	}
 
-	@TaskAction
-	public void doExecute() {
-		String prefix = project.jdroid.getStringProp('RESOURCE_PREFIX')
+	@Override
+	protected void onExecute() {
+		String prefix = propertyResolver.getStringProp('RESOURCE_PREFIX')
 
 		if (prefix != null) {
 
@@ -84,7 +83,7 @@ public class PrefixVerificationTask extends AbstractTask {
 	}
 
 	protected void verifyValuesResNamePrefix(File dirFile, String prefix, List<String> errors) {
-		List<String> filesToIgnore = project.jdroid.getStringListProp('RESOURCE_FILES_TO_SKIP_PREFIX_VALIDATION', [])
+		List<String> filesToIgnore = propertyResolver.getStringListProp('RESOURCE_FILES_TO_SKIP_PREFIX_VALIDATION', [])
 		dirFile.listFiles().each { File file ->
 			if (!filesToIgnore.contains(file.getName())) {
 				file.eachLine { String line ->
