@@ -5,6 +5,7 @@ defaults: &defaults
   environment:
     JVM_OPTS: -Xmx3200m
     LOCAL_MAVEN_REPO: ~/repo
+    GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.caching=true
 version: 2
 jobs:
   build:
