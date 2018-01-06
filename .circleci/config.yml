@@ -17,11 +17,21 @@ jobs:
           key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
 
       - run: ./gradlew assemble --refresh-dependencies --stacktrace --scan
-            
+
       - save_cache:
           paths:
             - ~/.gradle
           key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
+
+      - run:
+          name: Save jars
+          command: |
+            mkdir -p ~/jars/
+            find . -type f -regex ".*/build/libs/.*jar" -exec cp {} ~/jars/ \;
+          when: always
+
+      - store_artifacts:
+          path: ~/jars
 
   verify:
     <<: *defaults
