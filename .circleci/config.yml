@@ -16,21 +16,21 @@ jobs:
       - restore_cache:
           key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
 
-      - run:
-          name: Download Dependencies
-          command: ./gradlew dependencies --refresh-dependencies --stacktrace
+      - run: ./gradlew assemble --refresh-dependencies --stacktrace --scan
             
       - save_cache:
           paths:
             - ~/.gradle
           key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew assemble --stacktrace
-
   verify:
     <<: *defaults
     steps:
       - checkout
+      
+      - restore_cache:
+          key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
+      
       - run: ./gradlew check --stacktrace
       - run:
           name: Save test results 
@@ -64,9 +64,6 @@ jobs:
       - store_artifacts:
           path: ./jdroid-gradle-root-plugin/build/reports/tests/test
           destination: jdroid-gradle-root-plugin/tests
-
-
-
           
 #  deploy:
 #    <<: *defaults
