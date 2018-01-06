@@ -1,0 +1,93 @@
+defaults: &defaults
+  working_directory: ~/jdroid-gradle-plugin
+  docker:
+    - image: circleci/openjdk:8-jdk
+  environment:
+    JVM_OPTS: -Xmx3200m
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew dependencies --refresh-dependencies --stacktrace
+            
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
+
+      - run: ./gradlew assemble --stacktrace
+
+  verify:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: ./gradlew check --stacktrace
+      - run:
+          name: Save test results 
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/junit
+
+      - store_artifacts:
+          path: ./jdroid-gradle-android-plugin/build/reports/tests/test
+          destination: jdroid-gradle-android-plugin/tests
+
+      - store_artifacts:
+          path: ./jdroid-gradle-commons-plugin/build/reports/tests/test
+          destination: jdroid-gradle-commons-plugin/tests
+
+      - store_artifacts:
+          path: ./jdroid-gradle-java-plugin/build/reports/tests/test
+          destination: jdroid-gradle-java-plugin/tests
+
+      - store_artifacts:
+          path: ./jdroid-gradle-java-webapp-plugin/build/reports/tests/test
+          destination: jdroid-gradle-java-webapp-plugin/tests
+
+      - store_artifacts:
+          path: ./jdroid-gradle-project-plugin/build/reports/tests/test
+          destination: jdroid-gradle-project-plugin/tests
+
+      - store_artifacts:
+          path: ./jdroid-gradle-root-plugin/build/reports/tests/test
+          destination: jdroid-gradle-root-plugin/tests
+
+
+
+          
+#  deploy:
+#    <<: *defaults
+#    steps:
+#      - checkout
+#      - run: echo "TODO"
+  
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+      - verify:
+          requires:
+            - build
+#      - deploy:
+#          requires:
+#            - test
+#            - verify
+#          filters:
+#            branches:
+#              only:
+#                - master
+#                - production
+
