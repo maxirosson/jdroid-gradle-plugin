@@ -4,6 +4,7 @@ defaults: &defaults
     - image: circleci/openjdk:8-jdk
   environment:
     JVM_OPTS: -Xmx3200m
+    LOCAL_MAVEN_REPO: ~/repo
 version: 2
 jobs:
   build:
