@@ -31,7 +31,8 @@ jobs:
           when: always
 
       - store_artifacts:
-          path: jars
+          path: ~/jars
+          destination: jars
 
   verify:
     <<: *defaults
