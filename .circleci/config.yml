@@ -83,11 +83,15 @@ jobs:
           path: ./jdroid-gradle-root-plugin/build/reports/tests/test
           destination: jdroid-gradle-root-plugin/tests
           
-#  deploy:
-#    <<: *defaults
-#    steps:
-#      - checkout
-#      - run: echo "TODO"
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      
+      - restore_cache:
+          key: app-{{ .Branch }}-{{ checksum "build.gradle" }}
+          
+      - run: ./gradlew uploadArchives -PLOCAL_UPLOAD=false --stacktrace
   
 workflows:
   version: 2
@@ -97,13 +101,6 @@ workflows:
       - verify:
           requires:
             - build
-#      - deploy:
-#          requires:
-#            - test
-#            - verify
-#          filters:
-#            branches:
-#              only:
-#                - master
-#                - production
-
+      - deploy:
+          requires:
+            - verify
