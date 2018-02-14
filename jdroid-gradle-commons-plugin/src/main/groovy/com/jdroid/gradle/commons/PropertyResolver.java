@@ -85,6 +85,19 @@ public class PropertyResolver {
 		}
 	}
 	
+	public Double getDoubleProp(String propertyName) {
+		return getDoubleProp(propertyName, null);
+	}
+	
+	public Double getDoubleProp(String propertyName, Double defaultValue) {
+		Object value = getProp(propertyName);
+		if (value == null) {
+			return defaultValue;
+		} else {
+			return Double.parseDouble(value.toString());
+		}
+	}
+	
 	public List<String> getStringListProp(String propertyName) {
 		return getStringListProp(propertyName, null);
 	}
