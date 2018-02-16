@@ -10,9 +10,18 @@ public class BaseGradleExtension {
 	private LogLevel logLevel = LogLevel.INFO;
 	public PropertyResolver propertyResolver;
 
+	private String gitHubWriteToken;
+	private String gitHubRepositoryOwner;
+	private String gitHubRepositoryName;
+
 	public BaseGradleExtension(Project project) {
 		this.project = project
 		this.propertyResolver = new PropertyResolver(project);
+
+		gitHubWriteToken = propertyResolver.getStringProp("gitHubWriteToken");
+		gitHubRepositoryOwner = propertyResolver.getStringProp("gitHubRepositoryOwner");
+		gitHubRepositoryName = propertyResolver.getStringProp("gitHubRepositoryName");
+
 	}
 
 	public String getGitSha() {
@@ -40,5 +49,29 @@ public class BaseGradleExtension {
 
 	public void setLogLevel(LogLevel logLevel) {
 		this.logLevel = logLevel;
+	}
+
+	public String getGitHubWriteToken() {
+		return gitHubWriteToken
+	}
+
+	public void setGitHubWriteToken(gitHubWriteToken) {
+		this.gitHubWriteToken = gitHubWriteToken
+	}
+
+	public String getGitHubRepositoryOwner() {
+		return gitHubRepositoryOwner
+	}
+
+	public void setGitHubRepositoryOwner(gitHubRepositoryOwner) {
+		this.gitHubRepositoryOwner = gitHubRepositoryOwner
+	}
+
+	public String getGitHubRepositoryName() {
+		return gitHubRepositoryName
+	}
+
+	public void setGitHubRepositoryName(gitHubRepositoryName) {
+		this.gitHubRepositoryName = gitHubRepositoryName
 	}
 }

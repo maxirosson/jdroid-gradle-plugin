@@ -17,5 +17,9 @@ buildscript {
 
 dependencies {
 	implementation 'com.jdroidframework:jdroid-java-core:' + JDROID_JAVA_VERSION
+
+	// https://github.com/maxirosson/jdroid-java-github/releases
+	implementation 'com.jdroidframework:jdroid-java-github:0.9.4'
+
 	testImplementation 'junit:junit:4.12'
 }

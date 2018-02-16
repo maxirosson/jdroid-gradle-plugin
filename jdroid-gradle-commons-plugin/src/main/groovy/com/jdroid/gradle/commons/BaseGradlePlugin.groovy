@@ -1,5 +1,6 @@
 package com.jdroid.gradle.commons
 
+import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask
 import com.jdroid.gradle.commons.tasks.IncrementMajorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementMinorVersionTask
 import com.jdroid.gradle.commons.tasks.IncrementPatchVersionTask
@@ -42,12 +43,15 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		IncrementMajorVersionTask incrementMajorVersionTask = project.task('incrementMajorVersion', type: IncrementMajorVersionTask)
 		IncrementMinorVersionTask incrementMinorVersionTask = project.task('incrementMinorVersion', type: IncrementMinorVersionTask)
 		IncrementPatchVersionTask incrementPatchVersionTask = project.task('incrementPatchVersion', type: IncrementPatchVersionTask)
+		CreateGitHubReleaseTask createGitHubReleaseTask = project.task('createGitHubRelease', type: CreateGitHubReleaseTask)
+
 
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
 				incrementMajorVersionTask.setLogLevel(project.jdroid.getLogLevel());
 				incrementMinorVersionTask.setLogLevel(project.jdroid.getLogLevel());
 				incrementPatchVersionTask.setLogLevel(project.jdroid.getLogLevel());
+				createGitHubReleaseTask.setLogLevel(project.jdroid.getLogLevel());
 			}
 		});
 
