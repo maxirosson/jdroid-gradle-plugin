@@ -1,6 +1,8 @@
 package com.jdroid.gradle.commons
 
 import com.jdroid.gradle.commons.utils.TypeUtils
+import com.jdroid.java.date.DateTimeFormat
+import com.jdroid.java.date.DateUtils
 import org.gradle.api.Project
 
 public class Version {
@@ -10,6 +12,7 @@ public class Version {
 	Integer versionMinor
 	Integer versionPatch
 	String versionClassifier
+	Boolean isVersionTimestampEnabled
 	Boolean isSnapshot
 	String featureName
 	String featureBranchPrefix
@@ -40,6 +43,7 @@ public class Version {
 		}
 
 		isSnapshot = propertyResolver.getBooleanProp('SNAPSHOT', true)
+		isVersionTimestampEnabled = propertyResolver.getBooleanProp('VERSION_TIMESTAMP_ENABLED', false)
 		isLocal = propertyResolver.getBooleanProp('LOCAL', false)
 		featureBranchPrefix = propertyResolver.getStringProp('FEATURE_BRANCH_PREFIX', "feature/")
 
@@ -60,6 +64,15 @@ public class Version {
 					versionClassifier += "-"
 				}
 				versionClassifier += "LOCAL"
+			}
+
+			if (isVersionTimestampEnabled) {
+				if (versionClassifier == null) {
+					versionClassifier = ""
+				} else {
+					versionClassifier += "-"
+				}
+				versionClassifier += DateUtils.format(DateUtils.now(), "YYYYMMDDHHmmss")
 			}
 
 			if (isSnapshot) {
