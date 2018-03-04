@@ -87,7 +87,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 					if (outputFileName.endsWith('.apk')) {
 						outputFileName = outputFileName.replace('.apk', "-v${versionName}.apk")
 						outputFileName = outputFileName.replace(project.getProjectDir().name, appName)
-						if (variant.buildType.debuggable && variant.name.endsWith("Release")) {
+						if (variant.buildType.debuggable && variant.name.toLowerCase().endsWith("release")) {
 							outputFileName = outputFileName.replace("-v", "-DEBUGGABLE-v")
 						}
 					}
