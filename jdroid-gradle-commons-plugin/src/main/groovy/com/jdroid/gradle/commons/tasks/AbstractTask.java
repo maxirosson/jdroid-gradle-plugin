@@ -2,6 +2,7 @@ package com.jdroid.gradle.commons.tasks;
 
 import com.jdroid.gradle.commons.BaseGradleExtension;
 import com.jdroid.gradle.commons.PropertyResolver;
+import com.jdroid.gradle.commons.utils.ProjectUtils;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.logging.LogLevel;
@@ -42,6 +43,6 @@ public abstract class AbstractTask extends DefaultTask {
 	private LogLevel logLevel;
 	
 	public BaseGradleExtension getExtension() {
-		return ((BaseGradleExtension)getProject().getExtensions().getByName("jdroid"));
+		return ProjectUtils.getJdroidExtension(getProject());
 	}
 }

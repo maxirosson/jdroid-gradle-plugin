@@ -1,6 +1,8 @@
 package com.jdroid.gradle.android.task
 
+import com.jdroid.gradle.android.AndroidGradlePluginExtension
 import com.jdroid.gradle.commons.tasks.AbstractTask
+import com.jdroid.gradle.commons.utils.ProjectUtils
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Input
@@ -41,7 +43,7 @@ public class VerifyMissingTranslationsTask extends AbstractTask {
 		}
 
 		if (error) {
-			throw new GradleException('Missing translations [' + project.jdroid.missingTranslationExpression + ']')
+			throw new GradleException('Missing translations [' + ProjectUtils.<AndroidGradlePluginExtension>getJdroidExtension(project).getMissingTranslationExpression() + ']')
 		}
 	}
 
