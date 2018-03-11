@@ -6,7 +6,7 @@ ext.JDROID_GITHUB_REPOSITORY_NAME = 'jdroid-gradle-plugin'
 ext.JDROID_GRADLE_PLUGIN_VERSION = '0.18.0'
 
 // https://github.com/maxirosson/jdroid-java/blob/master/CHANGELOG.md
-ext.JDROID_JAVA_VERSION = '0.15.0'
+ext.JDROID_JAVA_VERSION = '0.16.0-SNAPSHOT'
 
 // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = '0.9.8'
