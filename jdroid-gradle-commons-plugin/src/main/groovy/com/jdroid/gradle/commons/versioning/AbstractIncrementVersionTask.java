@@ -64,14 +64,13 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 			if (versionIncrementPushEnabled) {
 				String versionIncrementBranch = propertyResolver.getStringProp("VERSION_INCREMENT_BRANCH");
 				if (versionIncrementBranch != null) {
-					commandExecutor.execute("git push origin \"HEAD:${versionIncrementBranch}\"");
+					commandExecutor.execute("git push origin HEAD:" + versionIncrementBranch);
 				} else {
 					commandExecutor.execute("git reset --soft HEAD~1");
 					commandExecutor.execute("git add .");
 					commandExecutor.execute("git stash");
 					throw new RuntimeException("Missing VERSION_INCREMENT_BRANCH property. Reverting commit.");
 				}
-
 			}
 
 		} else {
