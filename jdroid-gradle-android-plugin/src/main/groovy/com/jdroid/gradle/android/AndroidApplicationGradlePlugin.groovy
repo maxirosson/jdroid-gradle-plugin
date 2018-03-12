@@ -2,7 +2,8 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
 import com.jdroid.gradle.android.task.CopyApksTask
-import com.jdroid.gradle.commons.Version
+import com.jdroid.gradle.android.versioning.AndroidVersion
+import com.jdroid.gradle.commons.versioning.Version
 import org.gradle.api.Action
 import org.gradle.api.Project
 

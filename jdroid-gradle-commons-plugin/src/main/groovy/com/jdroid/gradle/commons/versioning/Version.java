@@ -1,5 +1,6 @@
-package com.jdroid.gradle.commons;
+package com.jdroid.gradle.commons.versioning;
 
+import com.jdroid.gradle.commons.PropertyResolver;
 import com.jdroid.gradle.commons.utils.ProjectUtils;
 import com.jdroid.gradle.commons.utils.TypeUtils;
 import com.jdroid.java.date.DateUtils;

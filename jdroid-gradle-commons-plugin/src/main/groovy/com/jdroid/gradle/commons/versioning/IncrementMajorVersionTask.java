@@ -1,6 +1,4 @@
-package com.jdroid.gradle.commons.tasks;
-
-import com.jdroid.gradle.commons.Version;
+package com.jdroid.gradle.commons.versioning;
 
 public class IncrementMajorVersionTask extends AbstractIncrementVersionTask {
 	

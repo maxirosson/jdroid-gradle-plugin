@@ -1,7 +1,8 @@
-package com.jdroid.gradle.android;
+package com.jdroid.gradle.android.versioning;
 
+import com.jdroid.gradle.android.AndroidGradlePluginExtension;
 import com.jdroid.gradle.commons.PropertyResolver;
-import com.jdroid.gradle.commons.Version;
+import com.jdroid.gradle.commons.versioning.Version;
 import com.jdroid.gradle.commons.utils.ProjectUtils;
 
 import org.gradle.api.Project;

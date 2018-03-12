@@ -1,7 +1,7 @@
-package com.jdroid.gradle.commons.tasks;
+package com.jdroid.gradle.commons.versioning;
 
 import com.jdroid.gradle.commons.CommandExecutor;
-import com.jdroid.gradle.commons.Version;
+import com.jdroid.gradle.commons.tasks.AbstractTask;
 import com.jdroid.java.collections.Lists;
 import com.jdroid.java.utils.FileUtils;
 

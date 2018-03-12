@@ -1,9 +1,10 @@
 package com.jdroid.gradle.commons
 
 import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask
-import com.jdroid.gradle.commons.tasks.IncrementMajorVersionTask
-import com.jdroid.gradle.commons.tasks.IncrementMinorVersionTask
-import com.jdroid.gradle.commons.tasks.IncrementPatchVersionTask
+import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask
+import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask
+import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask
+import com.jdroid.gradle.commons.versioning.Version
 import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
