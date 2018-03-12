@@ -24,7 +24,6 @@ public class AndroidVersion extends Version {
 		if (versionCodePrefix == null) {
 			versionCodePrefix = ProjectUtils.<AndroidGradlePluginExtension>getJdroidExtension(getProject()).getMinimumSdkVersion();
 		}
-
 		return versionCodePrefix * 10000000 + versionCodeExtraBit * 1000000 + getVersionMajor() * 10000 + getVersionMinor() * 100 + getVersionPatch();
 	}
 
@@ -43,6 +42,4 @@ public class AndroidVersion extends Version {
 	public void setVersionCodeExtraBit(Integer versionCodeExtraBit) {
 		this.versionCodeExtraBit = versionCodeExtraBit;
 	}
-
-
 }

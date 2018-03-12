@@ -20,20 +20,20 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		this.project = project
 
 		propertyResolver = new PropertyResolver(project);
-		project.extensions.create("jdroid", getExtensionClass(), project)
+		BaseGradleExtension extension = project.getExtensions().create("jdroid", getExtensionClass(), project);
 		jdroid = project.jdroid
 
-		if (project.version == Project.DEFAULT_VERSION) {
-			project.version = project.rootProject.version
+		if (project.getVersion().equals(Project.DEFAULT_VERSION)) {
+			project.setVersion(project.getRootProject().getVersion());
 		}
 
-		if (project.version == Project.DEFAULT_VERSION) {
-			project.logger.warn("Version not specified on project ${project.name} or its root project. Assigned v0.1.0 as default version")
-			project.version = "0.1.0"
+		if (project.getVersion().equals(Project.DEFAULT_VERSION)) {
+			project.getLogger().warn("Version not specified on project " + project.getName() + " or its root project. Assigned v0.1.0 as default version");
+			project.setVersion("0.1.0");
 		}
 
-		String baseVersion = project.version instanceof Version ? ((Version)project.version).baseVersion : project.version.toString()
-		project.version = createVersion(baseVersion)
+		String baseVersion = project.getVersion() instanceof Version ? ((Version)project.getVersion()).getBaseVersion() : project.getVersion().toString();
+		project.setVersion(createVersion(baseVersion))
 
 		project.task('printVersion') {
 			doLast {
@@ -41,18 +41,17 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			}
 		}
 
-		IncrementMajorVersionTask incrementMajorVersionTask = project.task('incrementMajorVersion', type: IncrementMajorVersionTask)
-		IncrementMinorVersionTask incrementMinorVersionTask = project.task('incrementMinorVersion', type: IncrementMinorVersionTask)
-		IncrementPatchVersionTask incrementPatchVersionTask = project.task('incrementPatchVersion', type: IncrementPatchVersionTask)
-		CreateGitHubReleaseTask createGitHubReleaseTask = project.task('createGitHubRelease', type: CreateGitHubReleaseTask)
-
+		IncrementMajorVersionTask incrementMajorVersionTask = project.getTasks().create("incrementMajorVersion", IncrementMajorVersionTask.class);
+		IncrementMinorVersionTask incrementMinorVersionTask = project.getTasks().create("incrementMinorVersion", IncrementMinorVersionTask.class);
+		IncrementPatchVersionTask incrementPatchVersionTask = project.getTasks().create("incrementPatchVersion", IncrementPatchVersionTask.class);
+		CreateGitHubReleaseTask createGitHubReleaseTask = project.getTasks().create('createGitHubRelease', CreateGitHubReleaseTask.class);
 
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
-				incrementMajorVersionTask.setLogLevel(project.jdroid.getLogLevel());
-				incrementMinorVersionTask.setLogLevel(project.jdroid.getLogLevel());
-				incrementPatchVersionTask.setLogLevel(project.jdroid.getLogLevel());
-				createGitHubReleaseTask.setLogLevel(project.jdroid.getLogLevel());
+				incrementMajorVersionTask.setLogLevel(extension.getLogLevel());
+				incrementMinorVersionTask.setLogLevel(extension.getLogLevel());
+				incrementPatchVersionTask.setLogLevel(extension.getLogLevel());
+				createGitHubReleaseTask.setLogLevel(extension.getLogLevel());
 			}
 		});
 
