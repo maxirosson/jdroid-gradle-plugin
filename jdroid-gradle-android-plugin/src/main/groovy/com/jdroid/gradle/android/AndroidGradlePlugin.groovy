@@ -13,6 +13,9 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 	// http://developer.android.com/tools/revisions/build-tools.html
 	private static final String ANDROID_BUILD_TOOLS_VERSION = '27.0.2'
 
+	// https://github.com/maxirosson/jdroid-android-lint/releases
+	private static final String JDROID_ANDROID_LINT_RULES_VERSION = "0.1.0-SNAPSHOT"
+
 	protected android
 
 	public void apply(Project project) {
@@ -23,6 +26,12 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		applyAndroidPlugin()
 
 		android = project.android
+
+		project.dependencies {
+			if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", true)) {
+				lintChecks 'com.jdroidframework:jdroid-android-lint-rules:' + propertyResolver.getStringProp("JDROID_ANDROID_LINT_RULES_VERSION", JDROID_ANDROID_LINT_RULES_VERSION)
+			}
+		}
 
 		if (!jdroid.isReleaseBuildTypeEnabled()) {
 			project.android.variantFilter { variant ->
