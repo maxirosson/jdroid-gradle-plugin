@@ -27,10 +27,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		android = project.android
 
-		project.dependencies {
-			if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", true)) {
-				lintChecks 'com.jdroidframework:jdroid-android-lint-rules:' + propertyResolver.getStringProp("JDROID_ANDROID_LINT_RULES_VERSION", JDROID_ANDROID_LINT_RULES_VERSION)
-			}
+		if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", true)) {
+			addDependency("lintChecks", "com.jdroidframework","jdroid-android-lint-rules", propertyResolver.getStringProp("JDROID_ANDROID_LINT_RULES_VERSION", JDROID_ANDROID_LINT_RULES_VERSION));
 		}
 
 		if (!jdroid.isReleaseBuildTypeEnabled()) {
@@ -85,6 +83,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		android.lintOptions {
 			checkReleaseBuilds false
 			abortOnError propertyResolver.getBooleanProp('ABORT_ON_LINT_ERROR', true)
+			enable 'ConvertToWebp'
 			disable 'ContentDescription', 'RtlEnabled', 'RtlHardcoded', 'RtlSymmetry', 'UseCompoundDrawables', 'UnknownIdInLayout', 'RequiredSize'
 		}
 

@@ -81,4 +81,16 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {
 		return BaseGradleExtension.class;
 	}
+
+	protected void addDependency(String configuration, String group, String name, String version) {
+		project.getDependencies().add(configuration, group + ":" + name + ":" + version);
+	}
+
+	protected void addDependency(String configuration, String group, String name, String version, String classifier) {
+		project.getDependencies().add(configuration, group + ":" + name + ":" + version + ":" + classifier);
+	}
+
+	protected void addDependency(String configuration, String group, String name, String version, String classifier, String extension) {
+		project.getDependencies().add(configuration, group + ":" + name + ":" + version + ":" + classifier + "@" + extension);
+	}
 }
