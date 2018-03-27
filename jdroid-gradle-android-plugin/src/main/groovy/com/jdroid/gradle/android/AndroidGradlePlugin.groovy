@@ -85,7 +85,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			abortOnError propertyResolver.getBooleanProp('ABORT_ON_LINT_ERROR', true)
 			enable 'ConvertToWebp'
 			disable 'ContentDescription', 'RtlEnabled', 'RtlHardcoded', 'RtlSymmetry', 'UseCompoundDrawables', 'UnknownIdInLayout', 'RequiredSize'
-			error 'StringFormatMatches', 'StringFormatCount'
+			error 'StringFormatMatches', 'StringFormatCount', 'HardcodedText', 'ScrollViewSize', 'SwitchIntDef', 'Deprecated', 'TextFields'
 		}
 
 		android.packagingOptions {
