@@ -18,12 +18,13 @@ buildscript {
 	repositories {
 		jcenter()
 		google()
-		maven { url "https://plugins.gradle.org/m2/" }
+		gradlePluginPortal()
 		String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 		if (localMavenRepo != null) {
 			maven { url localMavenRepo }
 		}
 		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+		mavenCentral()
 	}
 	dependencies {
 		// https://github.com/maxirosson/jdroid-component-builder/blob/master/CHANGELOG.md
@@ -39,12 +40,13 @@ subprojects {
 		repositories {
 			jcenter()
 			google()
-			maven { url "https://plugins.gradle.org/m2/" }
+			gradlePluginPortal()
 			String localMavenRepo = project.hasProperty('LOCAL_MAVEN_REPO') ? project.ext.get('LOCAL_MAVEN_REPO') : System.getenv('LOCAL_MAVEN_REPO')
 			if (localMavenRepo != null) {
 				maven { url localMavenRepo }
 			}
 			maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+			mavenCentral()
 		}
 	}
 
@@ -56,5 +58,6 @@ subprojects {
 			maven { url localMavenRepo }
 		}
 		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+		mavenCentral()
 	}
 }

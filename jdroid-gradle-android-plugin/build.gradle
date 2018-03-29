@@ -22,7 +22,7 @@ dependencies {
 
 	// https://developer.android.com/tools/revisions/gradle-plugin.html
 	// https://dl.google.com/dl/android/maven2/index.html
-	implementation 'com.android.tools.build:gradle:3.0.1'
+	implementation 'com.android.tools.build:gradle:3.1.0'
 
 	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
 	implementation 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
