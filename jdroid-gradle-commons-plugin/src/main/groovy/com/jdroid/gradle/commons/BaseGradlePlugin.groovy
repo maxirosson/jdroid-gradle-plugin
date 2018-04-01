@@ -5,6 +5,7 @@ import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask
 import com.jdroid.gradle.commons.versioning.Version
+import com.jdroid.java.collections.Maps
 import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
@@ -92,5 +93,11 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected void addDependency(String configuration, String group, String name, String version, String classifier, String extension) {
 		project.getDependencies().add(configuration, group + ":" + name + ":" + version + ":" + classifier + "@" + extension);
+	}
+
+	protected void applyPlugin(String plugin) {
+		Map<String, String> map = Maps.newHashMap();
+		map.put("plugin", plugin);
+		project.apply(map);
 	}
 }

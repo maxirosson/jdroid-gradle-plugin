@@ -19,7 +19,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 			}
 		}
 
-		if (org.gradle.api.JavaVersion.current().isJava8Compatible()) {
+		if (JavaVersion.current().isJava8Compatible()) {
 			project.tasks.withType(org.gradle.api.tasks.javadoc.Javadoc) {
 				options.addStringOption('Xdoclint:none', '-quiet')
 			}
@@ -27,10 +27,10 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	}
 
 	protected String getJavaSourceCompatibility() {
-		return JavaVersion.VERSION_1_8.toString()
+		return JavaVersion.VERSION_1_8.toString();
 	}
 	protected String getJavaTargetCompatibility() {
-		return JavaVersion.VERSION_1_8.toString()
+		return JavaVersion.VERSION_1_8.toString();
 	}
 
 	protected Class<? extends JavaBaseGradleExtension> getExtensionClass() {
