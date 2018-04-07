@@ -2,11 +2,11 @@
 Gradle Plugins for Java & Android projects
 
 ## Continuous Integration
-|Branch|Status|
-| ------------- | ------------- |
-|Master|[![Build Status](https://travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=master)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
-|Staging|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=staging)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
-|Production|[![Build Status](https://api.travis-ci.org/maxirosson/jdroid-gradle-plugin.svg?branch=production)](https://travis-ci.org/maxirosson/jdroid-gradle-plugin)|
+|Branch|Status|Workflows|Insights|
+| ------------- | ------------- | ------------- | ------------- |
+|master|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/master.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/master)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/master)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/master)|
+|staging|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/staging.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/staging)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/staging)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/staging)|
+|production|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/production.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/production)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/production)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/production)|
 
 ## Components
 
