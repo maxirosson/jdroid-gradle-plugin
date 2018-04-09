@@ -36,11 +36,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		String baseVersion = project.getVersion() instanceof Version ? ((Version)project.getVersion()).getBaseVersion() : project.getVersion().toString();
 		project.setVersion(createVersion(baseVersion))
 
-		project.task('printVersion') {
-			doLast {
-				println project.version
-			}
-		}
+		project.getTasks().create("printVersion", PrintVersionTask.class);
 
 		IncrementMajorVersionTask incrementMajorVersionTask = project.getTasks().create("incrementMajorVersion", IncrementMajorVersionTask.class);
 		IncrementMinorVersionTask incrementMinorVersionTask = project.getTasks().create("incrementMinorVersion", IncrementMinorVersionTask.class);
