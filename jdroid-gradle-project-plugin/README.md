@@ -11,7 +11,7 @@ Add the following lines to your `build.gradle`:
       }
       
       dependencies {
-        classpath 'com.jdroidframework:jdroid-gradle-project-plugin:X.Y.Z'
+        classpath 'com.jdroidtools:jdroid-gradle-project-plugin:X.Y.Z'
       }
     }
     

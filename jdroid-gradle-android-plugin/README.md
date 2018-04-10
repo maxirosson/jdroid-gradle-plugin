@@ -27,7 +27,7 @@ Add the following lines to your `build.gradle`:
       }
       
       dependencies {
-        classpath 'com.jdroidframework:jdroid-gradle-android-plugin:X.Y.Z'
+        classpath 'com.jdroidtools:jdroid-gradle-android-plugin:X.Y.Z'
       }
     }
     
@@ -73,7 +73,7 @@ Add the following lines to your `build.gradle`:
       }
       
       dependencies {
-        classpath 'com.jdroidframework:jdroid-gradle-android-plugin:X.Y.Z'
+        classpath 'com.jdroidtools:jdroid-gradle-android-plugin:X.Y.Z'
       }
     }
     

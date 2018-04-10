@@ -16,7 +16,7 @@ Add the following lines to your `build.gradle`:
       }
       
       dependencies {
-        classpath 'com.jdroidframework:jdroid-gradle-java-webapp-plugin:X.Y.Z'
+        classpath 'com.jdroidtools:jdroid-gradle-java-webapp-plugin:X.Y.Z'
       }
     }
     

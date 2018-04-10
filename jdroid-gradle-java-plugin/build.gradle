@@ -41,7 +41,7 @@ pluginBundle {
 	}
 
 	mavenCoordinates {
-		groupId = "com.jdroidframework"
+		groupId = "com.jdroidtools"
 		artifactId = "jdroid-gradle-java-plugin"
 	}
 }
