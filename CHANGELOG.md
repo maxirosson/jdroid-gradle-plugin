@@ -1,5 +1,29 @@
 # Change Log
 
+## [v1.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v1.0.0) (2017-11-02)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.18.0...v1.0.0)
+
+**Implemented enhancements:**
+
+- Changed the severity of some lint rules to error [\#80](https://github.com/maxirosson/jdroid-gradle-plugin/issues/80)
+- Automatically add jdroid-android-lint-rules dependency [\#77](https://github.com/maxirosson/jdroid-gradle-plugin/issues/77)
+- Upgrade android min SDK version from 16 to 19 [\#76](https://github.com/maxirosson/jdroid-gradle-plugin/issues/76)
+- Add version timestamp support [\#75](https://github.com/maxirosson/jdroid-gradle-plugin/issues/75)
+- New 'createGitHubRelease' task [\#74](https://github.com/maxirosson/jdroid-gradle-plugin/issues/74)
+- Functional & integration plugin tests support [\#69](https://github.com/maxirosson/jdroid-gradle-plugin/issues/69)
+- Fabric Plugin integration [\#67](https://github.com/maxirosson/jdroid-gradle-plugin/issues/67)
+- Google Services Plugin dependency automatically added [\#66](https://github.com/maxirosson/jdroid-gradle-plugin/issues/66)
+
+**Closed issues:**
+
+- Migration from group id com.jdroidframework to com.jdroidtools [\#79](https://github.com/maxirosson/jdroid-gradle-plugin/issues/79)
+- Upgrade to Gretty v2.1.0 [\#78](https://github.com/maxirosson/jdroid-gradle-plugin/issues/78)
+- Upgrade to Fabric Gradle Plugin v1.25.1 [\#73](https://github.com/maxirosson/jdroid-gradle-plugin/issues/73)
+- Upgrade to Android Gradle Plugin v3.1.0 [\#72](https://github.com/maxirosson/jdroid-gradle-plugin/issues/72)
+- Upgrade to Firebase Plugins v1.1.5 [\#65](https://github.com/maxirosson/jdroid-gradle-plugin/issues/65)
+- Upgrade to Api Level 27 [\#60](https://github.com/maxirosson/jdroid-gradle-plugin/issues/60)
+- Upgrade to Build Tools v27.0.3 [\#57](https://github.com/maxirosson/jdroid-gradle-plugin/issues/57)
+
 ## [v0.18.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v0.18.0) (2017-11-02)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.17.0...v0.18.0)
 
