@@ -8,7 +8,7 @@ apply plugin: 'com.gradle.plugin-publish'
 buildscript {
 	dependencies {
 		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-		classpath 'com.jdroidframework:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+		classpath 'com.jdroidtools:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
 	}
 }
 
