@@ -19,7 +19,12 @@ public class AndroidVersion extends Version {
 		versionCodePrefix = propertyResolver.getIntegerProp("VERSION_CODE_PREFIX");
 		versionCodeExtraBit = propertyResolver.getIntegerProp("VERSION_CODE_EXTRA_BIT", 0);
 	}
-
+	
+	@Override
+	protected Integer getDefaultMaximumVersion() {
+		return 99;
+	}
+	
 	public Integer getVersionCode() {
 		if (versionCodePrefix == null) {
 			versionCodePrefix = ProjectUtils.<AndroidGradlePluginExtension>getJdroidExtension(getProject()).getMinimumSdkVersion();

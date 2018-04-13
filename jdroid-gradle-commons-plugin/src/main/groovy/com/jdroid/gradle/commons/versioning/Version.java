@@ -20,10 +20,14 @@ public class Version {
 	private String featureBranchPrefix;
 	private Boolean isLocal;
 	
+	private Integer maximumVersion;
+	
 	public Version(Project project, final String version) {
 		
 		this.project = project;
 		PropertyResolver propertyResolver = new PropertyResolver(project);
+		
+		maximumVersion = propertyResolver.getIntegerProp("MAXIMUM_VERSION", getDefaultMaximumVersion());
 		
 		String[] versionSplit = version.split("\\.");
 		if (versionSplit.length != 3) {
@@ -31,18 +35,18 @@ public class Version {
 		}
 		
 		versionMajor = TypeUtils.getInteger(versionSplit[0]);
-		if (versionMajor > 99 || versionMajor < 0) {
-			throw new RuntimeException("The version major [" + String.valueOf(versionMajor) + "] should be a number between 0 and 99");
+		if (versionMajor > maximumVersion || versionMajor < 0) {
+			throw new RuntimeException("The version major [" + String.valueOf(versionMajor) + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		versionMinor = TypeUtils.getInteger(versionSplit[1]);
-		if (versionMinor > 99 || versionMinor < 0) {
-			throw new RuntimeException("The version minor [" + String.valueOf(versionMinor) + "] should be a number between 0 and 99");
+		if (versionMinor > maximumVersion || versionMinor < 0) {
+			throw new RuntimeException("The version minor [" + String.valueOf(versionMinor) + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		versionPatch = TypeUtils.getInteger(versionSplit[2]);
-		if (versionPatch > 99 || versionPatch < 0) {
-			throw new RuntimeException("The version patch [" + String.valueOf(versionPatch) + "] should be a number between 0 and 99");
+		if (versionPatch > maximumVersion || versionPatch < 0) {
+			throw new RuntimeException("The version patch [" + String.valueOf(versionPatch) + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		isSnapshot = propertyResolver.getBooleanProp("SNAPSHOT", true);
@@ -95,18 +99,34 @@ public class Version {
 	}
 	
 	public void incrementMajor() {
-		versionMajor += 1;
-		versionMinor = 0;
-		versionPatch = 0;
+		if (versionMajor < maximumVersion) {
+			versionMajor += 1;
+			versionMinor = 0;
+			versionPatch = 0;
+		} else {
+			throw new RuntimeException("The version major [" + String.valueOf(versionMajor) + "] can't be incremented. Maximum value achieved.");
+		}
 	}
 	
 	public void incrementMinor() {
-		versionMinor += 1;
-		versionPatch = 0;
+		if (versionMinor < maximumVersion) {
+			versionMinor += 1;
+			versionPatch = 0;
+		} else {
+			incrementMajor();
+		}
 	}
 	
 	public void incrementPatch() {
-		versionPatch += 1;
+		if (versionPatch < maximumVersion) {
+			versionPatch += 1;
+		} else {
+			incrementMinor();
+		}
+	}
+	
+	protected Integer getDefaultMaximumVersion() {
+		return 999;
 	}
 	
 	public String getBaseVersion() {
