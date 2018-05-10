@@ -34,6 +34,9 @@ dependencies {
 	// https://developers.google.com/android/guides/google-services-plugin
 	// https://jcenter.bintray.com/com/google/gms/google-services/
 	implementation 'com.google.gms:google-services:3.2.1'
+	// TODO Remove this one, when we upgrade to google-services:3.3.X
+	// https://dl.google.com/dl/android/maven2/index.html
+	implementation 'com.google.android.gms:strict-version-matcher-plugin:1.0.0'
 
 	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
 	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
