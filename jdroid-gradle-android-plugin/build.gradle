@@ -24,9 +24,6 @@ dependencies {
 	// https://dl.google.com/dl/android/maven2/index.html
 	implementation 'com.android.tools.build:gradle:3.1.2'
 
-	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
-	implementation 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
-
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
 	implementation 'com.google.firebase:firebase-plugins:1.1.5'
