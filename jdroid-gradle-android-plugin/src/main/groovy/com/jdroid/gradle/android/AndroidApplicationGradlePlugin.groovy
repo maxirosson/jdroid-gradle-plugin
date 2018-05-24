@@ -29,21 +29,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		});
 
-		if (propertyResolver.getBooleanProp("RIBBONIZER_ENABLED", true)) {
-			project.apply plugin: 'com.github.gfx.ribbonizer'
-
-			project.ribbonizer {
-				builder { variant, iconFile ->
-					// change ribbon colors by product flavors
-					if (variant.buildType.name == "debug") {
-						return yellowRibbonFilter(variant, iconFile)
-					} else {
-						return greenRibbonFilter(variant, iconFile)
-					}
-				}
-			}
-		}
-
 		Boolean stethoEnabled = propertyResolver.getBooleanProp("STETHO_ENABLED", false)
 		if (stethoEnabled) {
 			project.dependencies {
