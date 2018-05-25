@@ -30,7 +30,7 @@ public class BaseGradleExtension {
 	}
 	
 	public String getGitSha() {
-		return new CommandExecutor(project, logLevel).execute("git rev-parse --short HEAD").getStandardOutput();
+		return new CommandExecutor(project, logLevel).execute("git rev-parse --short HEAD").getStandardOutput().trim();
 	}
 	
 	public String getGitBranch() {
