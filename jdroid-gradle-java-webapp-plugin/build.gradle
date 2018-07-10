@@ -17,7 +17,7 @@ dependencies {
 	implementation project(path: ":jdroid-gradle-java-plugin")
 
 	// https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
-	implementation 'org.gretty:gretty:2.1.0'
+	implementation 'org.gretty:gretty:2.2.0'
 
 	testImplementation 'junit:junit:4.12'
 }

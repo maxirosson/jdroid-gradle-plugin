@@ -1,5 +1,6 @@
 package com.jdroid.gradle.android
 
+import com.android.build.gradle.BaseExtension
 import com.jdroid.gradle.android.task.VerifyMissingTranslationsBetweenLocalesTask
 import com.jdroid.gradle.android.task.VerifyMissingTranslationsTask
 import com.jdroid.gradle.commons.JavaBaseGradlePlugin
@@ -16,7 +17,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 	// https://github.com/maxirosson/jdroid-android-lint/releases
 	private static final String JDROID_ANDROID_LINT_RULES_VERSION = "1.0.0"
 
-	protected android
+	protected BaseExtension android
 
 	public void apply(Project project) {
 		super.apply(project)
@@ -67,17 +68,14 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		}
 
 		// https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html
-		android.dexOptions {
-			maxProcessCount propertyResolver.getIntegerProp('MAX_PROCESS_COUNT', 1)
-			preDexLibraries propertyResolver.getBooleanProp('PRE_DEX_LIBRARIES', true)
-			if (propertyResolver.hasProp('DEX_IN_PROCESS')) {
-				dexInProcess propertyResolver.getBooleanProp('DEX_IN_PROCESS')
-			}
-			// Only used if dexInProcess = false
-			if (propertyResolver.hasProp('JAVA_MAX_HEAP_SIZE')) {
-				javaMaxHeapSize propertyResolver.getStringProp('JAVA_MAX_HEAP_SIZE')
-			}
-
+		android.getDexOptions().setMaxProcessCount(propertyResolver.getIntegerProp('MAX_PROCESS_COUNT', 1));
+		android.getDexOptions().setPreDexLibraries(propertyResolver.getBooleanProp('PRE_DEX_LIBRARIES', true));
+		if (propertyResolver.hasProp('DEX_IN_PROCESS')) {
+			android.getDexOptions().setDexInProcess(propertyResolver.getBooleanProp('DEX_IN_PROCESS'));
+		}
+		// Only used if dexInProcess = false
+		if (propertyResolver.hasProp('JAVA_MAX_HEAP_SIZE')) {
+			android.getDexOptions().setJavaMaxHeapSize(propertyResolver.getStringProp('JAVA_MAX_HEAP_SIZE'));
 		}
 
 		android.lintOptions {

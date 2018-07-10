@@ -24,20 +24,17 @@ dependencies {
 	// https://dl.google.com/dl/android/maven2/index.html
 	implementation 'com.android.tools.build:gradle:3.2.0-alpha14'
 
-	// https://github.com/gfx/gradle-android-ribbonizer-plugin/releases
-	implementation 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
-
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
 	implementation 'com.google.firebase:firebase-plugins:1.1.5'
 
 	// https://developers.google.com/android/guides/google-services-plugin
 	// https://jcenter.bintray.com/com/google/gms/google-services/
-	implementation 'com.google.gms:google-services:3.2.1'
+	implementation 'com.google.gms:google-services:4.0.1'
 
 	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
 	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
-	implementation 'io.fabric.tools:gradle:1.25.3'
+	implementation 'io.fabric.tools:gradle:1.25.4'
 
 	testImplementation 'junit:junit:4.12'
 }

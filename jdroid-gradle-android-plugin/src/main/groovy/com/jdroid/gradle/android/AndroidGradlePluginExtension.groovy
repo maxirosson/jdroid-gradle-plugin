@@ -52,31 +52,31 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 		flavor.resValue "string", propertyName, stringValue
 	}
 
-	String[] getResourcesDirsPaths() {
+	public String[] getResourcesDirsPaths() {
 		return resourcesDirsPaths
 	}
 
-	void setResourcesDirsPaths(String[] resourcesDirsPaths) {
+	public void setResourcesDirsPaths(String[] resourcesDirsPaths) {
 		this.resourcesDirsPaths = resourcesDirsPaths
 	}
 
-	String[] getNotDefaultLanguages() {
+	public String[] getNotDefaultLanguages() {
 		return notDefaultLanguages
 	}
 
-	void setNotDefaultLanguages(String[] notDefaultLanguages) {
+	public void setNotDefaultLanguages(String[] notDefaultLanguages) {
 		this.notDefaultLanguages = notDefaultLanguages
 	}
 
-	String getMissingTranslationExpression() {
+	public String getMissingTranslationExpression() {
 		return missingTranslationExpression
 	}
 
-	void setMissingTranslationExpression(String missingTranslationExpression) {
+	public void setMissingTranslationExpression(String missingTranslationExpression) {
 		this.missingTranslationExpression = missingTranslationExpression
 	}
 
-	Integer getMinimumSdkVersion() {
+	public Integer getMinimumSdkVersion() {
 		return minimumSdkVersion
 	}
 }

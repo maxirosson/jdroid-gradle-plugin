@@ -13,19 +13,17 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigString(def out, String key, String defaultValue) {
-		if (propertyResolver.hasProp(key) || defaultValue != null) {
-			String constant = "		public static final String " + key + " = ";
+		String constant = "		public static final String " + key + " = ";
 
-			String value = propertyResolver.getStringProp(key, defaultValue)
-			if (value == null) {
-				constant += "null"
-			} else {
-				constant += '\"' + value + '\"'
-			}
-
-			constant += ";"
-			out.writeLine(constant)
+		String value = propertyResolver.getStringProp(key, defaultValue)
+		if (value == null) {
+			constant += "null"
+		} else {
+			constant += '\"' + value + '\"'
 		}
+
+		constant += ";"
+		out.writeLine(constant)
 	}
 
 	public void setBuildConfigBoolean(def out, String key) {
@@ -33,19 +31,17 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigBoolean(def out, String key, Boolean defaultValue) {
-		if (propertyResolver.hasProp(key) || defaultValue != null) {
-			String constant = "		public static final Boolean " + key + " = ";
+		String constant = "		public static final Boolean " + key + " = ";
 
-			Boolean value = propertyResolver.getBooleanProp(key, defaultValue)
-			if (value == null) {
-				constant += "null"
-			} else {
-				constant += value
-			}
-
-			constant += ";"
-			out.writeLine(constant)
+		Boolean value = propertyResolver.getBooleanProp(key, defaultValue)
+		if (value == null) {
+			constant += "null"
+		} else {
+			constant += value
 		}
+
+		constant += ";"
+		out.writeLine(constant)
 	}
 
 	public void setBuildConfigInteger(def out, String key) {
@@ -53,19 +49,17 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigInteger(def out, String key, Integer defaultValue) {
-		if (propertyResolver.hasProp(key) || defaultValue != null) {
-			String constant = "		public static final Integer " + key + " = ";
+		String constant = "		public static final Integer " + key + " = ";
 
-			Integer value = propertyResolver.getIntegerProp(key, defaultValue)
-			if (value == null) {
-				constant += "null"
-			} else {
-				constant += value
-			}
-
-			constant += ";"
-			out.writeLine(constant)
+		Integer value = propertyResolver.getIntegerProp(key, defaultValue)
+		if (value == null) {
+			constant += "null"
+		} else {
+			constant += value
 		}
+
+		constant += ";"
+		out.writeLine(constant)
 	}
 
 }
