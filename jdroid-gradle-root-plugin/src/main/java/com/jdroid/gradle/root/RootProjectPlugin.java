@@ -17,7 +17,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			public void execute(Project p) {
 				projectConfigSyncTask.setLogLevel(getExtension().getLogLevel());
 			}
-
 		});
 
 		ProjectConfigValidationTask projectConfigValidationTask = project.getTasks().create("checkProjectConfig", ProjectConfigValidationTask.class);
@@ -25,7 +24,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			public void execute(Project p) {
 				projectConfigValidationTask.setLogLevel(getExtension().getLogLevel());
 			}
-
 		});
 
 	}
