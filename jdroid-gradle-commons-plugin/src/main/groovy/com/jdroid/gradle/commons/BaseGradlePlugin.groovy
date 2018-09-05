@@ -19,7 +19,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	protected BaseGradleExtension jdroid
 
 	public void apply(Project project) {
-		this.project = project
+		this.project = project;
 
 		propertyResolver = new PropertyResolver(project);
 		jdroid = project.getExtensions().create("jdroid", getExtensionClass(), project);

@@ -30,7 +30,7 @@ public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 
 	@Override
 	protected void applyPlugin(Project project) {
-		project.apply plugin: 'java-library'
+		applyPlugin("java-library");
 	}
 
 	protected Class<? extends JavaLibraryGradleExtension> getExtensionClass() {

@@ -16,10 +16,10 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		super.apply(project);
 
 		if (propertyResolver.getBooleanProp("FIREBASE_PERFORMANCE_MONITORING_ENABLED", true)) {
-			project.apply plugin: 'com.google.firebase.firebase-perf'
+			applyPlugin("com.google.firebase.firebase-perf");
 		}
 		if (propertyResolver.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
-			project.apply plugin: 'io.fabric'
+			applyPlugin("io.fabric");
 		}
 
 		CopyApksTask copyApksTask = project.task('copyApks', type: CopyApksTask)
