@@ -40,8 +40,8 @@ Replace the X.Y.Z by the [latest jdroid gradle plugin version](https://github.co
 The plugin adds the following configuration to your build script
 
     android {
-        compileSdkVersion 27
-        buildToolsVersion "27.0.2"
+        compileSdkVersion 28
+        buildToolsVersion "28.0.1"
         defaultConfig {
             minSdkVersion 19
             targetSdkVersion 27

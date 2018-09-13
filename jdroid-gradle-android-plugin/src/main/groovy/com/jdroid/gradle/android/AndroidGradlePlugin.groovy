@@ -9,10 +9,10 @@ import org.gradle.api.Project
 
 public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
-	private static final int ANDROID_SDK_VERSION = 27
+	private static final int ANDROID_SDK_VERSION = 28
 
 	// http://developer.android.com/tools/revisions/build-tools.html
-	private static final String ANDROID_BUILD_TOOLS_VERSION = '27.0.3'
+	private static final String ANDROID_BUILD_TOOLS_VERSION = '28.0.2'
 
 	// https://github.com/maxirosson/jdroid-android-lint/releases
 	private static final String JDROID_ANDROID_LINT_RULES_VERSION = "1.1.0"
@@ -40,12 +40,12 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			}
 		}
 
-		android.compileSdkVersion propertyResolver.getIntegerProp('ANDROID_COMPILE_SDK_VERSION', ANDROID_SDK_VERSION)
-		android.buildToolsVersion propertyResolver.getStringProp('ANDROID_BUILD_TOOLS_VERSION', ANDROID_BUILD_TOOLS_VERSION)
+		android.setCompileSdkVersion(propertyResolver.getIntegerProp('ANDROID_COMPILE_SDK_VERSION', ANDROID_SDK_VERSION));
+		android.setBuildToolsVersion(propertyResolver.getStringProp('ANDROID_BUILD_TOOLS_VERSION', ANDROID_BUILD_TOOLS_VERSION));
+		android.getDefaultConfig().setMinSdkVersion(jdroid.minimumSdkVersion);
+		android.getDefaultConfig().setTargetSdkVersion(propertyResolver.getIntegerProp('ANDROID_TARGET_SDK_VERSION', ANDROID_SDK_VERSION));
 
 		android.defaultConfig {
-			minSdkVersion jdroid.minimumSdkVersion
-			targetSdkVersion propertyResolver.getIntegerProp('ANDROID_TARGET_SDK_VERSION', ANDROID_SDK_VERSION)
 
 			vectorDrawables.useSupportLibrary = propertyResolver.getBooleanProp('VECTOR_DRAWABLES_USE_SUPPORT_LIB', true)
 
