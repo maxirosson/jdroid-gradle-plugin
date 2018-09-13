@@ -22,7 +22,7 @@ dependencies {
 
 	// https://developer.android.com/tools/revisions/gradle-plugin.html
 	// https://dl.google.com/dl/android/maven2/index.html
-	implementation 'com.android.tools.build:gradle:3.1.3'
+	implementation 'com.android.tools.build:gradle:3.1.4'
 
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
@@ -30,7 +30,7 @@ dependencies {
 
 	// https://developers.google.com/android/guides/google-services-plugin
 	// https://jcenter.bintray.com/com/google/gms/google-services/
-	implementation 'com.google.gms:google-services:4.0.2'
+	implementation 'com.google.gms:google-services:4.1.0'
 
 	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
 	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
