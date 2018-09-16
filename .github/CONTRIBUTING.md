@@ -14,8 +14,7 @@ patches and features.
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/maxirosson/jdroid-gradle-plugin/issues) is
-the preferred channel for [bug reports](#bug-reports) and [features or improvement requests](#feature-or-improvement-requests), but please respect the following
+The Github issue tracker is the preferred channel for [bug reports](#bug-reports) and [features or improvement requests](#feature-or-improvement-requests), but please respect the following
 restrictions:
 
 * Please **do not** use the issue tracker for personal support requests.
@@ -93,18 +92,19 @@ included in the project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/jdroid-gradle-plugin.git
+   git clone git@github.com:<your-username>/<repo-name>.git
    # Navigate to the newly cloned directory
-   cd jdroid-gradle-plugin
+   cd <repo-name>
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/maxirosson/jdroid-gradle-plugin.git
+   git remote add upstream git@github.com:maxirosson/<repo-name>.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
 
    ```bash
-   git checkout master
-   git pull upstream master
+git pull --all
+git co {BRANCH}
+git pull upstream {BRANCH}
    ```
 
 3. Create a new topic branch (off the main project development branch) to
@@ -150,5 +150,5 @@ or your code is unlikely be merged into the main project.
 
 ## Code guidelines
 
-[Follow these code guidelines](https://docs.google.com/document/d/1XfkrzP9qLWweChHOknyH4AlCkprrntydJXV8nkhJ6FI/edit)
+[Follow these code guidelines](https://github.com/maxirosson/jdroid/wiki/Code-guidelines)
 

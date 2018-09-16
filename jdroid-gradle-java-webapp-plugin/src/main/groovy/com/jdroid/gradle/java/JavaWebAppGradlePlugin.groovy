@@ -9,15 +9,15 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 
 		project.ext.PACKAGING = 'war'
 
-		project.apply plugin: 'war'
-		project.apply plugin: 'org.gretty'
+		applyPlugin("war");
+		applyPlugin("org.gretty");
 
 		project.sourceSets.main.java.srcDirs += "build/generated"
 	}
 
 	@Override
 	protected void applyPlugin(Project project) {
-		project.apply plugin: 'java'
+		applyPlugin("java");
 	}
 
 	protected Class<? extends JavaWebAppGradleExtension> getExtensionClass() {

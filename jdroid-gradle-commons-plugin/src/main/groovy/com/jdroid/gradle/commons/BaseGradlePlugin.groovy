@@ -16,14 +16,13 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected Project project;
 	protected PropertyResolver propertyResolver;
-	protected jdroid
+	protected BaseGradleExtension jdroid
 
 	public void apply(Project project) {
-		this.project = project
+		this.project = project;
 
 		propertyResolver = new PropertyResolver(project);
-		BaseGradleExtension extension = project.getExtensions().create("jdroid", getExtensionClass(), project);
-		jdroid = project.jdroid
+		jdroid = project.getExtensions().create("jdroid", getExtensionClass(), project);
 
 		if (project.getVersion().equals(Project.DEFAULT_VERSION)) {
 			project.setVersion(project.getRootProject().getVersion());
@@ -97,5 +96,9 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		Map<String, String> map = Maps.newHashMap();
 		map.put("plugin", plugin);
 		project.apply(map);
+	}
+
+	public BaseGradleExtension getExtension() {
+		return jdroid;
 	}
 }

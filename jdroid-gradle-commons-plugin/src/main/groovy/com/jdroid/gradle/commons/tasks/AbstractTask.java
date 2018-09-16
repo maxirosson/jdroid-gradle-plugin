@@ -14,7 +14,8 @@ import java.io.IOException;
 public abstract class AbstractTask extends DefaultTask {
 	
 	protected PropertyResolver propertyResolver;
-	
+	private LogLevel logLevel;
+
 	@TaskAction
 	public final void doExecute() {
 		propertyResolver = new PropertyResolver(getProject());
@@ -40,8 +41,6 @@ public abstract class AbstractTask extends DefaultTask {
 		this.logLevel = logLevel;
 	}
 
-	private LogLevel logLevel;
-	
 	public BaseGradleExtension getExtension() {
 		return ProjectUtils.getJdroidExtension(getProject());
 	}

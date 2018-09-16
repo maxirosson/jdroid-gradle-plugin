@@ -16,7 +16,7 @@ buildscript {
 }
 
 dependencies {
-	implementation 'com.jdroidtools:jdroid-java-core:' + JDROID_JAVA_VERSION
+	compile 'com.jdroidtools:jdroid-java-core:' + JDROID_JAVA_VERSION
 
 	// https://github.com/maxirosson/jdroid-java-github/releases
 	implementation 'com.jdroidtools:jdroid-java-github:1.0.0'

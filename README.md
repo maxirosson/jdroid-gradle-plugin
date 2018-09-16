@@ -5,7 +5,6 @@ Gradle Plugins for Java & Android projects
 |Branch|Status|Workflows|Insights|
 | ------------- | ------------- | ------------- | ------------- |
 |master|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/master.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/master)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/master)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/master)|
-|staging|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/staging.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/staging)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/staging)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/staging)|
 |production|[![CircleCI](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/production.svg?style=svg)](https://circleci.com/gh/maxirosson/jdroid-gradle-plugin/tree/production)|[Workflows](https://circleci.com/gh/maxirosson/workflows/jdroid-gradle-plugin/tree/production)|[Insights](https://circleci.com/build-insights/gh/maxirosson/jdroid-gradle-plugin/production)|
 
 ## Components

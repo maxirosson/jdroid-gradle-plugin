@@ -30,7 +30,7 @@ dependencies {
 
 	// https://developers.google.com/android/guides/google-services-plugin
 	// https://jcenter.bintray.com/com/google/gms/google-services/
-	implementation 'com.google.gms:google-services:4.0.1'
+	implementation 'com.google.gms:google-services:4.1.0'
 
 	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
 	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml

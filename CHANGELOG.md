@@ -1,5 +1,19 @@
 # Change Log
 
+## [v1.1.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v1.1.0) (2018-09-09)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v1.0.0...v1.1.0)
+
+**Implemented enhancements:**
+
+- Support to sync project configuration [\#86](https://github.com/maxirosson/jdroid-gradle-plugin/issues/86)
+- Add maximum version support [\#82](https://github.com/maxirosson/jdroid-gradle-plugin/issues/82)
+
+**Closed issues:**
+
+- Upgrade to Fabric plugin v1.25.4 [\#84](https://github.com/maxirosson/jdroid-gradle-plugin/issues/84)
+- Upgrade to Google Services plugin v4.0.2 [\#83](https://github.com/maxirosson/jdroid-gradle-plugin/issues/83)
+- Upgrade to Android Gradle Plugin v3.1.3 [\#81](https://github.com/maxirosson/jdroid-gradle-plugin/issues/81)
+
 ## [v1.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v1.0.0) (2017-11-02)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v0.18.0...v1.0.0)
 
