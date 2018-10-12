@@ -1,9 +1,11 @@
 package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
+import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyApksTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
 import com.jdroid.gradle.commons.versioning.Version
+import com.jdroid.java.collections.Lists
 import org.gradle.api.Action
 import org.gradle.api.Project
 
@@ -21,8 +23,13 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		if (propertyResolver.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
 			applyPlugin("io.fabric");
 		}
+		if (propertyResolver.getBooleanProp("UNUSED_RESOURCES_REMOVER_ENABLED", false)) {
+			applyPlugin("com.github.konifar.gradle.unused-resources-remover");
+			UnusedResourcesRemoverExtension unusedResourcesRemoverExtension = (UnusedResourcesRemoverExtension) project.getExtensions().getByName("unusedResourcesRemover");
+			unusedResourcesRemoverExtension.setExcludeNames(Lists.newArrayList("attrs.xml"));
+		}
 
-		CopyApksTask copyApksTask = project.task('copyApks', type: CopyApksTask)
+		CopyApksTask copyApksTask = project.getTasks().create("copyApks", CopyApksTask.class);
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
 				copyApksTask.setLogLevel(project.jdroid.getLogLevel());
