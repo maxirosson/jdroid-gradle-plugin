@@ -3,7 +3,7 @@ package com.jdroid.gradle.android
 import com.android.build.gradle.AppPlugin
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyApksTask
-import com.jdroid.gradle.android.task.CopyAppBundlesTask
+import com.jdroid.gradle.android.task.CopyBuildsTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
 import com.jdroid.gradle.commons.versioning.Version
 import com.jdroid.java.collections.Lists
@@ -30,17 +30,10 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			unusedResourcesRemoverExtension.setExcludeNames(Lists.newArrayList("attrs.xml"));
 		}
 
-		CopyApksTask copyApksTask = project.getTasks().create("copyApks", CopyApksTask.class);
+		CopyBuildsTask copyBuildsTask = project.getTasks().create("copyBuilds", CopyBuildsTask.class);
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
-				copyApksTask.setLogLevel(project.jdroid.getLogLevel());
-			}
-		});
-
-		CopyAppBundlesTask copyAppBundlesTask = project.getTasks().create("copyAppBundles", CopyAppBundlesTask.class);
-		project.afterEvaluate(new Action<Project>() {
-			public void execute(Project p) {
-				copyAppBundlesTask.setLogLevel(project.jdroid.getLogLevel());
+				copyBuildsTask.setLogLevel(project.jdroid.getLogLevel());
 			}
 		});
 
