@@ -2,7 +2,6 @@ package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
-import com.jdroid.gradle.android.task.CopyApksTask
 import com.jdroid.gradle.android.task.CopyBuildsTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
 import com.jdroid.gradle.commons.versioning.Version
