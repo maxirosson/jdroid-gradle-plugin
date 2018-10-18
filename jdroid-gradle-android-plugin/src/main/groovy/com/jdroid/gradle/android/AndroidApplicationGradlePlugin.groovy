@@ -74,7 +74,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 		}
 
 		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
-			def appName = propertyResolver.getStringProp('APK_BASE_NAME', project.getProjectDir().getParentFile().name)
+			String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().name)
 			android.applicationVariants.all { variant ->
 				variant.outputs.all { output ->
 					if (outputFileName.endsWith('.apk')) {
