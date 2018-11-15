@@ -1,5 +1,6 @@
 package com.jdroid.gradle.android
 
+import com.android.build.api.dsl.extension.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
 import com.jdroid.gradle.android.task.PrefixVerificationTask
 import org.gradle.api.Action
@@ -14,14 +15,14 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		project.ext.PACKAGING = 'aar'
 
 		android.defaultConfig {
-			jdroid.setBuildConfigString(android.defaultConfig, "VERSION", project.version)
+			jdroid.setBuildConfigString(android.defaultConfig, "VERSION", project.version);
 		}
 
 		if (jdroid.getResourcePrefix() != null) {
-			android.resourcePrefix jdroid.getResourcePrefix()
+			((LibraryExtension)android).setResourcePrefix(jdroid.getResourcePrefix());
 		}
 
-		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true)
+		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true);
 		if (isOpenSourceEnabled) {
 			project.task('androidSourcesJar', type: Jar) {
 				classifier = 'sources'

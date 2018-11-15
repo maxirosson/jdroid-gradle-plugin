@@ -1,33 +1,34 @@
-package com.jdroid.gradle.android.task
+package com.jdroid.gradle.android.task;
 
 import com.jdroid.gradle.commons.tasks.AbstractTask
-import org.gradle.api.GradleException
-import org.gradle.api.plugins.JavaBasePlugin
+import com.jdroid.java.collections.Lists;
+import org.gradle.api.GradleException;
+import org.gradle.api.plugins.JavaBasePlugin;
 
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PrefixVerificationTask extends AbstractTask {
 
 	public PrefixVerificationTask() {
-		group = JavaBasePlugin.VERIFICATION_GROUP
+		group = JavaBasePlugin.VERIFICATION_GROUP;
 	}
 
 	@Override
 	protected void onExecute() {
-		String prefix = propertyResolver.getStringProp('RESOURCE_PREFIX')
+		String prefix = propertyResolver.getStringProp('RESOURCE_PREFIX');
 
 		if (prefix != null) {
 
-			Set<File> dirsToVerify = []
+			Set<File> dirsToVerify = new HashSet<>();
 			project.android.sourceSets.each {
 				dirsToVerify.addAll(it.res.srcDirs)
 			}
 
 			// Verify the res files prefix
 
-			List<String> dirPrefixesToVerify = ["drawable", "layout", "menu", "xml", "raw", "anim"]
-			List<String> filePrefixErrors = []
+			List<String> dirPrefixesToVerify = Lists.newArrayList("drawable", "layout", "menu", "xml", "raw", "anim");
+			List<String> filePrefixErrors = Lists.newArrayList();
 
 			dirsToVerify.each { File res ->
 				res.listFiles().each {
@@ -40,15 +41,15 @@ public class PrefixVerificationTask extends AbstractTask {
 			}
 
 			if (!filePrefixErrors.isEmpty()) {
-				logger.error("The following files should start with the prefix: " + prefix)
-				filePrefixErrors.each {
-					logger.error(" - " + it)
+				logger.error("The following files should start with the prefix: " + prefix);
+				for (String each : filePrefixErrors) {
+					logger.error(" - " + each);
 				}
 			}
 
 			// Verify the values res names
 
-			List<String> valuesResNamesPrefixErrors = []
+			List<String> valuesResNamesPrefixErrors = Lists.newArrayList();
 
 			dirsToVerify.each { File res ->
 
@@ -60,24 +61,24 @@ public class PrefixVerificationTask extends AbstractTask {
 			}
 
 			if (!valuesResNamesPrefixErrors.isEmpty()) {
-				logger.error("The following values res names should start with the prefix: " + prefix)
-				valuesResNamesPrefixErrors.each {
-					logger.error(" - " + it)
+				logger.error("The following values res names should start with the prefix: " + prefix);
+				for (String each : valuesResNamesPrefixErrors) {
+					logger.error(" - " + each);
 				}
 			}
 
 			if (!filePrefixErrors.isEmpty() || !valuesResNamesPrefixErrors.isEmpty()) {
-				throw new GradleException("Prefix verification failed")
+				throw new GradleException("Prefix verification failed");
 			}
 		}
 	}
 
 	protected void verifyFilePrefix(File dirFile, String prefix, List<String> errors) {
-		List<String> extensionsToVerify = [".xml", ".png"]
+		List<String> extensionsToVerify = Lists.newArrayList(".xml", ".png");
 		dirFile.listFiles().each { File file ->
-			String extension = file.name.replace(file.name.replaceFirst(~/\.[^\.]+$/, ''), "")
+			String extension = file.getName().replace(file.name.replaceFirst(~/\.[^\.]+$/, ''), "");
 			if (!file.isDirectory() && extensionsToVerify.contains(extension) && !file.getName().startsWith(prefix)) {
-				errors.add(file.absolutePath)
+				errors.add(file.absolutePath);
 			}
 		}
 	}
@@ -100,7 +101,7 @@ public class PrefixVerificationTask extends AbstractTask {
 
 		// TODO Verify the attr elements that are outside of a declare-styleable
 
-		List<String> elementsToVerify = ["string", "plurals", "color", "dimen", "declare-styleable", "style", "bool"]
+		List<String> elementsToVerify = Lists.newArrayList("string", "plurals", "color", "dimen", "declare-styleable", "style", "bool");
 		String key = null;
 		for(String each : elementsToVerify) {
 			if (line.trim().matches('^<\\s*' + each + '\\s.*name="[^"]*".*>$')) {

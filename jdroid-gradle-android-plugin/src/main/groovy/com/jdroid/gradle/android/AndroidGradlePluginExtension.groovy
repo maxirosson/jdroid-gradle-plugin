@@ -19,26 +19,26 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	}
 
 	public boolean isReleaseBuildTypeEnabled() {
-		return isReleaseBuildTypeEnabled
+		return isReleaseBuildTypeEnabled;
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName) {
-		setBuildConfigString(flavor, propertyName, null)
+		setBuildConfigString(flavor, propertyName, null);
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName, Object defaultValue) {
-		setBuildConfigString(flavor, propertyName, defaultValue.toString())
+		setBuildConfigString(flavor, propertyName, defaultValue.toString());
 	}
 
 	public void setBuildConfigString(def flavor, String propertyName, String defaultValue) {
-		String value = propertyResolver.getStringProp(propertyName, defaultValue)
+		String value = propertyResolver.getStringProp(propertyName, defaultValue);
 		def stringValue = value == null ? "null" : '"' + value + '"'
 		flavor.buildConfigField "String", propertyName, stringValue
 	}
 
 	public void setBuildConfigBoolean(def flavor, String propertyName, Boolean defaultValue) {
-		String value = propertyResolver.getBooleanProp(propertyName, defaultValue).toString()
-		flavor.buildConfigField "Boolean", propertyName, value
+		String value = propertyResolver.getBooleanProp(propertyName, defaultValue).toString();
+		flavor.buildConfigField "Boolean", propertyName, value;
 	}
 
 	public void setBuildConfigInteger(def flavor, String propertyName, Integer defaultValue) {
@@ -53,30 +53,30 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	}
 
 	public String[] getResourcesDirsPaths() {
-		return resourcesDirsPaths
+		return resourcesDirsPaths;
 	}
 
 	public void setResourcesDirsPaths(String[] resourcesDirsPaths) {
-		this.resourcesDirsPaths = resourcesDirsPaths
+		this.resourcesDirsPaths = resourcesDirsPaths;
 	}
 
 	public String[] getNotDefaultLanguages() {
-		return notDefaultLanguages
+		return notDefaultLanguages;
 	}
 
 	public void setNotDefaultLanguages(String[] notDefaultLanguages) {
-		this.notDefaultLanguages = notDefaultLanguages
+		this.notDefaultLanguages = notDefaultLanguages;
 	}
 
 	public String getMissingTranslationExpression() {
-		return missingTranslationExpression
+		return missingTranslationExpression;
 	}
 
 	public void setMissingTranslationExpression(String missingTranslationExpression) {
-		this.missingTranslationExpression = missingTranslationExpression
+		this.missingTranslationExpression = missingTranslationExpression;
 	}
 
 	public Integer getMinimumSdkVersion() {
-		return minimumSdkVersion
+		return minimumSdkVersion;
 	}
 }

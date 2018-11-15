@@ -1,6 +1,7 @@
 package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.internal.dsl.SigningConfig
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyBuildsTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
@@ -12,7 +13,7 @@ import org.gradle.api.Project
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 	// https://github.com/facebook/stetho/blob/master/CHANGELOG.md
-	private static final String FACEBOOK_STETHO_VERSION = '1.5.0'
+	private static final String FACEBOOK_STETHO_VERSION = "1.5.0";
 
 	public void apply(Project project) {
 		super.apply(project);
@@ -36,7 +37,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		});
 
-		Boolean stethoEnabled = propertyResolver.getBooleanProp("STETHO_ENABLED", false)
+		Boolean stethoEnabled = propertyResolver.getBooleanProp("STETHO_ENABLED", false);
 		if (stethoEnabled) {
 			project.dependencies {
 				debugApi 'com.facebook.stetho:stetho:' + FACEBOOK_STETHO_VERSION
@@ -49,32 +50,31 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 
 			android.defaultConfig {
-				jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled)
+				jdroid.setBuildConfigBoolean(android.defaultConfig, "STETHO_ENABLED", stethoEnabled);
 			}
 		}
 
 		if (propertyResolver.getBooleanProp("SPLITS_DISABLED", false)) {
-			android.splits.abi.enabled = false
-			android.splits.density.enabled = false
+			android.getSplits().abi.setEnable(false);
+			android.getSplits().density.setEnable(false);
 		}
 
-		android.defaultConfig {
-			versionCode project.version.versionCode
-			versionName project.version.toString()
+		android.getDefaultConfig().setVersionCode(((AndroidVersion)project.getVersion()).getVersionCode());
+		android.getDefaultConfig().setVersionName(project.getVersion().toString());
 
-			List<String> resConfigsList = propertyResolver.getStringListProp("DEBUG_RES_CONFIGS")
+		List<String> resConfigsList = propertyResolver.getStringListProp("DEBUG_RES_CONFIGS");
+		if (resConfigsList != null) {
+			android.getDefaultConfig().resConfig(resConfigsList);
+		} else {
+			resConfigsList = propertyResolver.getStringListProp("RES_CONFIGS");
 			if (resConfigsList != null) {
-				resConfigs resConfigsList
-			} else {
-				resConfigsList = propertyResolver.getStringListProp("RES_CONFIGS")
-				if (resConfigsList != null) {
-					resConfigs resConfigsList
-				}
+				android.getDefaultConfig().resConfig(resConfigsList);
 			}
 		}
 
+
 		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
-			String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().name)
+			String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().getName());
 			android.applicationVariants.all { variant ->
 				variant.outputs.all { output ->
 					if (outputFileName.endsWith('.apk')) {
@@ -88,21 +88,15 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		android.signingConfigs {
-
-			debug {
-				storeFile project.file('./debug.keystore')
-			}
-
-			if (jdroid.isReleaseBuildTypeEnabled()) {
-				release {
-					storeFile project.file(propertyResolver.getStringProp('STORE_FILE', './debug.keystore'))
-					storePassword propertyResolver.getStringProp('STORE_PASSWORD')
-					keyAlias propertyResolver.getStringProp('KEY_ALIAS')
-					keyPassword propertyResolver.getStringProp('KEY_PASSWORD')
-				}
-			}
+		android.signingConfigs.getByName("debug").setStoreFile(project.file('./debug.keystore'));
+		if (jdroid.isReleaseBuildTypeEnabled()) {
+			SigningConfig release = android.signingConfigs.getByName("release");
+			release.setStoreFile(project.file(propertyResolver.getStringProp('STORE_FILE', './debug.keystore')));
+			release.setStorePassword(propertyResolver.getStringProp('STORE_PASSWORD'));
+			release.setKeyAlias(propertyResolver.getStringProp('KEY_ALIAS'));
+			release.setKeyPassword(propertyResolver.getStringProp('KEY_PASSWORD'));
 		}
+
 	}
 
 	protected Class<? extends AndroidApplicationGradlePluginExtension> getExtensionClass() {
@@ -111,7 +105,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 	@Override
 	protected Version createVersion(String version) {
-		return new AndroidVersion(project, version)
+		return new AndroidVersion(project, version);
 	}
 
 	protected void applyAndroidPlugin() {
