@@ -19,7 +19,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		}
 
 		if (jdroid.getResourcePrefix() != null) {
-			((LibraryExtension)android).setResourcePrefix(jdroid.getResourcePrefix());
+			android.resourcePrefix jdroid.getResourcePrefix()
 		}
 
 		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true);
