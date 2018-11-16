@@ -88,13 +88,20 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		android.signingConfigs.getByName("debug").setStoreFile(project.file('./debug.keystore'));
-		if (jdroid.isReleaseBuildTypeEnabled()) {
-			SigningConfig release = android.signingConfigs.getByName("release");
-			release.setStoreFile(project.file(propertyResolver.getStringProp('STORE_FILE', './debug.keystore')));
-			release.setStorePassword(propertyResolver.getStringProp('STORE_PASSWORD'));
-			release.setKeyAlias(propertyResolver.getStringProp('KEY_ALIAS'));
-			release.setKeyPassword(propertyResolver.getStringProp('KEY_PASSWORD'));
+		android.signingConfigs {
+
+			debug {
+				storeFile project.file('./debug.keystore')
+			}
+
+			if (jdroid.isReleaseBuildTypeEnabled()) {
+				release {
+					storeFile project.file(propertyResolver.getStringProp('STORE_FILE', './debug.keystore'))
+					storePassword propertyResolver.getStringProp('STORE_PASSWORD')
+					keyAlias propertyResolver.getStringProp('KEY_ALIAS')
+					keyPassword propertyResolver.getStringProp('KEY_PASSWORD')
+				}
+			}
 		}
 
 	}
