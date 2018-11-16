@@ -1,6 +1,5 @@
 package com.jdroid.gradle.android
 
-import com.android.build.api.dsl.extension.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
 import com.jdroid.gradle.android.task.PrefixVerificationTask
 import org.gradle.api.Action
