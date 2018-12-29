@@ -1,14 +1,14 @@
-ext.PROJECT_NAME = 'Gradle Plugin for Java Web projects'
-description = 'Gradle Plugin for Java Web projects'
-ext.ARTIFACT_ID = 'jdroid-gradle-java-webapp-plugin'
+ext.PROJECT_NAME = "Gradle Plugin for Java Web projects"
+description = "Gradle Plugin for Java Web projects"
+ext.ARTIFACT_ID = "jdroid-gradle-java-webapp-plugin"
 
-apply plugin: 'com.jdroid.gradle.plugin'
-apply plugin: 'com.gradle.plugin-publish'
+apply plugin: "com.jdroid.gradle.plugin"
+apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
 	dependencies {
-		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-		classpath 'com.jdroidtools:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+		classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
+		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
 	}
 }
 
@@ -17,31 +17,31 @@ dependencies {
 	implementation project(path: ":jdroid-gradle-java-plugin")
 
 	// https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
-	implementation 'org.gretty:gretty:2.2.0'
+	implementation("org.gretty:gretty:2.2.0")
 
-	testImplementation 'junit:junit:4.12'
+	testImplementation("junit:junit:4.12")
 }
 
 gradlePlugin {
 	plugins {
 		javaWebappPlugin {
-			id = 'com.jdroid.java.webapp'
-			implementationClass = 'com.jdroid.gradle.java.JavaWebAppGradlePlugin'
+			id = "com.jdroid.java.webapp"
+			implementationClass = "com.jdroid.gradle.java.JavaWebAppGradlePlugin"
 		}
 	}
 }
 
 // Configuration to publish your plugin to the plugin portal
 pluginBundle {
-	website = 'http://www.jdroidtools.com/'
-	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+	website = "http://www.jdroidtools.com/"
+	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
 
 	plugins {
 		javaWebPlugin {
-			id = 'com.jdroid.java.webapp'
-			displayName = 'Jdroid Java WebApp Gradle Plugin'
-			description = 'Gradle Plugin for Java Web apps'
-			tags = ['jdroid', 'java']
+			id = "com.jdroid.java.webapp"
+			displayName = "Jdroid Java WebApp Gradle Plugin"
+			description = "Gradle Plugin for Java Web apps"
+			tags = ["jdroid", "java"]
 		}
 	}
 

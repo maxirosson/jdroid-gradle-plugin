@@ -1,25 +1,25 @@
-ext.PROJECT_NAME = 'Gradle Plugin Commons'
-description = 'Gradle Plugin Commons'
+ext.PROJECT_NAME = "Gradle Plugin Commons"
+description = "Gradle Plugin Commons"
 
 // TODO Rename to jdroid-gradle-commons
-ext.ARTIFACT_ID = 'jdroid-gradle-commons-plugin'
+ext.ARTIFACT_ID = "jdroid-gradle-commons-plugin"
 
 
 // TODO This artifact should not be a plugin
-apply plugin: 'com.jdroid.gradle.plugin'
+apply plugin: "com.jdroid.gradle.plugin"
 
 buildscript {
 	dependencies {
-		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-		classpath 'com.jdroidtools:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+		classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
+		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
 	}
 }
 
 dependencies {
-	compile 'com.jdroidtools:jdroid-java-core:' + JDROID_JAVA_VERSION
+	compile "com.jdroidtools:jdroid-java-core:" + JDROID_JAVA_VERSION
 
 	// https://github.com/maxirosson/jdroid-java-github/releases
-	implementation 'com.jdroidtools:jdroid-java-github:1.0.0'
+	implementation("com.jdroidtools:jdroid-java-github:1.0.0")
 
-	testImplementation 'junit:junit:4.12'
+	testImplementation("junit:junit:4.12")
 }

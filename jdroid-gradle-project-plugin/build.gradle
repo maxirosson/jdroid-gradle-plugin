@@ -1,42 +1,42 @@
-ext.PROJECT_NAME = 'Gradle Plugin for Gradle Plugin projects'
-description = 'Gradle Plugin for Gradle Plugin projects'
-ext.ARTIFACT_ID = 'jdroid-gradle-project-plugin'
+ext.PROJECT_NAME = "Gradle Plugin for Gradle Plugin projects"
+description = "Gradle Plugin for Gradle Plugin projects"
+ext.ARTIFACT_ID = "jdroid-gradle-project-plugin"
 
-apply plugin: 'com.jdroid.gradle.plugin'
-apply plugin: 'com.gradle.plugin-publish'
+apply plugin: "com.jdroid.gradle.plugin"
+apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
 	dependencies {
-		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-		classpath 'com.jdroidtools:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+		classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
+		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
 	}
 }
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
-	testImplementation 'junit:junit:4.12'
+	testImplementation("junit:junit:4.12")
 }
 
 gradlePlugin {
 	plugins {
 		gradleProjectPlugin {
-			id = 'com.jdroid.gradle.plugin'
-			implementationClass = 'com.jdroid.gradle.GradleProjectPlugin'
+			id = "com.jdroid.gradle.plugin"
+			implementationClass = "com.jdroid.gradle.GradleProjectPlugin"
 		}
 	}
 }
 
 // Configuration to publish your plugin to the plugin portal
 pluginBundle {
-	website = 'http://www.jdroidtools.com/'
-	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+	website = "http://www.jdroidtools.com/"
+	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
 
 	plugins {
 		javaWebPlugin {
-			id = 'com.jdroid.gradle.plugin'
-			displayName = 'Jdroid Gradle Plugin'
-			description = 'Gradle Plugin for Gradle Plugin projects'
-			tags = ['jdroid', 'gradle']
+			id = "com.jdroid.gradle.plugin"
+			displayName = "Jdroid Gradle Plugin"
+			description = "Gradle Plugin for Gradle Plugin projects"
+			tags = ["jdroid", "gradle"]
 		}
 	}
 

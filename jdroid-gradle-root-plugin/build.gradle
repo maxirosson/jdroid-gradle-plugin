@@ -1,42 +1,42 @@
-ext.PROJECT_NAME = 'Gradle Plugin for Root projects'
-description = 'Gradle Plugin for Root projects'
-ext.ARTIFACT_ID = 'jdroid-gradle-root-plugin'
+ext.PROJECT_NAME = "Gradle Plugin for Root projects"
+description = "Gradle Plugin for Root projects"
+ext.ARTIFACT_ID = "jdroid-gradle-root-plugin"
 
-apply plugin: 'com.jdroid.gradle.plugin'
-apply plugin: 'com.gradle.plugin-publish'
+apply plugin: "com.jdroid.gradle.plugin"
+apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
 	dependencies {
-		classpath "com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN
-		classpath 'com.jdroidtools:jdroid-gradle-project-plugin:' + JDROID_GRADLE_PLUGIN_VERSION
+		classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
+		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
 	}
 }
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
-	testImplementation 'junit:junit:4.12'
+	testImplementation("junit:junit:4.12")
 }
 
 gradlePlugin {
 	plugins {
 		rootProjectPlugin {
-			id = 'com.jdroid.root'
-			implementationClass = 'com.jdroid.gradle.root.RootProjectPlugin'
+			id = "com.jdroid.root"
+			implementationClass = "com.jdroid.gradle.root.RootProjectPlugin"
 		}
 	}
 }
 
 // Configuration to publish your plugin to the plugin portal
 pluginBundle {
-	website = 'http://www.jdroidtools.com/'
-	vcsUrl = 'https://github.com/maxirosson/jdroid-gradle-plugin'
+	website = "http://www.jdroidtools.com/"
+	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
 
 	plugins {
 		androidRootPlugin {
-			id = 'com.jdroid.root'
-			displayName = 'Jdroid Root Gradle Plugin'
-			description = 'Gradle Plugin for root projects'
-			tags = ['jdroid']
+			id = "com.jdroid.root"
+			displayName = "Jdroid Root Gradle Plugin"
+			description = "Gradle Plugin for root projects"
+			tags = ["jdroid"]
 		}
 	}
 
