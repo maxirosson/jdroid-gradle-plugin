@@ -13,8 +13,13 @@ buildscript {
 }
 
 repositories {
-	maven { url = "https://maven.fabric.io/public" }
-	maven { url = "https://plugins.gradle.org/m2/" }
+	maven {
+		url = "https://maven.fabric.io/public"
+		content {
+			includeGroup("io.fabric.tools")
+		}
+	}
+	gradlePluginPortal()
 }
 
 dependencies {
