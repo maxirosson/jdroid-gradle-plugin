@@ -28,7 +28,7 @@ dependencies {
 
 	// https://developer.android.com/tools/revisions/gradle-plugin.html
 	// https://dl.google.com/dl/android/maven2/index.html
-	implementation("com.android.tools.build:gradle:3.3.0")
+	implementation("com.android.tools.build:gradle:3.3.2")
 
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/firebase-plugins/
