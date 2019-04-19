@@ -16,11 +16,12 @@ apply plugin: "com.jdroid.root"
 
 buildscript {
 	repositories {
-		jcenter {
-			mavenContent {
-				releasesOnly()
-			}
-		}
+//		jcenter {
+//			mavenContent {
+//				releasesOnly()
+//			}
+//		}
+		jcenter()
 		google()
 		gradlePluginPortal()
 		String localMavenRepoEnabled = project.hasProperty("LOCAL_MAVEN_REPO_ENABLED") ? project.ext.get("LOCAL_MAVEN_REPO_ENABLED") : System.getenv("LOCAL_MAVEN_REPO_EMABLED")
@@ -30,26 +31,32 @@ buildscript {
 			if (localMavenRepo != null) {
 				maven {
 					url = localMavenRepo
-					content {
-						includeGroup("com.jdroidtools")
-					}
+//					content {
+//						includeGroup("com.jdroidtools")
+//					}
 				}
 			}
 		}
 		maven {
 			url = "https://oss.sonatype.org/content/repositories/snapshots/"
-			content {
-				includeGroup("com.jdroidtools")
-			}
-			mavenContent {
-				snapshotsOnly()
-			}
+//			content {
+//				includeGroup("com.jdroidtools")
+//			}
+//			mavenContent {
+//				snapshotsOnly()
+//			}
 		}
 		mavenCentral()
 	}
 	dependencies {
 		// https://github.com/maxirosson/jdroid-component-builder/blob/master/CHANGELOG.md
-		classpath("com.jdroidtools:jdroid-component-builder:2.0.0-SNAPSHOT")
+		classpath("com.jdroidtools:jdroid-component-builder:1.1.0")
+//			{
+//			exclude group: 'com.gradle', module: 'build-scan-plugin'
+//		}
+
+		// TODO Remove this line (and the exclude) when upgrading to jdroid-component-builder:2.0.0
+		//classpath("com.gradle:build-scan-plugin:2.2.1")
 
 		// https://github.com/maxirosson/jdroid-gradle-plugin/blob/master/CHANGELOG.md
 		classpath("com.jdroidtools:jdroid-gradle-root-plugin:1.1.0")
@@ -59,13 +66,13 @@ buildscript {
 subprojects {
 	buildscript {
 		repositories {
-			jcenter {
-				mavenContent {
-					releasesOnly()
-				}
-			}
+//			jcenter {
+//				mavenContent {
+//					releasesOnly()
+//				}
+//			}
+			jcenter()
 			google()
-			gradlePluginPortal()
 			String localMavenRepoEnabled = project.hasProperty("LOCAL_MAVEN_REPO_ENABLED") ? project.ext.get("LOCAL_MAVEN_REPO_ENABLED") : System.getenv("LOCAL_MAVEN_REPO_EMABLED")
 			boolean isLocalMavenRepoEnabled = localMavenRepoEnabled != null && localMavenRepoEnabled == "true"
 			if (isLocalMavenRepoEnabled) {
@@ -73,31 +80,27 @@ subprojects {
 				if (localMavenRepo != null) {
 					maven {
 						url = localMavenRepo
-						content {
-							includeGroup("com.jdroidtools")
-						}
+//						content {
+//							includeGroup("com.jdroidtools")
+//						}
 					}
 				}
 			}
+			gradlePluginPortal()
 			maven {
 				url = "https://oss.sonatype.org/content/repositories/snapshots/"
-				content {
-					includeGroup("com.jdroidtools")
-				}
-				mavenContent {
-					snapshotsOnly()
-				}
 			}
 			mavenCentral()
 		}
 	}
 
 	repositories {
-		jcenter {
-			mavenContent {
-				releasesOnly()
-			}
-		}
+//		jcenter {
+//			mavenContent {
+//				releasesOnly()
+//			}
+//		}
+		jcenter()
 		google()
 		String localMavenRepoEnabled = project.hasProperty("LOCAL_MAVEN_REPO_ENABLED") ? project.ext.get("LOCAL_MAVEN_REPO_ENABLED") : System.getenv("LOCAL_MAVEN_REPO_EMABLED")
 		boolean isLocalMavenRepoEnabled = localMavenRepoEnabled != null && localMavenRepoEnabled == "true"
@@ -106,20 +109,20 @@ subprojects {
 			if (localMavenRepo != null) {
 				maven {
 					url = localMavenRepo
-					content {
-						includeGroup("com.jdroidtools")
-					}
+//					content {
+//						includeGroup("com.jdroidtools")
+//					}
 				}
 			}
 		}
 		maven {
 			url = "https://oss.sonatype.org/content/repositories/snapshots/"
-			content {
-				includeGroup("com.jdroidtools")
-			}
-			mavenContent {
-				snapshotsOnly()
-			}
+//			content {
+//				includeGroup("com.jdroidtools")
+//			}
+//			mavenContent {
+//				snapshotsOnly()
+//			}
 		}
 		mavenCentral()
 	}
