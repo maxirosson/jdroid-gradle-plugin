@@ -3,7 +3,6 @@ package com.jdroid.gradle.android
 import com.android.build.gradle.LibraryPlugin
 import com.jdroid.gradle.android.task.PrefixVerificationTask
 import com.jdroid.gradle.commons.JdroidPom
-import com.jdroid.gradle.commons.PropertyResolver
 import com.jdroid.java.collections.Lists
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -13,11 +12,6 @@ import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.javadoc.Javadoc
 
 public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
-
-	public Boolean isPublicationConfigurationEnabled;
-	public Boolean isSourcesPublicationEnabled;
-	public Boolean isSigningPublicationEnabled;
-	public Boolean isJavaDocPublicationEnabled;
 
 	public void apply(Project project) {
 		super.apply(project);
@@ -39,19 +33,6 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 				prefixVerificationTask.setLogLevel(project.jdroid.getLogLevel());
 			}
 		});
-
-		// TODO This is duplicated on BaseGradlePlugin. I don't know why this doesn't work if I remove this
-		isPublicationConfigurationEnabled = propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", true);
-		isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", true);
-		isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", true);
-		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", true);
-		String artifactName = propertyResolver.getStringProp("ARTIFACT_ID");
-		if (artifactName == null) {
-			artifactName =  new PropertyResolver(project.getRootProject()).getStringProp("ARTIFACT_ID");
-			if (artifactName == null) {
-				artifactName = project.getName();
-			}
-		}
 
 		if (isPublicationConfigurationEnabled) {
 			if (isJavaDocPublicationEnabled) {
@@ -92,7 +73,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 								// Dynamically creating publications name
 								"${variant.name}AndroidLibrary"(MavenPublication) {
 
-									artifactId variant.name == "debug" ? artifactName + "-debug" : artifactName
+									artifactId variant.name == "debug" ? artifactId + "-debug" : artifactId
 
 									if (isSourcesPublicationEnabled) {
 										artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
@@ -105,7 +86,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 									// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
 									List<String> configurationNames = Lists.newArrayList("${variant.name}Implementation", "implementation");
 
-									Action<? super MavenPom> mavenPom = JdroidPom.createMavenPom(project, artifactName, getPackaging(), configurationNames)
+									Action<? super MavenPom> mavenPom = JdroidPom.createMavenPom(project, artifactId, getPackaging(), configurationNames)
 									pom(mavenPom)
 								}
 							}
