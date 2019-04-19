@@ -3,7 +3,7 @@ description = "Gradle Plugin for Java projects"
 ext.ARTIFACT_ID = "jdroid-gradle-java-plugin"
 
 apply plugin: "com.jdroid.gradle.plugin"
-apply plugin: "com.gradle.plugin-publish"
+//apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
 	dependencies {
@@ -27,21 +27,21 @@ gradlePlugin {
 }
 
 // Configuration to publish your plugin to the plugin portal
-pluginBundle {
-	website = "http://www.jdroidtools.com/"
-	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
-
-	plugins {
-		javaPlugin {
-			id = "com.jdroid.java.library"
-			displayName = "Jdroid Java Library Gradle Plugin"
-			description = "Gradle Plugin for Java libraries"
-			tags = ["jdroid", "java"]
-		}
-	}
-
-	mavenCoordinates {
-		groupId = "com.jdroidtools"
-		artifactId = "jdroid-gradle-java-plugin"
-	}
-}
+//pluginBundle {
+//	website = "http://www.jdroidtools.com/"
+//	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
+//
+//	plugins {
+//		javaPlugin {
+//			id = "com.jdroid.java.library"
+//			displayName = "Jdroid Java Library Gradle Plugin"
+//			description = "Gradle Plugin for Java libraries"
+//			tags = ["jdroid", "java"]
+//		}
+//	}
+//
+//	mavenCoordinates {
+//		groupId = "com.jdroidtools"
+//		artifactId = "jdroid-gradle-java-plugin"
+//	}
+//}

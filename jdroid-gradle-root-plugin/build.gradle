@@ -3,7 +3,7 @@ description = "Gradle Plugin for Root projects"
 ext.ARTIFACT_ID = "jdroid-gradle-root-plugin"
 
 apply plugin: "com.jdroid.gradle.plugin"
-apply plugin: "com.gradle.plugin-publish"
+//apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
 	dependencies {
@@ -27,21 +27,21 @@ gradlePlugin {
 }
 
 // Configuration to publish your plugin to the plugin portal
-pluginBundle {
-	website = "http://www.jdroidtools.com/"
-	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
-
-	plugins {
-		androidRootPlugin {
-			id = "com.jdroid.root"
-			displayName = "Jdroid Root Gradle Plugin"
-			description = "Gradle Plugin for root projects"
-			tags = ["jdroid"]
-		}
-	}
-
-	mavenCoordinates {
-		groupId = "com.jdroidtools"
-		artifactId = "jdroid-gradle-root-plugin"
-	}
-}
+//pluginBundle {
+//	website = "http://www.jdroidtools.com/"
+//	vcsUrl = "https://github.com/maxirosson/jdroid-gradle-plugin"
+//
+//	plugins {
+//		androidRootPlugin {
+//			id = "com.jdroid.root"
+//			displayName = "Jdroid Root Gradle Plugin"
+//			description = "Gradle Plugin for root projects"
+//			tags = ["jdroid"]
+//		}
+//	}
+//
+//	mavenCoordinates {
+//		groupId = "com.jdroidtools"
+//		artifactId = "jdroid-gradle-root-plugin"
+//	}
+//}
