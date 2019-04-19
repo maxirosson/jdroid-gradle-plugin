@@ -1,40 +1,19 @@
 package com.jdroid.gradle
 
-import com.jdroid.gradle.commons.JavaBaseGradlePlugin
-import org.gradle.api.tasks.bundling.Jar
-import org.gradle.api.Project
 
-public class GradleProjectPlugin extends JavaBaseGradlePlugin {
+import com.jdroid.gradle.java.JavaGradlePlugin
+import org.gradle.api.Project
+import org.gradle.api.publish.maven.MavenPublication
+
+public class GradleProjectPlugin extends JavaGradlePlugin {
 
 	public void apply(Project project) {
 		super.apply(project)
 
-		project.ext.PACKAGING = 'jar'
-
 		applyPlugin("groovy");
-
-		// https://docs.gradle.org/current/userguide/javaGradle_plugin.html
-		applyPlugin("java-gradle-plugin");
 
 		project.dependencies {
 			compile localGroovy()
-		}
-
-		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true)
-		if (isOpenSourceEnabled) {
-			project.task('javadocJar', type: Jar) {
-				classifier = 'javadoc'
-				from project.javadoc
-			}
-
-			project.task('sourcesJar', type: Jar) {
-				classifier = 'sources'
-				from project.sourceSets.main.allSource
-			}
-
-			project.artifacts {
-				archives project.tasks.javadocJar, project.tasks.sourcesJar
-			}
 		}
 
 		project.sourceSets {
@@ -71,6 +50,45 @@ public class GradleProjectPlugin extends JavaBaseGradlePlugin {
 		}
 
 		project.check.dependsOn project.tasks.'functionalTest'
+
+		if (isPublicationConfigurationEnabled) {
+			def pluginMavenPublicationsClosure = {
+				pluginMaven(MavenPublication) {
+					from project.components.java
+					if (isSourcesPublicationEnabled) {
+						artifact project.sourcesJar
+					}
+					if (isSourcesPublicationEnabled) {
+						artifact project.sourcesJar
+					}
+					pom(createMavenPom())
+				}
+			}
+			pluginMavenPublicationsClosure.setDelegate(project)
+
+			project.publishing {
+				publications(pluginMavenPublicationsClosure)
+			}
+		}
+
+		if (isSigningPublicationEnabled) {
+			applyPlugin('signing')
+			project.signing {
+				required { !project.version.isSnapshot }
+				sign project.publishing.publications.pluginMaven
+			}
+		}
+	}
+
+	@Override
+	protected String getPackaging() {
+		return "jar";
+	}
+
+	@Override
+	protected void applyPlugin(Project project) {
+		// https://docs.gradle.org/current/userguide/javaGradle_plugin.html
+		applyPlugin("java-gradle-plugin");
 	}
 
 	protected Class<? extends GradleProjectExtension> getExtensionClass() {

@@ -9,8 +9,12 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
+	protected Boolean isJavaDocPublicationEnabled;
+
 	public void apply(Project project) {
 		super.apply(project);
+
+		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", true);
 
 		project.afterEvaluate(new Action<Project>() {
 			@Override

@@ -1,31 +1,45 @@
 package com.jdroid.gradle.java
 
 import org.gradle.api.Project
-import org.gradle.api.tasks.bundling.Jar
+import org.gradle.api.publish.maven.MavenPublication
 
 public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 
 	public void apply(Project project) {
 		super.apply(project)
 
-		project.ext.PACKAGING = 'jar'
-
-		Boolean isOpenSourceEnabled = propertyResolver.getBooleanProp("OPEN_SOURCE_ENABLED", true)
-		if (isOpenSourceEnabled) {
-			project.task('javadocJar', type: Jar) {
-				classifier = 'javadoc'
-				from project.javadoc
+		if (isPublicationConfigurationEnabled) {
+			def javaLibraryPublicationsClosure = {
+				javaLibrary(MavenPublication) {
+					from project.components.java
+					if (isSourcesPublicationEnabled) {
+						artifact project.sourcesJar
+					}
+					if (isJavaDocPublicationEnabled) {
+						artifact project.javadocJar
+					}
+					pom(createMavenPom())
+				}
 			}
+			javaLibraryPublicationsClosure.setDelegate(project)
 
-			project.task('sourcesJar', type: Jar) {
-				classifier = 'sources'
-				from project.sourceSets.main.allSource
-			}
-
-			project.artifacts {
-				archives project.tasks.javadocJar, project.tasks.sourcesJar
+			project.publishing {
+				publications(javaLibraryPublicationsClosure)
 			}
 		}
+
+		if (isSigningPublicationEnabled) {
+			applyPlugin('signing')
+			project.signing {
+				required { !project.version.isSnapshot }
+				sign project.publishing.publications.javaLibrary
+			}
+		}
+	}
+
+	@Override
+	protected String getPackaging() {
+		return "jar";
 	}
 
 	@Override

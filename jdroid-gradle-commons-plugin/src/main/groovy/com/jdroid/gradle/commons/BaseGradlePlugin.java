@@ -15,6 +15,7 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencyResolveDetails;
+import org.gradle.api.publish.maven.MavenPom;
 
 import java.util.Map;
 
@@ -23,6 +24,10 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	protected Project project;
 	protected PropertyResolver propertyResolver;
 	protected BaseGradleExtension jdroid;
+	public Boolean isPublicationConfigurationEnabled;
+	public Boolean isSourcesPublicationEnabled;
+	public Boolean isSigningPublicationEnabled;
+	protected String artifactId;
 
 	public void apply(Project project) {
 		this.project = project;
@@ -83,6 +88,17 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			});
 		}
 
+		isPublicationConfigurationEnabled = propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", true);
+		isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", true);
+		isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", true);
+
+		artifactId = propertyResolver.getStringProp("ARTIFACT_ID");
+		if (artifactId == null) {
+			artifactId =  new PropertyResolver(project.getRootProject()).getStringProp("ARTIFACT_ID");
+			if (artifactId == null) {
+				artifactId = project.getName();
+			}
+		}
 	}
 
 	protected Version createVersion(String version) {
@@ -113,5 +129,14 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 	public BaseGradleExtension getExtension() {
 		return jdroid;
+	}
+
+	protected String getPackaging() {
+		return null;
+	}
+
+	protected Action<? super MavenPom> createMavenPom() {
+		// TODO Allow to configure this
+		return JdroidPom.createMavenPom(project, artifactId, getPackaging());
 	}
 }
