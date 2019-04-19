@@ -72,11 +72,12 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 				}
 			}
 
-			// TODO Create a task for each variant
 			if (isSourcesPublicationEnabled) {
-				project.task('androidSourcesJar', type: Jar) {
-					archiveClassifier = 'sources'
-					from project.android.sourceSets.main.java.srcDirs
+				project.android.buildTypes.all { variant ->
+					project.task("${variant.name}AndroidSourcesJar", type: Jar) {
+						archiveClassifier = 'sources'
+						from project.android.sourceSets.main.java.srcDirs, project.android.sourceSets."${variant.name}".java.srcDirs
+					}
 				}
 			}
 			project.afterEvaluate {
@@ -91,13 +92,13 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 								// Dynamically creating publications name
 								"${variant.name}AndroidLibrary"(MavenPublication) {
 
-									artifactId variant.name == 'debug' ? artifactName + '-debug' : artifactName
+									artifactId variant.name == "debug" ? artifactName + "-debug" : artifactName
 
 									if (isSourcesPublicationEnabled) {
-										artifact source: project.androidSourcesJar, classifier: 'sources'
+										artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
 									}
 									if (isJavaDocPublicationEnabled) {
-										artifact source: project.androidJavadocsJar, classifier: 'javadoc'
+										artifact source: project.androidJavadocsJar, classifier: "javadoc"
 									}
 									artifact project.tasks.getByName("bundle${variant.name.capitalize()}Aar")
 
