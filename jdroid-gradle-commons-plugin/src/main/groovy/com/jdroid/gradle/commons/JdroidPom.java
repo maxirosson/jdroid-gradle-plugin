@@ -20,7 +20,7 @@ import groovy.util.Node;
 public class JdroidPom {
 
 	public static Action<? super MavenPom> createMavenPom(Project project, String artifactId, String artifactPackaging) {
-		return createMavenPom(project, artifactId, artifactPackaging);
+		return createMavenPom(project, artifactId, artifactPackaging, null);
 	}
 
 	public static Action<? super MavenPom> createMavenPom(Project project, String artifactId, String artifactPackaging, List<String> configurationNames) {
