@@ -88,9 +88,15 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			});
 		}
 
-		isPublicationConfigurationEnabled = propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", true);
-		isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", true);
-		isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", true);
+		isPublicationConfigurationEnabled = propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", false);
+		if (isPublicationConfigurationEnabled) {
+			if (!project.getPlugins().hasPlugin("maven-publish")) {
+				applyPlugin("maven-publish");
+			}
+		}
+
+		isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
+		isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false);
 
 		artifactId = propertyResolver.getStringProp("ARTIFACT_ID");
 		if (artifactId == null) {

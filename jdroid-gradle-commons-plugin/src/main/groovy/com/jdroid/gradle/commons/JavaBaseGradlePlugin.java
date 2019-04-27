@@ -14,7 +14,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
-		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", true);
+		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
 
 		project.afterEvaluate(new Action<Project>() {
 			@Override
