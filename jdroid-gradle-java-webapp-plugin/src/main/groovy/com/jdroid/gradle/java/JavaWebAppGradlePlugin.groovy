@@ -18,10 +18,10 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 				javaWar(MavenPublication) {
 					from project.components.web
 					if (isSourcesPublicationEnabled) {
-						archiveClassifier project.sourcesJar
+						artifact project.sourcesJar
 					}
 					if (isJavaDocPublicationEnabled) {
-						archiveClassifier project.javadocJar
+						artifact project.javadocJar
 					}
 					pom(createMavenPom())
 
