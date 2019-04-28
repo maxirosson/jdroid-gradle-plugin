@@ -55,6 +55,8 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		IncrementMinorVersionTask incrementMinorVersionTask = project.getTasks().create("incrementMinorVersion", IncrementMinorVersionTask.class);
 		IncrementPatchVersionTask incrementPatchVersionTask = project.getTasks().create("incrementPatchVersion", IncrementPatchVersionTask.class);
 		CreateGitHubReleaseTask createGitHubReleaseTask = project.getTasks().create("createGitHubRelease", CreateGitHubReleaseTask.class);
+		BuildScriptDependenciesTask buildScriptDependenciesTask = project.getTasks().create("buildScriptDependencies", BuildScriptDependenciesTask.class);
+
 
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
@@ -63,11 +65,10 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				incrementMinorVersionTask.setLogLevel(jdroid.getLogLevel());
 				incrementPatchVersionTask.setLogLevel(jdroid.getLogLevel());
 				createGitHubReleaseTask.setLogLevel(jdroid.getLogLevel());
+				buildScriptDependenciesTask.setLogLevel(jdroid.getLogLevel());
 			}
-
 		});
 
-		project.getTasks().create("buildScriptDependencies", BuildScriptDependenciesTask.class);
 
 		if (!propertyResolver.getBooleanProp("ACCEPT_SNAPSHOT_DEPENDENCIES", true)) {
 			project.getConfigurations().all(new Action<Configuration>() {
