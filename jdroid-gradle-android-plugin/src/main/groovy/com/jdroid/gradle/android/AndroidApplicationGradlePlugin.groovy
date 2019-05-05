@@ -1,7 +1,6 @@
 package com.jdroid.gradle.android
 
 import com.android.build.gradle.AppPlugin
-import com.android.build.gradle.internal.dsl.SigningConfig
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyBuildsTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
@@ -13,7 +12,7 @@ import org.gradle.api.Project
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 	// https://github.com/facebook/stetho/blob/master/CHANGELOG.md
-	private static final String FACEBOOK_STETHO_VERSION = "1.5.0";
+	private static final String FACEBOOK_STETHO_VERSION = "1.5.1";
 
 	public void apply(Project project) {
 		super.apply(project);
