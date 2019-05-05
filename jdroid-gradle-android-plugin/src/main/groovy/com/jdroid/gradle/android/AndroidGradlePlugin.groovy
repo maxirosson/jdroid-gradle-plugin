@@ -82,8 +82,35 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			checkReleaseBuilds false
 			abortOnError propertyResolver.getBooleanProp('ABORT_ON_LINT_ERROR', true)
 			enable 'ConvertToWebp'
-			disable 'ContentDescription', 'RtlEnabled', 'RtlHardcoded', 'RtlSymmetry', 'UseCompoundDrawables', 'UnknownIdInLayout', 'RequiredSize', 'UnusedResources'
-			error 'StringFormatMatches', 'StringFormatCount', 'HardcodedText', 'ScrollViewSize', 'SwitchIntDef', 'Deprecated', 'TextFields', 'GradleDynamicVersion', 'DefaultLocale', 'ObsoleteSdkInt'
+			disable 'CheckResult',
+				'ContentDescription',
+				'CustomViewStyleable',
+				'RequiredSize',
+				'RtlEnabled',
+				'RtlHardcoded',
+				'RtlSymmetry',
+				'UnknownIdInLayout',
+				'UnusedAttribute',
+				'UnusedResources',
+				'UseCompoundDrawables'
+			error 'DefaultLocale',
+				'Deprecated',
+				'ExifInterface',
+				'GradleDynamicVersion',
+				'HardcodedText',
+				'IntentReset',
+				'ObsoleteSdkInt',
+				'PrivateApi',
+				'PrivateResource',
+				'ScrollViewSize',
+				'ShiftFlags',
+				'SimpleDateFormat',
+				'SpUsage',
+				'StringFormatCount',
+				'StringFormatMatches',
+				'SuspiciousImport',
+				'SwitchIntDef',
+				'TextFields'
 		}
 
 		android.packagingOptions {
