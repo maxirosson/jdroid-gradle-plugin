@@ -26,8 +26,9 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		applyAndroidPlugin()
 
-		applyPlugin("kotlin-android")
-		applyPlugin("kotlin-android-extensions")
+		//applyPlugin("kotlin-android")
+		//applyPlugin("kotlin-android-extensions")
+
 
 		android = project.android
 

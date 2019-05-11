@@ -8,7 +8,7 @@ public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project)
 
-		applyPlugin("kotlin");
+		//applyPlugin("kotlin");
 
 		if (isPublicationConfigurationEnabled) {
 			def javaLibraryPublicationsClosure = {
