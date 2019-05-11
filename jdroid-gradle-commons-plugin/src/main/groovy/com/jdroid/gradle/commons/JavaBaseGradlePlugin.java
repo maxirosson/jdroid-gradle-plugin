@@ -14,7 +14,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
-		applyPlugin("kotlin");
+		applyKotlinPlugins();
 
 		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
 
@@ -42,6 +42,8 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 		}
 
 	}
+
+	protected abstract void applyKotlinPlugins();
 
 	protected String getJavaSourceCompatibility() {
 		return JavaVersion.VERSION_1_8.toString();
