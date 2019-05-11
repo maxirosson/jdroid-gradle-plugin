@@ -32,11 +32,6 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 		}
 	}
 
-	@Override
-	protected void applyKotlinPlugins() {
-		applyPlugin("kotlin");
-	}
-
 	protected abstract void applyPlugin(Project project);
 
 	protected Class<? extends JavaGradleExtension> getExtensionClass() {

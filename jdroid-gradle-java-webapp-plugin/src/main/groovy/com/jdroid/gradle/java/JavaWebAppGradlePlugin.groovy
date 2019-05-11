@@ -10,6 +10,7 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 
 		applyPlugin("war");
 		applyPlugin("org.gretty");
+		applyPlugin("kotlin");
 
 		project.sourceSets.main.java.srcDirs += "build/generated"
 
