@@ -82,6 +82,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			android.getDexOptions().setJavaMaxHeapSize(propertyResolver.getStringProp('JAVA_MAX_HEAP_SIZE'));
 		}
 
+		// http://tools.android.com/tips/lint-checks
 		android.lintOptions {
 			checkReleaseBuilds false
 			abortOnError propertyResolver.getBooleanProp('ABORT_ON_LINT_ERROR', true)
@@ -99,10 +100,14 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'UseCompoundDrawables'
 			error 'DefaultLocale',
 				'Deprecated',
+				'DisableBaselineAlignment',
+				'DrawAllocation',
 				'ExifInterface',
 				'GradleDynamicVersion',
 				'HardcodedText',
+				'InefficientWeight',
 				'IntentReset',
+				'ObsoleteLayoutParam',
 				'ObsoleteSdkInt',
 				'PrivateApi',
 				'PrivateResource',
@@ -110,11 +115,13 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'ShiftFlags',
 				'SimpleDateFormat',
 				'SpUsage',
+				'StaticFieldLeak',
 				'StringFormatCount',
 				'StringFormatMatches',
 				'SuspiciousImport',
 				'SwitchIntDef',
-				'TextFields'
+				'TextFields',
+				'UselessLeaf'
 		}
 
 		android.packagingOptions {
