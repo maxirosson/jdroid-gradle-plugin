@@ -8,6 +8,8 @@ import com.jdroid.gradle.commons.versioning.Version
 import com.jdroid.java.collections.Lists
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.Delete
 
 public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
@@ -101,6 +103,32 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 					keyPassword propertyResolver.getStringProp('KEY_PASSWORD')
 				}
 			}
+		}
+
+		// Rename App Bundle
+		android.applicationVariants.all { variant ->
+			def defaultName = "app.aab"
+
+			// Copy renamed file
+			def bundleTask = "bundle${variant.name.capitalize()}"
+			def renameTaskName = "rename${bundleTask.capitalize()}Aab"
+			project.task(renameTaskName, type: Copy) {
+				def path = "${project.buildDir}/outputs/bundle/${variant.name}/"
+				from(path)
+				include defaultName
+				destinationDir project.file("${project.buildDir}/outputs/bundle/${variant.name}/")
+				rename defaultName, "app-${variant.name}.aab"
+			}
+			project.tasks.getByName(bundleTask).finalizedBy(renameTaskName)
+
+			// Delete original aab
+			def deleteTaskName = "deleteOriginal${bundleTask.capitalize()}Aab"
+			project.task(deleteTaskName, type: Delete) {
+				delete project.fileTree("${project.buildDir}/outputs/bundle/${variant.name}/${defaultName}") {
+					include "${defaultName}"
+				}
+			}
+			project.tasks.getByName(renameTaskName).finalizedBy(deleteTaskName)
 		}
 
 	}

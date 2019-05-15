@@ -97,7 +97,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'UnknownIdInLayout',
 				'UnusedAttribute',
 				'UnusedResources',
-				'UseCompoundDrawables'
+				'UseCompoundDrawables',
+				'UseSparseArrays'
 			error 'DefaultLocale',
 				'Deprecated',
 				'DisableBaselineAlignment',
@@ -111,6 +112,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'ObsoleteSdkInt',
 				'PrivateApi',
 				'PrivateResource',
+				'Recycle',
 				'ScrollViewSize',
 				'ShiftFlags',
 				'SimpleDateFormat',
