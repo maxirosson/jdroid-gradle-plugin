@@ -88,22 +88,23 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			abortOnError propertyResolver.getBooleanProp('ABORT_ON_LINT_ERROR', true)
 			enable 'ConvertToWebp'
 			disable 'CheckResult',
+				'ClickableViewAccessibility',
 				'ContentDescription',
 				'CustomViewStyleable',
+				'LabelFor',
 				'RequiredSize',
-				'RtlEnabled',
-				'RtlHardcoded',
-				'RtlSymmetry',
 				'UnknownIdInLayout',
 				'UnusedAttribute',
 				'UnusedResources',
 				'UseCompoundDrawables',
-				'UseSparseArrays'
+				'UseSparseArrays',
+				'VectorPath'
 			error 'DefaultLocale',
 				'Deprecated',
 				'DisableBaselineAlignment',
 				'DrawAllocation',
 				'ExifInterface',
+				'ExportedReceiver',
 				'GradleDynamicVersion',
 				'HardcodedText',
 				'InefficientWeight',
@@ -113,6 +114,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'PrivateApi',
 				'PrivateResource',
 				'Recycle',
+				'RedundantNamespace',
 				'ScrollViewSize',
 				'ShiftFlags',
 				'SimpleDateFormat',
@@ -123,6 +125,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'SuspiciousImport',
 				'SwitchIntDef',
 				'TextFields',
+				'UnusedNamespace',
 				'UselessLeaf'
 		}
 
