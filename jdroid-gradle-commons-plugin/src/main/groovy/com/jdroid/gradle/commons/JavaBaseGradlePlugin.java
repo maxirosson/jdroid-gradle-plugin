@@ -10,6 +10,7 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	protected Boolean isJavaDocPublicationEnabled;
+	public Boolean isKotlinEnabled;
 
 	public void apply(Project project) {
 		super.apply(project);
@@ -39,6 +40,23 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 			});
 		}
 
+		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
+	}
+
+	protected void configureKotlin() {
+		addDependency("compile", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.31");
+		// TODO See how to coonfigure this
+//		compileKotlin {
+//			kotlinOptions {
+//				jvmTarget = "1.8"
+//			}
+//		}
+//
+//		compileTestKotlin {
+//			kotlinOptions {
+//				jvmTarget = "1.8"
+//			}
+//		}
 	}
 
 	protected String getJavaSourceCompatibility() {
