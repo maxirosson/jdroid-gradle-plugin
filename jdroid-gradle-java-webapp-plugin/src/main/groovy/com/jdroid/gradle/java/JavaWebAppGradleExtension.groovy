@@ -29,7 +29,7 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigBoolean(def out, String key, Boolean defaultValue) {
-		String constant = "	const val " + key + ": Boolean? = ";
+		String constant = "	val " + key + ": Boolean? = ";
 
 		Boolean value = propertyResolver.getBooleanProp(key, defaultValue)
 		if (value == null) {
@@ -45,7 +45,7 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigInteger(def out, String key, Integer defaultValue) {
-		String constant = "	const val " + key + ": Int? = ";
+		String constant = "	val " + key + ": Int? = ";
 
 		Integer value = propertyResolver.getIntegerProp(key, defaultValue)
 		if (value == null) {
