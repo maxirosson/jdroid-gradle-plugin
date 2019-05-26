@@ -13,7 +13,7 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 	}
 
 	public void setBuildConfigString(def out, String key, String defaultValue) {
-		String constant = "	const val " + key + " = ";
+		String constant = " val " + key + " = ";
 
 		String value = propertyResolver.getStringProp(key, defaultValue)
 		if (value == null) {
