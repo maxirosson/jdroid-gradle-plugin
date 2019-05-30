@@ -18,7 +18,7 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 		if (value != null) {
 			constant = "		const "
 		} else {
-			constant ="		"
+			constant = "		"
 		};
 		constant += "val " + key + " = "
 
