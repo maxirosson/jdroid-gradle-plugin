@@ -18,9 +18,6 @@ buildscript {
 dependencies {
 	compile "com.jdroidtools:jdroid-java-core:" + JDROID_JAVA_VERSION
 
-	// https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-	compile("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31")
-
 	// https://github.com/maxirosson/jdroid-java-github/releases
 	implementation("com.jdroidtools:jdroid-java-github:1.0.0")
 

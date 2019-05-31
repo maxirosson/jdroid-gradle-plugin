@@ -26,8 +26,6 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		applyAndroidPlugin()
 
-		// FIXME Kotlin support is not working on Android
-		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", false);
 		if (isKotlinEnabled) {
 			applyPlugin("kotlin-android")
 			applyPlugin("kotlin-android-extensions")
