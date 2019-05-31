@@ -26,7 +26,6 @@ buildscript {
 //		}
 		jcenter()
 		google()
-		gradlePluginPortal()
 		String localMavenRepoEnabled = project.hasProperty("LOCAL_MAVEN_REPO_ENABLED") ? project.ext.get("LOCAL_MAVEN_REPO_ENABLED") : System.getenv("LOCAL_MAVEN_REPO_EMABLED")
 		boolean isLocalMavenRepoEnabled = localMavenRepoEnabled != null && localMavenRepoEnabled == "true"
 		if (isLocalMavenRepoEnabled) {
@@ -50,6 +49,7 @@ buildscript {
 //			}
 		}
 		mavenCentral()
+		gradlePluginPortal()
 	}
 	dependencies {
 		// https://github.com/maxirosson/jdroid-component-builder/blob/master/CHANGELOG.md
@@ -89,11 +89,11 @@ subprojects {
 					}
 				}
 			}
-			gradlePluginPortal()
 			maven {
 				url = "https://oss.sonatype.org/content/repositories/snapshots/"
 			}
 			mavenCentral()
+			gradlePluginPortal()
 		}
 	}
 
