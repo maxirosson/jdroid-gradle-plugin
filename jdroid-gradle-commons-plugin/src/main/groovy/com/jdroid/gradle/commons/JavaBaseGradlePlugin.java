@@ -45,7 +45,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	protected void configureKotlin() {
 		addDependency("compile", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.31");
-		// TODO See how to coonfigure this
+		// TODO See how to configure this
 //		compileKotlin {
 //			kotlinOptions {
 //				jvmTarget = "1.8"
