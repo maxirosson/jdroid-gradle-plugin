@@ -116,6 +116,10 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		return BaseGradleExtension.class;
 	}
 
+	protected void addConfiguration(String configuration) {
+		project.getConfigurations().create(configuration);
+	}
+
 	protected void addDependency(String configuration, String group, String name, String version) {
 		project.getDependencies().add(configuration, group + ":" + name + ":" + version);
 	}
