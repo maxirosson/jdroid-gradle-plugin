@@ -23,10 +23,12 @@ repositories {
 dependencies {
 
 	implementation project(path: ":jdroid-gradle-java-plugin")
+	implementation project(path: ":jdroid-gradle-root-plugin")
 
 	// https://developer.android.com/tools/revisions/gradle-plugin.html
 	// https://dl.google.com/dl/android/maven2/index.html
 	implementation("com.android.tools.build:gradle:3.4.1")
+
 	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 	// https://jcenter.bintray.com/com/google/firebase/perf-plugin/
 	implementation("com.google.firebase:perf-plugin:1.2.1")
@@ -56,6 +58,10 @@ gradlePlugin {
 		androidLibraryPlugin {
 			id = "com.jdroid.android.library"
 			implementationClass = "com.jdroid.gradle.android.AndroidLibraryGradlePlugin"
+		}
+		androidRootPlugin {
+			id = "com.jdroid.android.root"
+			implementationClass = "com.jdroid.gradle.android.AndroidRootProjectPlugin"
 		}
 	}
 }
