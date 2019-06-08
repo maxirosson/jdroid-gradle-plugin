@@ -20,7 +20,9 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
-		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
+		// TODO This is not working for kotlin. Remove javadoc support and add kotlin doc support https://kotlinlang.org/docs/reference/kotlin-doc.html
+		//isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
+		isJavaDocPublicationEnabled = false;
 
 		project.afterEvaluate(new Action<Project>() {
 			@Override
