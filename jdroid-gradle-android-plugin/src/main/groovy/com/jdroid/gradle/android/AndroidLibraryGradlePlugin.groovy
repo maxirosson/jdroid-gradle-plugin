@@ -46,7 +46,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 							owner.classpath += variant.javaCompile.classpath
 						}
 					}
-					exclude '**/R.html', '**/R.*.html', '**/index.html'
+					exclude '**/R.html', '**/R.*.html', '**/index.html', '**/*.kt'
 				}
 
 				project.task('androidJavadocsJar', type: Jar, dependsOn: 'androidJavadocs') {
