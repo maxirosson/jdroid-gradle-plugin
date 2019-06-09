@@ -59,6 +59,10 @@ gradlePlugin {
 			id = "com.jdroid.android.library"
 			implementationClass = "com.jdroid.gradle.android.AndroidLibraryGradlePlugin"
 		}
+		androidDynamicFeaturePlugin {
+			id = "com.jdroid.android.dynamic-feature"
+			implementationClass = "com.jdroid.gradle.android.AndroidDynamicFeatureGradlePlugin"
+		}
 		androidRootPlugin {
 			id = "com.jdroid.android.root"
 			implementationClass = "com.jdroid.gradle.android.AndroidRootProjectPlugin"

@@ -117,8 +117,9 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		return "aar";
 	}
 
+	@Override
 	protected void applyAndroidPlugin() {
-		project.apply plugin: LibraryPlugin
+		applyPlugin("com.android.library");
 	}
 }
 

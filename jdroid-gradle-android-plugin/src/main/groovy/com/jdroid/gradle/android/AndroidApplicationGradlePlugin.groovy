@@ -124,6 +124,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 	}
 
 	protected void applyAndroidPlugin() {
-		project.apply plugin: AppPlugin
+		applyPlugin("com.android.application");
 	}
 }
