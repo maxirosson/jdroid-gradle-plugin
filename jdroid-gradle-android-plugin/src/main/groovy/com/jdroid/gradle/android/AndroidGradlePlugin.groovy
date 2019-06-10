@@ -102,7 +102,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'UseCompoundDrawables',
 				'UseSparseArrays',
 				'VectorPath'
-			error 'DefaultLocale',
+			error 'AlwaysShowAction',
+				'DefaultLocale',
 				'Deprecated',
 				'DisableBaselineAlignment',
 				'DrawAllocation',
@@ -110,10 +111,13 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'ExportedReceiver',
 				'GradleDynamicVersion',
 				'HardcodedText',
+				'IconDipSize',
 				'InefficientWeight',
 				'IntentReset',
+				'NestedWeights',
 				'ObsoleteLayoutParam',
 				'ObsoleteSdkInt',
+				'Overdraw',
 				'PrivateApi',
 				'PrivateResource',
 				'Recycle',
@@ -129,7 +133,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'SwitchIntDef',
 				'TextFields',
 				'UnusedNamespace',
-				'UselessLeaf'
+				'UselessLeaf',
+				'UselessParent'
 		}
 
 		android.packagingOptions {
