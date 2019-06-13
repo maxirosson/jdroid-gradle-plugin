@@ -6,5 +6,10 @@ public class AndroidDynamicFeatureGradlePlugin extends AndroidLibraryGradlePlugi
 	protected void applyAndroidPlugin() {
 		applyPlugin("com.android.dynamic-feature");
 	}
+
+	@Override
+	protected boolean fetchIsPublicationConfigurationEnabled() {
+		return false;
+	}
 }
 

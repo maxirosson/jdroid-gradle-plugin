@@ -89,15 +89,14 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			});
 		}
 
-		isPublicationConfigurationEnabled = propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", false);
+		isPublicationConfigurationEnabled = fetchIsPublicationConfigurationEnabled();
 		if (isPublicationConfigurationEnabled) {
 			if (!project.getPlugins().hasPlugin("maven-publish")) {
 				applyPlugin("maven-publish");
 			}
+			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
+			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false);
 		}
-
-		isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
-		isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false);
 
 		artifactId = propertyResolver.getStringProp("ARTIFACT_ID");
 		if (artifactId == null) {
@@ -114,6 +113,10 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {
 		return BaseGradleExtension.class;
+	}
+
+	protected boolean fetchIsPublicationConfigurationEnabled() {
+		return propertyResolver.getBooleanProp("PUBLICATION_CONFIGURATION_ENABLED", false);
 	}
 
 	protected void addConfiguration(String configuration) {

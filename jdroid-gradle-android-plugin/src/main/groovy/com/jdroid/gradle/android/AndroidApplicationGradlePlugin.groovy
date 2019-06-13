@@ -126,4 +126,9 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 	protected void applyAndroidPlugin() {
 		applyPlugin("com.android.application");
 	}
+
+	@Override
+	protected boolean fetchIsPublicationConfigurationEnabled() {
+		return false;
+	}
 }
