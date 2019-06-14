@@ -53,6 +53,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	protected void configureKotlin() {
 		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.31");
+		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-reflect", "1.3.31");
 		// TODO See how to configure this
 //		compileKotlin {
 //			kotlinOptions {
