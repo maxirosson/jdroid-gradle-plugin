@@ -11,5 +11,10 @@ public class AndroidDynamicFeatureGradlePlugin extends AndroidLibraryGradlePlugi
 	protected boolean fetchIsPublicationConfigurationEnabled() {
 		return false;
 	}
+
+	@Override
+	protected Class<? extends AndroidLibraryGradlePluginExtension> getExtensionClass() {
+		return AndroidDynamicFeatureGradlePluginExtension.class;
+	}
 }
 
