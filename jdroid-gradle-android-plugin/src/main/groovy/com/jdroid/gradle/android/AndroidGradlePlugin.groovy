@@ -104,6 +104,8 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'UseSparseArrays',
 				'VectorPath'
 			error 'AlwaysShowAction',
+				'Autofill',
+				'ConstantLocale',
 				'DefaultLocale',
 				'Deprecated',
 				'DisableBaselineAlignment',
@@ -123,7 +125,9 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'PrivateResource',
 				'Recycle',
 				'RedundantNamespace',
+				'RelativeOverlap',
 				'ScrollViewSize',
+				'SetTextI18n',
 				'ShiftFlags',
 				'SimpleDateFormat',
 				'SpUsage',
