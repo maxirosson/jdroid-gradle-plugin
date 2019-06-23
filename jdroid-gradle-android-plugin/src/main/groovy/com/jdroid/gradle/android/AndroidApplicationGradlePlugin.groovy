@@ -71,22 +71,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-
-		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
-			String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().getName());
-			android.applicationVariants.all { variant ->
-				variant.outputs.all { output ->
-					if (outputFileName.endsWith('.apk')) {
-						outputFileName = outputFileName.replace('.apk', "-v${versionName}.apk")
-						outputFileName = outputFileName.replace(project.getProjectDir().name, appName)
-						if (variant.buildType.debuggable && variant.name.toLowerCase().endsWith("release")) {
-							outputFileName = outputFileName.replace("-v", "-DEBUGGABLE-v")
-						}
-					}
-				}
-			}
-		}
-
 		android.signingConfigs {
 
 			debug {
@@ -103,11 +87,26 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
+		String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().getName());
+		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
+			android.applicationVariants.all { variant ->
+				variant.outputs.all { output ->
+					if (outputFileName.endsWith('.apk')) {
+						outputFileName = outputFileName.replace('.apk', "-v${versionName}.apk")
+						outputFileName = outputFileName.replace(project.getProjectDir().name, appName)
+						if (variant.buildType.debuggable && variant.name.toLowerCase().endsWith("release")) {
+							outputFileName = outputFileName.replace("-v", "-DEBUGGABLE-v")
+						}
+					}
+				}
+			}
+		}
+
 		// Rename App Bundle
 		android.applicationVariants.all { variant ->
 			project.tasks.getByName("bundle${variant.name.capitalize()}").doLast {
 				def oldFileName = "${project.buildDir}/outputs/bundle/${variant.name}/app.aab"
-				def newFileName = "${project.buildDir}/outputs/bundle/${variant.name}/app-${variant.name}.aab"
+				def newFileName = "${project.buildDir}/outputs/bundle/${variant.name}/${appName}-${variant.name}.aab"
 				project.file(oldFileName).renameTo(project.file(newFileName))
 			}
 		}
