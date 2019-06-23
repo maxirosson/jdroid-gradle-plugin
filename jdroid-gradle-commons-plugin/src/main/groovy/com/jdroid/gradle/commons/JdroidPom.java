@@ -1,13 +1,7 @@
 package com.jdroid.gradle.commons;
 
-import com.jdroid.java.collections.Maps;
-
 import org.gradle.api.Action;
 import org.gradle.api.Project;
-import org.gradle.api.XmlProvider;
-import org.gradle.api.artifacts.Dependency;
-import org.gradle.api.artifacts.ExcludeRule;
-import org.gradle.api.artifacts.ModuleDependency;
 import org.gradle.api.publish.maven.MavenPom;
 import org.gradle.api.publish.maven.MavenPomDeveloper;
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec;
@@ -15,18 +9,9 @@ import org.gradle.api.publish.maven.MavenPomLicense;
 import org.gradle.api.publish.maven.MavenPomLicenseSpec;
 import org.gradle.api.publish.maven.MavenPomOrganization;
 
-import java.util.List;
-import java.util.Map;
-
-import groovy.util.Node;
-
 public class JdroidPom {
 
-	public static Action<? super MavenPom> createMavenPom(Project project, String artifactId, String artifactPackaging) {
-		return createMavenPom(project, artifactId, artifactPackaging, null);
-	}
-
-	public static Action<? super MavenPom> createMavenPom(Project project, String artifactId, String artifactPackaging, List<String> configurationNames) {
+	public Action<? super MavenPom> createMavenPom(Project project, String artifactId, String artifactPackaging) {
 		return new Action<MavenPom>() {
 			@Override
 			public void execute(MavenPom mavenPom) {
@@ -93,51 +78,14 @@ public class JdroidPom {
 //					}
 //
 //				});
-				if (configurationNames != null) {
-					mavenPom.withXml(new Action<XmlProvider>() {
-						@Override
-						public void execute(XmlProvider xmlProvider) {
-							// Creating additional node for dependencies
-							Node dependenciesNode = xmlProvider.asNode().appendNode("dependencies");
-
-							Map<String, Dependency> dependenciesMap = Maps.newLinkedHashMap();
-							for (CharSequence configurationName : configurationNames) {
-								for (Dependency dependency : project.getConfigurations().getByName(configurationName.toString()).getAllDependencies()) {
-									dependenciesMap.put(dependency.getGroup() + ":" + dependency.getName(), dependency);
-								}
-							}
-
-							for (Dependency dependency : dependenciesMap.values()) {
-								if (dependency.getGroup() != null) {
-									Node dependencyNode = dependenciesNode.appendNode("dependency");
-									dependencyNode.appendNode("groupId", dependency.getGroup());
-									dependencyNode.appendNode("artifactId", dependency.getName());
-									dependencyNode.appendNode("version", dependency.getVersion());
-
-									// If there are any exclusions in dependency
-									if (dependency instanceof ModuleDependency) {
-										ModuleDependency moduleDependency = (ModuleDependency)dependency;
-										if (moduleDependency.getExcludeRules().size() > 0) {
-											Node exclusionsNode = dependencyNode.appendNode("exclusions");
-											for (ExcludeRule excludeRule : moduleDependency.getExcludeRules()) {
-												Node exclusionNode = exclusionsNode.appendNode("exclusion");
-												if (excludeRule.getGroup() != null) {
-													exclusionNode.appendNode("groupId", excludeRule.getGroup());
-												}
-												if (excludeRule.getModule() != null) {
-													exclusionNode.appendNode("artifactId", excludeRule.getModule());
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					});
-				}
+				configure(project, mavenPom);
 			}
 
 		};
+	}
+
+	protected void configure(Project project, MavenPom mavenPom) {
+		// Do nothing
 	}
 
 }

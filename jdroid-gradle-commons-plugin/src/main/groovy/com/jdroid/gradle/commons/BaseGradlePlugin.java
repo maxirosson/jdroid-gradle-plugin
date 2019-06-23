@@ -151,6 +151,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected Action<? super MavenPom> createMavenPom() {
 		// TODO Allow to configure this
-		return JdroidPom.createMavenPom(project, artifactId, getPackaging());
+		return new JdroidPom().createMavenPom(project, artifactId, getPackaging());
 	}
 }

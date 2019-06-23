@@ -1,8 +1,7 @@
 package com.jdroid.gradle.android
 
-import com.android.build.gradle.LibraryPlugin
+
 import com.jdroid.gradle.android.task.PrefixVerificationTask
-import com.jdroid.gradle.commons.JdroidPom
 import com.jdroid.java.collections.Lists
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -70,12 +69,11 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 
 						// Create different publications for every build types (debug and release)
 						project.android.buildTypes.all { variant ->
-
 							if (variant.name != "release" || jdroid.isReleaseBuildTypeEnabled()) {
 								// Dynamically creating publications name
 								"${variant.name}AndroidLibrary"(MavenPublication) {
-
-									artifactId variant.name == "debug" ? artifactId + "-debug" : artifactId
+									boolean isDebug = variant.name == "debug"
+									artifactId isDebug ? artifactId + "-debug" : artifactId
 
 									if (isSourcesPublicationEnabled) {
 										artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
@@ -88,7 +86,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 									// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
 									List<String> configurationNames = Lists.newArrayList("${variant.name}Implementation", "implementation");
 
-									Action<? super MavenPom> mavenPom = JdroidPom.createMavenPom(project, artifactId, getPackaging(), configurationNames)
+									Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, artifactId, getPackaging())
 									pom(mavenPom)
 								}
 							}
