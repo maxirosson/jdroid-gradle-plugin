@@ -105,6 +105,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'VectorPath'
 			error 'AlwaysShowAction',
 				'Autofill',
+				'ButtonStyle',
 				'ConstantLocale',
 				'DefaultLocale',
 				'Deprecated',
@@ -116,6 +117,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'HardcodedText',
 				'IconDipSize',
 				'IconLocation',
+				'IgnoreWithoutReason',
 				'InefficientWeight',
 				'IntentReset',
 				'NestedWeights',
