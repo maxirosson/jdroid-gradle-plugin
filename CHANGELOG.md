@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.0.0) (2019-06-25)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v1.1.0...v2.0.0)
+
+**Implemented enhancements:**
+
+- Google Play Dynamic features support [\#91](https://github.com/maxirosson/jdroid-gradle-plugin/issues/91)
+- Kotlin support [\#90](https://github.com/maxirosson/jdroid-gradle-plugin/issues/90)
+- Change compile & target versions to Android P [\#87](https://github.com/maxirosson/jdroid-gradle-plugin/issues/87)
+- Maven Publish Gradle Plugin support [\#10](https://github.com/maxirosson/jdroid-gradle-plugin/issues/10)
+
+**Closed issues:**
+
+- Upgrade to Android Gradle Plugin v3.4.0 [\#85](https://github.com/maxirosson/jdroid-gradle-plugin/issues/85)
+
 ## [v1.1.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v1.1.0) (2018-09-09)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v1.0.0...v1.1.0)
 
