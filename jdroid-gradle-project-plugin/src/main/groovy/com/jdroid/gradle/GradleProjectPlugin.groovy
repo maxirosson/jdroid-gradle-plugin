@@ -52,8 +52,8 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 		project.check.dependsOn project.tasks.'functionalTest'
 
 		if (isPublicationConfigurationEnabled) {
-			def pluginMavenPublicationsClosure = {
-				pluginMaven(MavenPublication) {
+			def gradlePluginPublicationsClosure = {
+				gradlePlugin(MavenPublication) {
 					from project.components.java
 					if (isSourcesPublicationEnabled) {
 						artifact project.sourcesJar
@@ -64,10 +64,10 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 					pom(createMavenPom())
 				}
 			}
-			pluginMavenPublicationsClosure.setDelegate(project)
+			gradlePluginPublicationsClosure.setDelegate(project)
 
 			project.publishing {
-				publications(pluginMavenPublicationsClosure)
+				publications(gradlePluginPublicationsClosure)
 			}
 		}
 
@@ -75,7 +75,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 			applyPlugin('signing')
 			project.signing {
 				required { !project.version.isSnapshot }
-				sign project.publishing.publications.pluginMaven
+				sign project.publishing.publications.gradlePlugin
 			}
 		}
 	}
