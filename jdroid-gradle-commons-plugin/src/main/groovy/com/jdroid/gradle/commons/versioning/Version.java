@@ -190,7 +190,7 @@ public class Version {
 		this.isVersionTimestampEnabled = isVersionTimestampEnabled;
 	}
 	
-	public Boolean getIsSnapshot() {
+	public Boolean isSnapshot() {
 		return isSnapshot;
 	}
 	
