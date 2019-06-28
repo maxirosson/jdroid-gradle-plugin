@@ -3,6 +3,8 @@ package com.jdroid.gradle
 
 import com.jdroid.gradle.java.JavaGradlePlugin
 import org.gradle.api.Project
+import org.gradle.api.publish.Publication
+import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 
 public class GradleProjectPlugin extends JavaGradlePlugin {
@@ -51,33 +53,28 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 
 		project.check.dependsOn project.tasks.'functionalTest'
 
-		if (isPublicationConfigurationEnabled) {
-			def gradlePluginPublicationsClosure = {
-				gradlePlugin(MavenPublication) {
-					from project.components.java
-					if (isSourcesPublicationEnabled) {
-						artifact project.sourcesJar
-					}
-					if (isJavaDocPublicationEnabled) {
-						artifact project.javadocJar
-					}
-					pom(createMavenPom())
+		project.afterEvaluate {
+			PublishingExtension publishingExtension = project.getExtensions().getByName(PublishingExtension.NAME);
+			MavenPublication mavenPublication = (MavenPublication)publishingExtension.publications.getByName("pluginMaven")
+			if (isPublicationConfigurationEnabled) {
+				if (isSourcesPublicationEnabled) {
+					mavenPublication.artifact project.sourcesJar
+				}
+				if (isJavaDocPublicationEnabled) {
+					mavenPublication.artifact project.javadocJar
+				}
+				mavenPublication.pom(createMavenPom())
+			}
+
+			if (isSigningPublicationEnabled) {
+				applyPlugin('signing')
+				project.signing {
+					required { !project.version.isSnapshot }
+					sign mavenPublication
 				}
 			}
-			gradlePluginPublicationsClosure.setDelegate(project)
-
-			project.publishing {
-				publications(gradlePluginPublicationsClosure)
-			}
 		}
 
-		if (isSigningPublicationEnabled) {
-			applyPlugin('signing')
-			project.signing {
-				required { !project.version.isSnapshot }
-				sign project.publishing.publications.gradlePlugin
-			}
-		}
 	}
 
 	@Override
