@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.0.0) (2019-06-25)
+## [v2.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.0.0) (2019-06-28)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v1.1.0...v2.0.0)
 
 **Implemented enhancements:**
