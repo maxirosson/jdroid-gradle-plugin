@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.0.0) (2019-06-28)
+## [v2.0.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.0.0) (2019-06-30)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v1.1.0...v2.0.0)
 
 **Implemented enhancements:**
@@ -12,6 +12,7 @@
 
 **Closed issues:**
 
+- Migrated plugins ids from "com.jdroid.\*\*\*" to "com.jdroidtools.\*\*\*" [\#92](https://github.com/maxirosson/jdroid-gradle-plugin/issues/92)
 - Upgrade to Android Gradle Plugin v3.4.0 [\#85](https://github.com/maxirosson/jdroid-gradle-plugin/issues/85)
 
 ## [v1.1.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v1.1.0) (2018-09-09)
