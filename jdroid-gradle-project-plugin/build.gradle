@@ -20,7 +20,7 @@ dependencies {
 gradlePlugin {
 	plugins {
 		gradleProjectPlugin {
-			id = "com.jdroid.gradle.plugin"
+			id = "com.jdroidtools.gradle.plugin"
 			implementationClass = "com.jdroid.gradle.GradleProjectPlugin"
 		}
 	}

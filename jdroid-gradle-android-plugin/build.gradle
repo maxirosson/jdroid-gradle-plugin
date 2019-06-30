@@ -52,19 +52,19 @@ dependencies {
 gradlePlugin {
 	plugins {
 		androidApplicationPlugin {
-			id = "com.jdroid.android.application"
+			id = "com.jdroidtools.android.application"
 			implementationClass = "com.jdroid.gradle.android.AndroidApplicationGradlePlugin"
 		}
 		androidLibraryPlugin {
-			id = "com.jdroid.android.library"
+			id = "com.jdroidtools.android.library"
 			implementationClass = "com.jdroid.gradle.android.AndroidLibraryGradlePlugin"
 		}
 		androidDynamicFeaturePlugin {
-			id = "com.jdroid.android.dynamic-feature"
+			id = "com.jdroidtools.android.dynamic-feature"
 			implementationClass = "com.jdroid.gradle.android.AndroidDynamicFeatureGradlePlugin"
 		}
 		androidRootPlugin {
-			id = "com.jdroid.android.root"
+			id = "com.jdroidtools.android.root"
 			implementationClass = "com.jdroid.gradle.android.AndroidRootProjectPlugin"
 		}
 	}

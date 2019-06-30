@@ -21,7 +21,7 @@ dependencies {
 gradlePlugin {
 	plugins {
 		javaLibraryPlugin {
-			id = "com.jdroid.java.library"
+			id = "com.jdroidtools.java.library"
 			implementationClass = "com.jdroid.gradle.java.JavaLibraryGradlePlugin"
 		}
 	}

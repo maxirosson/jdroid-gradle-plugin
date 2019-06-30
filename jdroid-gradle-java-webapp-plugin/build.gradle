@@ -27,7 +27,7 @@ dependencies {
 gradlePlugin {
 	plugins {
 		javaWebappPlugin {
-			id = "com.jdroid.java.webapp"
+			id = "com.jdroidtools.java.webapp"
 			implementationClass = "com.jdroid.gradle.java.JavaWebAppGradlePlugin"
 		}
 	}
