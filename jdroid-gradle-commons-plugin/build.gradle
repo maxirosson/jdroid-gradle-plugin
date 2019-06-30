@@ -6,7 +6,7 @@ ext.ARTIFACT_ID = "jdroid-gradle-commons-plugin"
 
 
 // TODO This artifact should not be a plugin
-apply plugin: "com.jdroid.gradle.plugin"
+apply plugin: "com.jdroidtools.gradle.plugin"
 
 buildscript {
 	dependencies {

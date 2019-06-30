@@ -2,7 +2,7 @@ ext.PROJECT_NAME = "Gradle Plugin for Java Web projects"
 description = "Gradle Plugin for Java Web projects"
 ext.ARTIFACT_ID = "jdroid-gradle-java-webapp-plugin"
 
-apply plugin: "com.jdroid.gradle.plugin"
+apply plugin: "com.jdroidtools.gradle.plugin"
 //apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
