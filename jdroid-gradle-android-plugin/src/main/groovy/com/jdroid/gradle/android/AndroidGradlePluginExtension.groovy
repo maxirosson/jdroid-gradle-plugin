@@ -14,7 +14,7 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 	public AndroidGradlePluginExtension(Project project) {
 		super(project)
 
-		minimumSdkVersion = propertyResolver.getIntegerProp('MIN_SDK_VERSION', 19)
+		minimumSdkVersion = propertyResolver.getIntegerProp('MIN_SDK_VERSION', 21)
 		isReleaseBuildTypeEnabled = propertyResolver.getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false)
 	}
 
