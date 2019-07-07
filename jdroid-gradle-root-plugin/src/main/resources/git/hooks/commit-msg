@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# This hook script performs the following tasks:
+# - Skips continuous integration when a commit has changes that don't affect the build
+
+function should_skip_ci
+{
+    skip=0
+
+    # convert changed files string to array
+    changed_files=$(git diff --cached --name-only)
+    SAVEIFS=$IFS   # Save current IFS
+    IFS=$'\n'      # Change IFS to new line
+    changed_files=($changed_files) # split to array
+    IFS=$SAVEIFS   # Restore IFS
+
+    for changed_file in "${changed_files[@]}"
+    do
+
+        is_skippable ${changed_file}
+        if [ $? == 1 ]; then
+            skip=1
+            break
+        fi
+
+    done
+
+    return $skip
+}
+
+# main
+
+commit_msg=$1
+should_skip_ci
+if [ $? -eq 0 ]; then
+    echo "[skip ci]" >> $1
+fi
+
+exit 0

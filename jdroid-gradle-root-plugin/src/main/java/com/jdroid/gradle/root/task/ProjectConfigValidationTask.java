@@ -21,8 +21,11 @@ public class ProjectConfigValidationTask extends AbstractTask {
 		for (ProjectConfig projectConfig : ProjectConfig.values()) {
 			try {
 				log("Validating " + projectConfig.getTarget());
-				Boolean valid = StreamUtils.isEquals(getClass().getResourceAsStream(projectConfig.getSource()),
-					new FileInputStream(new File(rootDir, projectConfig.getTarget())));
+				File target = new File(rootDir, projectConfig.getTarget());
+				boolean valid = target.exists();
+				if (valid && projectConfig.isStrict()) {
+					valid = StreamUtils.isEquals(getClass().getResourceAsStream(projectConfig.getSource()), new FileInputStream(target));
+				}
 				if (!valid) {
 					throw new RuntimeException("The file [" + projectConfig.getTarget() + "] is not up to date");
 				}
