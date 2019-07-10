@@ -13,6 +13,8 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
+	private static final String KOTLIN_VERSION = "1.3.40";
+
 	protected Boolean isJavaDocPublicationEnabled;
 	public Boolean isKotlinEnabled;
 	public Boolean isKtLintEnabled;
@@ -56,8 +58,8 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 	}
 
 	protected void configureKotlin() {
-		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.31");
-		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-reflect", "1.3.31");
+		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", KOTLIN_VERSION);
+		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-reflect", KOTLIN_VERSION);
 		// TODO See how to configure this
 //		compileKotlin {
 //			kotlinOptions {
