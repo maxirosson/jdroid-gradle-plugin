@@ -17,6 +17,7 @@ dependencies {
 	implementation project(path: ":jdroid-gradle-java-plugin")
 
 	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:" + KOTLIN_VERSION)
+	implementation("org.jetbrains.dokka:dokka-gradle-plugin:" + DOKKA_VERSION)
 
 	// https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
 	implementation("org.gretty:gretty:2.3.1")

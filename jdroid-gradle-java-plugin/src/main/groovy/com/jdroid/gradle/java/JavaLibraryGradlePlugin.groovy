@@ -21,7 +21,7 @@ public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 						artifact project.sourcesJar
 					}
 					if (isJavaDocPublicationEnabled) {
-						artifact project.javadocJar
+						artifact project.dokkaJar
 					}
 					pom(createMavenPom())
 				}

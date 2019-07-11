@@ -66,7 +66,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 					mavenPublication.artifact project.sourcesJar
 				}
 				if (isJavaDocPublicationEnabled) {
-					mavenPublication.artifact project.javadocJar
+					mavenPublication.artifact project.dokkaJar
 				}
 				mavenPublication.pom(createMavenPom())
 			}

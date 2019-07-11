@@ -48,13 +48,14 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
 		isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
 
-		isJavaDocPublicationEnabled = !isKotlinEnabled;
 		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
-		if (isKotlinEnabled) {
-			// TODO This is not working for kotlin. Remove javadoc support and add kotlin doc support https://kotlinlang.org/docs/reference/kotlin-doc.html
-			isJavaDocPublicationEnabled = false;
+		if (isJavaDocPublicationEnabled) {
+			applyDokkaPlugin();
 		}
+	}
 
+	protected void applyDokkaPlugin() {
+		applyPlugin("org.jetbrains.dokka");
 	}
 
 	protected void configureKotlin() {

@@ -2,6 +2,7 @@ package com.jdroid.gradle.java
 
 import com.jdroid.gradle.commons.JavaBaseGradlePlugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.bundling.Jar
 
 public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
@@ -18,9 +19,21 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 		}
 
 		if (isJavaDocPublicationEnabled) {
-			project.task('javadocJar', type: Jar) {
+// KTS
+//			import org.gradle.jvm.tasks.Jar
+//
+//			val dokkaJar by tasks.creating(Jar::class) {
+//				group = JavaBasePlugin.DOCUMENTATION_GROUP
+//				description = "Assembles Kotlin docs with Dokka"
+//				classifier = "javadoc"
+//				from(tasks.dokka)
+//			}
+
+			project.task('dokkaJar', type: Jar) {
+				group = JavaBasePlugin.DOCUMENTATION_GROUP
+				description = "Assembles Kotlin docs with Dokka"
 				archiveClassifier = 'javadoc'
-				from project.javadoc
+				from project.tasks.dokka
 			}
 		}
 

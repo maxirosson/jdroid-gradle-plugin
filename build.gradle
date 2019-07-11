@@ -14,6 +14,9 @@ ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = "0.9.8"
 // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
 ext.KOTLIN_VERSION = "1.3.40"
 
+// https://github.com/Kotlin/dokka/releases
+ext.DOKKA_VERSION = "0.9.18"
+
 ext.KOTLIN_ENABLED = false
 
 apply plugin: "com.jdroidtools.component.builder"

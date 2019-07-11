@@ -15,6 +15,7 @@ buildscript {
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
 	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:" + KOTLIN_VERSION)
+	implementation("org.jetbrains.dokka:dokka-gradle-plugin:" + DOKKA_VERSION)
 	testImplementation("junit:junit:4.12")
 }
 

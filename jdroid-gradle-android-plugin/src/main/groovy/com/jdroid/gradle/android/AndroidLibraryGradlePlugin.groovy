@@ -5,6 +5,7 @@ import com.jdroid.gradle.android.task.PrefixVerificationTask
 import com.jdroid.java.collections.Lists
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
@@ -37,20 +38,21 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 
 		if (isPublicationConfigurationEnabled) {
 			if (isJavaDocPublicationEnabled) {
-				project.task('androidJavadocs', type: Javadoc) {
-					source = project.android.sourceSets.main.java.srcDirs
-					classpath += project.files(project.android.getBootClasspath().join(File.pathSeparator))
-					project.android.libraryVariants.all { variant ->
-						if (variant.name == 'release') {
-							owner.classpath += variant.javaCompile.classpath
-						}
-					}
-					exclude '**/R.html', '**/R.*.html', '**/index.html', '**/*.kt'
-				}
+				// KTS
+	//			import org.gradle.jvm.tasks.Jar
+	//
+	//			val dokkaJar by tasks.creating(Jar::class) {
+	//				group = JavaBasePlugin.DOCUMENTATION_GROUP
+	//				description = "Assembles Kotlin docs with Dokka"
+	//				classifier = "javadoc"
+	//				from(tasks.dokka)
+	//			}
 
-				project.task('androidJavadocsJar', type: Jar, dependsOn: 'androidJavadocs') {
+				project.task('dokkaJar', type: Jar) {
+					group = JavaBasePlugin.DOCUMENTATION_GROUP
+					description = "Assembles Kotlin docs with Dokka"
 					archiveClassifier = 'javadoc'
-					from project.androidJavadocs.destinationDir
+					from project.tasks.dokka
 				}
 			}
 
@@ -79,7 +81,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 										artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
 									}
 									if (isJavaDocPublicationEnabled) {
-										artifact source: project.androidJavadocsJar, classifier: "javadoc"
+										artifact source: project.dokkaJar, classifier: "javadoc"
 									}
 									artifact project.tasks.getByName("bundle${variant.name.capitalize()}Aar")
 
@@ -118,6 +120,11 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 	@Override
 	protected void applyAndroidPlugin() {
 		applyPlugin("com.android.library");
+	}
+
+	@Override
+	protected void applyDokkaPlugin() {
+		applyPlugin("org.jetbrains.dokka-android")
 	}
 }
 
