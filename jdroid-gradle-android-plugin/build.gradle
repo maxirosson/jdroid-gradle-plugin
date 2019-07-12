@@ -45,7 +45,7 @@ dependencies {
 	implementation("gradle.plugin.com.github.konifar.gradle:plugin:0.3.3")
 
 	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:" + KOTLIN_VERSION)
-	implementation("org.jetbrains.dokka:dokka-gradle-plugin:" + DOKKA_VERSION)
+	implementation("org.jetbrains.dokka:dokka-android-gradle-plugin:" + DOKKA_VERSION)
 
 	testImplementation("junit:junit:4.12")
 }
