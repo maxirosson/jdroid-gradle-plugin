@@ -62,17 +62,16 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", KOTLIN_VERSION);
 		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-reflect", KOTLIN_VERSION);
 		// TODO See how to configure this
-//		compileKotlin {
-//			kotlinOptions {
-//				jvmTarget = "1.8"
+//			project.compileKotlin {
+//				kotlinOptions {
+//					jvmTarget = getJavaTargetCompatibility();
+//				}
 //			}
-//		}
-//
-//		compileTestKotlin {
-//			kotlinOptions {
-//				jvmTarget = "1.8"
+//			project.compileTestKotlin {
+//				kotlinOptions {
+//					jvmTarget = getJavaTargetCompatibility();
+//				}
 //			}
-//		}
 		if (isKtLintEnabled) {
 			configureKtlint();
 		}

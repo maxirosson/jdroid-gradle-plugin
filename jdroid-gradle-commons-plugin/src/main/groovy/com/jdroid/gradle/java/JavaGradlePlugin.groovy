@@ -18,19 +18,6 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 			options.encoding = 'UTF-8'
 		}
 
-		if (isKotlinEnabled) {
-			project.compileKotlin {
-				kotlinOptions {
-					jvmTarget = getJavaTargetCompatibility()
-				}
-			}
-			project.compileTestKotlin {
-				kotlinOptions {
-					jvmTarget = getJavaTargetCompatibility()
-				}
-			}
-		}
-
 		if (isJavaDocPublicationEnabled) {
 // KTS
 //			import org.gradle.jvm.tasks.Jar
