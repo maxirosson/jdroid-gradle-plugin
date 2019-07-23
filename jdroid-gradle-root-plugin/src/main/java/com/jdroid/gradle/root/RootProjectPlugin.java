@@ -1,7 +1,6 @@
 package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
-import com.jdroid.gradle.root.task.CopyGitHooksTask;
 import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
 import com.jdroid.gradle.root.task.ProjectConfigValidationTask;
 
@@ -24,14 +23,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
 				projectConfigValidationTask.setLogLevel(getExtension().getLogLevel());
-			}
-		});
-
-		CopyGitHooksTask copyGitHooksTask = project.getTasks().create("copyGitHooks", CopyGitHooksTask.class);
-		project.afterEvaluate(new Action<Project>() {
-			public void execute(Project p) {
-				copyGitHooksTask.setLogLevel(getExtension().getLogLevel());
-				projectConfigSyncTask.dependsOn(copyGitHooksTask);
 			}
 		});
 	}
