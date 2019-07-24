@@ -9,7 +9,7 @@ public enum ProjectConfig {
 	GIT_IGNORE("/gitignore", ".gitignore", false),
 	CI_IGNORE("/.ciignore", false),
 	EDITOR_CONFIG("/.editorconfig", true),
-	INIT_GIT_HOOKS("/scripts/init_git_hooks.sh", false),
+	INIT_GIT_HOOKS("/scripts/git/init_git_hooks.sh", false),
 	GRADLE_WRAPPER_PROPERTIES("/gradle/wrapper/gradle-wrapper.properties", true);
 
 	private String source;
