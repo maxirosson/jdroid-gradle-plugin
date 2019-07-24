@@ -4,7 +4,7 @@ public enum ProjectConfig {
 
 	CODE_STYLES_CONFIG("/.idea/codeStyles/codeStyleConfig.xml", true),
 	CODE_STYLES_PROJECT("/.idea/codeStyles/Project.xml", true),
-	INSPECTION_PROFILES_KTLINT("/.idea/inspectionProfiles/ktlint.xml", true),
+	INSPECTION_PROFILE("/.idea/inspectionProfiles/profile.xml", true),
 	INSPECTION_PROFILES_PROFILES_SETTINGS("/.idea/inspectionProfiles/profiles_settings.xml", true),
 	GIT_IGNORE("/gitignore", ".gitignore", false),
 	CI_IGNORE("/.ciignore", false),
