@@ -26,6 +26,6 @@ public class ProjectConfigSyncTask extends AbstractTask {
 		}
 
 		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
-		commandExecutor.execute("./scripts/git/init_git_hooks.sh");
+		commandExecutor.execute("sh ./scripts/git/init_git_hooks.sh");
 	}
 }
