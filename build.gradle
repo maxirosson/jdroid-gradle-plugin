@@ -2,21 +2,6 @@ version = "2.1.0"
 
 ext.JDROID_GITHUB_REPOSITORY_NAME = "jdroid-gradle-plugin"
 
-// https://github.com/maxirosson/jdroid-gradle-plugin/blob/master/CHANGELOG.md
-ext.JDROID_GRADLE_PLUGIN_VERSION = "2.0.0"
-
-// https://github.com/maxirosson/jdroid-java/blob/master/CHANGELOG.md
-ext.JDROID_JAVA_VERSION = "2.0.0"
-
-// https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-ext.GRADLE_PLUGIN_PUBLISH_PLUGIN = "0.9.8"
-
-// https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-ext.KOTLIN_VERSION = "1.3.40"
-
-// https://github.com/Kotlin/dokka/releases
-ext.DOKKA_VERSION = "0.9.18"
-
 ext.KOTLIN_ENABLED = false
 
 apply plugin: "com.jdroidtools.component.builder"
@@ -56,12 +41,10 @@ buildscript {
 		mavenCentral()
 		gradlePluginPortal()
 	}
+	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		// https://github.com/maxirosson/jdroid-component-builder/blob/master/CHANGELOG.md
-		classpath("com.jdroidtools:jdroid-component-builder:2.0.0")
-
-		// https://github.com/maxirosson/jdroid-gradle-plugin/blob/master/CHANGELOG.md
-		classpath("com.jdroidtools:jdroid-gradle-root-plugin:2.0.0")
+		classpath(libs.jdroid_component_builder)
+		classpath(libs.jdroid_gradle_root_plugin)
 	}
 }
 

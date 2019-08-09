@@ -3,20 +3,22 @@ description = "Gradle Plugin for Java projects"
 ext.ARTIFACT_ID = "jdroid-gradle-java-plugin"
 
 apply plugin: "com.jdroidtools.gradle.plugin"
+apply from: "$rootDir/dependencies.gradle"
 //apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
+	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		//classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
-		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
+		//classpath(libs.gradle_plugin_publish_plugin)
+		classpath(libs.jdroid_gradle_project_plugin)
 	}
 }
 
 dependencies {
 	compile project(path: ":jdroid-gradle-commons-plugin")
-	compile("org.jetbrains.kotlin:kotlin-gradle-plugin:" + KOTLIN_VERSION)
-	compile("org.jetbrains.dokka:dokka-gradle-plugin:" + DOKKA_VERSION)
-	testCompile "junit:junit:4.12"
+	compile(libs.kotlin_gradle_plugin)
+	compile(libs.dokka_plugin)
+	testCompile(libs.junit)
 }
 
 gradlePlugin {

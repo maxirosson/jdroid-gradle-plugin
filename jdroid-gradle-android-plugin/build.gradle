@@ -3,13 +3,15 @@ description = "Gradle Plugin for Android projects"
 ext.ARTIFACT_ID = "jdroid-gradle-android-plugin"
 
 apply plugin: "com.jdroidtools.gradle.plugin"
+apply from: "$rootDir/dependencies.gradle"
 // TODO This is disabled because when publishing with the Maven Publish plugin, it also publish local snapshots to Gradle Portal
 //apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
+	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		//classpath("com.gradle.publish:plugin-publish-plugin:" + GRADLE_PLUGIN_PUBLISH_PLUGIN)
-		classpath("com.jdroidtools:jdroid-gradle-project-plugin:" + JDROID_GRADLE_PLUGIN_VERSION)
+		//classpath(libs.gradle_plugin_publish_plugin)
+		classpath(libs.jdroid_gradle_project_plugin)
 	}
 }
 
@@ -25,29 +27,15 @@ dependencies {
 	implementation project(path: ":jdroid-gradle-java-plugin")
 	implementation project(path: ":jdroid-gradle-root-plugin")
 
-	// https://developer.android.com/tools/revisions/gradle-plugin.html
-	// https://dl.google.com/dl/android/maven2/index.html
-	implementation("com.android.tools.build:gradle:3.4.1")
+	implementation(libs.android_gradle_plugin)
+	implementation(libs.firebase_performance_plugin)
+	implementation(libs.google_services_plugin)
+	implementation(libs.fabric_plugin)
+	implementation(libs.unused_resources_remover_plugin)
+	implementation(libs.kotlin_gradle_plugin)
+	implementation(libs.dokka_plugin)
 
-	// https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
-	// https://jcenter.bintray.com/com/google/firebase/perf-plugin/
-	implementation("com.google.firebase:perf-plugin:1.2.1")
-
-	// https://developers.google.com/android/guides/google-services-plugin
-	// https://jcenter.bintray.com/com/google/gms/google-services/
-	implementation("com.google.gms:google-services:4.2.0")
-
-	// https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
-	// https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
-	implementation("io.fabric.tools:gradle:1.29.0")
-
-	// https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
-	implementation("gradle.plugin.com.github.konifar.gradle:plugin:0.3.3")
-
-	implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:" + KOTLIN_VERSION)
-	implementation("org.jetbrains.dokka:dokka-android-gradle-plugin:" + DOKKA_VERSION)
-
-	testImplementation("junit:junit:4.12")
+	testImplementation(libs.junit)
 }
 
 gradlePlugin {
