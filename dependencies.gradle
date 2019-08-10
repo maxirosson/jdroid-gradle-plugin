@@ -4,7 +4,7 @@ def libs = [:]
 libs.jdroid_java_github = "com.jdroidtools:jdroid-java-github:1.0.0"
 
 // https://github.com/maxirosson/jdroid-java/blob/master/CHANGELOG.md
-libs.jdroid_java_core = "com.jdroidtools:jdroid-java-core:2.0.0"
+libs.jdroid_java_core = "com.jdroidtools:jdroid-java-core:2.1.0-SNAPSHOT"
 
 // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 libs.gradle_plugin_publish_plugin = "com.gradle.publish:plugin-publish-plugin:0.9.8"

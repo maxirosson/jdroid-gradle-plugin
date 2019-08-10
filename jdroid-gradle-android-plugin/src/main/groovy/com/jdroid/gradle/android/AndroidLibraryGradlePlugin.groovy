@@ -88,7 +88,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 									// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
 									List<String> configurationNames = Lists.newArrayList("${variant.name}Implementation", "implementation");
 
-									Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, propertyResolver, artifactId, getPackaging())
+									Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, jdroid, artifactId, getPackaging())
 									pom(mavenPom)
 								}
 							}

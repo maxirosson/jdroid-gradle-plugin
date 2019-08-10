@@ -26,7 +26,6 @@ public class BaseGradleExtension {
 		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
-		
 	}
 	
 	public String getGitSha() {

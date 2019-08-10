@@ -14,7 +14,7 @@ import org.gradle.api.publish.maven.MavenPomScm;
 // TODO Allow to configure these properties
 public class JdroidPom {
 
-	public Action<? super MavenPom> createMavenPom(Project project, PropertyResolver propertyResolver, String artifactId, String artifactPackaging) {
+	public Action<? super MavenPom> createMavenPom(Project project, BaseGradleExtension jdroid, String artifactId, String artifactPackaging) {
 		return new Action<MavenPom>() {
 			@Override
 			public void execute(MavenPom mavenPom) {
@@ -66,9 +66,9 @@ public class JdroidPom {
 				mavenPom.scm(new Action<MavenPomScm>() {
 					@Override
 					public void execute(MavenPomScm mavenPomScm) {
-						mavenPomScm.getConnection().set("scm:git:" + getRepositorySshUrl(propertyResolver));
-						mavenPomScm.getDeveloperConnection().set("scm:git:" + getRepositorySshUrl(propertyResolver));
-						mavenPomScm.getUrl().set(getRepositorySshUrl(propertyResolver));
+						mavenPomScm.getConnection().set("scm:git:" + getRepositorySshUrl(jdroid));
+						mavenPomScm.getDeveloperConnection().set("scm:git:" + getRepositorySshUrl(jdroid));
+						mavenPomScm.getUrl().set(getRepositorySshUrl(jdroid));
 					}
 
 				});
@@ -76,7 +76,7 @@ public class JdroidPom {
 					@Override
 					public void execute(MavenPomIssueManagement mavenPomIssueManagement) {
 						mavenPomIssueManagement.getSystem().set("GitHub");
-						mavenPomIssueManagement.getUrl().set(getRepositoryUrl(propertyResolver) + "/issues");
+						mavenPomIssueManagement.getUrl().set(getRepositoryUrl(jdroid) + "/issues");
 					}
 
 				});
@@ -86,20 +86,12 @@ public class JdroidPom {
 		};
 	}
 
-	private String getRepositorySshUrl(PropertyResolver propertyResolver) {
-		return "git@github.com:" + getRepositoryOwner(propertyResolver) + "/" + getRepositoryName(propertyResolver) + ".git";
+	private String getRepositorySshUrl(BaseGradleExtension jdroid) {
+		return "git@github.com:" + jdroid.getGitHubRepositoryOwner() + "/" + jdroid.getGitHubRepositoryName() + ".git";
 	}
 
-	private String getRepositoryUrl(PropertyResolver propertyResolver) {
-		return "https://github.com/" + getRepositoryOwner(propertyResolver) + "/" + getRepositoryName(propertyResolver);
-	}
-
-	private String getRepositoryOwner(PropertyResolver propertyResolver) {
-		return propertyResolver.getStringProp("JDROID_GITHUB_REPOSITORY_OWNER", "maxirosson");
-	}
-
-	private String getRepositoryName(PropertyResolver propertyResolver) {
-		return propertyResolver.getStringProp("JDROID_GITHUB_REPOSITORY_NAME");
+	private String getRepositoryUrl(BaseGradleExtension jdroid) {
+		return "https://github.com/" + jdroid.getGitHubRepositoryOwner() + "/" + jdroid.getGitHubRepositoryName();
 	}
 
 	protected void configure(Project project, MavenPom mavenPom) {
