@@ -18,7 +18,7 @@ buildscript {
 }
 
 dependencies {
-	api(libs.jdroid_java_core)
+	compile(libs.jdroid_java_core)
 	implementation(libs.jdroid_java_github)
 
 	testImplementation(libs.junit)
