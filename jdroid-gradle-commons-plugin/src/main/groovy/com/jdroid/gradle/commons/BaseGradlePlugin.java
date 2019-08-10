@@ -7,7 +7,6 @@ import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
 import com.jdroid.gradle.commons.versioning.Version;
-import com.jdroid.java.collections.Maps;
 
 import org.gradle.api.Action;
 import org.gradle.api.GradleException;
@@ -17,6 +16,7 @@ import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencyResolveDetails;
 import org.gradle.api.publish.maven.MavenPom;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BaseGradlePlugin implements Plugin<Project> {
@@ -136,7 +136,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	}
 
 	protected void applyPlugin(String plugin) {
-		Map<String, String> map = Maps.newHashMap();
+		Map<String, String> map = new HashMap<>();
 		map.put("plugin", plugin);
 		project.apply(map);
 	}
