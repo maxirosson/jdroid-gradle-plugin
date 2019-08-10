@@ -3,6 +3,7 @@ package com.jdroid.gradle.root;
 import com.jdroid.gradle.commons.BaseGradlePlugin;
 import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
 import com.jdroid.gradle.root.task.ProjectConfigValidationTask;
+import com.releaseshub.gradle.plugin.ReleasesHubGradlePluginExtension;
 
 import org.gradle.api.Action;
 import org.gradle.api.Project;
@@ -25,6 +26,15 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 				projectConfigValidationTask.setLogLevel(getExtension().getLogLevel());
 			}
 		});
+
+		if (propertyResolver.getBooleanProp("RELEASES_HUB_GRADLE_PLUGIN_ENABLED", false)) {
+			applyPlugin("com.jdroidtools.releaseshub.gradle.plugin");
+			ReleasesHubGradlePluginExtension releasesHubGradlePluginExtension = project.getExtensions().getByType(ReleasesHubGradlePluginExtension.class);
+			releasesHubGradlePluginExtension.setGitHubRepositoryOwner(getExtension().getGitHubRepositoryOwner());
+			releasesHubGradlePluginExtension.setGitHubRepositoryName(getExtension().getGitHubRepositoryName());
+			releasesHubGradlePluginExtension.setGitHubWriteToken(getExtension().getGitHubWriteToken());
+			releasesHubGradlePluginExtension.setPullRequestEnabled(true);
+		}
 	}
 
 	protected Class<? extends RootProjectExtension> getExtensionClass() {

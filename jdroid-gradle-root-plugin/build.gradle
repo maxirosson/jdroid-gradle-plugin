@@ -16,6 +16,7 @@ buildscript {
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
+	implementation("com.jdroidtools:releases-hub-gradle-plugin:0.1.0-SNAPSHOT")
 	testImplementation(libs.junit)
 }
 
