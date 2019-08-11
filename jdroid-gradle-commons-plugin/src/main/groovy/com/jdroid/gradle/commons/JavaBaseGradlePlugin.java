@@ -1,6 +1,6 @@
 package com.jdroid.gradle.commons;
 
-import com.jdroid.java.collections.Lists;
+import com.jdroid.gradle.commons.utils.ListUtils;
 
 import org.gradle.api.Action;
 import org.gradle.api.JavaVersion;
@@ -89,7 +89,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 				// to generate report in checkstyle format prepend following args:
 				// "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-				javaExec.setArgs(Lists.newArrayList("src/**/*.kt"));
+				javaExec.setArgs(ListUtils.newArrayList("src/**/*.kt"));
 			}
 		});
 		ktlintTask.setGroup("verification");
@@ -101,7 +101,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 				javaExec.setDescription("Fix Kotlin code style deviations.");
 				javaExec.setMain("com.pinterest.ktlint.Main");
 				javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
-				javaExec.setArgs(Lists.newArrayList("-F", "src/**/*.kt"));
+				javaExec.setArgs(ListUtils.newArrayList("-F", "src/**/*.kt"));
 			}
 		});
 		ktlintFormatTask.setGroup("formatting");

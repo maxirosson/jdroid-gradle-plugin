@@ -1,7 +1,6 @@
 package com.jdroid.gradle.android;
 
 import com.jdroid.gradle.commons.JdroidPom;
-import com.jdroid.java.collections.Maps;
 
 import org.gradle.api.Action;
 import org.gradle.api.Project;
@@ -11,6 +10,7 @@ import org.gradle.api.artifacts.ExcludeRule;
 import org.gradle.api.artifacts.ModuleDependency;
 import org.gradle.api.publish.maven.MavenPom;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public class AndroidJdroidPom extends JdroidPom {
 				// Creating additional node for dependencies
 				Node dependenciesNode = xmlProvider.asNode().appendNode("dependencies");
 
-				Map<String, Dependency> dependenciesMap = Maps.newLinkedHashMap();
+				Map<String, Dependency> dependenciesMap = new LinkedHashMap<>();
 
 				for (CharSequence configurationName : configurationNames) {
 					for (Dependency dependency : project.getConfigurations().getByName(configurationName.toString()).getAllDependencies()) {

@@ -2,7 +2,7 @@ package com.jdroid.gradle.android
 
 
 import com.jdroid.gradle.android.task.PrefixVerificationTask
-import com.jdroid.java.collections.Lists
+import com.jdroid.gradle.commons.utils.ListUtils
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaBasePlugin
@@ -86,7 +86,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 									artifact project.tasks.getByName("bundle${variant.name.capitalize()}Aar")
 
 									// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
-									List<String> configurationNames = Lists.newArrayList("${variant.name}Implementation", "implementation");
+									List<String> configurationNames = ListUtils.newArrayList("${variant.name}Implementation", "implementation");
 
 									Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, jdroid, artifactId, getPackaging())
 									pom(mavenPom)

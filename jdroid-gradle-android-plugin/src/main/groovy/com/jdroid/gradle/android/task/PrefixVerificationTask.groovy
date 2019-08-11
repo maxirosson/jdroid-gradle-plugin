@@ -1,7 +1,7 @@
 package com.jdroid.gradle.android.task;
 
 import com.jdroid.gradle.commons.tasks.AbstractTask
-import com.jdroid.java.collections.Lists;
+import com.jdroid.gradle.commons.utils.ListUtils
 import org.gradle.api.GradleException;
 import org.gradle.api.plugins.JavaBasePlugin;
 
@@ -27,8 +27,8 @@ public class PrefixVerificationTask extends AbstractTask {
 
 			// Verify the res files prefix
 
-			List<String> dirPrefixesToVerify = Lists.newArrayList("drawable", "layout", "menu", "xml", "raw", "anim");
-			List<String> filePrefixErrors = Lists.newArrayList();
+			List<String> dirPrefixesToVerify = ListUtils.newArrayList("drawable", "layout", "menu", "xml", "raw", "anim");
+			List<String> filePrefixErrors = ListUtils.newArrayList();
 
 			dirsToVerify.each { File res ->
 				res.listFiles().each {
@@ -49,7 +49,7 @@ public class PrefixVerificationTask extends AbstractTask {
 
 			// Verify the values res names
 
-			List<String> valuesResNamesPrefixErrors = Lists.newArrayList();
+			List<String> valuesResNamesPrefixErrors = ListUtils.newArrayList();
 
 			dirsToVerify.each { File res ->
 
@@ -74,7 +74,7 @@ public class PrefixVerificationTask extends AbstractTask {
 	}
 
 	protected void verifyFilePrefix(File dirFile, String prefix, List<String> errors) {
-		List<String> extensionsToVerify = Lists.newArrayList(".xml", ".png");
+		List<String> extensionsToVerify = ListUtils.newArrayList(".xml", ".png");
 		dirFile.listFiles().each { File file ->
 			String extension = file.getName().replace(file.name.replaceFirst(~/\.[^\.]+$/, ''), "");
 			if (!file.isDirectory() && extensionsToVerify.contains(extension) && !file.getName().startsWith(prefix)) {
@@ -101,7 +101,7 @@ public class PrefixVerificationTask extends AbstractTask {
 
 		// TODO Verify the attr elements that are outside of a declare-styleable
 
-		List<String> elementsToVerify = Lists.newArrayList("string", "plurals", "color", "dimen", "declare-styleable", "style", "bool");
+		List<String> elementsToVerify = ListUtils.newArrayList("string", "plurals", "color", "dimen", "declare-styleable", "style", "bool");
 		String key = null;
 		for(String each : elementsToVerify) {
 			if (line.trim().matches('^<\\s*' + each + '\\s.*name="[^"]*".*>$')) {

@@ -2,7 +2,7 @@ package com.jdroid.gradle.commons.versioning;
 
 import com.jdroid.gradle.commons.CommandExecutor;
 import com.jdroid.gradle.commons.tasks.AbstractTask;
-import com.jdroid.java.collections.Lists;
+import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.java.utils.FileUtils;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 		File buildGradleFile = getProject().file(propertyResolver.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"));
 		final Pattern versionPattern = Pattern.compile("^\\s?version\\s?=\\s?[\"\'](\\d\\d?\\.\\d\\d?\\.\\d\\d?)[\"\']");
 
-		List<String> lines = Lists.newArrayList();
+		List<String> lines = ListUtils.newArrayList();
 		boolean versionFound = false;
 		for (String line : FileUtils.readLines(buildGradleFile)) {
 			if (!versionFound) {

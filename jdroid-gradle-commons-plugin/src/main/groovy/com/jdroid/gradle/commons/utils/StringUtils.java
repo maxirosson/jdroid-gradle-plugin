@@ -1,8 +1,5 @@
 package com.jdroid.gradle.commons.utils;
 
-import com.jdroid.java.collections.Lists;
-
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,13 +20,13 @@ public abstract class StringUtils {
 	}
 	
 	public static List<String> splitToListWithCommaSeparator(String text) {
-		return Lists.newArrayList(splitToCollection(text, COMMA));
+		return splitToList(text, COMMA);
 	}
 
-	public static Collection<String> splitToCollection(String text, String separator) {
-		Collection<String> values = Lists.newArrayList();
+	public static List<String> splitToList(String text, String separator) {
+		List<String> values = ListUtils.newArrayList();
 		if (isNotEmpty(text)) {
-			values = Lists.newArrayList(text.split(separator));
+			values = ListUtils.newArrayList(text.split(separator));
 		}
 		return values;
 	}
