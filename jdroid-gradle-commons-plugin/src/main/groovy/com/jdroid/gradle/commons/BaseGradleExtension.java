@@ -18,6 +18,8 @@ public class BaseGradleExtension {
 	private String gitHubWriteToken;
 	private String gitHubRepositoryOwner;
 	private String gitHubRepositoryName;
+	private String  gitHubUserName;
+	private String  gitHubUserEmail;
 	
 	public BaseGradleExtension(Project project) {
 		this.project = project;
@@ -26,6 +28,8 @@ public class BaseGradleExtension {
 		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
+		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
+		gitHubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
 	}
 	
 	public String getGitSha() {
@@ -82,6 +86,12 @@ public class BaseGradleExtension {
 	public void setGitHubRepositoryName(String gitHubRepositoryName) {
 		this.gitHubRepositoryName = gitHubRepositoryName;
 	}
-	
-	
+
+	public String getGitHubUserName() {
+		return gitHubUserName;
+	}
+
+	public String getGitHubUserEmail() {
+		return gitHubUserEmail;
+	}
 }
