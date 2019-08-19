@@ -1,6 +1,6 @@
 version = "2.1.0"
 
-ext.JDROID_GITHUB_REPOSITORY_NAME = "jdroid-gradle-plugin"
+ext.GITHUB_REPOSITORY_NAME = "jdroid-gradle-plugin"
 
 ext.KOTLIN_ENABLED = false
 

@@ -18,8 +18,8 @@ public class BaseGradleExtension {
 	private String gitHubWriteToken;
 	private String gitHubRepositoryOwner;
 	private String gitHubRepositoryName;
-	private String  gitHubUserName;
-	private String  gitHubUserEmail;
+	private String gitHubUserName;
+	private String gitHubUserEmail;
 	
 	public BaseGradleExtension(Project project) {
 		this.project = project;
