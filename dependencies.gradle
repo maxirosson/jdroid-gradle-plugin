@@ -11,7 +11,7 @@ libs.gradle_plugin_publish_plugin = "com.gradle.publish:plugin-publish-plugin:0.
 
 // https://developer.android.com/tools/revisions/gradle-plugin.html
 // https://dl.google.com/dl/android/maven2/index.html
-libs.android_gradle_plugin = "com.android.tools.build:gradle:3.4.2"
+libs.android_gradle_plugin = "com.android.tools.build:gradle:3.5.0"
 
 // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
 // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
