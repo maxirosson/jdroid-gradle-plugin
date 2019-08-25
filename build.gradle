@@ -41,10 +41,9 @@ buildscript {
 		mavenCentral()
 		gradlePluginPortal()
 	}
-	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		classpath(libs.jdroid_component_builder)
-		classpath(libs.jdroid_gradle_root_plugin)
+		classpath(BuildLibs.jdroid_component_builder)
+		classpath(BuildLibs.jdroid_gradle_root_plugin)
 	}
 }
 

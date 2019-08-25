@@ -3,25 +3,23 @@ description = "Gradle Plugin for Java Web projects"
 ext.ARTIFACT_ID = "jdroid-gradle-java-webapp-plugin"
 
 apply plugin: "com.jdroidtools.gradle.plugin"
-apply from: "$rootDir/dependencies.gradle"
 //apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
-	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		//classpath(libs.gradle_plugin_publish_plugin)
-		classpath(libs.jdroid_gradle_project_plugin)
+		//classpath(BuildLibs.gradle_plugin_publish_plugin)
+		classpath(BuildLibs.jdroid_gradle_project_plugin)
 	}
 }
 
 dependencies {
 
 	implementation project(path: ":jdroid-gradle-java-plugin")
-	implementation(libs.kotlin_gradle_plugin)
-	implementation(libs.dokka_plugin)
-	implementation(libs.gretty)
+	implementation(Libs.kotlin_gradle_plugin)
+	implementation(Libs.dokka_plugin)
+	implementation(Libs.gretty)
 
-	testImplementation(libs.junit)
+	testImplementation(Libs.junit)
 }
 
 gradlePlugin {

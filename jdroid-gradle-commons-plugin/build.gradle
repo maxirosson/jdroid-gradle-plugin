@@ -7,19 +7,17 @@ ext.ARTIFACT_ID = "jdroid-gradle-commons-plugin"
 
 // TODO This artifact should not be a plugin
 apply plugin: "com.jdroidtools.gradle.plugin"
-apply from: "$rootDir/dependencies.gradle"
 
 buildscript {
-	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		//classpath(libs.gradle_plugin_publish_plugin)
-		classpath(libs.jdroid_gradle_project_plugin)
+		//classpath(BuildLibs.gradle_plugin_publish_plugin)
+		classpath(BuildLibs.jdroid_gradle_project_plugin)
 	}
 }
 
 dependencies {
-	compile(libs.jdroid_java_core)
-	implementation(libs.jdroid_java_github)
+	compile(Libs.jdroid_java_core)
+	implementation(Libs.jdroid_java_github)
 
-	testImplementation(libs.junit)
+	testImplementation(Libs.junit)
 }

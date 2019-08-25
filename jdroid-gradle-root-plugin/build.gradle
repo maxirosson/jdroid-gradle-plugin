@@ -3,21 +3,19 @@ description = "Gradle Plugin for Root projects"
 ext.ARTIFACT_ID = "jdroid-gradle-root-plugin"
 
 apply plugin: "com.jdroidtools.gradle.plugin"
-apply from: "$rootDir/dependencies.gradle"
 //apply plugin: "com.gradle.plugin-publish"
 
 buildscript {
-	apply from: "$rootDir/build_dependencies.gradle"
 	dependencies {
-		//classpath(libs.gradle_plugin_publish_plugin)
-		classpath(libs.jdroid_gradle_project_plugin)
+		//classpath(BuildLibs.gradle_plugin_publish_plugin)
+		classpath(BuildLibs.jdroid_gradle_project_plugin)
 	}
 }
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
-	implementation("com.jdroidtools:releases-hub-gradle-plugin:0.1.0-SNAPSHOT")
-	testImplementation(libs.junit)
+	implementation(Libs.releases_hub_gradle_plugin)
+	testImplementation(Libs.junit)
 }
 
 gradlePlugin {
