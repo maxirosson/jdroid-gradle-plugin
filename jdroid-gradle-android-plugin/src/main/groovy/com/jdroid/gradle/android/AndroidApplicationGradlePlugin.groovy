@@ -1,6 +1,6 @@
 package com.jdroid.gradle.android
 
-import com.android.build.gradle.AppPlugin
+
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyBuildsTask
 import com.jdroid.gradle.android.versioning.AndroidVersion
@@ -87,7 +87,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			}
 		}
 
-		String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getProjectDir().getParentFile().getName());
+		String appName = propertyResolver.getStringProp('APP_BUILD_BASE_NAME', project.getRootProject().getParentFile().getName());
 		if (propertyResolver.getBooleanProp("APK_FILENAME_OVERRIDE_ENABLED", true)) {
 			android.applicationVariants.all { variant ->
 				variant.outputs.all { output ->
