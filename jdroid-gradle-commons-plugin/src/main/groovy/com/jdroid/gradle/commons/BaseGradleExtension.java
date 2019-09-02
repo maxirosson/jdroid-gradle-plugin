@@ -2,8 +2,10 @@ package com.jdroid.gradle.commons;
 
 import com.jdroid.gradle.commons.utils.StringUtils;
 
+import org.gradle.api.Action;
 import org.gradle.api.Project;
 import org.gradle.api.logging.LogLevel;
+import org.gradle.api.publish.maven.MavenPom;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ public class BaseGradleExtension {
 	private String gitHubRepositoryName;
 	private String gitHubUserName;
 	private String gitHubUserEmail;
+	private Action<MavenPom> mavenPom;
 	
 	public BaseGradleExtension(Project project) {
 		this.project = project;
@@ -93,5 +96,13 @@ public class BaseGradleExtension {
 
 	public String getGitHubUserEmail() {
 		return gitHubUserEmail;
+	}
+
+	public Action<MavenPom> getMavenPom() {
+		return mavenPom;
+	}
+
+	public void setMavenPom(Action<MavenPom> mavenPom) {
+		this.mavenPom = mavenPom;
 	}
 }
