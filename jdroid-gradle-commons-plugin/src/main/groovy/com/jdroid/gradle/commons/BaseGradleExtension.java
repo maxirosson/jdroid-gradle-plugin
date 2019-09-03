@@ -24,7 +24,11 @@ public class BaseGradleExtension {
 	private String gitHubUserName;
 	private String gitHubUserEmail;
 	private Action<MavenPom> mavenPom;
-	
+	private String snapshotsMavenRepo;
+	private String releasesMavenRepo;
+	private String nexusUsername;
+	private String nexusPassword;
+
 	public BaseGradleExtension(Project project) {
 		this.project = project;
 		this.propertyResolver = new PropertyResolver(project);
@@ -35,6 +39,10 @@ public class BaseGradleExtension {
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
 		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
 		gitHubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
+		snapshotsMavenRepo = propertyResolver.getStringProp("https://oss.sonatype.org/content/repositories/snapshots/");
+		releasesMavenRepo = propertyResolver.getStringProp("https://oss.sonatype.org/service/local/staging/deploy/maven2/");
+		nexusUsername = propertyResolver.getStringProp("NEXUS_USERNAME");
+		nexusPassword = propertyResolver.getStringProp("NEXUS_PASSWORD");
 	}
 	
 	public String getGitSha() {
@@ -122,5 +130,37 @@ public class BaseGradleExtension {
 
 	public String getRepositoryUrl() {
 		return "https://github.com/" + getGitHubRepositoryOwner() + "/" + getGitHubRepositoryName();
+	}
+
+	public String getNexusUsername() {
+		return nexusUsername;
+	}
+
+	public void setNexusUsername(String nexusUsername) {
+		this.nexusUsername = nexusUsername;
+	}
+
+	public String getNexusPassword() {
+		return nexusPassword;
+	}
+
+	public void setNexusPassword(String nexusPassword) {
+		this.nexusPassword = nexusPassword;
+	}
+
+	public String getSnapshotsMavenRepo() {
+		return snapshotsMavenRepo;
+	}
+
+	public void setSnapshotsMavenRepo(String snapshotsMavenRepo) {
+		this.snapshotsMavenRepo = snapshotsMavenRepo;
+	}
+
+	public String getReleasesMavenRepo() {
+		return releasesMavenRepo;
+	}
+
+	public void setReleasesMavenRepo(String releasesMavenRepo) {
+		this.releasesMavenRepo = releasesMavenRepo;
 	}
 }

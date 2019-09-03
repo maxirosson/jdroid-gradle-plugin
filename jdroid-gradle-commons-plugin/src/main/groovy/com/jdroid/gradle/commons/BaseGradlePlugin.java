@@ -16,6 +16,10 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencyResolveDetails;
+import org.gradle.api.artifacts.dsl.RepositoryHandler;
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
+import org.gradle.api.artifacts.repositories.PasswordCredentials;
+import org.gradle.api.publish.PublishingExtension;
 import org.gradle.api.publish.maven.MavenPom;
 
 import java.util.HashMap;
@@ -97,11 +101,59 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 		isPublicationConfigurationEnabled = fetchIsPublicationConfigurationEnabled();
 		if (isPublicationConfigurationEnabled) {
+
+			// https://docs.gradle.org/current/userguide/publishing_overview.html
+			// https://docs.gradle.org/current/userguide/publishing_maven.html
 			if (!project.getPlugins().hasPlugin("maven-publish")) {
 				applyPlugin("maven-publish");
 			}
 			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
 			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false);
+
+
+			Boolean localUpload = propertyResolver.getBooleanProp("LOCAL_UPLOAD", true);
+			String localMavenRepo = propertyResolver.getStringProp("LOCAL_MAVEN_REPO");
+
+			if (localUpload && localMavenRepo == null) {
+				project.getLogger().warn("LOCAL_MAVEN_REPO property is not defined. Skipping publish configuration");
+			} else {
+				project.afterEvaluate(new Action<Project>() {
+					@Override
+					public void execute(Project project) {
+						RepositoryHandler repositoryHandler = project.getExtensions().findByType(PublishingExtension.class).getRepositories();
+						if (localUpload) {
+							repositoryHandler.maven(new Action<MavenArtifactRepository>() {
+								@Override
+								public void execute(MavenArtifactRepository mavenArtifactRepository) {
+									mavenArtifactRepository.setName("localMavenRepo");
+									mavenArtifactRepository.setUrl(project.uri(localMavenRepo));
+								}
+							});
+						} else {
+							repositoryHandler.maven(new Action<MavenArtifactRepository>() {
+								@Override
+								public void execute(MavenArtifactRepository mavenArtifactRepository) {
+									Boolean isSnapshot = ((Version)project.getVersion()).isSnapshot();
+									if (isSnapshot == null || isSnapshot) {
+										mavenArtifactRepository.setName("snapshotsMavenRepo");
+										mavenArtifactRepository.setUrl(jdroid.getSnapshotsMavenRepo());
+									} else {
+										mavenArtifactRepository.setName("releasesMavenRepo");
+										mavenArtifactRepository.setUrl(jdroid.getReleasesMavenRepo());
+									}
+									mavenArtifactRepository.credentials(new Action<PasswordCredentials>() {
+										@Override
+										public void execute(PasswordCredentials passwordCredentials) {
+											passwordCredentials.setUsername(jdroid.getNexusUsername());
+											passwordCredentials.setPassword(jdroid.getNexusPassword());
+										}
+									});
+								}
+							});
+						}
+					}
+				});
+			}
 		}
 
 		artifactId = propertyResolver.getStringProp("ARTIFACT_ID");
