@@ -101,9 +101,10 @@ subprojects {
 		}
 		maven {
 			url = "https://oss.sonatype.org/content/repositories/snapshots/"
-			content {
-				includeGroups("com.jdroidtools", "com.releaseshub")
-			}
+			// TODO Uncomment this when releaseshub is stable
+//			content {
+//				includeGroup("com.jdroidtools")
+//			}
 			mavenContent {
 				snapshotsOnly()
 			}
