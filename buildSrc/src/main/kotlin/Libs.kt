@@ -7,7 +7,7 @@ object Libs {
     const val jdroid_java_core = "com.jdroidtools:jdroid-java-core:2.1.0-SNAPSHOT"
 
     // https://github.com/maxirosson/releases-hub-gradle-plugin
-    const val releases_hub_gradle_plugin = "com.jdroidtools:releases-hub-gradle-plugin:0.1.0-SNAPSHOT"
+    const val releases_hub_gradle_plugin = "com.releaseshub:releases-hub-gradle-plugin:0.1.0-SNAPSHOT"
 
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
     const val gradle_plugin_publish_plugin = "com.gradle.publish:plugin-publish-plugin:0.9.8"

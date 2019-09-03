@@ -28,7 +28,7 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 		});
 
 		if (propertyResolver.getBooleanProp("RELEASES_HUB_GRADLE_PLUGIN_ENABLED", true)) {
-			applyPlugin("com.jdroidtools.releaseshub.gradle.plugin");
+			applyPlugin("com.releaseshub.gradle.plugin");
 			ReleasesHubGradlePluginExtension releasesHubGradlePluginExtension = project.getExtensions().getByType(ReleasesHubGradlePluginExtension.class);
 			releasesHubGradlePluginExtension.setGitHubRepositoryOwner(getExtension().getGitHubRepositoryOwner());
 			releasesHubGradlePluginExtension.setGitHubRepositoryName(getExtension().getGitHubRepositoryName());
