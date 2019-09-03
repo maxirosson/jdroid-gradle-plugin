@@ -102,7 +102,7 @@ subprojects {
 		maven {
 			url = "https://oss.sonatype.org/content/repositories/snapshots/"
 			content {
-				includeGroup("com.jdroidtools")
+				includeGroups("com.jdroidtools", "com.releaseshub")
 			}
 			mavenContent {
 				snapshotsOnly()

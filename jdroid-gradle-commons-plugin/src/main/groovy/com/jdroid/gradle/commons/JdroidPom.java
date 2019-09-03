@@ -67,9 +67,9 @@ public class JdroidPom {
 					mavenPom.scm(new Action<MavenPomScm>() {
 						@Override
 						public void execute(MavenPomScm mavenPomScm) {
-							mavenPomScm.getConnection().set("scm:git:" + getRepositorySshUrl(jdroid));
-							mavenPomScm.getDeveloperConnection().set("scm:git:" + getRepositorySshUrl(jdroid));
-							mavenPomScm.getUrl().set(getRepositorySshUrl(jdroid));
+							mavenPomScm.getConnection().set("scm:git:" + jdroid.getRepositorySshUrl());
+							mavenPomScm.getDeveloperConnection().set("scm:git:" + jdroid.getRepositorySshUrl());
+							mavenPomScm.getUrl().set(jdroid.getRepositorySshUrl());
 						}
 
 					});
@@ -77,7 +77,7 @@ public class JdroidPom {
 						@Override
 						public void execute(MavenPomIssueManagement mavenPomIssueManagement) {
 							mavenPomIssueManagement.getSystem().set("GitHub");
-							mavenPomIssueManagement.getUrl().set(getRepositoryUrl(jdroid) + "/issues");
+							mavenPomIssueManagement.getUrl().set(jdroid.getRepositoryUrl() + "/issues");
 						}
 
 					});
@@ -87,14 +87,6 @@ public class JdroidPom {
 			};
 		}
 		return mavenPom;
-	}
-
-	private String getRepositorySshUrl(BaseGradleExtension jdroid) {
-		return "git@github.com:" + jdroid.getGitHubRepositoryOwner() + "/" + jdroid.getGitHubRepositoryName() + ".git";
-	}
-
-	private String getRepositoryUrl(BaseGradleExtension jdroid) {
-		return "https://github.com/" + jdroid.getGitHubRepositoryOwner() + "/" + jdroid.getGitHubRepositoryName();
 	}
 
 	protected void configure(Project project, MavenPom mavenPom) {

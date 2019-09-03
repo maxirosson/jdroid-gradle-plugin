@@ -21,6 +21,10 @@ public abstract class AbstractGitHubTask extends AbstractTask {
 		return getExtension().getGitHubWriteToken();
 	}
 
+	public String getGitHubReadToken() {
+		return getExtension().getGitHubReadToken();
+	}
+
 	public String getGitHubRepositoryOwner() {
 		return getExtension().getGitHubRepositoryOwner();
 	}
