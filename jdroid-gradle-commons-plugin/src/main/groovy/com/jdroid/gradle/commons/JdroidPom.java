@@ -14,7 +14,7 @@ import org.gradle.api.publish.maven.MavenPomScm;
 public class JdroidPom {
 
 	public Action<? super MavenPom> createMavenPom(Project project, BaseGradleExtension jdroid, String artifactId, String artifactPackaging) {
-		Action<MavenPom> mavenPom = jdroid.getMavenPom();
+		Action<MavenPom> mavenPom = jdroid.getPublishingPom();
 		if (mavenPom == null) {
 			mavenPom = new Action<MavenPom>() {
 				@Override

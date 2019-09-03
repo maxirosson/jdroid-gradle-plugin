@@ -23,11 +23,11 @@ public class BaseGradleExtension {
 	private String gitHubRepositoryName;
 	private String gitHubUserName;
 	private String gitHubUserEmail;
-	private Action<MavenPom> mavenPom;
-	private String snapshotsMavenRepoUrl;
-	private String releasesMavenRepoUrl;
-	private String nexusUsername;
-	private String nexusPassword;
+	private Action<MavenPom> publishingPom;
+	private String publishingSnapshotsRepoUrl;
+	private String publishingReleasesRepoUrl;
+	private String publishingRepoUsername;
+	private String publishingRepoPassword;
 
 	public BaseGradleExtension(Project project) {
 		this.project = project;
@@ -39,10 +39,10 @@ public class BaseGradleExtension {
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
 		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
 		gitHubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
-		snapshotsMavenRepoUrl = propertyResolver.getStringProp("PUBLISHING_SNAPSHOTS_MAVEN_REPO_URL", "https://oss.sonatype.org/content/repositories/snapshots/");
-		releasesMavenRepoUrl = propertyResolver.getStringProp("PUBLISHING_RELEASES_MAVEN_REPO_URL", "https://oss.sonatype.org/service/local/staging/deploy/maven2/");
-		nexusUsername = propertyResolver.getStringProp("PUBLISHING_NEXUS_USERNAME");
-		nexusPassword = propertyResolver.getStringProp("PUBLISHING_NEXUS_PASSWORD");
+		publishingSnapshotsRepoUrl = propertyResolver.getStringProp("PUBLISHING_SNAPSHOTS_REPO_URL", "https://oss.sonatype.org/content/repositories/snapshots/");
+		publishingReleasesRepoUrl = propertyResolver.getStringProp("PUBLISHING_RELEASES_REPO_URL", "https://oss.sonatype.org/service/local/staging/deploy/maven2/");
+		publishingRepoUsername = propertyResolver.getStringProp("PUBLISHING_REPO_USERNAME");
+		publishingRepoPassword = propertyResolver.getStringProp("PUBLISHING_REPO_PASSWORD");
 	}
 
 	public String getGitSha() {
@@ -108,12 +108,12 @@ public class BaseGradleExtension {
 		return gitHubUserEmail;
 	}
 
-	public Action<MavenPom> getMavenPom() {
-		return mavenPom;
+	public Action<MavenPom> getPublishingPom() {
+		return publishingPom;
 	}
 
-	public void setMavenPom(Action<MavenPom> mavenPom) {
-		this.mavenPom = mavenPom;
+	public void setPublishingPom(Action<MavenPom> publishingPom) {
+		this.publishingPom = publishingPom;
 	}
 
 	public String getGitHubReadToken() {
@@ -132,36 +132,36 @@ public class BaseGradleExtension {
 		return "https://github.com/" + getGitHubRepositoryOwner() + "/" + getGitHubRepositoryName();
 	}
 
-	public String getNexusUsername() {
-		return nexusUsername;
+	public String getPublishingRepoUsername() {
+		return publishingRepoUsername;
 	}
 
-	public void setNexusUsername(String nexusUsername) {
-		this.nexusUsername = nexusUsername;
+	public void setPublishingRepoUsername(String publishingRepoUsername) {
+		this.publishingRepoUsername = publishingRepoUsername;
 	}
 
-	public String getNexusPassword() {
-		return nexusPassword;
+	public String getPublishingRepoPassword() {
+		return publishingRepoPassword;
 	}
 
-	public void setNexusPassword(String nexusPassword) {
-		this.nexusPassword = nexusPassword;
+	public void setPublishingRepoPassword(String publishingRepoPassword) {
+		this.publishingRepoPassword = publishingRepoPassword;
 	}
 
-	public String getSnapshotsMavenRepoUrl() {
-		return snapshotsMavenRepoUrl;
+	public String getPublishingSnapshotsRepoUrl() {
+		return publishingSnapshotsRepoUrl;
 	}
 
-	public void setSnapshotsMavenRepoUrl(String snapshotsMavenRepoUrl) {
-		this.snapshotsMavenRepoUrl = snapshotsMavenRepoUrl;
+	public void setPublishingSnapshotsRepoUrl(String publishingSnapshotsRepoUrl) {
+		this.publishingSnapshotsRepoUrl = publishingSnapshotsRepoUrl;
 	}
 
-	public String getReleasesMavenRepoUrl() {
-		return releasesMavenRepoUrl;
+	public String getPublishingReleasesRepoUrl() {
+		return publishingReleasesRepoUrl;
 	}
 
-	public void setReleasesMavenRepoUrl(String releasesMavenRepoUrl) {
-		this.releasesMavenRepoUrl = releasesMavenRepoUrl;
+	public void setPublishingReleasesRepoUrl(String publishingReleasesRepoUrl) {
+		this.publishingReleasesRepoUrl = publishingReleasesRepoUrl;
 	}
 }
 

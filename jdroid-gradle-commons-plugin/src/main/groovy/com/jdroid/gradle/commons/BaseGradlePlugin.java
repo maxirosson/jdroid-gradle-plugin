@@ -136,16 +136,16 @@ public class BaseGradlePlugin implements Plugin<Project> {
 									Boolean isSnapshot = ((Version)project.getVersion()).isSnapshot();
 									if (isSnapshot == null || isSnapshot) {
 										mavenArtifactRepository.setName("snapshotsMavenRepo");
-										mavenArtifactRepository.setUrl(jdroid.getSnapshotsMavenRepoUrl());
+										mavenArtifactRepository.setUrl(jdroid.getPublishingSnapshotsRepoUrl());
 									} else {
 										mavenArtifactRepository.setName("releasesMavenRepo");
-										mavenArtifactRepository.setUrl(jdroid.getReleasesMavenRepoUrl());
+										mavenArtifactRepository.setUrl(jdroid.getPublishingReleasesRepoUrl());
 									}
 									mavenArtifactRepository.credentials(new Action<PasswordCredentials>() {
 										@Override
 										public void execute(PasswordCredentials passwordCredentials) {
-											passwordCredentials.setUsername(jdroid.getNexusUsername());
-											passwordCredentials.setPassword(jdroid.getNexusPassword());
+											passwordCredentials.setUsername(jdroid.getPublishingRepoUsername());
+											passwordCredentials.setPassword(jdroid.getPublishingRepoPassword());
 										}
 									});
 								}
