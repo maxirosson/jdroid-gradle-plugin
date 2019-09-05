@@ -9,10 +9,10 @@ import org.gradle.api.Project
 
 public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
-	private static final int ANDROID_SDK_VERSION = 28
+	private static final int ANDROID_SDK_VERSION = 29
 
 	// http://developer.android.com/tools/revisions/build-tools.html
-	private static final String ANDROID_BUILD_TOOLS_VERSION = '28.0.3'
+	private static final String ANDROID_BUILD_TOOLS_VERSION = '29.0.2'
 
 	// https://github.com/maxirosson/jdroid-android-lint/releases
 	private static final String JDROID_ANDROID_LINT_RULES_VERSION = "1.4.0"
