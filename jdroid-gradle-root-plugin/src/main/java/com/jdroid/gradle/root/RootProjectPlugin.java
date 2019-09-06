@@ -35,7 +35,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			releasesHubGradlePluginExtension.setGitHubUserEmail(getExtension().getGitHubUserEmail());
 			releasesHubGradlePluginExtension.setGitHubUserName(getExtension().getGitHubUserName());
 			releasesHubGradlePluginExtension.setGitHubWriteToken(getExtension().getGitHubWriteToken());
-			releasesHubGradlePluginExtension.setPullRequestEnabled(true);
 		}
 	}
 
