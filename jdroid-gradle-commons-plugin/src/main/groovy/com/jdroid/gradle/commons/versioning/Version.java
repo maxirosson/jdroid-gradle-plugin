@@ -81,7 +81,7 @@ public class Version {
 					versionClassifier += "-";
 				}
 				
-				versionClassifier += DateUtils.format(DateUtils.now(), "YYYYMMddHHmmss");
+				versionClassifier += DateUtils.INSTANCE.format(DateUtils.INSTANCE.now(), "YYYYMMddHHmmss");
 			}
 			
 			if (isSnapshot) {
