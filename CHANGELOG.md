@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.2.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.2.0) (2019-09-07)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.1.0...v2.2.0)
+
+**Implemented enhancements:**
+
+- Added support to publish outside jdroid group id [\#96](https://github.com/maxirosson/jdroid-gradle-plugin/issues/96)
+- Upgraded some plugin dependencies [\#95](https://github.com/maxirosson/jdroid-gradle-plugin/issues/95)
+
 ## [v2.1.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.1.0) (2019-09-01)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.0.0...v2.1.0)
 
