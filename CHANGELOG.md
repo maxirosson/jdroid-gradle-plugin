@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.3.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.3.0) (2019-09-15)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.2.0...v2.3.0)
+
+**Implemented enhancements:**
+
+- Upgrade to Releases Hub Plugin v0.2.0 [\#102](https://github.com/maxirosson/jdroid-gradle-plugin/issues/102)
+
 ## [v2.2.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.2.0) (2019-09-07)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.1.0...v2.2.0)
 
