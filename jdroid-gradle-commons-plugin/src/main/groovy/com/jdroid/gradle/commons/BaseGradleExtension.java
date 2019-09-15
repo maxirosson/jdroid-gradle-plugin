@@ -17,6 +17,7 @@ public class BaseGradleExtension {
 	private LogLevel logLevel = LogLevel.INFO;
 
 	public PropertyResolver propertyResolver;
+	private String releasesHubUserToken;
 	private String gitHubWriteToken;
 	private String gitHubReadToken;
 	private String gitHubRepositoryOwner;
@@ -33,6 +34,7 @@ public class BaseGradleExtension {
 		this.project = project;
 		this.propertyResolver = new PropertyResolver(project);
 
+		releasesHubUserToken = propertyResolver.getStringProp("RELEASES_HUB_USER_TOKEN");
 		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
 		gitHubReadToken = propertyResolver.getStringProp("GITHUB_READ_TOKEN");
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
@@ -162,6 +164,14 @@ public class BaseGradleExtension {
 
 	public void setPublishingReleasesRepoUrl(String publishingReleasesRepoUrl) {
 		this.publishingReleasesRepoUrl = publishingReleasesRepoUrl;
+	}
+
+	public String getReleasesHubUserToken() {
+		return releasesHubUserToken;
+	}
+
+	public void setReleasesHubUserToken(String releasesHubUserToken) {
+		this.releasesHubUserToken = releasesHubUserToken;
 	}
 }
 
