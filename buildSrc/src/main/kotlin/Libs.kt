@@ -26,7 +26,7 @@ object Libs {
 
     // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
     // https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
-    const val fabric_plugin = "io.fabric.tools:gradle:1.31.0"
+    const val fabric_plugin = "io.fabric.tools:gradle:1.31.1"
 
     // https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
     const val unused_resources_remover_plugin = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"

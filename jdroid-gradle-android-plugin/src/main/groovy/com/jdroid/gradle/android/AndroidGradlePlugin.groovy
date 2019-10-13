@@ -128,6 +128,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'Recycle',
 				'RedundantNamespace',
 				'RelativeOverlap',
+				'RtlEnabled',
 				'ScrollViewSize',
 				'SetTextI18n',
 				'ShiftFlags',
