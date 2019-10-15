@@ -10,7 +10,7 @@ object Libs {
     const val releases_hub_gradle_plugin = "com.releaseshub:releases-hub-gradle-plugin:1.1.0"
 
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-    const val gradle_plugin_publish_plugin = "com.gradle.publish:plugin-publish-plugin:0.9.8"
+    const val gradle_plugin_publish_plugin = "com.gradle.publish:plugin-publish-plugin:0.10.1"
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
