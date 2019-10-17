@@ -30,6 +30,11 @@ public class BaseGradleExtension {
 	private String publishingRepoUsername;
 	private String publishingRepoPassword;
 
+	public BaseGradleExtension() {
+		// TODO Remove this constructor. Only for testing
+		project = null;
+	}
+
 	public BaseGradleExtension(Project project) {
 		this.project = project;
 		this.propertyResolver = new PropertyResolver(project);

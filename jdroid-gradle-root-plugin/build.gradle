@@ -34,7 +34,7 @@ gradlePlugin {
 //
 //	plugins {
 //		androidRootPlugin {
-//			id = "com.jdroid.root"
+//			id = "com.jdroidtools.root"
 //			displayName = "Jdroid Root Gradle Plugin"
 //			description = "Gradle Plugin for root projects"
 //			tags = ["jdroid"]

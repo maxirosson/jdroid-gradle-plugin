@@ -1,15 +1,12 @@
 package com.jdroid.gradle.commons.versioning;
 
+import com.jdroid.gradle.commons.BaseGradleExtension;
 import com.jdroid.gradle.commons.PropertyResolver;
-import com.jdroid.gradle.commons.utils.ProjectUtils;
 import com.jdroid.gradle.commons.utils.TypeUtils;
 import com.jdroid.java.date.DateUtils;
 
-import org.gradle.api.Project;
-
 public class Version {
 	
-	private Project project;
 	private Integer versionMajor;
 	private Integer versionMinor;
 	private Integer versionPatch;
@@ -21,12 +18,8 @@ public class Version {
 	private Boolean isLocal;
 	
 	private Integer maximumVersion;
-	
-	public Version(Project project, final String version) {
-		
-		this.project = project;
-		PropertyResolver propertyResolver = new PropertyResolver(project);
-		
+
+	public Version(PropertyResolver propertyResolver, BaseGradleExtension baseGradleExtension, String version) {
 		maximumVersion = propertyResolver.getIntegerProp("MAXIMUM_VERSION", getDefaultMaximumVersion());
 		
 		String[] versionSplit = version.split("\\.");
@@ -36,17 +29,17 @@ public class Version {
 		
 		versionMajor = TypeUtils.getInteger(versionSplit[0]);
 		if (versionMajor > maximumVersion || versionMajor < 0) {
-			throw new RuntimeException("The version major [" + String.valueOf(versionMajor) + "] should be a number between 0 and " + maximumVersion);
+			throw new RuntimeException("The version major [" + versionMajor + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		versionMinor = TypeUtils.getInteger(versionSplit[1]);
 		if (versionMinor > maximumVersion || versionMinor < 0) {
-			throw new RuntimeException("The version minor [" + String.valueOf(versionMinor) + "] should be a number between 0 and " + maximumVersion);
+			throw new RuntimeException("The version minor [" + versionMinor + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		versionPatch = TypeUtils.getInteger(versionSplit[2]);
 		if (versionPatch > maximumVersion || versionPatch < 0) {
-			throw new RuntimeException("The version patch [" + String.valueOf(versionPatch) + "] should be a number between 0 and " + maximumVersion);
+			throw new RuntimeException("The version patch [" + versionPatch + "] should be a number between 0 and " + maximumVersion);
 		}
 		
 		isSnapshot = propertyResolver.getBooleanProp("SNAPSHOT", true);
@@ -57,8 +50,8 @@ public class Version {
 		versionClassifier = propertyResolver.getStringProp("VERSION_CLASSIFIER");
 		if (versionClassifier == null) {
 			
-			String gitBranch = ProjectUtils.getJdroidExtension(project).getGitBranch();
-			Boolean isFeatureBranch = gitBranch != null && gitBranch.startsWith(featureBranchPrefix);
+			String gitBranch = baseGradleExtension.getGitBranch();
+			boolean isFeatureBranch = gitBranch != null && gitBranch.startsWith(featureBranchPrefix);
 			if (isFeatureBranch) {
 				featureName = gitBranch.replace(featureBranchPrefix, "");
 				versionClassifier = featureName;
@@ -104,7 +97,7 @@ public class Version {
 			versionMinor = 0;
 			versionPatch = 0;
 		} else {
-			throw new RuntimeException("The version major [" + String.valueOf(versionMajor) + "] can't be incremented. Maximum value achieved.");
+			throw new RuntimeException("The version major [" + versionMajor + "] can't be incremented. Maximum value achieved.");
 		}
 	}
 	
@@ -130,7 +123,7 @@ public class Version {
 	}
 	
 	public String getBaseVersion() {
-		return String.valueOf(versionMajor) + "." + String.valueOf(versionMinor) + "." + String.valueOf(versionPatch);
+		return versionMajor + "." + versionMinor + "." + versionPatch;
 	}
 	
 	public String toString() {
@@ -140,14 +133,6 @@ public class Version {
 		}
 		
 		return versionName;
-	}
-	
-	public Project getProject() {
-		return project;
-	}
-	
-	public void setProject(Project project) {
-		this.project = project;
 	}
 	
 	public Integer getVersionMajor() {

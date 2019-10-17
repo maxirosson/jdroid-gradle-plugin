@@ -3,6 +3,7 @@ package com.jdroid.gradle.commons.versioning;
 import com.jdroid.gradle.commons.CommandExecutor;
 import com.jdroid.gradle.commons.tasks.AbstractTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
+import com.jdroid.gradle.commons.utils.ProjectUtils;
 import com.jdroid.java.utils.FileUtils;
 
 import java.io.File;
@@ -28,7 +29,7 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 				Matcher versionMatcher = versionPattern.matcher(line);
 				if (versionMatcher.find()) {
 					String versionText = versionMatcher.group(1);
-					Version version = new Version(getProject(), versionText);
+					Version version = new Version(propertyResolver, ProjectUtils.getJdroidExtension(getProject()), versionText);
 					incrementVersion(version);
 					String newLineContent = versionMatcher.replaceFirst("version = '" + version.getBaseVersion() + "'");
 					lines.add(newLineContent);

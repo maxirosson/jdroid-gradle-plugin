@@ -166,7 +166,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	}
 
 	protected Version createVersion(String version) {
-		return new Version(project, version);
+		return new Version(propertyResolver, jdroid, version);
 	}
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {

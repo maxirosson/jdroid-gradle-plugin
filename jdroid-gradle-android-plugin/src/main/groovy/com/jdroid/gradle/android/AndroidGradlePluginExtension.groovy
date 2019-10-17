@@ -1,21 +1,26 @@
-package com.jdroid.gradle.android
+package com.jdroid.gradle.android;
 
-import com.jdroid.gradle.commons.JavaBaseGradleExtension
-import org.gradle.api.Project
+import com.jdroid.gradle.commons.JavaBaseGradleExtension;
+import org.gradle.api.Project;
 
 public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 
 	private String[] resourcesDirsPaths = ['src/main/res/'];
 	private String[] notDefaultLanguages = [];
-	private String missingTranslationExpression = "#TODO#"
-	private Integer minimumSdkVersion
-	private boolean isReleaseBuildTypeEnabled
+	private String missingTranslationExpression = "#TODO#";
+	private Integer minimumSdkVersion;
+	private boolean isReleaseBuildTypeEnabled;
+
+	public AndroidGradlePluginExtension() {
+		// TODO Remove this constructor. Only for testing
+		super();
+	}
 
 	public AndroidGradlePluginExtension(Project project) {
-		super(project)
+		super(project);
 
-		minimumSdkVersion = propertyResolver.getIntegerProp('MIN_SDK_VERSION', 21)
-		isReleaseBuildTypeEnabled = propertyResolver.getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false)
+		minimumSdkVersion = propertyResolver.getIntegerProp('MIN_SDK_VERSION', 21);
+		isReleaseBuildTypeEnabled = propertyResolver.getBooleanProp('RELEASE_BUILD_TYPE_ENABLED', false);
 	}
 
 	public boolean isReleaseBuildTypeEnabled() {
@@ -74,6 +79,10 @@ public class AndroidGradlePluginExtension extends JavaBaseGradleExtension {
 
 	public void setMissingTranslationExpression(String missingTranslationExpression) {
 		this.missingTranslationExpression = missingTranslationExpression;
+	}
+
+	public void setMinimumSdkVersion(Integer minimumSdkVersion) {
+		this.minimumSdkVersion = minimumSdkVersion
 	}
 
 	public Integer getMinimumSdkVersion() {

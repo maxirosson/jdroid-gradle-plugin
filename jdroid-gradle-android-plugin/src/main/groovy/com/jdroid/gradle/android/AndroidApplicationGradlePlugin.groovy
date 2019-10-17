@@ -119,7 +119,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 	@Override
 	protected Version createVersion(String version) {
-		return new AndroidVersion(project, version);
+		return new AndroidVersion(propertyResolver, jdroid, version);
 	}
 
 	protected void applyAndroidPlugin() {
