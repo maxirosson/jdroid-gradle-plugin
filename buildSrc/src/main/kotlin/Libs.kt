@@ -14,7 +14,7 @@ object Libs {
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
-    const val android_gradle_plugin = "com.android.tools.build:gradle:3.5.0"
+    const val android_gradle_plugin = "com.android.tools.build:gradle:3.5.1"
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
