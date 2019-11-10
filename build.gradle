@@ -2,8 +2,6 @@ version = '2.4.0'
 
 ext.GITHUB_REPOSITORY_NAME = "jdroid-gradle-plugin"
 
-ext.KOTLIN_ENABLED = false
-
 apply plugin: "com.jdroidtools.component.builder"
 apply plugin: "com.jdroidtools.root"
 

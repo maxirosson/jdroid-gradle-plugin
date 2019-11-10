@@ -1,6 +1,5 @@
 package com.jdroid.gradle.commons.versioning;
 
-import com.jdroid.gradle.commons.CommandExecutor;
 import com.jdroid.gradle.commons.tasks.AbstractTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.ProjectUtils;
@@ -16,8 +15,6 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 	
 	@Override
 	protected void onExecute() {
-
-		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
 
 		File buildGradleFile = getProject().file(propertyResolver.getStringProp("VERSION_LOCATION_FILE", "./build.gradle"));
 		final Pattern versionPattern = Pattern.compile("^\\s?version\\s?=\\s?[\"\'](\\d\\d?\\.\\d\\d?\\.\\d\\d?)[\"\']");

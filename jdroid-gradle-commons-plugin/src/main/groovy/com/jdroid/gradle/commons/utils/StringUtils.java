@@ -7,14 +7,14 @@ import java.util.List;
  */
 public abstract class StringUtils {
 	
-	public final static String EMPTY = "";
 	public final static String COMMA = ",";
-	public final static String SPACE = " ";
 
+	@Deprecated
 	public static Boolean isEmpty(String text) {
 		return text != null ? text.length() == 0 : true;
 	}
-	
+
+	@Deprecated
 	public static Boolean isNotEmpty(String text) {
 		return !isEmpty(text);
 	}
