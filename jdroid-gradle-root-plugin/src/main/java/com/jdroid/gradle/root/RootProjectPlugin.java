@@ -1,6 +1,7 @@
 package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
+import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
 import com.jdroid.gradle.root.task.ProjectConfigValidationTask;
 import com.releaseshub.gradle.plugin.ReleasesHubGradlePluginExtension;
@@ -36,6 +37,7 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			releasesHubGradlePluginExtension.setGitHubUserName(getExtension().getGitHubUserName());
 			releasesHubGradlePluginExtension.setGitHubWriteToken(getExtension().getGitHubWriteToken());
 			releasesHubGradlePluginExtension.setUserToken(getExtension().getReleasesHubUserToken());
+			releasesHubGradlePluginExtension.setExcludes(ListUtils.newArrayList("gradle"));
 		}
 	}
 
