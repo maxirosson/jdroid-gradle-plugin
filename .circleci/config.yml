@@ -33,6 +33,13 @@ references:
       JAVA_MAX_HEAP_SIZE: 4096m
 
 jobs:
+
+  ktlint:
+    <<: *jdk_config
+    steps:
+      - checkout
+      - run: ./gradlew ktlint --stacktrace
+
   build:
     <<: *jdk_config
     steps:
@@ -123,7 +130,10 @@ workflows:
   version: 2
   commit:
     jobs:
-      - build
+      - ktlint
+      - build:
+          requires:
+            - ktlint
       - verify:
           requires:
             - build
