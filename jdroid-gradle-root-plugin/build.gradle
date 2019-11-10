@@ -7,15 +7,15 @@ apply plugin: "com.jdroidtools.gradle.plugin"
 
 buildscript {
 	dependencies {
-		//classpath(BuildLibs.gradle_plugin_publish_plugin)
-		classpath(BuildLibs.jdroid_gradle_project_plugin)
+		//classpath(BuildLibs.GRADLE_PLUGIN_PUBLISH_PLUGIN)
+		classpath(BuildLibs.JDROID_GRADLE_PROJECT_PLUGIN)
 	}
 }
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
-	implementation(Libs.releases_hub_gradle_plugin)
-	testImplementation(Libs.junit)
+	implementation(Libs.RELEASES_HUB_GRADLE_PLUGIN)
+	testImplementation(Libs.JUNIT)
 }
 
 gradlePlugin {
