@@ -22,7 +22,7 @@ object Libs {
 
     // https://developers.google.com/android/guides/google-services-plugin
     // https://jcenter.bintray.com/com/google/gms/google-services/
-    const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.2"
+    const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.3"
 
     // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
     // https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
