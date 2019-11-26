@@ -163,6 +163,12 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				artifactId = project.getName();
 			}
 		}
+
+		if (propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_ENABLED", false)) {
+			applyPlugin("com.gradle.build-scan");
+			GroovyUtils.configureBuildScan(project, propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_PUBLISH_ALWAYS", false));
+		}
+
 	}
 
 	protected Version createVersion(String version) {

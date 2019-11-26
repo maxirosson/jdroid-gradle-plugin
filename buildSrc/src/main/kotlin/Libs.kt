@@ -12,6 +12,8 @@ object Libs {
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
     const val GRADLE_PLUGIN_PUBLISH_PLUGIN = "com.gradle.publish:plugin-publish-plugin:0.10.1"
 
+    const val GRADLE_BUILD_SCAN_PLUGIN = "com.gradle.build-scan:com.gradle.build-scan.gradle.plugin:3.1"
+
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
     const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.5.2"
