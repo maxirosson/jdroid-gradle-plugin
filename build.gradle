@@ -111,5 +111,6 @@ subprojects {
 			}
 		}
 		mavenCentral()
+		gradlePluginPortal()
 	}
 }
