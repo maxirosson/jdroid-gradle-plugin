@@ -13,7 +13,9 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
-	private static final String KOTLIN_VERSION = "1.3.40";
+	// TODO These versions should be defined on Libs/BuildLibs.kt
+	private static final String KOTLIN_VERSION = "1.3.61";
+	private static final String KTLINT_VERSION = "1.35.0";
 
 	protected Boolean isJavaDocPublicationEnabled;
 	public Boolean isKotlinEnabled;
@@ -79,7 +81,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	protected void configureKtlint() {
 		addConfiguration("ktlint");
-		addDependency("ktlint", "com.pinterest", "ktlint", "0.33.0");
+		addDependency("ktlint", "com.pinterest", "ktlint", KTLINT_VERSION);
 		Task ktlintTask = project.getTasks().create("ktlint", JavaExec.class, new Action<JavaExec>() {
 			@Override
 			public void execute(JavaExec javaExec) {

@@ -14,6 +14,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 	// http://developer.android.com/tools/revisions/build-tools.html
 	private static final String ANDROID_BUILD_TOOLS_VERSION = '29.0.2'
 
+	// TODO These versions should be defined on Libs/BuildLibs.kt
 	// https://github.com/maxirosson/jdroid-android-lint/releases
 	private static final String JDROID_ANDROID_LINT_RULES_VERSION = "1.4.0"
 
