@@ -8,6 +8,7 @@ import org.gradle.api.Project;
 import org.gradle.api.logging.LogLevel;
 import org.gradle.process.ExecResult;
 import org.gradle.process.ExecSpec;
+import org.gradle.process.internal.ExecException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,28 +28,36 @@ public class CommandExecutor {
 		
 		ByteArrayOutputStream standardOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
-		
-		ExecResult execResult = project.exec(new Action<ExecSpec>() {
-			@Override
-			public void execute(ExecSpec execSpec) {
-				if (workingDirectory != null) {
-					execSpec.setWorkingDir(workingDirectory);
+
+		try {
+			ExecResult execResult = project.exec(new Action<ExecSpec>() {
+				@Override
+				public void execute(ExecSpec execSpec) {
+					if (workingDirectory != null) {
+						execSpec.setWorkingDir(workingDirectory);
+					}
+					execSpec.setCommandLine((Object[])Commandline.translateCommandline(command));
+					execSpec.setIgnoreExitValue(ignoreExitValue);
+					if (logStandardOutput) {
+						execSpec.setStandardOutput(standardOutputStream);
+					}
+					execSpec.setErrorOutput(errorOutputStream);
 				}
-				execSpec.setCommandLine((Object[])Commandline.translateCommandline(command));
-				execSpec.setIgnoreExitValue(ignoreExitValue);
-				if (logStandardOutput) {
-					execSpec.setStandardOutput(standardOutputStream);
-				}
-				execSpec.setErrorOutput(errorOutputStream);
+			});
+			if (standardOutputStream.size() > 0) {
+				log(standardOutputStream.toString());
 			}
-		});
-		if (standardOutputStream.size() > 0) {
-			log(standardOutputStream.toString());
+			if (errorOutputStream.size() > 0) {
+				project.getLogger().error(errorOutputStream.toString());
+			}
+			return new ExtendedExecResult(execResult, standardOutputStream, errorOutputStream);
+		} catch (ExecException e) {
+			if (errorOutputStream.size() > 0) {
+				project.getLogger().error(errorOutputStream.toString());
+			}
+			throw e;
 		}
-		if (errorOutputStream.size() > 0) {
-			project.getLogger().error(errorOutputStream.toString());
-		}
-		return new ExtendedExecResult(execResult, standardOutputStream, errorOutputStream);
+
 	}
 	
 	public ExtendedExecResult execute(String command, File workingDirectory) {

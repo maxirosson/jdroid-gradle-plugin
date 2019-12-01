@@ -119,6 +119,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				'IconLocation',
 				'IgnoreWithoutReason',
 				'InefficientWeight',
+				'InlinedApi',
 				'IntentReset',
 				'NestedWeights',
 				'ObsoleteLayoutParam',
