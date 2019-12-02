@@ -15,7 +15,7 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	// TODO These versions should be defined on Libs/BuildLibs.kt
 	private static final String KOTLIN_VERSION = "1.3.61";
-	private static final String KTLINT_VERSION = "1.35.0";
+	private static final String KTLINT_VERSION = "0.35.0";
 
 	protected Boolean isJavaDocPublicationEnabled;
 	public Boolean isKotlinEnabled;
