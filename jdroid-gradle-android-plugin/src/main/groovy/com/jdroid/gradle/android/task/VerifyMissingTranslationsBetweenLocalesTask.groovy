@@ -14,82 +14,82 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends AbstractTask {
 	private String[] notDefaultLanguages;
 
 	public VerifyMissingTranslationsBetweenLocalesTask() {
-		description = 'Verify if there are missing translations between locales'
-		group = JavaBasePlugin.VERIFICATION_GROUP
+		setDescription("Verify if there are missing translations between locales");
+		group = JavaBasePlugin.VERIFICATION_GROUP;
 	}
 
 	@Override
 	protected void onExecute() {
 
-		Boolean error = false;
+		boolean error = false;
 
 		for (String resourceDirPath in resourcesDirsPaths) {
 
-			File defaultLanguageValuesDir = project.file(resourceDirPath + "values")
+			File defaultLanguageValuesDir = project.file(resourceDirPath + "values");
 			for (String language in notDefaultLanguages) {
 
 				File notDefaultLanguageValuesDir = project.file(resourceDirPath + "values-" + language)
 				String[] resTypesNames = ['strings.xml', 'plurals.xml', 'array.xml']
 				for (resTypeName in resTypesNames) {
 
-					File defaultLanguageValuesFile = new File(defaultLanguageValuesDir.getAbsolutePath() + File.separator + resTypeName)
-					File notDefaultLanguageValuesFile = new File(notDefaultLanguageValuesDir.getAbsolutePath() + File.separator + resTypeName)
+					File defaultLanguageValuesFile = new File(defaultLanguageValuesDir.getAbsolutePath() + File.separator + resTypeName);
+					File notDefaultLanguageValuesFile = new File(notDefaultLanguageValuesDir.getAbsolutePath() + File.separator + resTypeName);
 
 					if (defaultLanguageValuesFile.exists()) {
 						if (!notDefaultLanguageValuesFile.exists()) {
-							logger.error('Missing resources file ' + notDefaultLanguageValuesFile.getAbsolutePath())
-							error = true
+							getLogger().error("Missing resources file " + notDefaultLanguageValuesFile.getAbsolutePath());
+							error = true;
 						} else {
 							def defaultLanguageKeys = []
 							defaultLanguageValuesFile.eachLine {
-								String key = getKey(it)
+								String key = getKey(it);
 								if (key != null) {
-									defaultLanguageKeys.add(key)
+									defaultLanguageKeys.add(key);
 								}
 							}
 
 							def notDefaultLanguageKeys = []
 							notDefaultLanguageValuesFile.eachLine {
-								String key = getKey(it)
+								String key = getKey(it);
 								if (key != null) {
-									notDefaultLanguageKeys.add(key)
+									notDefaultLanguageKeys.add(key);
 								}
 							}
 
 							def commons = defaultLanguageKeys.intersect(notDefaultLanguageKeys)
 
-							defaultLanguageKeys.removeAll(commons)
+							defaultLanguageKeys.removeAll(commons);
 							if (!defaultLanguageKeys.isEmpty()) {
-								logger.error("The following keys are missing on " + notDefaultLanguageValuesFile.getAbsolutePath())
-								logger.error("* " + defaultLanguageKeys)
-								logger.error("")
-								error = true
+								getLogger().error("The following keys are missing on " + notDefaultLanguageValuesFile.getAbsolutePath())
+								getLogger().error("* " + defaultLanguageKeys);
+								getLogger().error("");
+								error = true;
 							}
 
-							notDefaultLanguageKeys.removeAll(commons)
+							notDefaultLanguageKeys.removeAll(commons);
 							if (!notDefaultLanguageKeys.isEmpty()) {
-								logger.error("The following keys are missing on " + defaultLanguageValuesFile.getAbsolutePath())
-								logger.error("* " + notDefaultLanguageKeys)
-								logger.error("")
-								error = true
+								getLogger().error("The following keys are missing on " + defaultLanguageValuesFile.getAbsolutePath());
+								getLogger().error("* " + notDefaultLanguageKeys);
+								getLogger().error("");
+								error = true;
 							}
 
 							if (!error) {
-								logger.error("The following i19n files match:")
-								logger.error("* " + defaultLanguageValuesFile.getAbsolutePath())
-								logger.error("* " + notDefaultLanguageValuesFile.getAbsolutePath())
-								logger.error("")
+								getLogger().error("The following i19n files match:");
+								getLogger().error("* " + defaultLanguageValuesFile.getAbsolutePath());
+								getLogger().error("* " + notDefaultLanguageValuesFile.getAbsolutePath());
+								getLogger().error("");
 							}
 						}
 					} else {
-						logger.info("Ignoring the following file because it doesn't exist: " + defaultLanguageValuesFile.getAbsolutePath())
+						getLogger().info("Ignoring the following file because it doesn't exist: " + defaultLanguageValuesFile.getAbsolutePath())
 					}
 				}
 			}
 		}
 
 		if (error) {
-			logger.warn("Remember that the i19n files should have the same keys on the same lines. If you don't have the translation for any language, please add the key on all the files, and 'TODO' as value")
+			getLogger().warn("Remember that the i19n files should have the same keys on the same lines. If you don't have the translation for any language, please add the key on all the files, and 'TODO' as value");
 			throw new GradleException("The translations between locales doesn't match")
 		}
 	}
@@ -99,7 +99,7 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends AbstractTask {
 		if (line.trim().matches('[^!]* name="[^"]*">.*')) {
 			Matcher matcher = Pattern.compile('name="([^"]*)">').matcher(line.trim());
 			matcher.find();
-			key = matcher.group(1)
+			key = matcher.group(1);
 		}
 		return key;
 	}
@@ -107,19 +107,19 @@ public class VerifyMissingTranslationsBetweenLocalesTask extends AbstractTask {
 
 	@Input
 	String[] getResourcesDirsPaths() {
-		return resourcesDirsPaths
+		return resourcesDirsPaths;
 	}
 
 	void setResourcesDirsPaths(String[] resourcesDirsPaths) {
-		this.resourcesDirsPaths = resourcesDirsPaths
+		this.resourcesDirsPaths = resourcesDirsPaths;
 	}
 
 	@Input
 	String[] getNotDefaultLanguages() {
-		return notDefaultLanguages
+		return notDefaultLanguages;
 	}
 
 	void setNotDefaultLanguages(String[] notDefaultLanguages) {
-		this.notDefaultLanguages = notDefaultLanguages
+		this.notDefaultLanguages = notDefaultLanguages;
 	}
 }
