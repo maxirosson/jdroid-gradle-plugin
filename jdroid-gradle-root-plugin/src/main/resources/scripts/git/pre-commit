@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CHANGED_KT_FILES=$(git diff --cached --name-only --diff-filter=ACM "./**/*.kt" "./**/*.kts")
+if [ ! -z "$CHANGED_KT_FILES" ]; then
+    # auto-format
+    ./gradlew ktlintFormat -PKTLINT_INCLUDES="$CHANGED_KT_FILES"
+    if [ $? -ne 0 ]; then exit 1; fi
+
+    # save changes back to git commit
+    git add $(echo "$CHANGED_KT_FILES" | paste -s -d " " -)
+fi
