@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHANGED_KT_FILES=$(git diff --cached --name-only --diff-filter=ACM "./**/*.kt" "./**/*.kts")
+CHANGED_KT_FILES=$(git diff --cached --name-only --diff-filter=ACMR "./**/*.kt" "./**/*.kts")
 if [ ! -z "$CHANGED_KT_FILES" ]; then
     # auto-format
     ./gradlew ktlintFormat -PKTLINT_INCLUDES="$CHANGED_KT_FILES"
