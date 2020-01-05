@@ -1,25 +1,18 @@
 package com.jdroid.gradle.commons;
 
-import com.jdroid.gradle.commons.utils.ListUtils;
-
 import org.gradle.api.Action;
 import org.gradle.api.JavaVersion;
 import org.gradle.api.Project;
-import org.gradle.api.Task;
-import org.gradle.api.tasks.JavaExec;
 import org.gradle.api.tasks.javadoc.Javadoc;
 import org.gradle.api.tasks.testing.Test;
 import org.gradle.external.javadoc.CoreJavadocOptions;
 
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
-	// TODO These versions should be defined on Libs/BuildLibs.kt
+	// TODO This version should be defined on Libs/BuildLibs.kt
 	private static final String KOTLIN_VERSION = "1.3.61";
-	private static final String KTLINT_VERSION = "0.35.0";
 
 	protected Boolean isJavaDocPublicationEnabled;
-	public Boolean isKotlinEnabled;
-	public Boolean isKtLintEnabled;
 
 	public void apply(Project project) {
 		super.apply(project);
@@ -47,9 +40,6 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 			});
 		}
 
-		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
-		isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
-
 		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
 		if (isJavaDocPublicationEnabled) {
 			applyDokkaPlugin();
@@ -74,39 +64,6 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 //					jvmTarget = getJavaTargetCompatibility();
 //				}
 //			}
-		if (isKtLintEnabled) {
-			configureKtlint();
-		}
-	}
-
-	protected void configureKtlint() {
-		addConfiguration("ktlint");
-		addDependency("ktlint", "com.pinterest", "ktlint", KTLINT_VERSION);
-		Task ktlintTask = project.getTasks().create("ktlint", JavaExec.class, new Action<JavaExec>() {
-			@Override
-			public void execute(JavaExec javaExec) {
-				javaExec.setDescription("Check Kotlin code style.");
-				javaExec.setMain("com.pinterest.ktlint.Main");
-				javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
-
-				// to generate report in checkstyle format prepend following args:
-				// "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-				javaExec.setArgs(ListUtils.newArrayList("src/**/*.kt"));
-			}
-		});
-		ktlintTask.setGroup("verification");
-		project.getTasks().findByName("check").dependsOn(ktlintTask);
-
-		Task ktlintFormatTask = project.getTasks().create("ktlintFormat", JavaExec.class, new Action<JavaExec>() {
-			@Override
-			public void execute(JavaExec javaExec) {
-				javaExec.setDescription("Fix Kotlin code style deviations.");
-				javaExec.setMain("com.pinterest.ktlint.Main");
-				javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
-				javaExec.setArgs(ListUtils.newArrayList("-F", "src/**/*.kt"));
-			}
-		});
-		ktlintFormatTask.setGroup("formatting");
 	}
 
 	protected String getJavaSourceCompatibility() {

@@ -101,16 +101,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 				}
 			}
 		}
-
-		// Rename App Bundle
-		android.applicationVariants.all { variant ->
-			project.tasks.getByName("bundle${variant.name.capitalize()}").doLast {
-				def oldFileName = "${project.buildDir}/outputs/bundle/${variant.name}/app.aab"
-				def newFileName = "${project.buildDir}/outputs/bundle/${variant.name}/${appName}-${variant.name}.aab"
-				project.file(oldFileName).renameTo(project.file(newFileName))
-			}
-		}
-
 	}
 
 	protected Class<? extends AndroidApplicationGradlePluginExtension> getExtensionClass() {
