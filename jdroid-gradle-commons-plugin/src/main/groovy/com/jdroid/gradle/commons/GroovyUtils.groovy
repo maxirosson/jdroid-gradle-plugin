@@ -4,11 +4,11 @@ import org.gradle.api.Project
 
 public class GroovyUtils {
 
-	public static configureBuildScan(Project project, Boolean publishAlways) {
+	public static configureBuildScan(Project project) {
 		project.buildScan {
 			termsOfServiceUrl = "https://gradle.com/terms-of-service"
 			termsOfServiceAgree = "yes"
-			if (publishAlways) {
+			if (propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_PUBLISH_ALWAYS", false)) {
 				publishAlways()
 			}
 		}

@@ -44,7 +44,7 @@ buildscript {
 		classpath(BuildLibs.JDROID_GRADLE_ROOT_PLUGIN)
 
 		// TODO Remove me when upgraded o jdroid gradle plugin v2.4.0
-		classpath("com.releaseshub:releases-hub-gradle-plugin:1.1.0")
+		classpath("com.releaseshub:releases-hub-gradle-plugin:1.3.1")
 	}
 }
 
