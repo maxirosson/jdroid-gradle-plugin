@@ -166,7 +166,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		}
 
 		if (propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_ENABLED", true)) {
-			GroovyUtils.configureBuildScan(project);
+			GroovyUtils.configureBuildScan(project, propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_PUBLISH_ALWAYS", false));
 		}
 
 		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
