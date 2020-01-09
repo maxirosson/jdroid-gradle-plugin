@@ -114,3 +114,7 @@ subprojects {
 		gradlePluginPortal()
 	}
 }
+
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
+}
