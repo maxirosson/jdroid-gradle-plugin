@@ -140,9 +140,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - build:
-        requires:
-        - ktlint
+      - build
       - ktlint:
           requires:
             - build
