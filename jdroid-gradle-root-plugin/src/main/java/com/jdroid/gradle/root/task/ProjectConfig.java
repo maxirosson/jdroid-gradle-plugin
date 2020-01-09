@@ -12,6 +12,8 @@ public enum ProjectConfig {
 	GIT_HOOKS_PRE_COMMIT("/scripts/git/pre-commit", false),
 	GIT_HOOKS_COMMIT_MSG("/scripts/git/commit-msg", false),
 	INIT_GIT_HOOKS("/scripts/git/init_git_hooks.sh", false),
+	GRADLEW("/gradlew", true),
+	GRADLE_WRAPPER("/gradle/wrapper/gradle-wrapper.jar", true),
 	GRADLE_WRAPPER_PROPERTIES("/gradle/wrapper/gradle-wrapper.properties", true);
 
 	private String source;
