@@ -41,7 +41,7 @@ public abstract class AbstractTask extends DefaultTask {
 		this.logLevel = logLevel;
 	}
 
-	public BaseGradleExtension getExtension() {
+	protected BaseGradleExtension getExtension() {
 		return ProjectUtils.getJdroidExtension(getProject());
 	}
 }

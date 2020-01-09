@@ -130,10 +130,12 @@ workflows:
   version: 2
   commit:
     jobs:
-      - ktlint
       - build:
+        requires:
+        - ktlint
+      - ktlint:
           requires:
-            - ktlint
+            - build
       - verify:
           requires:
             - build
@@ -144,6 +146,7 @@ workflows:
                 - master
           requires:
               - verify
+              - ktlint
   weekly:
     triggers:
       - schedule:

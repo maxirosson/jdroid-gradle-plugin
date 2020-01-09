@@ -6,30 +6,30 @@ import com.jdroid.github.client.GitHubClient;
 
 public abstract class AbstractGitHubTask extends AbstractTask {
 
-	public GitHubClient createGitHubClient() {
+	protected GitHubClient createGitHubClient() {
 		GitHubClient client = new GitHubClient();
 		client.setSerializeNulls(false);
 		client.setOAuth2Token(getGitHubWriteToken());
 		return client;
 	}
 
-	public IRepositoryIdProvider getIRepositoryIdProvider() {
+	protected IRepositoryIdProvider getIRepositoryIdProvider() {
 		return RepositoryId.create(getGitHubRepositoryOwner(), getGitHubRepositoryName());
 	}
 
-	public String getGitHubWriteToken() {
+	protected String getGitHubWriteToken() {
 		return getExtension().getGitHubWriteToken();
 	}
 
-	public String getGitHubReadToken() {
+	protected String getGitHubReadToken() {
 		return getExtension().getGitHubReadToken();
 	}
 
-	public String getGitHubRepositoryOwner() {
+	protected String getGitHubRepositoryOwner() {
 		return getExtension().getGitHubRepositoryOwner();
 	}
 
-	public String getGitHubRepositoryName() {
+	protected String getGitHubRepositoryName() {
 		return getExtension().getGitHubRepositoryName();
 	}
 
