@@ -1,6 +1,7 @@
 package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
+import com.jdroid.gradle.root.task.ProjectDependencyGraphTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
 import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
@@ -57,6 +58,12 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			configureKtlint();
 		}
 
+		ProjectDependencyGraphTask projectDependenciesGraph = project.getTasks().create("projectDependencyGraph", ProjectDependencyGraphTask.class);
+		project.afterEvaluate(new Action<Project>() {
+			public void execute(Project p) {
+				projectDependenciesGraph.setLogLevel(getExtension().getLogLevel());
+			}
+		});
 	}
 
 	private void configureKtlint() {
