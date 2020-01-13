@@ -41,7 +41,7 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 		if (isSigningPublicationEnabled) {
 			applyPlugin('signing')
 			project.signing {
-				required { !project.version.isSnapshot }
+				required { true }
 				sign project.publishing.publications.javaWar
 			}
 		}

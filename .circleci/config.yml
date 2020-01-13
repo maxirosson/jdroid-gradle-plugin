@@ -114,10 +114,10 @@ jobs:
     steps:
       - checkout
       - *restore_cache
-
-      - run:
-          name: Validate plugins
-          command: ./gradlew validatePlugins --stacktrace
+      # Enable this on Gradle 6
+#      - run:
+#          name: Validate plugins
+#          command: ./gradlew validatePlugins --stacktrace
 
   publish:
     <<: *jdk_config

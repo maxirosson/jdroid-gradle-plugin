@@ -109,7 +109,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				applyPlugin("maven-publish");
 			}
 			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
-			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false);
+			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !GroovyUtils.isSnapshot(project);
 
 
 			Boolean localUpload = propertyResolver.getBooleanProp("LOCAL_UPLOAD", true);

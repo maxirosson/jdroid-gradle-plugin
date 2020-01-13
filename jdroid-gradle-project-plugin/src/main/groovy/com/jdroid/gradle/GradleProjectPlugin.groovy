@@ -1,9 +1,7 @@
 package com.jdroid.gradle
 
-
 import com.jdroid.gradle.java.JavaGradlePlugin
 import org.gradle.api.Project
-import org.gradle.api.publish.Publication
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 
@@ -74,7 +72,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 			if (isSigningPublicationEnabled) {
 				applyPlugin('signing')
 				project.signing {
-					required { !project.version.isSnapshot }
+					required { true }
 					sign mavenPublication
 				}
 			}
