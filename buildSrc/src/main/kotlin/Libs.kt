@@ -14,7 +14,7 @@ object Libs {
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
-    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.5.2"
+    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.5.3"
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
@@ -40,5 +40,5 @@ object Libs {
     // https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
     const val GRETTY = "org.gretty:gretty:3.0.1"
 
-    const val JUNIT = "junit:junit:4.12"
+    const val JUNIT = "junit:junit:4.13"
 }

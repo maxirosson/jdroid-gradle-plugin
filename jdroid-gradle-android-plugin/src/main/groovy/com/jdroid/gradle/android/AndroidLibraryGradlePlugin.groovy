@@ -1,6 +1,5 @@
 package com.jdroid.gradle.android
 
-
 import com.jdroid.gradle.android.task.PrefixVerificationTask
 import com.jdroid.gradle.commons.utils.ListUtils
 import org.gradle.api.Action
@@ -9,7 +8,6 @@ import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
-import org.gradle.api.tasks.javadoc.Javadoc
 
 public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 
@@ -102,7 +100,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		if (isSigningPublicationEnabled) {
 			applyPlugin('signing')
 			project.signing {
-				required { !project.version.isSnapshot }
+				required { true }
 				sign project.publishing.publications
 			}
 		}

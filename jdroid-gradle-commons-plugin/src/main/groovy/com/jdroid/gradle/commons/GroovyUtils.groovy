@@ -14,4 +14,8 @@ public class GroovyUtils {
 		}
 	}
 
+	public static boolean isSnapshot(Project project) {
+		return project.getVersion().isSnapshot
+	}
+
 }

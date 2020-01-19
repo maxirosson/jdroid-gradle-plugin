@@ -18,10 +18,12 @@ public class ProjectConfigSyncTask extends AbstractTask {
 		File rootDir = getProject().getRootDir();
 
 		for (ProjectConfig projectConfig : ProjectConfig.values()) {
-			log("Synchronizing " + projectConfig.getTarget());
-			File target = new File(rootDir, projectConfig.getTarget());
-			if (!target.exists() || projectConfig.isStrict()) {
-				FileUtils.copyStream(getClass().getResourceAsStream(projectConfig.getSource()), target);
+			if (projectConfig.isEnabled(getProject())) {
+				log("Synchronizing " + projectConfig.getTarget());
+				File target = new File(rootDir, projectConfig.getTarget());
+				if (!target.exists()) {
+					FileUtils.copyStream(getClass().getResourceAsStream(projectConfig.getSource()), target);
+				}
 			}
 		}
 
