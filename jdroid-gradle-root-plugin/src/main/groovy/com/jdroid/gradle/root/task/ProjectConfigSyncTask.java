@@ -21,9 +21,7 @@ public class ProjectConfigSyncTask extends AbstractTask {
 			if (projectConfig.isEnabled(getProject())) {
 				log("Synchronizing " + projectConfig.getTarget());
 				File target = new File(rootDir, projectConfig.getTarget());
-				if (!target.exists()) {
-					FileUtils.copyStream(getClass().getResourceAsStream(projectConfig.getSource()), target);
-				}
+				FileUtils.copyStream(getClass().getResourceAsStream(projectConfig.getSource()), target);
 			}
 		}
 
