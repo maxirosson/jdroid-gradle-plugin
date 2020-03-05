@@ -1,30 +1,31 @@
-version: 2
+version: 2.1
 
 references:
 
   ## Workspace
 
-  workspace: &workspace
-    ~/workspace
+  working_dir: &working_dir
+                 ~/project
 
-  ## Cache
+commands:
+  restore_gradle_cache:
+    steps:
+      - restore_cache:
+          keys:
+            - v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}-{{ checksum "buildSrc/src/main/kotlin/Libs.kt" }}-{{ checksum "buildSrc/src/main/kotlin/BuildLibs.kt" }}
+            - v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}
+            - v2-gradle_cache-
 
-  cache_key: &cache_key
-    key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}
-  restore_cache: &restore_cache
-    restore_cache:
-      <<: *cache_key
-  save_cache: &save_cache
-    save_cache:
-      <<: *cache_key
-      paths:
-        - ~/.gradle
-        - ~/.m2
+  save_gradle_cache:
+    steps:
+      - save_cache:
+          key: v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}-{{ checksum "buildSrc/src/main/kotlin/Libs.kt" }}-{{ checksum "buildSrc/src/main/kotlin/BuildLibs.kt" }}
+          paths:
+            - ~/.gradle
 
-  ## Docker image configurations
-
-  jdk_config: &jdk_config
-    working_directory: *workspace
+executors:
+  jdk_executor:
+    working_directory: *working_dir
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
@@ -35,21 +36,23 @@ references:
 jobs:
 
   ktlint:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - run: ./gradlew ktlint --stacktrace
+      - run:
+          name: Ktlint
+          command: ./gradlew ktlint --stacktrace
 
   build:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
 
-      - *restore_cache
+      - restore_cache
       - run:
           name: Download dependencies
           command: ./gradlew dependencies --refresh-dependencies --stacktrace
-      - *save_cache
+      - save_cache
 
       - run:
           name: Assembling
@@ -67,10 +70,10 @@ jobs:
           destination: jars
 
   test:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
+      - restore_cache
 
       - run:
           name: Test
@@ -110,34 +113,34 @@ jobs:
           destination: jdroid-gradle-root-plugin/tests
           
   validatePlugins:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
+      - restore_cache
       # Enable this on Gradle 6
 #      - run:
 #          name: Validate plugins
 #          command: ./gradlew validatePlugins --stacktrace
 
   publish:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
+      - restore_cache
 
       - run:
           name: Uploading to Nexus Sonatype
           command: ./gradlew publish -PLOCAL_UPLOAD=false --stacktrace
 
   upgradeDependencies:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
       - run:
           name: Upgrade Dependencies
           command: ./gradlew upgradeDependencies -PpullRequestEnabled=true --refresh-dependencies --stacktrace
+
 workflows:
-  version: 2
   commit:
     jobs:
       - build
