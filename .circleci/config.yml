@@ -1,30 +1,15 @@
-version: 2
+version: 2.1
 
 references:
 
   ## Workspace
 
-  workspace: &workspace
-    ~/workspace
+  working_dir: &working_dir
+    ~/project
 
-  ## Cache
-
-  cache_key: &cache_key
-    key: cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}
-  restore_cache: &restore_cache
-    restore_cache:
-      <<: *cache_key
-  save_cache: &save_cache
-    save_cache:
-      <<: *cache_key
-      paths:
-        - ~/.gradle
-        - ~/.m2
-
-  ## Docker image configurations
-
-  jdk_config: &jdk_config
-    working_directory: *workspace
+executors:
+  jdk_executor:
+    working_directory: *working_dir
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
@@ -32,50 +17,62 @@ references:
       GRADLE_OPTS: -Dorg.gradle.caching=false -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xmx4g -Xms1g"
       JAVA_MAX_HEAP_SIZE: 4096m
 
+commands:
+  restore_gradle_cache:
+    steps:
+      - restore_cache:
+          keys:
+            - v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}-{{ checksum "buildSrc/src/main/kotlin/Libs.kt" }}-{{ checksum "buildSrc/src/main/kotlin/BuildLibs.kt" }}
+            - v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}
+            - v2-gradle_cache-
+
+  save_gradle_cache:
+    steps:
+      - save_cache:
+          key: v2-gradle_cache-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ .Branch }}-{{ checksum "buildSrc/src/main/kotlin/Libs.kt" }}-{{ checksum "buildSrc/src/main/kotlin/BuildLibs.kt" }}
+          paths:
+            - ~/.gradle
+
 jobs:
 
   ktlint:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - run: ./gradlew ktlint --stacktrace
+      - run:
+          name: Ktlint
+          command: ./gradlew ktlint --stacktrace
 
   build:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-
-      - *restore_cache
+      - restore_gradle_cache
       - run:
           name: Download dependencies
           command: ./gradlew dependencies --refresh-dependencies --stacktrace
-      - *save_cache
-
+      - save_gradle_cache
       - run:
           name: Assembling
           command: ./gradlew assemble --stacktrace
-
       - run:
           name: Saving jars
           command: |
             mkdir -p ~/jars/
             find . -type f -regex ".*/build/libs/.*jar" -exec cp {} ~/jars/ \;
           when: always
-
       - store_artifacts:
           path: ~/jars
           destination: jars
 
   test:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
-
+      - restore_gradle_cache
       - run:
           name: Test
           command: ./gradlew test --stacktrace
-      
       - run:
           name: Saving test results 
           command: |
@@ -84,60 +81,53 @@ jobs:
           when: always
       - store_test_results:
           path: ~/junit
-
       - store_artifacts:
           path: ./jdroid-gradle-android-plugin/build/reports/tests/test
           destination: jdroid-gradle-android-plugin/tests
-
       - store_artifacts:
           path: ./jdroid-gradle-commons-plugin/build/reports/tests/test
           destination: jdroid-gradle-commons-plugin/tests
-
       - store_artifacts:
           path: ./jdroid-gradle-java-plugin/build/reports/tests/test
           destination: jdroid-gradle-java-plugin/tests
-
       - store_artifacts:
           path: ./jdroid-gradle-java-webapp-plugin/build/reports/tests/test
           destination: jdroid-gradle-java-webapp-plugin/tests
-
       - store_artifacts:
           path: ./jdroid-gradle-project-plugin/build/reports/tests/test
           destination: jdroid-gradle-project-plugin/tests
-
       - store_artifacts:
           path: ./jdroid-gradle-root-plugin/build/reports/tests/test
           destination: jdroid-gradle-root-plugin/tests
           
   validatePlugins:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
+      - restore_gradle_cache
       # Enable this on Gradle 6
 #      - run:
 #          name: Validate plugins
 #          command: ./gradlew validatePlugins --stacktrace
 
   publish:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
-      - *restore_cache
-
+      - restore_gradle_cache
       - run:
           name: Uploading to Nexus Sonatype
           command: ./gradlew publish -PLOCAL_UPLOAD=false --stacktrace
 
   upgradeDependencies:
-    <<: *jdk_config
+    executor: jdk_executor
     steps:
       - checkout
       - run:
           name: Upgrade Dependencies
           command: ./gradlew upgradeDependencies -PpullRequestEnabled=true --refresh-dependencies --stacktrace
+
 workflows:
-  version: 2
   commit:
     jobs:
       - build
