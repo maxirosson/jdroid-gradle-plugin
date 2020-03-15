@@ -1,11 +1,13 @@
-package com.jdroid.gradle.java
+package com.jdroid.gradle.java;
 
-import org.gradle.api.Project
+import com.jdroid.gradle.commons.JavaBaseGradleExtension;
 
-public class JavaWebAppGradleExtension extends JavaGradleExtension {
+import org.gradle.api.Project;
 
-	public JavaWebAppGradleExtension(Project project) {
-		super(project)
+public class JavaGradleExtension extends JavaBaseGradleExtension {
+	
+	public JavaGradleExtension(Project project) {
+		super(project);
 	}
 
 	public void setBuildConfigString(def out, String key) {
@@ -61,5 +63,4 @@ public class JavaWebAppGradleExtension extends JavaGradleExtension {
 		}
 		out.writeLine(constant)
 	}
-
 }
