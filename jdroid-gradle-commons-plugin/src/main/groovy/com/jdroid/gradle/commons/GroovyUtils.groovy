@@ -1,6 +1,7 @@
 package com.jdroid.gradle.commons
 
 import org.gradle.api.Project
+import org.gradle.api.tasks.wrapper.Wrapper
 
 public class GroovyUtils {
 
@@ -11,6 +12,12 @@ public class GroovyUtils {
 			if (publishAlways) {
 				publishAlways()
 			}
+		}
+	}
+
+	public static configureGradleWrapper(Project project) {
+		project.wrapper {
+			distributionType = Wrapper.DistributionType.ALL
 		}
 	}
 

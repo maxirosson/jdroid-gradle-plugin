@@ -1,6 +1,7 @@
 package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
+import com.jdroid.gradle.commons.GroovyUtils;
 import com.jdroid.gradle.root.task.ProjectDependencyGraphTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
@@ -64,6 +65,8 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 				projectDependenciesGraph.setLogLevel(getExtension().getLogLevel());
 			}
 		});
+
+		GroovyUtils.configureGradleWrapper(project);
 	}
 
 	private void configureKtlint() {
