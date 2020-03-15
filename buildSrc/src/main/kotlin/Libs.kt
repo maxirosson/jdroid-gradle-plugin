@@ -32,7 +32,7 @@ object Libs {
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
 
     // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70"
 
     // https://github.com/Kotlin/dokka/releases
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
