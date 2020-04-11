@@ -18,10 +18,6 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 			options.encoding = "UTF-8"
 		}
 
-		project.compileKotlin.kotlinOptions {
-			jvmTarget = getJavaTargetCompatibility()
-		}
-
 		if (isJavaDocPublicationEnabled) {
 // KTS
 //			import org.gradle.jvm.tasks.Jar
@@ -45,6 +41,14 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 			project.task("sourcesJar", type: Jar) {
 				archiveClassifier = "sources"
 				from project.sourceSets.main.allSource
+			}
+		}
+
+		if (isKotlinEnabled) {
+			applyPlugin("kotlin");
+			configureKotlin();
+			project.compileKotlin.kotlinOptions {
+				jvmTarget = getJavaTargetCompatibility()
 			}
 		}
 	}
