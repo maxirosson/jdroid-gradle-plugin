@@ -75,6 +75,10 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 			targetCompatibility getJavaTargetCompatibility()
 		}
 
+		android.kotlinOptions {
+			jvmTarget = getJavaTargetCompatibility()
+		}
+
 		// https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html
 		android.getDexOptions().setMaxProcessCount(propertyResolver.getIntegerProp("MAX_PROCESS_COUNT", 1));
 		android.getDexOptions().setPreDexLibraries(propertyResolver.getBooleanProp("PRE_DEX_LIBRARIES", true));

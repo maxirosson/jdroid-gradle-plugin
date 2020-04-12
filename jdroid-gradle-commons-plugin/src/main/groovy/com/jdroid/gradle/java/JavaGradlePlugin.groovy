@@ -43,6 +43,14 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 				from project.sourceSets.main.allSource
 			}
 		}
+
+		if (isKotlinEnabled) {
+			applyPlugin("kotlin");
+			configureKotlin();
+			project.compileKotlin.kotlinOptions {
+				jvmTarget = getJavaTargetCompatibility()
+			}
+		}
 	}
 
 	protected abstract void applyPlugin(Project project);
