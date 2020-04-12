@@ -12,11 +12,6 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 
 		applyPlugin("groovy");
 
-		if (isKotlinEnabled) {
-			applyPlugin("kotlin");
-			configureKotlin();
-		}
-
 		project.dependencies {
 			compile localGroovy()
 		}
