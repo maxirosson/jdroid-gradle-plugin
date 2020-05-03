@@ -3,7 +3,6 @@ package com.jdroid.gradle.commons.tasks;
 import com.jdroid.github.IRepositoryIdProvider;
 import com.jdroid.github.Release;
 import com.jdroid.github.client.GitHubClient;
-import com.jdroid.github.client.RequestException;
 import com.jdroid.github.service.ReleaseService;
 
 import java.io.IOException;
@@ -23,18 +22,13 @@ public class CreateGitHubReleaseTask extends AbstractGitHubTask {
 		IRepositoryIdProvider repositoryIdProvider = getIRepositoryIdProvider();
 		ReleaseService releaseService = new ReleaseService(client);
 		
-		Release release = null;
-		try {
-			release = releaseService.getReleaseByTagName(repositoryIdProvider, tagName);
+		Release release = releaseService.getReleaseByTagName(repositoryIdProvider, tagName);
+		if (release == null) {
+			String releaseNotes = propertyResolver.getStringProp("GIT_HUB_RELEASE_NOTES");
+			createRelease(releaseService, repositoryIdProvider, tagName, releaseNotes);
+			log("GitHub release created: " + tagName);
+		} else {
 			getLogger().warn("Skipping " + tagName + " release creation because it already exists.");
-		} catch (RequestException e) {
-			if (e.getStatus() == 404) {
-				String releaseNotes = propertyResolver.getStringProp("GIT_HUB_RELEASE_NOTES");
-				createRelease(releaseService, repositoryIdProvider, tagName, releaseNotes);
-				log("GitHub release created: " + tagName);
-			} else {
-				throw e;
-			}
 		}
 	}
 
