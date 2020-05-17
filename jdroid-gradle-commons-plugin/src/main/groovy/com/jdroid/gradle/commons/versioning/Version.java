@@ -19,29 +19,29 @@ public class Version {
 	
 	private Integer maximumVersion;
 
-	public Version(PropertyResolver propertyResolver, BaseGradleExtension baseGradleExtension, String version) {
+	public Version(String version) {
+
+		maximumVersion = getDefaultMaximumVersion();
+
+		String[] split = version.split("-");
+		String baseVersion = split[0];
+		parseBaseVersion(baseVersion);
+
+		if (split.length > 1) {
+			versionClassifier = split[1];
+			isSnapshot = versionClassifier.equals("SNAPSHOT");
+
+			// TODO Add support to this
+			isLocal = false;
+			isVersionTimestampEnabled = false;
+		}
+	}
+
+	public Version(PropertyResolver propertyResolver, BaseGradleExtension baseGradleExtension, String baseVersion) {
 		maximumVersion = propertyResolver.getIntegerProp("MAXIMUM_VERSION", getDefaultMaximumVersion());
-		
-		String[] versionSplit = version.split("\\.");
-		if (versionSplit.length != 3) {
-			throw new RuntimeException("The version [" + version + "] is not a valid Semantic Versioning");
-		}
-		
-		versionMajor = TypeUtils.getInteger(versionSplit[0]);
-		if (versionMajor > maximumVersion || versionMajor < 0) {
-			throw new RuntimeException("The version major [" + versionMajor + "] should be a number between 0 and " + maximumVersion);
-		}
-		
-		versionMinor = TypeUtils.getInteger(versionSplit[1]);
-		if (versionMinor > maximumVersion || versionMinor < 0) {
-			throw new RuntimeException("The version minor [" + versionMinor + "] should be a number between 0 and " + maximumVersion);
-		}
-		
-		versionPatch = TypeUtils.getInteger(versionSplit[2]);
-		if (versionPatch > maximumVersion || versionPatch < 0) {
-			throw new RuntimeException("The version patch [" + versionPatch + "] should be a number between 0 and " + maximumVersion);
-		}
-		
+
+		parseBaseVersion(baseVersion);
+
 		isSnapshot = propertyResolver.getBooleanProp("SNAPSHOT", true);
 		isVersionTimestampEnabled = propertyResolver.getBooleanProp("VERSION_TIMESTAMP_ENABLED", false);
 		isLocal = propertyResolver.getBooleanProp("LOCAL", false);
@@ -89,6 +89,28 @@ public class Version {
 			
 		}
 		
+	}
+
+	private void parseBaseVersion(String baseVersion) {
+		String[] versionSplit = baseVersion.split("\\.");
+		if (versionSplit.length != 3) {
+			throw new RuntimeException("The version [" + baseVersion + "] is not a valid Semantic Versioning");
+		}
+
+		versionMajor = TypeUtils.getInteger(versionSplit[0]);
+		if (versionMajor > maximumVersion || versionMajor < 0) {
+			throw new RuntimeException("The version major [" + versionMajor + "] should be a number between 0 and " + maximumVersion);
+		}
+
+		versionMinor = TypeUtils.getInteger(versionSplit[1]);
+		if (versionMinor > maximumVersion || versionMinor < 0) {
+			throw new RuntimeException("The version minor [" + versionMinor + "] should be a number between 0 and " + maximumVersion);
+		}
+
+		versionPatch = TypeUtils.getInteger(versionSplit[2]);
+		if (versionPatch > maximumVersion || versionPatch < 0) {
+			throw new RuntimeException("The version patch [" + versionPatch + "] should be a number between 0 and " + maximumVersion);
+		}
 	}
 	
 	public void incrementMajor() {
