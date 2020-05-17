@@ -110,7 +110,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				applyPlugin("maven-publish");
 			}
 			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
-			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !GroovyUtils.isSnapshot(project);
+			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !version.isSnapshot();
 
 
 			Boolean localUpload = propertyResolver.getBooleanProp("LOCAL_UPLOAD", true);
@@ -135,7 +135,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 							repositoryHandler.maven(new Action<MavenArtifactRepository>() {
 								@Override
 								public void execute(MavenArtifactRepository mavenArtifactRepository) {
-									Boolean isSnapshot = ((Version)project.getVersion()).isSnapshot();
+									Boolean isSnapshot = version.isSnapshot();
 									if (isSnapshot == null || isSnapshot) {
 										mavenArtifactRepository.setName("snapshotsMavenRepo");
 										mavenArtifactRepository.setUrl(jdroid.getPublishingSnapshotsRepoUrl());
