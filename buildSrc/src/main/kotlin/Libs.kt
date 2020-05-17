@@ -38,7 +38,7 @@ object Libs {
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
 
     // https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
-    const val GRETTY = "org.gretty:gretty:2.3.1"
+    const val GRETTY = "org.gretty:gretty:3.0.3"
 
     const val JUNIT = "junit:junit:4.13"
 }
