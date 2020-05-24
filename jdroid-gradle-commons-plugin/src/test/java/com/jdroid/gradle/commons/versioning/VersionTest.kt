@@ -109,7 +109,74 @@ class VersionTest {
         version.incrementPatch()
     }
 
-    private fun createVersion(version: String): Version {
+    @Test
+    fun `GIVEN a stable version WHEN creating a version using the full version`() {
+        var version = Version("1.2.3")
+        Assert.assertEquals(1, version.versionMajor)
+        Assert.assertEquals(2, version.versionMinor)
+        Assert.assertEquals(3, version.versionPatch)
+        Assert.assertEquals("1.2.3", version.toString())
+
+        version = Version("111.222.333")
+        Assert.assertEquals(111, version.versionMajor)
+        Assert.assertEquals(222, version.versionMinor)
+        Assert.assertEquals(333, version.versionPatch)
+        Assert.assertEquals("111.222.333", version.toString())
+    }
+
+    @Test
+    fun `GIVEN a snapshot version WHEN creating a version using the full version`() {
+        val version = Version("1.2.3-SNAPSHOT")
+        Assert.assertEquals(1, version.versionMajor)
+        Assert.assertEquals(2, version.versionMinor)
+        Assert.assertEquals(3, version.versionPatch)
+        Assert.assertEquals("SNAPSHOT", version.versionClassifier)
+        Assert.assertTrue(version.isSnapshot)
+        Assert.assertEquals("1.2.3-SNAPSHOT", version.toString())
+    }
+
+    @Test
+    fun `GIVEN a non stable version WHEN creating a version using the full version`() {
+        val version = Version("1.2.3-BETA")
+        Assert.assertEquals(1, version.versionMajor)
+        Assert.assertEquals(2, version.versionMinor)
+        Assert.assertEquals(3, version.versionPatch)
+        Assert.assertEquals("BETA", version.versionClassifier)
+        Assert.assertFalse(version.isSnapshot)
+        Assert.assertEquals("1.2.3-BETA", version.toString())
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with four segments WHEN creating a version using the full version THEN an exception is thrown`() {
+        Version("1.2.3.4")
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with two segments WHEN creating a version using the full version THEN an exception is thrown`() {
+        createVersion("1.2")
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with one segment WHEN creating a version using the full version THEN an exception is thrown`() {
+        createVersion("1")
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with an invalid major WHEN creating a version using the full version THEN an exception is thrown`() {
+        createVersion("1111.2.3")
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with an invalid minor WHEN creating a version using the full version THEN an exception is thrown`() {
+        createVersion("1.2222.3")
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `GIVEN a version with an invalid patch WHEN creating a version using the full version THEN an exception is thrown`() {
+        createVersion("1.2.3333")
+    }
+
+    private fun createVersion(baseVersion: String): Version {
         val extension = BaseGradleExtension()
         val propertyResolver = object : PropertyResolver(null) {
             override fun getIntegerProp(propertyName: String, defaultValue: Int?): Int? {
@@ -128,6 +195,6 @@ class VersionTest {
                 return ""
             }
         }
-        return Version(propertyResolver, extension, version)
+        return Version(propertyResolver, extension, baseVersion)
     }
 }

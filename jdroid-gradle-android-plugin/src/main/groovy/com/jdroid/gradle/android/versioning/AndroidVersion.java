@@ -10,8 +10,8 @@ public class AndroidVersion extends Version {
 	private Integer versionCodeExtraBit;
 	private Integer versionCode;
 
-	public AndroidVersion(PropertyResolver propertyResolver, AndroidGradlePluginExtension androidGradlePluginExtension, String version) {
-		super(propertyResolver, androidGradlePluginExtension, version);
+	public AndroidVersion(PropertyResolver propertyResolver, AndroidGradlePluginExtension androidGradlePluginExtension, String baseVersion) {
+		super(propertyResolver, androidGradlePluginExtension, baseVersion);
 		versionCodePrefix = propertyResolver.getIntegerProp("VERSION_CODE_PREFIX");
 		versionCodeExtraBit = propertyResolver.getIntegerProp("VERSION_CODE_EXTRA_BIT", 0);
 

@@ -7,7 +7,7 @@ object Libs {
     const val JDROID_JAVA_CORE = "com.jdroidtools:jdroid-java-core:3.0.0"
 
     // https://github.com/maxirosson/releases-hub-gradle-plugin
-    const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.4.2"
+    const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.5.0"
 
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
     const val GRADLE_PLUGIN_PUBLISH_PLUGIN = "com.gradle.publish:plugin-publish-plugin:0.11.0"
@@ -38,7 +38,7 @@ object Libs {
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
 
     // https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
-    const val GRETTY = "org.gretty:gretty:2.3.1"
+    const val GRETTY = "org.gretty:gretty:3.0.3"
 
     const val JUNIT = "junit:junit:4.13"
 }
