@@ -4,7 +4,7 @@ import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
 import com.jdroid.gradle.commons.tasks.CloseGitHubMilestoneTask;
 import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask;
 import com.jdroid.gradle.commons.tasks.GenerateChangelogTask;
-import com.jdroid.gradle.commons.tasks.PrintVersionTask;
+import com.jdroid.gradle.commons.versioning.PrintVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
@@ -35,6 +35,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	public Boolean isSigningPublicationEnabled;
 	protected String artifactId;
 	public Boolean isKotlinEnabled;
+	protected Version version;
 
 	public void apply(Project project) {
 		this.project = project;
@@ -52,9 +53,9 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			project.setVersion("0.1.0");
 		}
 
-
-		String baseVersion = project.getVersion() instanceof Version ? ((Version)project.getVersion()).getBaseVersion() : project.getVersion().toString();
-		project.setVersion(createVersion(baseVersion));
+		String baseVersion = new Version(project.getVersion().toString()).getBaseVersion();
+		version = createVersion(baseVersion);
+		project.setVersion(version.toString());
 
 		PrintVersionTask printVersionTask = project.getTasks().create("printVersion", PrintVersionTask.class);
 
@@ -109,7 +110,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				applyPlugin("maven-publish");
 			}
 			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
-			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !GroovyUtils.isSnapshot(project);
+			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !version.isSnapshot();
 
 
 			Boolean localUpload = propertyResolver.getBooleanProp("LOCAL_UPLOAD", true);
@@ -134,7 +135,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 							repositoryHandler.maven(new Action<MavenArtifactRepository>() {
 								@Override
 								public void execute(MavenArtifactRepository mavenArtifactRepository) {
-									Boolean isSnapshot = ((Version)project.getVersion()).isSnapshot();
+									Boolean isSnapshot = version.isSnapshot();
 									if (isSnapshot == null || isSnapshot) {
 										mavenArtifactRepository.setName("snapshotsMavenRepo");
 										mavenArtifactRepository.setUrl(jdroid.getPublishingSnapshotsRepoUrl());
@@ -172,8 +173,8 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
 	}
 
-	protected Version createVersion(String version) {
-		return new Version(propertyResolver, jdroid, version);
+	protected Version createVersion(String baseVersion) {
+		return new Version(propertyResolver, jdroid, baseVersion);
 	}
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {

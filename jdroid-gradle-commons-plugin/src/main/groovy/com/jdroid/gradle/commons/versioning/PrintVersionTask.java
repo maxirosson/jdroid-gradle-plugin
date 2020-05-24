@@ -1,4 +1,6 @@
-package com.jdroid.gradle.commons.tasks;
+package com.jdroid.gradle.commons.versioning;
+
+import com.jdroid.gradle.commons.tasks.AbstractTask;
 
 public class PrintVersionTask extends AbstractTask {
 
