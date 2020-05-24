@@ -33,7 +33,7 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 					incrementVersion(version);
 					String newLineContent = versionMatcher.replaceFirst("version = '" + version.getBaseVersion() + "'");
 					lines.add(newLineContent);
-					getProject().setVersion(version);
+					getProject().setVersion(version.toString());
 					versionFound = true;
 				} else {
 					lines.add(line);
@@ -59,7 +59,7 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 
 			commandExecutor.execute("git diff HEAD");
 			commandExecutor.execute("git add " + buildGradleFile.getAbsolutePath());
-			commandExecutor.execute("git commit --no-gpg-sign -m \"Changed version to v" + ((Version)getProject().getVersion()).getBaseVersion() + "\"");
+			commandExecutor.execute("git commit --no-gpg-sign -m \"Changed version to v" + new Version(getProject().getVersion().toString()).getBaseVersion() + "\"");
 
 			Boolean versionIncrementPushEnabled = propertyResolver.getBooleanProp("VERSION_INCREMENT_PUSH_ENABLED", true);
 			if (versionIncrementPushEnabled) {

@@ -58,7 +58,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			android.getSplits().density.setEnable(false);
 		}
 
-		android.getDefaultConfig().setVersionCode(((AndroidVersion)project.getVersion()).getVersionCode());
+		android.getDefaultConfig().setVersionCode(((AndroidVersion)version).getVersionCode());
 		android.getDefaultConfig().setVersionName(project.getVersion().toString());
 
 		List<String> resConfigsList = propertyResolver.getStringListProp("DEBUG_RES_CONFIGS");
@@ -108,8 +108,8 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 	}
 
 	@Override
-	protected Version createVersion(String version) {
-		return new AndroidVersion(propertyResolver, jdroid, version);
+	protected Version createVersion(String baseVersion) {
+		return new AndroidVersion(propertyResolver, jdroid, baseVersion);
 	}
 
 	protected void applyAndroidPlugin() {
