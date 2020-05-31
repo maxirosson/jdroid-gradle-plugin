@@ -7,14 +7,14 @@ object Libs {
     const val JDROID_JAVA_CORE = "com.jdroidtools:jdroid-java-core:3.0.0"
 
     // https://github.com/maxirosson/releases-hub-gradle-plugin
-    const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.5.0"
+    const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.5.1"
 
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
     const val GRADLE_PLUGIN_PUBLISH_PLUGIN = "com.gradle.publish:plugin-publish-plugin:0.11.0"
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
-    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.6.2"
+    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.6.3"
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
@@ -32,7 +32,7 @@ object Libs {
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
 
     // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
 
     // https://github.com/Kotlin/dokka/releases
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
