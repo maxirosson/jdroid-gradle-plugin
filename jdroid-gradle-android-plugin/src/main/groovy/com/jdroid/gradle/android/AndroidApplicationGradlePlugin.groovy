@@ -21,7 +21,7 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			applyPlugin("com.google.firebase.firebase-perf");
 		}
 		if (propertyResolver.getBooleanProp("FIREBASE_CRASHLYTICS_ENABLED", true)) {
-			applyPlugin("io.fabric");
+			applyPlugin("com.google.firebase.crashlytics");
 		}
 		if (propertyResolver.getBooleanProp("UNUSED_RESOURCES_REMOVER_ENABLED", false)) {
 			applyPlugin("com.github.konifar.gradle.unused-resources-remover");
