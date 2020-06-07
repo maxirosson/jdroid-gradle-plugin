@@ -9,8 +9,12 @@ public class GroovyUtils {
 		project.buildScan {
 			termsOfServiceUrl = "https://gradle.com/terms-of-service"
 			termsOfServiceAgree = "yes"
-			if (publishAlways) {
-				publishAlways()
+			if (CiUtils.isCi()) {
+				if (publishAlways) {
+					publishAlways()
+				} else {
+					publishOnFailure()
+				}
 			}
 		}
 	}

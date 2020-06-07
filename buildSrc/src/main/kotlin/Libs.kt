@@ -10,11 +10,11 @@ object Libs {
     const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.5.1"
 
     // https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-    const val GRADLE_PLUGIN_PUBLISH_PLUGIN = "com.gradle.publish:plugin-publish-plugin:0.11.0"
+    const val GRADLE_PLUGIN_PUBLISH_PLUGIN = "com.gradle.publish:plugin-publish-plugin:0.12.0"
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
-    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.6.3"
+    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:4.0.0"
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
@@ -24,9 +24,8 @@ object Libs {
     // https://jcenter.bintray.com/com/google/gms/google-services/
     const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.3"
 
-    // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
-    // https://maven.fabric.io/public/io/fabric/tools/gradle/maven-metadata.xml
-    const val FABRIC_PLUGIN = "io.fabric.tools:gradle:1.31.2"
+    // https://firebase.google.com/support/release-notes/android
+    const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.1.1"
 
     // https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
