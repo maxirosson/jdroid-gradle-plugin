@@ -24,9 +24,4 @@ public class GroovyUtils {
 			distributionType = Wrapper.DistributionType.ALL
 		}
 	}
-
-	public static boolean isSnapshot(Project project) {
-		return project.getVersion().isSnapshot
-	}
-
 }
