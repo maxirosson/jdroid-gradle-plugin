@@ -108,6 +108,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 				"UseCompoundDrawables",
 				"UseSparseArrays",
 				"VectorPath"
+			warning "Instantiatable" // TODO This error stated to happen on AGP 4.0. See if we can stop ignoring it on a future version
 			error "AlwaysShowAction",
 				"Autofill",
 				"ButtonStyle",
