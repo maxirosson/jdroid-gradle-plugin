@@ -10,12 +10,6 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 	public void apply(Project project) {
 		super.apply(project)
 
-		applyPlugin("groovy");
-
-		project.dependencies {
-			compile localGroovy()
-		}
-
 		project.sourceSets {
 			integrationTest {
 				java.srcDir project.file('src/integrationTest/java')

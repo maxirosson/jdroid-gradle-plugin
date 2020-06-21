@@ -50,6 +50,9 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 			project.compileKotlin.kotlinOptions {
 				jvmTarget = getJavaTargetCompatibility()
 			}
+			project.compileTestKotlin.kotlinOptions {
+				jvmTarget = getJavaTargetCompatibility()
+			}
 		}
 	}
 
