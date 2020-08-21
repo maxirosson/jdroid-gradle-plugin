@@ -29,6 +29,7 @@ public class BaseGradleExtension {
 	private String publishingReleasesRepoUrl;
 	private String publishingRepoUsername;
 	private String publishingRepoPassword;
+	private String publishingStagingProfileId;
 
 	public BaseGradleExtension() {
 		// TODO Remove this constructor. Only for testing
@@ -50,6 +51,7 @@ public class BaseGradleExtension {
 		publishingReleasesRepoUrl = propertyResolver.getStringProp("PUBLISHING_RELEASES_REPO_URL", "https://oss.sonatype.org/service/local/staging/deploy/maven2/");
 		publishingRepoUsername = propertyResolver.getStringProp("PUBLISHING_REPO_USERNAME");
 		publishingRepoPassword = propertyResolver.getStringProp("PUBLISHING_REPO_PASSWORD");
+		publishingStagingProfileId = propertyResolver.getStringProp("PUBLISHING_STAGING_PROFILE_ID");
 	}
 
 	public String getGitSha() {
@@ -177,6 +179,14 @@ public class BaseGradleExtension {
 
 	public void setReleasesHubUserToken(String releasesHubUserToken) {
 		this.releasesHubUserToken = releasesHubUserToken;
+	}
+
+	public String getPublishingStagingProfileId() {
+		return publishingStagingProfileId;
+	}
+
+	public void setPublishingStagingProfileId(String publishingStagingProfileId) {
+		this.publishingStagingProfileId = publishingStagingProfileId;
 	}
 }
 

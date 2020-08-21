@@ -4,10 +4,10 @@ import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
 import com.jdroid.gradle.commons.tasks.CloseGitHubMilestoneTask;
 import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask;
 import com.jdroid.gradle.commons.tasks.GenerateChangelogTask;
-import com.jdroid.gradle.commons.versioning.PrintVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
+import com.jdroid.gradle.commons.versioning.PrintVersionTask;
 import com.jdroid.gradle.commons.versioning.Version;
 
 import org.gradle.api.Action;
@@ -24,6 +24,8 @@ import org.gradle.api.publish.maven.MavenPom;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.codearte.gradle.nexus.NexusStagingExtension;
 
 public class BaseGradlePlugin implements Plugin<Project> {
 
@@ -155,6 +157,14 @@ public class BaseGradlePlugin implements Plugin<Project> {
 						}
 					}
 				});
+			}
+
+			if (propertyResolver.getBooleanProp("NEXUS_STAGING_PLUGIN_ENABLED", true)) {
+				applyPlugin("io.codearte.nexus-staging");
+				NexusStagingExtension extension = project.getExtensions().getByType(NexusStagingExtension.class);
+				extension.setUsername(jdroid.getPublishingRepoUsername());
+				extension.setPassword(jdroid.getPublishingRepoPassword());
+				extension.setStagingProfileId(jdroid.getPublishingStagingProfileId());
 			}
 		}
 
