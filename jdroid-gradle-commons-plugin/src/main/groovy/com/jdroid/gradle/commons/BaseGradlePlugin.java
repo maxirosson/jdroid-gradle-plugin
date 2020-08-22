@@ -25,8 +25,6 @@ import org.gradle.api.publish.maven.MavenPom;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.codearte.gradle.nexus.NexusStagingExtension;
-
 public class BaseGradlePlugin implements Plugin<Project> {
 
 	protected Project project;
@@ -157,14 +155,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 						}
 					}
 				});
-			}
-
-			if (propertyResolver.getBooleanProp("NEXUS_STAGING_PLUGIN_ENABLED", true)) {
-				applyPlugin("io.codearte.nexus-staging");
-				NexusStagingExtension extension = project.getExtensions().getByType(NexusStagingExtension.class);
-				extension.setUsername(jdroid.getPublishingRepoUsername());
-				extension.setPassword(jdroid.getPublishingRepoPassword());
-				extension.setStagingProfileId(jdroid.getPublishingStagingProfileId());
 			}
 		}
 
