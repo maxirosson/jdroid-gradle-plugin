@@ -2,11 +2,11 @@ package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
 import com.jdroid.gradle.commons.GroovyUtils;
-import com.jdroid.gradle.root.task.ProjectDependencyGraphTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
 import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
 import com.jdroid.gradle.root.task.ProjectConfigValidationTask;
+import com.jdroid.gradle.root.task.ProjectDependencyGraphTask;
 import com.releaseshub.gradle.plugin.ReleasesHubGradlePluginExtension;
 
 import org.gradle.api.Action;
@@ -16,6 +16,8 @@ import org.gradle.api.tasks.JavaExec;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.codearte.gradle.nexus.NexusStagingExtension;
 
 public class RootProjectPlugin extends BaseGradlePlugin {
 
@@ -67,6 +69,16 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 		});
 
 		GroovyUtils.configureGradleWrapper(project);
+
+		if (isPublicationConfigurationEnabled) {
+			if (propertyResolver.getBooleanProp("NEXUS_STAGING_PLUGIN_ENABLED", true)) {
+				applyPlugin("io.codearte.nexus-staging");
+				NexusStagingExtension extension = project.getExtensions().getByType(NexusStagingExtension.class);
+				extension.setUsername(jdroid.getPublishingRepoUsername());
+				extension.setPassword(jdroid.getPublishingRepoPassword());
+				extension.setStagingProfileId(jdroid.getPublishingStagingProfileId());
+			}
+		}
 	}
 
 	private void configureKtlint() {
