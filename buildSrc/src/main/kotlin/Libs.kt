@@ -30,6 +30,9 @@ object Libs {
     // https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
 
+    // https://github.com/Codearte/gradle-nexus-staging-plugin/
+    const val GRADLE_NEXUS_STAGING_PLUGIN = "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0"
+
     // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
     const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
 
