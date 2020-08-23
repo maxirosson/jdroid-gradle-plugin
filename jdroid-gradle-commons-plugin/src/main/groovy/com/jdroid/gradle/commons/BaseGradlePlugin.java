@@ -4,10 +4,10 @@ import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
 import com.jdroid.gradle.commons.tasks.CloseGitHubMilestoneTask;
 import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask;
 import com.jdroid.gradle.commons.tasks.GenerateChangelogTask;
-import com.jdroid.gradle.commons.versioning.PrintVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
+import com.jdroid.gradle.commons.versioning.PrintVersionTask;
 import com.jdroid.gradle.commons.versioning.Version;
 
 import org.gradle.api.Action;
