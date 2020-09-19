@@ -34,7 +34,7 @@ object Libs {
     const val GRADLE_NEXUS_STAGING_PLUGIN = "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0"
 
     // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
 
     // https://github.com/Kotlin/dokka/releases
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
