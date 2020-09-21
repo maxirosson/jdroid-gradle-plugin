@@ -4,7 +4,7 @@ object Libs {
     const val JDROID_JAVA_GITHUB = "com.jdroidtools:jdroid-java-github:1.1.0"
 
     // https://github.com/maxirosson/jdroid-java/blob/master/CHANGELOG.md
-    const val JDROID_JAVA_CORE = "com.jdroidtools:jdroid-java-core:3.0.0"
+    const val JDROID_JAVA_CORE = "com.jdroidtools:jdroid-java-core:3.1.0"
 
     // https://github.com/maxirosson/releases-hub-gradle-plugin
     const val RELEASES_HUB_GRADLE_PLUGIN = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
