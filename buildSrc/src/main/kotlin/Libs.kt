@@ -22,7 +22,7 @@ object Libs {
 
     // https://developers.google.com/android/guides/google-services-plugin
     // https://jcenter.bintray.com/com/google/gms/google-services/
-    const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.3"
+    const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.4"
 
     // https://firebase.google.com/support/release-notes/android
     const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
