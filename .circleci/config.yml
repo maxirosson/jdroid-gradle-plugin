@@ -1,5 +1,21 @@
 version: 2.1
 
+parameters:
+
+  releaseGradleFlags:
+    type: string
+    default: " -PSNAPSHOT=false -PLOCAL_UPLOAD=false -PRELEASE_BUILD_TYPE_ENABLED=true -PRELEASE_FAKE_ENABLED=true -PACCEPT_SNAPSHOT_DEPENDENCIES=false -Dorg.gradle.internal.publish.checksums.insecure=true --stacktrace"
+
+  # API
+
+  api:
+    type: boolean
+    default: false
+
+  release:
+    type: boolean
+    default: false
+
 references:
 
   ## Workspace
@@ -142,8 +158,31 @@ jobs:
           name: Upgrade Dependencies
           command: ./gradlew upgradeDependencies -PpullRequestEnabled=true --refresh-dependencies --stacktrace
 
+  release:
+    executor: jdk_executor
+    steps:
+      - checkout
+      - run:
+          name: Close GitHub Milestone
+          command: ./gradlew closeGitHubMilestone << pipeline.parameters.releaseGradleFlags >>
+      - run:
+          name: Create GitHub Release
+          command: ./gradlew createGitHubRelease << pipeline.parameters.releaseGradleFlags >>
+      - run:
+          name: Generate Changelog
+          command: |
+            sudo gem install github_changelog_generator -v 1.15.0
+            ./gradlew generateChangelog << pipeline.parameters.releaseGradleFlags >>
+      - run:
+          name: Publish
+          command: ./gradlew publish << pipeline.parameters.releaseGradleFlags >>
+#      - run:
+#          name: Close and Release Repository
+#          command: ./gradlew closeAndReleaseRepository << pipeline.parameters.releaseGradleFlags >>
+
 workflows:
   commit:
+    unless: << pipeline.parameters.api >>
     jobs:
       - build
       - ktlint
@@ -165,7 +204,12 @@ workflows:
             - test
             - validatePlugins
             - security
-  weekly:
+  release:
+    when: << pipeline.parameters.release >>
+    jobs:
+      - release
+
+  upgradeDependenciesCron:
     triggers:
       - schedule:
           cron: "0 0 * * 0"
