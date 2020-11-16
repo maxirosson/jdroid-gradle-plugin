@@ -64,12 +64,12 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			configureKtlint();
 		}
 
-		ProjectDependencyGraphTask projectDependenciesGraph = project.getTasks().create("projectDependencyGraph", ProjectDependencyGraphTask.class);
-		project.afterEvaluate(new Action<Project>() {
-			public void execute(Project p) {
-				projectDependenciesGraph.setLogLevel(getExtension().getLogLevel());
-			}
-		});
+//		ProjectDependencyGraphTask projectDependenciesGraph = project.getTasks().create("projectDependencyGraph", ProjectDependencyGraphTask.class);
+//		project.afterEvaluate(new Action<Project>() {
+//			public void execute(Project p) {
+//				projectDependenciesGraph.setLogLevel(getExtension().getLogLevel());
+//			}
+//		});
 
 		GroovyUtils.configureGradleWrapper(project);
 
