@@ -171,6 +171,8 @@ jobs:
       - run:
           name: Generate Changelog
           command: |
+            sudo apt-get update
+            sudo apt-get install gem
             sudo gem install github_changelog_generator -v 1.15.0
             ./gradlew generateChangelog << pipeline.parameters.releaseGradleFlags >>
       - run:
