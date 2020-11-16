@@ -42,7 +42,7 @@ public class BaseGradleExtension {
 
 		releasesHubUserToken = propertyResolver.getStringProp("RELEASES_HUB_USER_TOKEN");
 		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
-		gitHubReadToken = propertyResolver.getStringProp("GITHUB_READ_TOKEN");
+		gitHubReadToken = propertyResolver.getStringProp("GITHUB_READ_TOKEN", gitHubWriteToken);
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
 		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
