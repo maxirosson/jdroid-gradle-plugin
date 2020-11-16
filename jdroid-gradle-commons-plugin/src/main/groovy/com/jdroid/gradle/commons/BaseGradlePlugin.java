@@ -1,9 +1,6 @@
 package com.jdroid.gradle.commons;
 
 import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
-import com.jdroid.gradle.commons.tasks.CloseGitHubMilestoneTask;
-import com.jdroid.gradle.commons.tasks.CreateGitHubReleaseTask;
-import com.jdroid.gradle.commons.tasks.GenerateChangelogTask;
 import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
 import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
@@ -62,9 +59,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		IncrementMajorVersionTask incrementMajorVersionTask = project.getTasks().create("incrementMajorVersion", IncrementMajorVersionTask.class);
 		IncrementMinorVersionTask incrementMinorVersionTask = project.getTasks().create("incrementMinorVersion", IncrementMinorVersionTask.class);
 		IncrementPatchVersionTask incrementPatchVersionTask = project.getTasks().create("incrementPatchVersion", IncrementPatchVersionTask.class);
-		CreateGitHubReleaseTask createGitHubReleaseTask = project.getTasks().create("createGitHubRelease", CreateGitHubReleaseTask.class);
-		CloseGitHubMilestoneTask closeGitHubMilestoneTask = project.getTasks().create("closeGitHubMilestone", CloseGitHubMilestoneTask.class);
-		GenerateChangelogTask generateChangelogTask = project.getTasks().create("generateChangelog", GenerateChangelogTask.class);
+
 		BuildScriptDependenciesTask buildScriptDependenciesTask = project.getTasks().create("buildScriptDependencies", BuildScriptDependenciesTask.class);
 
 
@@ -74,9 +69,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 				incrementMajorVersionTask.setLogLevel(jdroid.getLogLevel());
 				incrementMinorVersionTask.setLogLevel(jdroid.getLogLevel());
 				incrementPatchVersionTask.setLogLevel(jdroid.getLogLevel());
-				createGitHubReleaseTask.setLogLevel(jdroid.getLogLevel());
-				closeGitHubMilestoneTask.setLogLevel(jdroid.getLogLevel());
-				generateChangelogTask.setLogLevel(jdroid.getLogLevel());
 				buildScriptDependenciesTask.setLogLevel(jdroid.getLogLevel());
 			}
 		});
