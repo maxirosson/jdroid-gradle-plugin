@@ -23,6 +23,9 @@ references:
   working_dir: &working_dir
     ~/project
 
+orbs:
+  ruby: circleci/ruby@1.1.2
+
 executors:
   jdk_executor:
     working_directory: *working_dir
@@ -168,11 +171,11 @@ jobs:
       - run:
           name: Create GitHub Release
           command: ./gradlew createGitHubRelease << pipeline.parameters.releaseGradleFlags >>
+      - ruby/install:
+          version: '2.7'
       - run:
           name: Generate Changelog
           command: |
-            sudo apt-get update
-            sudo apt-get install gem
             sudo gem install github_changelog_generator -v 1.15.0
             ./gradlew generateChangelog << pipeline.parameters.releaseGradleFlags >>
       - run:
