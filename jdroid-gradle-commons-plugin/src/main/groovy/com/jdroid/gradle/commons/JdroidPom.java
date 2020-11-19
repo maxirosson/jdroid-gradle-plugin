@@ -25,13 +25,13 @@ public class JdroidPom {
 					// TODO Not working
 					mavenPom.setPackaging(artifactPackaging);
 
-					mavenPom.getUrl().set("https://jdroidtools.com");
-					mavenPom.getInceptionYear().set("2011");
+					mavenPom.getUrl().set(jdroid.propertyResolver.getStringProp("POM_URL"));
+					mavenPom.getInceptionYear().set(jdroid.propertyResolver.getStringProp("POM_INCEPTION_YEAR"));
 					mavenPom.organization(new Action<MavenPomOrganization>() {
 						@Override
 						public void execute(MavenPomOrganization mavenPomOrganization) {
-							mavenPomOrganization.getName().set("Jdroid");
-							mavenPomOrganization.getUrl().set("https://jdroidtools.com");
+							mavenPomOrganization.getName().set(jdroid.propertyResolver.getStringProp("POM_ORGANIZATION_NAME"));
+							mavenPomOrganization.getUrl().set(jdroid.propertyResolver.getStringProp("POM_ORGANIZATION_URL"));
 						}
 
 					});
@@ -41,8 +41,8 @@ public class JdroidPom {
 							mavenPomLicenseSpec.license(new Action<MavenPomLicense>() {
 								@Override
 								public void execute(MavenPomLicense mavenPomLicense) {
-									mavenPomLicense.getName().set("The Apache License, Version 2.0");
-									mavenPomLicense.getUrl().set("http://www.apache.org/licenses/LICENSE-2.0.txt");
+									mavenPomLicense.getName().set(jdroid.propertyResolver.getStringProp("POM_LICENSE_NAME"));
+									mavenPomLicense.getUrl().set(jdroid.propertyResolver.getStringProp("POM_LICENSE_URL"));
 									mavenPomLicense.getDistribution().set("repo");
 								}
 
@@ -56,8 +56,8 @@ public class JdroidPom {
 							mavenPomDeveloperSpec.developer(new Action<MavenPomDeveloper>() {
 								@Override
 								public void execute(MavenPomDeveloper mavenPomDeveloper) {
-									mavenPomDeveloper.getName().set("Maxi Rosson");
-									mavenPomDeveloper.getEmail().set("contact@jdroidtools.com");
+									mavenPomDeveloper.getName().set(jdroid.propertyResolver.getStringProp("POM_DEVELOPER_NAME"));
+									mavenPomDeveloper.getEmail().set(jdroid.propertyResolver.getStringProp("POM_DEVELOPER_EMAIL"));
 								}
 
 							});
