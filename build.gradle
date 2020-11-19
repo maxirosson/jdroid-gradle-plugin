@@ -109,4 +109,10 @@ allprojects {
 		mavenCentral()
 		gradlePluginPortal()
 	}
+
+	apply plugin: "groovy"
+
+	dependencies {
+		compile localGroovy()
+	}
 }
