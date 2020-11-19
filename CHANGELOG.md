@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.4.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.4.0) (2020-11-19)
+[Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.3.0...v2.4.0)
+
+**Implemented enhancements:**
+
+- Add java version validation [\#137](https://github.com/maxirosson/jdroid-gradle-plugin/issues/137)
+- Added support for github\_changelog\_generator release notes [\#136](https://github.com/maxirosson/jdroid-gradle-plugin/issues/136)
+- Added support to nexus staging plugin [\#135](https://github.com/maxirosson/jdroid-gradle-plugin/issues/135)
+- New ProjectDependencyGraphTask [\#134](https://github.com/maxirosson/jdroid-gradle-plugin/issues/134)
+- Gradle Build Scan support [\#133](https://github.com/maxirosson/jdroid-gradle-plugin/issues/133)
+
 ## [v2.3.0](https://github.com/maxirosson/jdroid-gradle-plugin/tree/v2.3.0) (2019-09-15)
 [Full Changelog](https://github.com/maxirosson/jdroid-gradle-plugin/compare/v2.2.0...v2.3.0)
 
