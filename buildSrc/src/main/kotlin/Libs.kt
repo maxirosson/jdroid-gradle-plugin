@@ -18,14 +18,14 @@ object Libs {
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
-    const val FIREBASE_PERFORMANCE_PLUGIN = "com.google.firebase:perf-plugin:1.3.2"
+    const val FIREBASE_PERFORMANCE_PLUGIN = "com.google.firebase:perf-plugin:1.3.4"
 
     // https://developers.google.com/android/guides/google-services-plugin
     // https://jcenter.bintray.com/com/google/gms/google-services/
     const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.4"
 
     // https://firebase.google.com/support/release-notes/android
-    const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
+    const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.4.1"
 
     // https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
