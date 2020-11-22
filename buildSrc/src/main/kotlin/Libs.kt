@@ -18,7 +18,7 @@ object Libs {
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
-    const val FIREBASE_PERFORMANCE_PLUGIN = "com.google.firebase:perf-plugin:1.3.2"
+    const val FIREBASE_PERFORMANCE_PLUGIN = "com.google.firebase:perf-plugin:1.3.4"
 
     // https://developers.google.com/android/guides/google-services-plugin
     // https://jcenter.bintray.com/com/google/gms/google-services/
