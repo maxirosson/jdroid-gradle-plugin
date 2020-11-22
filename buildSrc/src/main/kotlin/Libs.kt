@@ -25,7 +25,7 @@ object Libs {
     const val GOOGLE_SERVICES_PLUGIN = "com.google.gms:google-services:4.3.4"
 
     // https://firebase.google.com/support/release-notes/android
-    const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
+    const val FIREBASE_CRASHLYTICS_GRADLE_PLUGIN = "com.google.firebase:firebase-crashlytics-gradle:2.4.1"
 
     // https://github.com/konifar/gradle-unused-resources-remover-plugin/releases
     const val UNUSED_RESOURCES_REMOVER_PLUGIN = "gradle.plugin.com.github.konifar.gradle:plugin:0.3.3"
