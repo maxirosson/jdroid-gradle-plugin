@@ -14,6 +14,8 @@ public class GenerateChangelogTask extends AbstractGitHubTask {
 
 		ExecutorUtils.INSTANCE.sleep(80, TimeUnit.SECONDS);
 
+		configureGit();
+
 		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
 		commandExecutor.execute("github_changelog_generator --no-unreleased --no-pull-requests --no-pr-wo-labels --exclude-labels task -u " + getGitHubRepositoryOwner() + " -p " + getGitHubRepositoryName() + " -t " + getGitHubReadToken());
 		commandExecutor.execute("git add CHANGELOG.md");

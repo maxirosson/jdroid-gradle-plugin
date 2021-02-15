@@ -47,15 +47,7 @@ public abstract class AbstractIncrementVersionTask extends AbstractTask {
 			
 			FileUtils.writeLines(buildGradleFile, lines);
 
-			String ciGithubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
-			if (ciGithubUserName != null) {
-				commandExecutor.execute("git config user.name " + ciGithubUserName);
-			}
-
-			String ciGithubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
-			if (ciGithubUserEmail != null) {
-				commandExecutor.execute("git config user.email " + ciGithubUserEmail);
-			}
+			configureGit();
 
 			commandExecutor.execute("git diff HEAD");
 			commandExecutor.execute("git add " + buildGradleFile.getAbsolutePath());
