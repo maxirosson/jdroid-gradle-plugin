@@ -1,6 +1,7 @@
 package com.jdroid.gradle.android
 
 import com.jdroid.gradle.android.task.PrefixVerificationTask
+import com.jdroid.gradle.commons.GroovyUtils
 import com.jdroid.gradle.commons.utils.ListUtils
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -98,11 +99,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		}
 
 		if (isSigningPublicationEnabled) {
-			applyPlugin('signing')
-			project.signing {
-				required { true }
-				sign project.publishing.publications
-			}
+			GroovyUtils.configureSigning(project, project.publishing.publications)
 		}
 	}
 
