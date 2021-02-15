@@ -1,8 +1,9 @@
-package com.jdroid.gradle.commons.tasks;
+package com.jdroid.gradle.root.task;
 
 import com.jdroid.github.IRepositoryIdProvider;
 import com.jdroid.github.RepositoryId;
 import com.jdroid.github.client.GitHubClient;
+import com.jdroid.gradle.commons.tasks.AbstractTask;
 
 import org.gradle.api.tasks.Input;
 
