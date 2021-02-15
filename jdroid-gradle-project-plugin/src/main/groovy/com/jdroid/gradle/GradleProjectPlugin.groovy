@@ -1,5 +1,6 @@
 package com.jdroid.gradle
 
+import com.jdroid.gradle.commons.utils.CiUtils
 import com.jdroid.gradle.commons.GroovyUtils
 import com.jdroid.gradle.java.JavaGradlePlugin
 import org.gradle.api.Project
@@ -67,8 +68,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 		if (isPublicationConfigurationEnabled) {
 			boolean isGradlePluginPortalEnabled = propertyResolver.getBooleanProp("GRADLE_PLUGIN_PORTAL_ENABLED", false);
 			if (isGradlePluginPortalEnabled) {
-				boolean isCI = System.getenv("CI") == "true";
-				if (isCI) {
+				if (CiUtils.isCi()) {
 					GroovyUtils.setExt(project, "gradle.publish.key", System.getenv("GRADLE_PUBLISH_KEY"));
 					GroovyUtils.setExt(project, "gradle.publish.secret", System.getenv("GRADLE_PUBLISH_SECRET"));
 					applyPlugin("com.gradle.plugin-publish");

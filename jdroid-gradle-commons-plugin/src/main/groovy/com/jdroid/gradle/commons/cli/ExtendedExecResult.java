@@ -1,4 +1,4 @@
-package com.jdroid.gradle.commons.tasks;
+package com.jdroid.gradle.commons.cli;
 
 import org.gradle.process.ExecResult;
 import org.gradle.process.internal.ExecException;

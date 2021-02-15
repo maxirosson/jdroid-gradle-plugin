@@ -1,7 +1,7 @@
 package com.jdroid.gradle.commons.tasks;
 
 import com.jdroid.gradle.commons.BaseGradleExtension;
-import com.jdroid.gradle.commons.CommandExecutor;
+import com.jdroid.gradle.commons.cli.CommandExecutor;
 import com.jdroid.gradle.commons.PropertyResolver;
 import com.jdroid.gradle.commons.utils.ProjectUtils;
 

@@ -1,5 +1,6 @@
 package com.jdroid.gradle.commons
 
+import com.jdroid.gradle.commons.utils.CiUtils
 import org.gradle.api.Project
 import org.gradle.api.tasks.wrapper.Wrapper
 
@@ -33,8 +34,7 @@ public class GroovyUtils {
 			required { true }
 			sign publications
 		}
-		boolean isCI = System.getenv("CI") == "true"
-		if (isCI) {
+		if (CiUtils.isCi()) {
 			project.ext["signing.keyId"] = System.getenv('SIGNING_KEY_ID')
 			project.ext["signing.password"] = System.getenv('SIGNING_PASSWORD')
 			project.ext["signing.secretKeyRingFile"] = System.getenv('SIGNING_SECRET_KEY_RING_FILE')

@@ -1,4 +1,4 @@
-package com.jdroid.gradle.root.task;
+package com.jdroid.gradle.root.release;
 
 import com.jdroid.github.IRepositoryIdProvider;
 import com.jdroid.github.RepositoryId;

@@ -1,5 +1,6 @@
 package com.jdroid.gradle.commons;
 
+import com.jdroid.gradle.commons.cli.CommandExecutor;
 import com.jdroid.gradle.commons.utils.StringUtils;
 
 import org.gradle.api.Action;

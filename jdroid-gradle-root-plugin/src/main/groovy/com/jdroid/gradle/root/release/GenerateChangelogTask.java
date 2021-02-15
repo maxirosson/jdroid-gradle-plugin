@@ -1,6 +1,6 @@
-package com.jdroid.gradle.root.task;
+package com.jdroid.gradle.root.release;
 
-import com.jdroid.gradle.commons.CommandExecutor;
+import com.jdroid.gradle.commons.cli.CommandExecutor;
 import com.jdroid.java.concurrent.ExecutorUtils;
 
 import org.gradle.process.ExecResult;

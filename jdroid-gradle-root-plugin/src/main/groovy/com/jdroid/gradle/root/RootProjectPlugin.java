@@ -2,14 +2,14 @@ package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
 import com.jdroid.gradle.commons.GroovyUtils;
-import com.jdroid.gradle.root.task.CloseGitHubMilestoneTask;
-import com.jdroid.gradle.root.task.CreateGitHubReleaseTask;
-import com.jdroid.gradle.root.task.GenerateChangelogTask;
+import com.jdroid.gradle.root.release.CloseGitHubMilestoneTask;
+import com.jdroid.gradle.root.release.CreateGitHubReleaseTask;
+import com.jdroid.gradle.root.release.GenerateChangelogTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
-import com.jdroid.gradle.root.task.ProjectConfigSyncTask;
-import com.jdroid.gradle.root.task.ProjectConfigValidationTask;
-import com.jdroid.gradle.root.task.ProjectDependencyGraphTask;
+import com.jdroid.gradle.root.config.ProjectConfigSyncTask;
+import com.jdroid.gradle.root.config.ProjectConfigValidationTask;
+import com.jdroid.gradle.root.config.ProjectDependencyGraphTask;
 import com.releaseshub.gradle.plugin.ReleasesHubGradlePluginExtension;
 
 import org.gradle.api.Action;

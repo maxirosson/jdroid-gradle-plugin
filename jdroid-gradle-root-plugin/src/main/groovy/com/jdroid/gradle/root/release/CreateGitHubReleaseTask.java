@@ -1,10 +1,10 @@
-package com.jdroid.gradle.root.task;
+package com.jdroid.gradle.root.release;
 
 import com.jdroid.github.IRepositoryIdProvider;
 import com.jdroid.github.Release;
 import com.jdroid.github.client.GitHubClient;
 import com.jdroid.github.service.ReleaseService;
-import com.jdroid.gradle.commons.CommandExecutor;
+import com.jdroid.gradle.commons.cli.CommandExecutor;
 import com.jdroid.java.utils.FileUtils;
 
 import java.io.File;
