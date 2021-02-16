@@ -60,7 +60,7 @@ public class GroovyUtils {
 		project.pluginBundle {
 			website = jdroid.repositoryUrl
 			vcsUrl = jdroid.repositoryUrl
-			description = project.ext.description
+			description = project.description
 			tags = project.ext.GRADLE_PLUGIN_PORTAL_TAGS
 
 			plugins {
