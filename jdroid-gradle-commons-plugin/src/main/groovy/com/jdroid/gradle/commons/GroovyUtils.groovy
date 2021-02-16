@@ -45,7 +45,7 @@ public class GroovyUtils {
 		project.ext[key] = value
 	}
 
-	public static configureGradlePortalPlugin(Project project, BaseGradleExtension jdroid) {
+	public static configureGradlePlugin(Project project) {
 		project.gradlePlugin {
 			plugins {
 				plugin {
@@ -54,7 +54,9 @@ public class GroovyUtils {
 				}
 			}
 		}
+	}
 
+	public static configureGradlePortalPlugin(Project project, BaseGradleExtension jdroid) {
 		project.pluginBundle {
 			website = jdroid.repositoryUrl
 			vcsUrl = jdroid.repositoryUrl

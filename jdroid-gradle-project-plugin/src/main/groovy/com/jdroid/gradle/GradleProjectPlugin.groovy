@@ -66,6 +66,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 		}
 
 		if (isPublicationConfigurationEnabled) {
+			GroovyUtils.configureGradlePlugin(project)
 			boolean isGradlePluginPortalEnabled = propertyResolver.getBooleanProp("GRADLE_PLUGIN_PORTAL_ENABLED", false);
 			if (isGradlePluginPortalEnabled) {
 				if (CiUtils.isCi()) {
