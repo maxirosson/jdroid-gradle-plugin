@@ -49,8 +49,8 @@ public class GroovyUtils {
 		project.gradlePlugin {
 			plugins {
 				plugin {
-					id = project.ext.GRADLE_PLUGIN_PORTAL_ID
-					implementationClass = project.ext.GRADLE_PLUGIN_PORTAL_IMPLEMENTATION_CLASS
+					id = project.ext.GRADLE_PLUGIN_ID
+					implementationClass = project.ext.GRADLE_PLUGIN_IMPLEMENTATION_CLASS
 				}
 			}
 		}
@@ -64,7 +64,7 @@ public class GroovyUtils {
 			tags = project.ext.GRADLE_PLUGIN_PORTAL_TAGS
 
 			plugins {
-				byeByeJetifierPlugin {
+				gradlePlugin {
 					displayName = project.ext.PROJECT_NAME
 				}
 			}
