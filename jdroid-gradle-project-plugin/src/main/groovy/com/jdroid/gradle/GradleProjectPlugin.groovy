@@ -73,7 +73,7 @@ public class GradleProjectPlugin extends JavaGradlePlugin {
 					GroovyUtils.setExt(project, "gradle.publish.key", System.getenv("GRADLE_PUBLISH_KEY"));
 					GroovyUtils.setExt(project, "gradle.publish.secret", System.getenv("GRADLE_PUBLISH_SECRET"));
 					applyPlugin("com.gradle.plugin-publish");
-					GroovyUtils.configureGradlePortalPlugin(project);
+					GroovyUtils.configureGradlePortalPlugin(project, jdroid);
 				}
 			}
 		}
