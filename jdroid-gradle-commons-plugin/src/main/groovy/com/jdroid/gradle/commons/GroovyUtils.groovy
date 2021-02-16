@@ -48,7 +48,7 @@ public class GroovyUtils {
 	public static configureGradlePlugin(Project project) {
 		project.gradlePlugin {
 			plugins {
-				plugin {
+				gradlePlugin {
 					id = project.ext.GRADLE_PLUGIN_ID
 					implementationClass = project.ext.GRADLE_PLUGIN_IMPLEMENTATION_CLASS
 				}
