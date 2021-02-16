@@ -2,9 +2,6 @@ package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
 import com.jdroid.gradle.commons.GroovyUtils;
-import com.jdroid.gradle.root.release.CloseGitHubMilestoneTask;
-import com.jdroid.gradle.root.release.CreateGitHubReleaseTask;
-import com.jdroid.gradle.root.release.GenerateChangelogTask;
 import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
 import com.jdroid.gradle.root.config.ProjectConfigSyncTask;
@@ -82,18 +79,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 				extension.setStagingProfileId(jdroid.getPublishingStagingProfileId());
 			}
 		}
-
-		CreateGitHubReleaseTask createGitHubReleaseTask = project.getTasks().create("createGitHubRelease", CreateGitHubReleaseTask.class);
-		CloseGitHubMilestoneTask closeGitHubMilestoneTask = project.getTasks().create("closeGitHubMilestone", CloseGitHubMilestoneTask.class);
-		GenerateChangelogTask generateChangelogTask = project.getTasks().create("generateChangelog", GenerateChangelogTask.class);
-
-		project.afterEvaluate(new Action<Project>() {
-			public void execute(Project p) {
-				createGitHubReleaseTask.setLogLevel(jdroid.getLogLevel());
-				closeGitHubMilestoneTask.setLogLevel(jdroid.getLogLevel());
-				generateChangelogTask.setLogLevel(jdroid.getLogLevel());
-			}
-		});
 	}
 
 	private void configureKtlint() {

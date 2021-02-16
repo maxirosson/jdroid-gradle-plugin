@@ -20,7 +20,6 @@ public class BaseGradleExtension {
 	public PropertyResolver propertyResolver;
 	private String releasesHubUserToken;
 	private String gitHubWriteToken;
-	private String gitHubReadToken;
 	private String gitHubRepositoryOwner;
 	private String gitHubRepositoryName;
 	private String gitHubUserName;
@@ -43,7 +42,6 @@ public class BaseGradleExtension {
 
 		releasesHubUserToken = propertyResolver.getStringProp("RELEASES_HUB_USER_TOKEN");
 		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
-		gitHubReadToken = propertyResolver.getStringProp("GITHUB_READ_TOKEN", gitHubWriteToken);
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
 		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
@@ -124,14 +122,6 @@ public class BaseGradleExtension {
 
 	public void setPublishingPom(Action<MavenPom> publishingPom) {
 		this.publishingPom = publishingPom;
-	}
-
-	public String getGitHubReadToken() {
-		return gitHubReadToken;
-	}
-
-	public void setGitHubReadToken(String gitHubReadToken) {
-		this.gitHubReadToken = gitHubReadToken;
 	}
 
 	public String getRepositorySshUrl() {
