@@ -1,6 +1,6 @@
-package com.jdroid.gradle.commons;
+package com.jdroid.gradle.commons.utils;
 
-class CiUtils {
+public class CiUtils {
 
 	public static Boolean isCi() {
 		return "true".equals(System.getenv("CI"));
