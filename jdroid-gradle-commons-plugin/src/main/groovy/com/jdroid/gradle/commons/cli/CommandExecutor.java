@@ -1,6 +1,4 @@
-package com.jdroid.gradle.commons;
-
-import com.jdroid.gradle.commons.tasks.ExtendedExecResult;
+package com.jdroid.gradle.commons.cli;
 
 import org.apache.tools.ant.types.Commandline;
 import org.gradle.api.Action;

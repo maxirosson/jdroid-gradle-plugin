@@ -1,9 +1,10 @@
-package com.jdroid.gradle.root.task;
+package com.jdroid.gradle.root.config;
 
 import com.jdroid.gradle.commons.tasks.AbstractTask;
 import com.jdroid.java.utils.StreamUtils;
 
 import org.gradle.api.GradleException;
+import org.gradle.api.plugins.JavaBasePlugin;
 import org.gradle.internal.jvm.Jvm;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class ProjectConfigValidationTask extends AbstractTask {
 
 	public ProjectConfigValidationTask() {
 		setDescription("Validates if the project configuration is up to date");
+		setGroup(JavaBasePlugin.VERIFICATION_GROUP);
 	}
 
 	@Override
