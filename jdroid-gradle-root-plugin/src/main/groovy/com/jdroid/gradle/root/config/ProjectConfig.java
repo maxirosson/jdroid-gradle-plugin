@@ -1,4 +1,4 @@
-package com.jdroid.gradle.root.task;
+package com.jdroid.gradle.root.config;
 
 import org.gradle.api.Project;
 
