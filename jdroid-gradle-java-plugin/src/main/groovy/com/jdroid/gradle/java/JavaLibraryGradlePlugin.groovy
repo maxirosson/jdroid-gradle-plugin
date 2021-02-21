@@ -1,5 +1,6 @@
 package com.jdroid.gradle.java
 
+import com.jdroid.gradle.commons.GroovyUtils
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPublication
 
@@ -29,11 +30,7 @@ public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 		}
 
 		if (isSigningPublicationEnabled) {
-			applyPlugin('signing')
-			project.signing {
-				required { true }
-				sign project.publishing.publications.javaLibrary
-			}
+			GroovyUtils.configureSigning(project, project.publishing.publications.javaLibrary)
 		}
 	}
 
