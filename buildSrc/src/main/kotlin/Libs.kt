@@ -42,5 +42,5 @@ object Libs {
     // https://github.com/gretty-gradle-plugin/gretty/blob/master/changes.md
     const val GRETTY = "org.gretty:gretty:3.0.3"
 
-    const val JUNIT = "junit:junit:4.13.1"
+    const val JUNIT = "junit:junit:4.13.2"
 }
