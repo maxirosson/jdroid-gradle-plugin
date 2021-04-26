@@ -10,7 +10,7 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 	// TODO This version should be defined on Libs/BuildLibs.kt
-	private static final String KOTLIN_VERSION = "1.4.10";
+	private static final String KOTLIN_VERSION = "1.4.31";
 
 	protected Boolean isJavaDocPublicationEnabled;
 
