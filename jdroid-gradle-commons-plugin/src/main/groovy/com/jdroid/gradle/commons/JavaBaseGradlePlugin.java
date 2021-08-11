@@ -42,12 +42,8 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
 		isJavaDocPublicationEnabled = propertyResolver.getBooleanProp("JAVADOC_PUBLICATION_ENABLED", false);
 		if (isJavaDocPublicationEnabled) {
-			applyDokkaPlugin();
+			applyPlugin("org.jetbrains.dokka");
 		}
-	}
-
-	protected void applyDokkaPlugin() {
-		applyPlugin("org.jetbrains.dokka");
 	}
 
 	protected void configureKotlin() {

@@ -16,7 +16,6 @@ dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
 	implementation(Libs.GRADLE_PLUGIN_PUBLISH_PLUGIN)
 	implementation(Libs.KOTLIN_GRADLE_PLUGIN)
-	implementation(Libs.DOKKA_PLUGIN)
 	testImplementation(Libs.JUNIT)
 }
 

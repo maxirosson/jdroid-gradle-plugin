@@ -9,6 +9,7 @@ import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
+import org.jetbrains.dokka.gradle.DokkaTask
 
 public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 
@@ -51,7 +52,7 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 					group = JavaBasePlugin.DOCUMENTATION_GROUP
 					description = "Assembles Kotlin docs with Dokka"
 					archiveClassifier = 'javadoc'
-					from project.tasks.dokka
+					from project.tasks.withType(DokkaTask.class)
 				}
 			}
 
@@ -115,11 +116,6 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 	@Override
 	protected void applyAndroidPlugin() {
 		applyPlugin("com.android.library");
-	}
-
-	@Override
-	protected void applyDokkaPlugin() {
-		applyPlugin("org.jetbrains.dokka-android")
 	}
 }
 

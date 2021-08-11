@@ -17,6 +17,6 @@ buildscript {
 
 dependencies {
 	compile(Libs.JDROID_JAVA_CORE)
-
+	compile(Libs.DOKKA_PLUGIN)
 	testImplementation(Libs.JUNIT)
 }

@@ -1,9 +1,10 @@
-package com.jdroid.gradle.java;
+package com.jdroid.gradle.java
 
-import com.jdroid.gradle.commons.JavaBaseGradlePlugin;
-import org.gradle.api.Project;
-import org.gradle.api.plugins.JavaBasePlugin;
-import org.gradle.api.tasks.bundling.Jar;
+import com.jdroid.gradle.commons.JavaBaseGradlePlugin
+import org.gradle.api.Project
+import org.gradle.api.plugins.JavaBasePlugin
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.gradle.api.tasks.bundling.Jar
 
 public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 
@@ -33,7 +34,7 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 				group = JavaBasePlugin.DOCUMENTATION_GROUP
 				description = "Assembles Kotlin docs with Dokka"
 				archiveClassifier = "javadoc"
-				from project.tasks.dokka
+				from project.tasks.withType(DokkaTask.class)
 			}
 		}
 
