@@ -34,7 +34,7 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		android = project.android;
 
-		if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", true)) {
+		if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", false)) {
 			addDependency("lintChecks", "com.jdroidtools","jdroid-android-lint-rules", propertyResolver.getStringProp("JDROID_ANDROID_LINT_RULES_VERSION", JDROID_ANDROID_LINT_RULES_VERSION));
 		}
 
