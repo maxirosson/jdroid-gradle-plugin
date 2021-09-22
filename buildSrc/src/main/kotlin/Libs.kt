@@ -11,7 +11,7 @@ object Libs {
 
     // https://developer.android.com/tools/revisions/gradle-plugin.html
     // https://dl.google.com/dl/android/maven2/index.html
-    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:4.1.2"
+    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:7.0.2"
 
     // https://firebase.google.com/docs/perf-mon/get-started-android#add-performance-monitoringto-your-app
     // https://jcenter.bintray.com/com/google/firebase/perf-plugin/
@@ -31,7 +31,7 @@ object Libs {
     const val GRADLE_NEXUS_STAGING_PLUGIN = "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
 
     // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
 
     // https://github.com/Kotlin/dokka/releases
     const val DOKKA_PLUGIN = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
