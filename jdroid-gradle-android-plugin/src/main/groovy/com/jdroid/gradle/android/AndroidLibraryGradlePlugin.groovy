@@ -27,8 +27,12 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 		PrefixVerificationTask prefixVerificationTask = project.task('verifyPrefixes', type: PrefixVerificationTask)
 		if (isPublicationConfigurationEnabled) {
 			project.tasks.'publish'.dependsOn 'verifyPrefixes'
-			project.tasks.'publish'.dependsOn 'assembleDebug'
-			project.tasks.'publish'.dependsOn 'assembleRelease'
+			if (jdroid.isReleaseBuildTypeEnabled()) {
+				project.tasks.'publish'.dependsOn 'assembleDebug'
+				project.tasks.'publish'.dependsOn 'assembleRelease'
+			} else {
+				project.tasks.'publish'.dependsOn 'assemble'
+			}
 		}
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
