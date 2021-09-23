@@ -78,15 +78,14 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		}
 
 		// https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html
-		android.getDexOptions().setMaxProcessCount(propertyResolver.getIntegerProp("MAX_PROCESS_COUNT", 1));
-		android.getDexOptions().setPreDexLibraries(propertyResolver.getBooleanProp("PRE_DEX_LIBRARIES", true));
-		if (propertyResolver.hasProp("DEX_IN_PROCESS")) {
-			android.getDexOptions().setDexInProcess(propertyResolver.getBooleanProp("DEX_IN_PROCESS"));
-		}
+		//android.getDexOptions().setMaxProcessCount(propertyResolver.getIntegerProp("MAX_PROCESS_COUNT", 1));
+//		if (propertyResolver.hasProp("DEX_IN_PROCESS")) {
+//			android.getDexOptions().setDexInProcess(propertyResolver.getBooleanProp("DEX_IN_PROCESS"));
+//		}
 		// Only used if dexInProcess = false
-		if (propertyResolver.hasProp("JAVA_MAX_HEAP_SIZE")) {
-			android.getDexOptions().setJavaMaxHeapSize(propertyResolver.getStringProp("JAVA_MAX_HEAP_SIZE"));
-		}
+//		if (propertyResolver.hasProp("JAVA_MAX_HEAP_SIZE")) {
+//			android.getDexOptions().setJavaMaxHeapSize(propertyResolver.getStringProp("JAVA_MAX_HEAP_SIZE"));
+//		}
 
 		// http://tools.android.com/tips/lint-checks
 		android.lintOptions {
