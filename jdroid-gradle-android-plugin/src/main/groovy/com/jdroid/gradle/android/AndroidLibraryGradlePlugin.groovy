@@ -97,7 +97,6 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 									pom(mavenPom)
 								}
 							}
-							}
 						}
 					}
 				}
