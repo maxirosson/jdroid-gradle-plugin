@@ -68,35 +68,37 @@ public class AndroidLibraryGradlePlugin extends AndroidGradlePlugin {
 					}
 				}
 			}
-			project.afterEvaluate {
 
-				project.publishing {
-					publications {
+			if (jdroid.isDebugClassifierEnabled()) {
+				project.afterEvaluate {
 
-						// Create different publications for every build types (debug and release)
-						project.android.buildTypes.all { variant ->
-							if (variant.name != "release" || jdroid.isReleaseBuildTypeEnabled()) {
-								// Dynamically creating publications name
-								"${variant.name}AndroidLibrary"(MavenPublication) {
-									boolean isDebug = variant.name == "debug"
-									artifactId isDebug ? artifactId + "-debug" : artifactId
+					project.publishing {
+						publications {
 
-									if (isSourcesPublicationEnabled) {
-										artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
+							// Create different publications for every build types (debug and release)
+							project.android.buildTypes.all { variant ->
+								if (variant.name != "release" || jdroid.isReleaseBuildTypeEnabled()) {
+									// Dynamically creating publications name
+									"${variant.name}AndroidLibrary"(MavenPublication) {
+										boolean isDebug = variant.name == "debug"
+										artifactId isDebug ? artifactId + "-debug" : artifactId
+
+										if (isSourcesPublicationEnabled) {
+											artifact source: project."${variant.name}AndroidSourcesJar", classifier: "sources"
+										}
+										if (isJavaDocPublicationEnabled) {
+											artifact source: project.dokkaJar, classifier: "javadoc"
+										}
+										artifact project.tasks.getByName("bundle${variant.name.capitalize()}Aar")
+
+										// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
+										List<String> configurationNames = ListUtils.newArrayList("${variant.name}Implementation", "implementation");
+
+										Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, jdroid, artifactId, getPackaging())
+										pom(mavenPom)
 									}
-									if (isJavaDocPublicationEnabled) {
-										artifact source: project.dokkaJar, classifier: "javadoc"
-									}
-									artifact project.tasks.getByName("bundle${variant.name.capitalize()}Aar")
-
-									// Defining configuration names from which dependencies will be taken (debugImplementation or releaseImplementation and implementation)
-									List<String> configurationNames = ListUtils.newArrayList("${variant.name}Implementation", "implementation");
-
-									Action<? super MavenPom> mavenPom = new AndroidJdroidPom(configurationNames, isDebug).createMavenPom(project, jdroid, artifactId, getPackaging())
-									pom(mavenPom)
 								}
 							}
-
 						}
 					}
 				}
