@@ -48,8 +48,8 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			ReleasesHubGradlePluginExtension releasesHubGradlePluginExtension = project.getExtensions().getByType(ReleasesHubGradlePluginExtension.class);
 			releasesHubGradlePluginExtension.setGitHubRepositoryOwner(getExtension().getGitHubRepositoryOwner());
 			releasesHubGradlePluginExtension.setGitHubRepositoryName(getExtension().getGitHubRepositoryName());
-			releasesHubGradlePluginExtension.setGitHubUserEmail(getExtension().getGitHubUserEmail());
-			releasesHubGradlePluginExtension.setGitHubUserName(getExtension().getGitHubUserName());
+			releasesHubGradlePluginExtension.setGitUserEmail(getExtension().getGitHubUserEmail());
+			releasesHubGradlePluginExtension.setGitUserName(getExtension().getGitHubUserName());
 			releasesHubGradlePluginExtension.setGitHubWriteToken(getExtension().getGitHubWriteToken());
 			releasesHubGradlePluginExtension.setUserToken(getExtension().getReleasesHubUserToken());
 			releasesHubGradlePluginExtension.setExcludes(ListUtils.newArrayList("gradle"));
