@@ -45,14 +45,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 
 		if (propertyResolver.getBooleanProp("RELEASES_HUB_GRADLE_PLUGIN_ENABLED", true)) {
 			applyPlugin("com.dipien.releaseshub.gradle.plugin");
-			ReleasesHubGradlePluginExtension releasesHubGradlePluginExtension = project.getExtensions().getByType(ReleasesHubGradlePluginExtension.class);
-			releasesHubGradlePluginExtension.setGitHubRepositoryOwner(getExtension().getGitHubRepositoryOwner());
-			releasesHubGradlePluginExtension.setGitHubRepositoryName(getExtension().getGitHubRepositoryName());
-			releasesHubGradlePluginExtension.setGitUserEmail(getExtension().getGitHubUserEmail());
-			releasesHubGradlePluginExtension.setGitUserName(getExtension().getGitHubUserName());
-			releasesHubGradlePluginExtension.setGitHubWriteToken(getExtension().getGitHubWriteToken());
-			releasesHubGradlePluginExtension.setUserToken(getExtension().getReleasesHubUserToken());
-			releasesHubGradlePluginExtension.setExcludes(ListUtils.newArrayList("gradle"));
 		}
 
 		isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
