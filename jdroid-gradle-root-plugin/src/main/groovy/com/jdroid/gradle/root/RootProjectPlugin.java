@@ -2,12 +2,10 @@ package com.jdroid.gradle.root;
 
 import com.jdroid.gradle.commons.BaseGradlePlugin;
 import com.jdroid.gradle.commons.GroovyUtils;
-import com.jdroid.gradle.commons.utils.ListUtils;
 import com.jdroid.gradle.commons.utils.StringUtils;
 import com.jdroid.gradle.root.config.ProjectConfigSyncTask;
 import com.jdroid.gradle.root.config.ProjectConfigValidationTask;
 import com.jdroid.gradle.root.config.ProjectDependencyGraphTask;
-import com.releaseshub.gradle.plugin.ReleasesHubGradlePluginExtension;
 
 import org.gradle.api.Action;
 import org.gradle.api.Project;
@@ -42,10 +40,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 				projectConfigValidationTask.setLogLevel(getExtension().getLogLevel());
 			}
 		});
-
-		if (propertyResolver.getBooleanProp("RELEASES_HUB_GRADLE_PLUGIN_ENABLED", true)) {
-			applyPlugin("com.dipien.releaseshub.gradle.plugin");
-		}
 
 		isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
 

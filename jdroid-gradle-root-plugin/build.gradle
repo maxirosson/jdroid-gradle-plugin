@@ -14,7 +14,6 @@ buildscript {
 
 dependencies {
 	implementation project(path: ":jdroid-gradle-commons-plugin")
-	implementation(Libs.RELEASES_HUB_GRADLE_PLUGIN)
 	implementation(Libs.GRADLE_NEXUS_STAGING_PLUGIN)
 	testImplementation(Libs.JUNIT)
 }
