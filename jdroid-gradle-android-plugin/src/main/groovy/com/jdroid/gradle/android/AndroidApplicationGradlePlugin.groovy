@@ -1,11 +1,8 @@
 package com.jdroid.gradle.android
 
-
 import com.github.konifar.gradle.remover.UnusedResourcesRemoverExtension
 import com.jdroid.gradle.android.task.CopyBuildsTask
-import com.jdroid.gradle.android.versioning.AndroidVersion
 import com.jdroid.gradle.commons.utils.ListUtils
-import com.jdroid.gradle.commons.versioning.Version
 import org.gradle.api.Action
 import org.gradle.api.Project
 
@@ -58,9 +55,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 			android.getSplits().density.setEnable(false);
 		}
 
-		android.getDefaultConfig().setVersionCode(((AndroidVersion)version).getVersionCode());
-		android.getDefaultConfig().setVersionName(project.getVersion().toString());
-
 		List<String> resConfigsList = propertyResolver.getStringListProp("DEBUG_RES_CONFIGS");
 		if (resConfigsList != null) {
 			android.getDefaultConfig().resConfig(resConfigsList);
@@ -105,11 +99,6 @@ public class AndroidApplicationGradlePlugin extends AndroidGradlePlugin {
 
 	protected Class<? extends AndroidApplicationGradlePluginExtension> getExtensionClass() {
 		return AndroidApplicationGradlePluginExtension.class;
-	}
-
-	@Override
-	protected Version createVersion(String baseVersion) {
-		return new AndroidVersion(propertyResolver, jdroid, baseVersion);
 	}
 
 	protected void applyAndroidPlugin() {

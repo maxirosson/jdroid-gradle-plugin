@@ -1,11 +1,6 @@
 package com.jdroid.gradle.commons;
 
 import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
-import com.jdroid.gradle.commons.versioning.IncrementMajorVersionTask;
-import com.jdroid.gradle.commons.versioning.IncrementMinorVersionTask;
-import com.jdroid.gradle.commons.versioning.IncrementPatchVersionTask;
-import com.jdroid.gradle.commons.versioning.PrintVersionTask;
-import com.jdroid.gradle.commons.versioning.Version;
 
 import org.gradle.api.Action;
 import org.gradle.api.GradleException;
@@ -32,7 +27,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	public Boolean isSigningPublicationEnabled;
 	protected String artifactId;
 	public Boolean isKotlinEnabled;
-	protected Version version;
 
 	public void apply(Project project) {
 		this.project = project;
@@ -40,39 +34,13 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		propertyResolver = new PropertyResolver(project);
 		jdroid = project.getExtensions().create("jdroid", getExtensionClass(), project);
 
-		if (project.getVersion().equals(Project.DEFAULT_VERSION)) {
-			project.setVersion(project.getRootProject().getVersion());
-		}
-
-
-		if (project.getVersion().equals(Project.DEFAULT_VERSION)) {
-			project.getLogger().warn("Version not specified on project " + project.getName() + " or its root project. Assigned v0.1.0 as default version");
-			project.setVersion("0.1.0");
-		}
-
-		String baseVersion = new Version(project.getVersion().toString()).getBaseVersion();
-		version = createVersion(baseVersion);
-		project.setVersion(version.toString());
-
-		PrintVersionTask printVersionTask = project.getTasks().create("printVersion", PrintVersionTask.class);
-
-		IncrementMajorVersionTask incrementMajorVersionTask = project.getTasks().create("incrementMajorVersion", IncrementMajorVersionTask.class);
-		IncrementMinorVersionTask incrementMinorVersionTask = project.getTasks().create("incrementMinorVersion", IncrementMinorVersionTask.class);
-		IncrementPatchVersionTask incrementPatchVersionTask = project.getTasks().create("incrementPatchVersion", IncrementPatchVersionTask.class);
-
 		BuildScriptDependenciesTask buildScriptDependenciesTask = project.getTasks().create("buildScriptDependencies", BuildScriptDependenciesTask.class);
-
 
 		project.afterEvaluate(new Action<Project>() {
 			public void execute(Project p) {
-				printVersionTask.setLogLevel(jdroid.getLogLevel());
-				incrementMajorVersionTask.setLogLevel(jdroid.getLogLevel());
-				incrementMinorVersionTask.setLogLevel(jdroid.getLogLevel());
-				incrementPatchVersionTask.setLogLevel(jdroid.getLogLevel());
 				buildScriptDependenciesTask.setLogLevel(jdroid.getLogLevel());
 			}
 		});
-
 
 		if (!propertyResolver.getBooleanProp("ACCEPT_SNAPSHOT_DEPENDENCIES", true)) {
 			project.getConfigurations().all(new Action<Configuration>() {
@@ -101,8 +69,12 @@ public class BaseGradlePlugin implements Plugin<Project> {
 			if (!project.getPlugins().hasPlugin("maven-publish")) {
 				applyPlugin("maven-publish");
 			}
+
+			// TODO Get this info from semantic version plugin
+			boolean isSnapshot = project.getVersion().toString().endsWith("-SNAPSHOT");
+
 			isSourcesPublicationEnabled = propertyResolver.getBooleanProp("SOURCES_PUBLICATION_ENABLED", false);
-			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !version.isSnapshot();
+			isSigningPublicationEnabled = propertyResolver.getBooleanProp("SIGNING_PUBLICATION_ENABLED", false) && !isSnapshot;
 
 
 			Boolean localUpload = propertyResolver.getBooleanProp("LOCAL_UPLOAD", true);
@@ -127,8 +99,7 @@ public class BaseGradlePlugin implements Plugin<Project> {
 							repositoryHandler.maven(new Action<MavenArtifactRepository>() {
 								@Override
 								public void execute(MavenArtifactRepository mavenArtifactRepository) {
-									Boolean isSnapshot = version.isSnapshot();
-									if (isSnapshot == null || isSnapshot) {
+									if (isSnapshot) {
 										mavenArtifactRepository.setName("snapshotsMavenRepo");
 										mavenArtifactRepository.setUrl(jdroid.getPublishingSnapshotsRepoUrl());
 									} else {
@@ -163,10 +134,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		}
 
 		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
-	}
-
-	protected Version createVersion(String baseVersion) {
-		return new Version(propertyResolver, jdroid, baseVersion);
 	}
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {
