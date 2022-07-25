@@ -62,7 +62,7 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 	}
 
 	private void configureKtlint() {
-		Boolean isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
+		Boolean isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", true);
 		if (isKtLintEnabled) {
 			addConfiguration("ktlint");
 			addDependency("ktlint", "com.pinterest", "ktlint", KTLINT_VERSION);

@@ -27,7 +27,6 @@ dependencies {
 	implementation(Libs.GOOGLE_SERVICES_PLUGIN)
 	implementation(Libs.FIREBASE_CRASHLYTICS_GRADLE_PLUGIN)
 	implementation(Libs.UNUSED_RESOURCES_REMOVER_PLUGIN)
-	implementation(Libs.KOTLIN_GRADLE_PLUGIN)
 
 	testImplementation(Libs.JUNIT)
 }

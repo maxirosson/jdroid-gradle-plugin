@@ -21,7 +21,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 	public Boolean isSourcesPublicationEnabled;
 	public Boolean isSigningPublicationEnabled;
 	protected String artifactId;
-	public Boolean isKotlinEnabled;
 
 	public void apply(Project project) {
 		this.project = project;
@@ -100,8 +99,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 		if (propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_ENABLED", true)) {
 			GroovyUtils.configureBuildScan(project, propertyResolver.getBooleanProp("GRADLE_BUILD_SCAN_PUBLISH_ALWAYS", false));
 		}
-
-		isKotlinEnabled = propertyResolver.getBooleanProp("KOTLIN_ENABLED", true);
 	}
 
 	protected Class<? extends BaseGradleExtension> getExtensionClass() {

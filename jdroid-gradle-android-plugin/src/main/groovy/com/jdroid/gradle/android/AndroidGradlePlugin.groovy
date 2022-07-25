@@ -27,11 +27,6 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 
 		applyAndroidPlugin();
 
-		if (isKotlinEnabled) {
-			applyPlugin("kotlin-android");
-			configureKotlin();
-		}
-
 		android = project.android;
 
 		if (propertyResolver.getBooleanProp("JDROID_ANDROID_LINT_RULES_ENABLED", false)) {

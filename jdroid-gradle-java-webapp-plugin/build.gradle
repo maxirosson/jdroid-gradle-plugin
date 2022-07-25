@@ -15,7 +15,6 @@ buildscript {
 dependencies {
 
 	implementation project(path: ":jdroid-gradle-java-plugin")
-	implementation(Libs.KOTLIN_GRADLE_PLUGIN)
 	implementation(Libs.GRETTY)
 
 	testImplementation(Libs.JUNIT)

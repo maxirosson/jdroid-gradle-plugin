@@ -14,7 +14,6 @@ buildscript {
 
 dependencies {
 	compile project(path: ":jdroid-gradle-commons-plugin")
-	compile(Libs.KOTLIN_GRADLE_PLUGIN)
 	testCompile(Libs.JUNIT)
 }
 
