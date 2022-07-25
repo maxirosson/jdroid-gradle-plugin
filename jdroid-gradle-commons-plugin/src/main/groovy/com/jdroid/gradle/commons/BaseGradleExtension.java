@@ -1,16 +1,9 @@
 package com.jdroid.gradle.commons;
 
-import com.jdroid.gradle.commons.cli.CommandExecutor;
-import com.jdroid.gradle.commons.utils.StringUtils;
-
 import org.gradle.api.Action;
 import org.gradle.api.Project;
 import org.gradle.api.logging.LogLevel;
 import org.gradle.api.publish.maven.MavenPom;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class BaseGradleExtension {
 
@@ -18,12 +11,8 @@ public class BaseGradleExtension {
 	private LogLevel logLevel = LogLevel.INFO;
 
 	public PropertyResolver propertyResolver;
-	private String releasesHubUserToken;
-	private String gitHubWriteToken;
 	private String gitHubRepositoryOwner;
 	private String gitHubRepositoryName;
-	private String gitHubUserName;
-	private String gitHubUserEmail;
 	private Action<MavenPom> publishingPom;
 	private String publishingSnapshotsRepoUrl;
 	private String publishingReleasesRepoUrl;
@@ -40,40 +29,13 @@ public class BaseGradleExtension {
 		this.project = project;
 		this.propertyResolver = new PropertyResolver(project);
 
-		releasesHubUserToken = propertyResolver.getStringProp("RELEASES_HUB_USER_TOKEN");
-		gitHubWriteToken = propertyResolver.getStringProp("GITHUB_WRITE_TOKEN");
 		gitHubRepositoryOwner = propertyResolver.getStringProp("GITHUB_REPOSITORY_OWNER");
 		gitHubRepositoryName = propertyResolver.getStringProp("GITHUB_REPOSITORY_NAME");
-		gitHubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
-		gitHubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
 		publishingSnapshotsRepoUrl = propertyResolver.getStringProp("PUBLISHING_SNAPSHOTS_REPO_URL", "https://oss.sonatype.org/content/repositories/snapshots/");
 		publishingReleasesRepoUrl = propertyResolver.getStringProp("PUBLISHING_RELEASES_REPO_URL", "https://oss.sonatype.org/service/local/staging/deploy/maven2/");
 		publishingRepoUsername = propertyResolver.getStringProp("PUBLISHING_REPO_USERNAME");
 		publishingRepoPassword = propertyResolver.getStringProp("PUBLISHING_REPO_PASSWORD");
 		publishingStagingProfileId = propertyResolver.getStringProp("PUBLISHING_STAGING_PROFILE_ID");
-	}
-
-	public String getGitSha() {
-		return new CommandExecutor(project, logLevel).execute("git rev-parse --short HEAD").getStandardOutput().trim();
-	}
-
-	public String getGitBranch() {
-		String gitBranch = propertyResolver.getStringProp("GIT_BRANCH");
-		if (StringUtils.isEmpty(gitBranch)) {
-			gitBranch = new CommandExecutor(project, logLevel).execute("git symbolic-ref HEAD").getStandardOutput();
-		}
-
-		gitBranch = gitBranch.trim();
-		gitBranch = gitBranch.replace("origin/", "");
-		gitBranch = gitBranch.replace("refs/heads/", "");
-		gitBranch = gitBranch.replace("refs/tags/", "");
-		return gitBranch;
-	}
-
-	public String getBuildTime() {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		df.setTimeZone(TimeZone.getDefault());
-		return df.format(new Date());
 	}
 
 	public LogLevel getLogLevel() {
@@ -82,14 +44,6 @@ public class BaseGradleExtension {
 
 	public void setLogLevel(LogLevel logLevel) {
 		this.logLevel = logLevel;
-	}
-
-	public String getGitHubWriteToken() {
-		return gitHubWriteToken;
-	}
-
-	public void setGitHubWriteToken(String gitHubWriteToken) {
-		this.gitHubWriteToken = gitHubWriteToken;
 	}
 
 	public String getGitHubRepositoryOwner() {
@@ -106,14 +60,6 @@ public class BaseGradleExtension {
 
 	public void setGitHubRepositoryName(String gitHubRepositoryName) {
 		this.gitHubRepositoryName = gitHubRepositoryName;
-	}
-
-	public String getGitHubUserName() {
-		return gitHubUserName;
-	}
-
-	public String getGitHubUserEmail() {
-		return gitHubUserEmail;
 	}
 
 	public Action<MavenPom> getPublishingPom() {
@@ -162,14 +108,6 @@ public class BaseGradleExtension {
 
 	public void setPublishingReleasesRepoUrl(String publishingReleasesRepoUrl) {
 		this.publishingReleasesRepoUrl = publishingReleasesRepoUrl;
-	}
-
-	public String getReleasesHubUserToken() {
-		return releasesHubUserToken;
-	}
-
-	public void setReleasesHubUserToken(String releasesHubUserToken) {
-		this.releasesHubUserToken = releasesHubUserToken;
 	}
 
 	public String getPublishingStagingProfileId() {

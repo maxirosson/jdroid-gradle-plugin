@@ -1,7 +1,6 @@
 package com.jdroid.gradle.commons.tasks;
 
 import com.jdroid.gradle.commons.BaseGradleExtension;
-import com.jdroid.gradle.commons.cli.CommandExecutor;
 import com.jdroid.gradle.commons.PropertyResolver;
 import com.jdroid.gradle.commons.utils.ProjectUtils;
 
@@ -45,19 +44,5 @@ public abstract class AbstractTask extends DefaultTask {
 	@Input
 	protected BaseGradleExtension getExtension() {
 		return ProjectUtils.getJdroidExtension(getProject());
-	}
-
-	protected void configureGit() {
-		CommandExecutor commandExecutor = new CommandExecutor(getProject(), getLogLevel());
-
-		String ciGithubUserName = propertyResolver.getStringProp("GITHUB_USER_NAME");
-		if (ciGithubUserName != null) {
-			commandExecutor.execute("git config user.name " + ciGithubUserName);
-		}
-
-		String ciGithubUserEmail = propertyResolver.getStringProp("GITHUB_USER_EMAIL");
-		if (ciGithubUserEmail != null) {
-			commandExecutor.execute("git config user.email " + ciGithubUserEmail);
-		}
 	}
 }

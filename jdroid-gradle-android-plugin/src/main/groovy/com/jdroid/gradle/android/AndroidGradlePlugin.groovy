@@ -54,17 +54,6 @@ public abstract class AndroidGradlePlugin extends JavaBaseGradlePlugin {
 		android.defaultConfig {
 
 			vectorDrawables.useSupportLibrary = propertyResolver.getBooleanProp("VECTOR_DRAWABLES_USE_SUPPORT_LIB", true)
-
-			// Disabled by default, because it affects Instant Run
-			if (propertyResolver.getBooleanProp("BUILD_TIME_CONFIG_ENABLED", false)) {
-				jdroid.setBuildConfigString(android.defaultConfig, "BUILD_TIME", jdroid.getBuildTime())
-			}
-
-			// Disabled by default, because it affects Instant Run
-			if (propertyResolver.getBooleanProp("GIT_CONFIG_ENABLED", false)) {
-				jdroid.setBuildConfigString(android.defaultConfig, "GIT_SHA", jdroid.getGitSha())
-				jdroid.setBuildConfigString(android.defaultConfig, "GIT_BRANCH", jdroid.getGitBranch())
-			}
 		}
 
 		android.compileOptions {

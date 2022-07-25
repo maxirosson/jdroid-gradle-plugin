@@ -1,13 +1,8 @@
 package com.jdroid.gradle.commons;
 
-import com.jdroid.gradle.commons.tasks.BuildScriptDependenciesTask;
-
 import org.gradle.api.Action;
-import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
-import org.gradle.api.artifacts.Configuration;
-import org.gradle.api.artifacts.DependencyResolveDetails;
 import org.gradle.api.artifacts.dsl.RepositoryHandler;
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
 import org.gradle.api.artifacts.repositories.PasswordCredentials;
@@ -33,33 +28,6 @@ public class BaseGradlePlugin implements Plugin<Project> {
 
 		propertyResolver = new PropertyResolver(project);
 		jdroid = project.getExtensions().create("jdroid", getExtensionClass(), project);
-
-		BuildScriptDependenciesTask buildScriptDependenciesTask = project.getTasks().create("buildScriptDependencies", BuildScriptDependenciesTask.class);
-
-		project.afterEvaluate(new Action<Project>() {
-			public void execute(Project p) {
-				buildScriptDependenciesTask.setLogLevel(jdroid.getLogLevel());
-			}
-		});
-
-		if (!propertyResolver.getBooleanProp("ACCEPT_SNAPSHOT_DEPENDENCIES", true)) {
-			project.getConfigurations().all(new Action<Configuration>() {
-				@Override
-				public void execute(Configuration files) {
-					files.getResolutionStrategy().eachDependency(new Action<DependencyResolveDetails>() {
-						@Override
-						public void execute(DependencyResolveDetails details) {
-							if (details.getRequested().getVersion().endsWith("-SNAPSHOT")) {
-								throw new GradleException("Found snapshot dependency: " + details.getRequested().getGroup() + ":" + details.getRequested().getName() + ":" + details.getRequested().getVersion());
-							}
-
-						}
-
-					});
-				}
-
-			});
-		}
 
 		isPublicationConfigurationEnabled = fetchIsPublicationConfigurationEnabled();
 		if (isPublicationConfigurationEnabled) {
