@@ -47,4 +47,9 @@ public abstract class JavaGradlePlugin extends JavaBaseGradlePlugin {
 	}
 
 	protected abstract void applyPlugin(Project project);
+
+
+	protected Class<? extends JavaGradleExtension> getExtensionClass() {
+		return JavaGradleExtension.class;
+	}
 }
