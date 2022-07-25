@@ -43,8 +43,4 @@ public class JavaLibraryGradlePlugin extends JavaGradlePlugin {
 	protected void applyPlugin(Project project) {
 		applyPlugin("java-library");
 	}
-
-	protected Class<? extends JavaLibraryGradleExtension> getExtensionClass() {
-		return JavaLibraryGradleExtension.class;
-	}
 }

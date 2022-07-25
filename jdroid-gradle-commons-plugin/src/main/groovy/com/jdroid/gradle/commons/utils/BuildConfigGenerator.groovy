@@ -1,13 +1,13 @@
-package com.jdroid.gradle.java;
+package com.jdroid.gradle.commons.utils
 
-import com.jdroid.gradle.commons.JavaBaseGradleExtension;
+import com.jdroid.gradle.commons.PropertyResolver
 
-import org.gradle.api.Project;
+public class BuildConfigGenerator {
 
-public class JavaGradleExtension extends JavaBaseGradleExtension {
-	
-	public JavaGradleExtension(Project project) {
-		super(project);
+	private PropertyResolver propertyResolver
+
+	public JavaGradleExtension(PropertyResolver propertyResolver) {
+		this.propertyResolver = propertyResolver
 	}
 
 	public void setBuildConfigString(def out, String key) {

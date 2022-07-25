@@ -9,9 +9,6 @@ import org.gradle.external.javadoc.CoreJavadocOptions;
 
 public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 
-	// TODO This version should be defined on Libs/BuildLibs.kt
-	private static final String KOTLIN_VERSION = "1.5.31";
-
 	protected Boolean isJavaDocPublicationEnabled;
 
 	public void apply(Project project) {
@@ -44,11 +41,6 @@ public abstract class JavaBaseGradlePlugin extends BaseGradlePlugin {
 		if (isJavaDocPublicationEnabled) {
 			applyPlugin("org.jetbrains.dokka");
 		}
-	}
-
-	protected void configureKotlin() {
-		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8", KOTLIN_VERSION);
-		addDependency("implementation", "org.jetbrains.kotlin", "kotlin-reflect", KOTLIN_VERSION);
 	}
 
 	protected String getJavaSourceCompatibility() {

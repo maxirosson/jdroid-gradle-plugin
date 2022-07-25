@@ -52,8 +52,4 @@ public class JavaWebAppGradlePlugin extends JavaGradlePlugin {
 	protected void applyPlugin(Project project) {
 		applyPlugin("java");
 	}
-
-	protected Class<? extends JavaWebAppGradleExtension> getExtensionClass() {
-		return JavaWebAppGradleExtension.class;
-	}
 }

@@ -22,8 +22,6 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 	// TODO This version should be defined on Libs/BuildLibs.kt
 	private static final String KTLINT_VERSION = "0.36.0";
 
-	public Boolean isKtLintEnabled;
-
 	public void apply(Project project) {
 		super.apply(project);
 
@@ -41,11 +39,7 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 			}
 		});
 
-		isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
-
-		if (isKtLintEnabled && isKtLintEnabled) {
-			configureKtlint();
-		}
+		configureKtlint();
 
 		ProjectDependencyGraphTask projectDependenciesGraph = project.getTasks().create("projectDependencyGraph", ProjectDependencyGraphTask.class);
 		project.afterEvaluate(new Action<Project>() {
@@ -68,58 +62,55 @@ public class RootProjectPlugin extends BaseGradlePlugin {
 	}
 
 	private void configureKtlint() {
+		Boolean isKtLintEnabled = propertyResolver.getBooleanProp("KTLINT_ENABLED", isKotlinEnabled);
+		if (isKtLintEnabled) {
+			addConfiguration("ktlint");
+			addDependency("ktlint", "com.pinterest", "ktlint", KTLINT_VERSION);
 
-		addConfiguration("ktlint");
-		addDependency("ktlint", "com.pinterest", "ktlint", KTLINT_VERSION);
-
-		String includesString = propertyResolver.getStringProp("KTLINT_INCLUDES");
-		final List<String> includes = new ArrayList<>();
-		if (includesString == null) {
-			for(Project each : project.getSubprojects()) {
-				includes.add(each.getName() + "/src/**/*.kt");
-				includes.add(each.getName() + "/*.kts");
+			String includesString = propertyResolver.getStringProp("KTLINT_INCLUDES");
+			final List<String> includes = new ArrayList<>();
+			if (includesString == null) {
+				for(Project each : project.getSubprojects()) {
+					includes.add(each.getName() + "/src/**/*.kt");
+					includes.add(each.getName() + "/*.kts");
+				}
+				includes.add("buildSrc/src/**/*.kt");
+				includes.add("buildSrc/*.kts");
+			} else {
+				includes.addAll(StringUtils.splitToList(includesString, "\n"));
 			}
-			includes.add("buildSrc/src/**/*.kt");
-			includes.add("buildSrc/*.kts");
-		} else {
-			includes.addAll(StringUtils.splitToList(includesString, "\n"));
+
+			Task ktlintTask = project.getTasks().create("ktlint", JavaExec.class, new Action<JavaExec>() {
+				@Override
+				public void execute(JavaExec javaExec) {
+					javaExec.setDescription("Check Kotlin code style.");
+					javaExec.setMain("com.pinterest.ktlint.Main");
+					javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
+
+					// to generate report in checkstyle format prepend following args:
+					// "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+					List<String> args = new ArrayList<>();
+					args.add("-a");
+					args.addAll(includes);
+					javaExec.setArgs(args);
+				}
+			});
+			ktlintTask.setGroup("verification");
+
+			Task ktlintFormatTask = project.getTasks().create("ktlintFormat", JavaExec.class, new Action<JavaExec>() {
+				@Override
+				public void execute(JavaExec javaExec) {
+					javaExec.setDescription("Fix Kotlin code style deviations.");
+					javaExec.setMain("com.pinterest.ktlint.Main");
+					javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
+					List<String> args = new ArrayList<>();
+					args.add("-a");
+					args.add("-F");
+					args.addAll(includes);
+					javaExec.setArgs(args);
+				}
+			});
+			ktlintFormatTask.setGroup("formatting");
 		}
-
-		Task ktlintTask = project.getTasks().create("ktlint", JavaExec.class, new Action<JavaExec>() {
-			@Override
-			public void execute(JavaExec javaExec) {
-				javaExec.setDescription("Check Kotlin code style.");
-				javaExec.setMain("com.pinterest.ktlint.Main");
-				javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
-
-				// to generate report in checkstyle format prepend following args:
-				// "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-				List<String> args = new ArrayList<>();
-				args.add("-a");
-				args.addAll(includes);
-				javaExec.setArgs(args);
-			}
-		});
-		ktlintTask.setGroup("verification");
-
-		Task ktlintFormatTask = project.getTasks().create("ktlintFormat", JavaExec.class, new Action<JavaExec>() {
-			@Override
-			public void execute(JavaExec javaExec) {
-				javaExec.setDescription("Fix Kotlin code style deviations.");
-				javaExec.setMain("com.pinterest.ktlint.Main");
-				javaExec.setClasspath(project.getConfigurations().findByName("ktlint"));
-				List<String> args = new ArrayList<>();
-				args.add("-a");
-				args.add("-F");
-				args.addAll(includes);
-				javaExec.setArgs(args);
-			}
-		});
-		ktlintFormatTask.setGroup("formatting");
 	}
-
-	protected Class<? extends RootProjectExtension> getExtensionClass() {
-		return RootProjectExtension.class;
-	}
-
 }
